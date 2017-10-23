@@ -12,3 +12,17 @@ C:\Users\carl.wessels\source\repos\DBLayerGeneratorTest\AppointmentService\obj\D
 C:\Users\carl.wessels\source\repos\DBLayerGeneratorTest\AppointmentService\obj\Debug\AppointmentService.pdb
 C:\Users\carl.wessels\source\repos\DBLayerGeneratorTest\AppointmentService\bin\Debug\GeneratedLibrary.dll
 C:\Users\carl.wessels\source\repos\DBLayerGeneratorTest\AppointmentService\bin\Debug\GeneratedLibrary.pdb
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\AppointmentService\bin\Debug\AppointmentService.dll.config
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\AppointmentService\bin\Debug\AppointmentService.dll
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\AppointmentService\bin\Debug\AppointmentService.pdb
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\AppointmentService\bin\Debug\AppointmentLibrary.exe
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\AppointmentService\bin\Debug\GeneratedLibrary.dll
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\AppointmentService\bin\Debug\Newtonsoft.Json.dll
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\AppointmentService\bin\Debug\AppointmentLibrary.pdb
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\AppointmentService\bin\Debug\AppointmentLibrary.exe.config
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\AppointmentService\bin\Debug\GeneratedLibrary.pdb
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\AppointmentService\bin\Debug\Newtonsoft.Json.xml
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\AppointmentService\obj\Debug\AppointmentService.csprojResolveAssemblyReference.cache
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\AppointmentService\obj\Debug\AppointmentService.csproj.CoreCompileInputs.cache
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\AppointmentService\obj\Debug\AppointmentService.dll
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\AppointmentService\obj\Debug\AppointmentService.pdb

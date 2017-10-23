@@ -50,6 +50,12 @@ namespace ApplicationClient.AppointmentServiceClient {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/AccountGet", ReplyAction="http://tempuri.org/IAppointmentService/AccountGetResponse")]
         System.Threading.Tasks.Task<string> AccountGetAsync(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/AppointmentGet", ReplyAction="http://tempuri.org/IAppointmentService/AppointmentGetResponse")]
+        string AppointmentGet(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/AppointmentGet", ReplyAction="http://tempuri.org/IAppointmentService/AppointmentGetResponse")]
+        System.Threading.Tasks.Task<string> AppointmentGetAsync(string parameters);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -125,6 +131,14 @@ namespace ApplicationClient.AppointmentServiceClient {
         
         public System.Threading.Tasks.Task<string> AccountGetAsync(string parameters) {
             return base.Channel.AccountGetAsync(parameters);
+        }
+        
+        public string AppointmentGet(string parameters) {
+            return base.Channel.AppointmentGet(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> AppointmentGetAsync(string parameters) {
+            return base.Channel.AppointmentGetAsync(parameters);
         }
     }
 }

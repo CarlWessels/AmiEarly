@@ -1,4 +1,6 @@
 ﻿using AppointmentLibrary;
+using AppointmentLibrary.Parameters;
+using AppointmentLibrary.ProcResults;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -24,7 +26,7 @@ namespace ApplicationClient
             }
         }
 
-        public static spAccountUpsertResult AccountUpsert(Guid? guid, string name, DateTime activeDateTime, DateTime? terminationDateTime, bool isDeleted, Guid systemUserGUID)
+        public static List<spAccountUpsertResult> AccountUpsert(Guid? guid, string name, DateTime activeDateTime, DateTime? terminationDateTime, bool isDeleted, Guid systemUserGUID)
         {
             spAccountUpsertParameters p = new spAccountUpsertParameters()
             {
@@ -39,11 +41,11 @@ namespace ApplicationClient
 
             string parameters = JsonConvert.SerializeObject(p);
             string resultStr = Client.AccountUpsert(parameters);
-            spAccountUpsertResult result = JsonConvert.DeserializeObject<spAccountUpsertResult>(resultStr);
+            List<spAccountUpsertResult> result = JsonConvert.DeserializeObject<List<spAccountUpsertResult>>(resultStr);
             return result;
         }
 
-        public static spAccountGetResult AccountGet(Guid guid)
+        public static List<spAccountGetResult> AccountGet(Guid? guid)
         {
             spAccountGetParameters p = new spAccountGetParameters()
             {
@@ -52,8 +54,23 @@ namespace ApplicationClient
 
             string parameters = JsonConvert.SerializeObject(p);
             string resultStr = Client.AccountGet(parameters);
-            spAccountGetResult result = JsonConvert.DeserializeObject<spAccountGetResult>(resultStr);
+            List<spAccountGetResult> result = JsonConvert.DeserializeObject<List<spAccountGetResult>>(resultStr);
             return result;
+        }
+
+        public static List<spAppointmentGetResult> AppointmentGet(Guid? guid)
+        {
+            spAppointmentGetParameters p = new spAppointmentGetParameters()
+            {
+                AppointmentGUID = guid
+            };
+
+            string parameters = JsonConvert.SerializeObject(p);
+            string resultStr = Client.AppointmentGet(parameters);
+
+            List<spAppointmentGetResult> result = JsonConvert.DeserializeObject<List<spAppointmentGetResult>>(resultStr);
+            return result;
+
         }
 
     }

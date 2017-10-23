@@ -9,3 +9,14 @@ C:\Users\carl.wessels\source\repos\DBLayerGeneratorTest\ConsoleApp1\obj\Debug\Ap
 C:\Users\carl.wessels\source\repos\DBLayerGeneratorTest\ConsoleApp1\obj\Debug\AppointmentLibrary.csprojResolveAssemblyReference.cache
 C:\Users\carl.wessels\source\repos\DBLayerGeneratorTest\ConsoleApp1\bin\Debug\GeneratedLibrary.dll
 C:\Users\carl.wessels\source\repos\DBLayerGeneratorTest\ConsoleApp1\bin\Debug\GeneratedLibrary.pdb
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\ConsoleApp1\obj\Debug\AppointmentLibrary.csprojResolveAssemblyReference.cache
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\ConsoleApp1\obj\Debug\AppointmentLibrary.csproj.CoreCompileInputs.cache
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\ConsoleApp1\obj\Debug\AppointmentLibrary.exe
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\ConsoleApp1\obj\Debug\AppointmentLibrary.pdb
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\ConsoleApp1\bin\Debug\AppointmentLibrary.exe.config
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\ConsoleApp1\bin\Debug\AppointmentLibrary.exe
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\ConsoleApp1\bin\Debug\AppointmentLibrary.pdb
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\ConsoleApp1\bin\Debug\GeneratedLibrary.dll
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\ConsoleApp1\bin\Debug\Newtonsoft.Json.dll
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\ConsoleApp1\bin\Debug\GeneratedLibrary.pdb
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\ConsoleApp1\bin\Debug\Newtonsoft.Json.xml

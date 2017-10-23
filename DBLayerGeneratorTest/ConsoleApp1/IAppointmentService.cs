@@ -23,5 +23,7 @@ namespace AppointmentLibrary
         string ServiceProvdiderUpsert(string parameters);
         [OperationContract]
         string AccountGet(string parameters);
+        [OperationContract]
+        string AppointmentGet(string parameters);
     }
 }

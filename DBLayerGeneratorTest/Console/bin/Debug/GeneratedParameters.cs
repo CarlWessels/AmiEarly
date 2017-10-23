@@ -1,18 +1,10 @@
-namespace AppointmentLibrary
+namespace AppointmentLibrary.Parameters
 {
 	using System;
 	public interface IParameter
 	{
 	}
-	public class spAccountGetParameters : IParameter
-	{
-		public Guid? AccountGUID { get; set;}
-	}
-	public class spCreateUpsertParameters : IParameter
-	{
-		public string TableName { get; set;}
-	}
-	public class spAccountUpsertParameters : IParameter
+	public partial class spAccountUpsertParameters : IParameter
 	{
 		public Guid? GUID { get; set;}
 		public bool? IsDeleted { get; set;}
@@ -22,7 +14,11 @@ namespace AppointmentLibrary
 		public Guid? SystemUserGUID { get; set;}
 		public bool? ReturnResults { get; set;}
 	}
-	public class spActivityTypeUpsertParameters : IParameter
+	public partial class spAccountGetParameters : IParameter
+	{
+		public Guid? AccountGUID { get; set;}
+	}
+	public partial class spActivityTypeUpsertParameters : IParameter
 	{
 		public Guid? GUID { get; set;}
 		public bool? IsDeleted { get; set;}
@@ -31,7 +27,11 @@ namespace AppointmentLibrary
 		public Guid? SystemUserGUID { get; set;}
 		public bool? ReturnResults { get; set;}
 	}
-	public class spAppointmentUpsertParameters : IParameter
+	public partial class spActivityTypeGetParameters : IParameter
+	{
+		public Guid? ActivityTypeGUID { get; set;}
+	}
+	public partial class spAppointmentUpsertParameters : IParameter
 	{
 		public Guid? GUID { get; set;}
 		public bool? IsDeleted { get; set;}
@@ -45,7 +45,15 @@ namespace AppointmentLibrary
 		public Guid? SystemUserGUID { get; set;}
 		public bool? ReturnResults { get; set;}
 	}
-	public class spServiceProviderUpsertParameters : IParameter
+	public partial class spCreateUpsertParameters : IParameter
+	{
+		public string TableName { get; set;}
+	}
+	public partial class spAppointmentGetParameters : IParameter
+	{
+		public Guid? AppointmentGUID { get; set;}
+	}
+	public partial class spServiceProviderUpsertParameters : IParameter
 	{
 		public Guid? GUID { get; set;}
 		public bool? IsDeleted { get; set;}
@@ -57,7 +65,11 @@ namespace AppointmentLibrary
 		public Guid? SystemUserGUID { get; set;}
 		public bool? ReturnResults { get; set;}
 	}
-	public class spCustomerUpsertParameters : IParameter
+	public partial class spServiceProviderGetParameters : IParameter
+	{
+		public Guid? ServiceProviderGUID { get; set;}
+	}
+	public partial class spCustomerUpsertParameters : IParameter
 	{
 		public Guid? GUID { get; set;}
 		public bool? IsDeleted { get; set;}
@@ -69,7 +81,11 @@ namespace AppointmentLibrary
 		public Guid? SystemUserGUID { get; set;}
 		public bool? ReturnResults { get; set;}
 	}
-	public class spActivityScheduleUpsertParameters : IParameter
+	public partial class spCustomerGetParameters : IParameter
+	{
+		public Guid? CustomerGUID { get; set;}
+	}
+	public partial class spActivityScheduleUpsertParameters : IParameter
 	{
 		public Guid? GUID { get; set;}
 		public bool? IsDeleted { get; set;}
@@ -81,7 +97,11 @@ namespace AppointmentLibrary
 		public Guid? SystemUserGUID { get; set;}
 		public bool? ReturnResults { get; set;}
 	}
-	public class spStoreUpsertParameters : IParameter
+	public partial class spActivityScheduleGetParameters : IParameter
+	{
+		public Guid? ActivityScheduleGUID { get; set;}
+	}
+	public partial class spStoreUpsertParameters : IParameter
 	{
 		public Guid? GUID { get; set;}
 		public bool? IsDeleted { get; set;}
@@ -92,7 +112,11 @@ namespace AppointmentLibrary
 		public Guid? SystemUserGUID { get; set;}
 		public bool? ReturnResults { get; set;}
 	}
-	public class spSystemUserUpsertParameters : IParameter
+	public partial class spStoreGetParameters : IParameter
+	{
+		public Guid? StoreGUID { get; set;}
+	}
+	public partial class spSystemUserUpsertParameters : IParameter
 	{
 		public Guid? GUID { get; set;}
 		public bool? IsDeleted { get; set;}
@@ -102,7 +126,11 @@ namespace AppointmentLibrary
 		public Guid? SystemUserGUID { get; set;}
 		public bool? ReturnResults { get; set;}
 	}
-	public class spAuditLogUpsertParameters : IParameter
+	public partial class spSystemUserGetParameters : IParameter
+	{
+		public Guid? SystemUserGUID { get; set;}
+	}
+	public partial class spAuditLogUpsertParameters : IParameter
 	{
 		public Guid? GUID { get; set;}
 		public string Source { get; set;}

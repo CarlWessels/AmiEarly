@@ -1,4 +1,5 @@
 ﻿using AppointmentLibrary;
+using AppointmentLibrary.ProcResults;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -12,21 +13,34 @@ namespace ApplicationClient
     {
         static void Main(string[] args)
         {
-            Guid systemUserGUID = new Guid("605B4BCD-95B5-E711-80C2-0003FF433AE0");
-            spAccountUpsertResult  result = AppointmentService.AccountUpsert(null, "The test account", DateTime.Now, null, false, systemUserGUID);
+            Guid systemUserGUID = new Guid("5F6106EF-DBB7-E711-80C2-0003FF433AE0");
+            List<spAccountUpsertResult>  results = AppointmentService.AccountUpsert(null, "The test account", DateTime.Now, null, false, systemUserGUID);
+            spAccountUpsertResult result = results.FirstOrDefault();
             Console.WriteLine($"{result.AccountName} = {result.GUID.ToString()} - Deleted = {result.IsDeleted.ToString()}");
             //Console.ReadKey();
 
-            result = AppointmentService.AccountUpsert(result.GUID, "The test account", DateTime.Now, null, true, systemUserGUID);
+            results = AppointmentService.AccountUpsert(result.GUID, "The test account", DateTime.Now, null, true, systemUserGUID);
 
 
-            spAccountGetResult accountGet = AppointmentService.AccountGet(result.GUID);
+            List<spAccountGetResult> accountGets = AppointmentService.AccountGet(result.GUID);
+            foreach (spAccountGetResult ag in accountGets)
+            {
+                Console.WriteLine($"{result.AccountName} = {result.GUID.ToString()} - Deleted = {ag.IsDeleted.ToString()}");
+            }
+            results = AppointmentService.AccountUpsert(result.GUID, "The test account", result.ActiveDateTime, null, false, systemUserGUID);
+
+
+            spAccountGetResult accountGet = AppointmentService.AccountGet(result.GUID).FirstOrDefault();
             Console.WriteLine($"{result.AccountName} = {result.GUID.ToString()} - Deleted = {accountGet.IsDeleted.ToString()}");
 
-            result = AppointmentService.AccountUpsert(result.GUID, "The test account", result.ActiveDateTime, null, false, systemUserGUID);
 
-            accountGet = AppointmentService.AccountGet(result.GUID);
-            Console.WriteLine($"{result.AccountName} = {result.GUID.ToString()} - Deleted = {accountGet.IsDeleted.ToString()}");
+            List<spAppointmentGetResult> appGet = AppointmentService.AppointmentGet(null);
+
+            foreach (spAppointmentGetResult res in appGet)
+            {
+                Console.WriteLine($"{res.StartDateTime.ToString()}\t{res.EndDateTime}\t{res.ExpectedDelay}");
+            }
+            
 
             Console.ReadKey();
 

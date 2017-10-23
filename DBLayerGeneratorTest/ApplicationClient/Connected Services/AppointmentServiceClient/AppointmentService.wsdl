@@ -42,6 +42,12 @@
   <wsdl:message name="IAppointmentService_AccountGet_OutputMessage">
     <wsdl:part name="parameters" element="tns:AccountGetResponse" />
   </wsdl:message>
+  <wsdl:message name="IAppointmentService_AppointmentGet_InputMessage">
+    <wsdl:part name="parameters" element="tns:AppointmentGet" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_AppointmentGet_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AppointmentGetResponse" />
+  </wsdl:message>
   <wsdl:portType name="IAppointmentService">
     <wsdl:operation name="AccountUpsert">
       <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/AccountUpsert" message="tns:IAppointmentService_AccountUpsert_InputMessage" />
@@ -66,6 +72,10 @@
     <wsdl:operation name="AccountGet">
       <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/AccountGet" message="tns:IAppointmentService_AccountGet_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/AccountGetResponse" message="tns:IAppointmentService_AccountGet_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AppointmentGet">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/AppointmentGet" message="tns:IAppointmentService_AppointmentGet_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/AppointmentGetResponse" message="tns:IAppointmentService_AppointmentGet_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IAppointmentService" type="tns:IAppointmentService">
@@ -117,6 +127,15 @@
     </wsdl:operation>
     <wsdl:operation name="AccountGet">
       <soap:operation soapAction="http://tempuri.org/IAppointmentService/AccountGet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AppointmentGet">
+      <soap:operation soapAction="http://tempuri.org/IAppointmentService/AppointmentGet" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

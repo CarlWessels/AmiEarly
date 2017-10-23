@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using AppointmentLibrary.Parameters;
+using AppointmentLibrary.ProcResults;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,23 +19,23 @@ namespace AppointmentLibrary
         public string AccountUpsert(string parameters)
         {
             spAccountUpsertParameters casted = JsonConvert.DeserializeObject<spAccountUpsertParameters>(parameters);
-            spAccountUpsertResult result  = Calls.spAccountUpsertCall(casted, ConnectionString);
+            List<spAccountUpsertResult> result = Calls.Calls.spAccountUpsertCall(casted, ConnectionString);
 
             string json = JsonConvert.SerializeObject(result);
             return json;
         }
         public string AppointmentUpsert(string parameters)
         {
-            spAppointmentUpsertParameters casted = JsonConvert.DeserializeObject <spAppointmentUpsertParameters>(parameters);
-            spAppointmentUpsertResult result = Calls.spAppointmentUpsertCall(casted, ConnectionString);
+            spAppointmentUpsertParameters casted = JsonConvert.DeserializeObject<spAppointmentUpsertParameters>(parameters);
+            List<spAppointmentUpsertResult> result = Calls.Calls.spAppointmentUpsertCall(casted, ConnectionString);
             string json = JsonConvert.SerializeObject(result);
             return json;
         }
 
         public string CustomerUpsert(string parameters)
         {
-            spCustomerUpsertParameters casted = JsonConvert.DeserializeObject < spCustomerUpsertParameters>(parameters);
-            spCustomerUpsertResult result = Calls.spCustomerUpsertCall(casted, ConnectionString);
+            spCustomerUpsertParameters casted = JsonConvert.DeserializeObject<spCustomerUpsertParameters>(parameters);
+            List<spCustomerUpsertResult> result = Calls.Calls.spCustomerUpsertCall(casted, ConnectionString);
 
             string json = JsonConvert.SerializeObject(result);
             return json;
@@ -42,8 +44,8 @@ namespace AppointmentLibrary
 
         public string ServiceProvdiderUpsert(string parameters)
         {
-            spServiceProviderUpsertParameters casted = JsonConvert.DeserializeObject < spServiceProviderUpsertParameters>(parameters);
-            spServiceProviderUpsertResult result = Calls.spServiceProviderUpsertCall(casted, ConnectionString);
+            spServiceProviderUpsertParameters casted = JsonConvert.DeserializeObject<spServiceProviderUpsertParameters>(parameters);
+            List<spServiceProviderUpsertResult> result = Calls.Calls.spServiceProviderUpsertCall(casted, ConnectionString);
 
             string json = JsonConvert.SerializeObject(result);
             return json;
@@ -51,8 +53,8 @@ namespace AppointmentLibrary
 
         public string StoreUpsert(string parameters)
         {
-            spStoreUpsertParameters casted = JsonConvert.DeserializeObject < spStoreUpsertParameters>(parameters);
-            spStoreUpsertResult result = Calls.spStoreUpsertCall(casted, ConnectionString);
+            spStoreUpsertParameters casted = JsonConvert.DeserializeObject<spStoreUpsertParameters>(parameters);
+            List<spStoreUpsertResult> result = Calls.Calls.spStoreUpsertCall(casted, ConnectionString);
 
             string json = JsonConvert.SerializeObject(result);
             return json;
@@ -61,7 +63,16 @@ namespace AppointmentLibrary
         public string AccountGet(string parameters)
         {
             spAccountGetParameters casted = JsonConvert.DeserializeObject<spAccountGetParameters>(parameters);
-            spAccountGetResult result = Calls.spAccountGetCall(casted, ConnectionString);
+            List<spAccountGetResult> result = Calls.Calls.spAccountGetCall(casted, ConnectionString);
+
+            string json = JsonConvert.SerializeObject(result);
+            return json;
+        }
+
+        public string AppointmentGet(string parameters)
+        {
+            spAppointmentGetParameters casted = JsonConvert.DeserializeObject<spAppointmentGetParameters>(parameters);
+            List<spAppointmentGetResult> result = Calls.Calls.spAppointmentGetCall(casted, ConnectionString);
 
             string json = JsonConvert.SerializeObject(result);
             return json;
