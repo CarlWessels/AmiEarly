@@ -1,0 +1,11 @@
+C:\Users\carl.wessels\source\repos\DBLayerGeneratorTest\ApplicationClient\obj\Debug\ApplicationClient.csprojResolveAssemblyReference.cache
+C:\Users\carl.wessels\source\repos\DBLayerGeneratorTest\ApplicationClient\obj\Debug\ApplicationClient.csproj.CoreCompileInputs.cache
+C:\Users\carl.wessels\source\repos\DBLayerGeneratorTest\ApplicationClient\bin\Debug\ApplicationClient.exe.config
+C:\Users\carl.wessels\source\repos\DBLayerGeneratorTest\ApplicationClient\bin\Debug\ApplicationClient.exe
+C:\Users\carl.wessels\source\repos\DBLayerGeneratorTest\ApplicationClient\bin\Debug\ApplicationClient.pdb
+C:\Users\carl.wessels\source\repos\DBLayerGeneratorTest\ApplicationClient\bin\Debug\Newtonsoft.Json.dll
+C:\Users\carl.wessels\source\repos\DBLayerGeneratorTest\ApplicationClient\bin\Debug\Newtonsoft.Json.xml
+C:\Users\carl.wessels\source\repos\DBLayerGeneratorTest\ApplicationClient\obj\Debug\ApplicationClient.exe
+C:\Users\carl.wessels\source\repos\DBLayerGeneratorTest\ApplicationClient\obj\Debug\ApplicationClient.pdb
+C:\Users\carl.wessels\source\repos\DBLayerGeneratorTest\ApplicationClient\bin\Debug\GeneratedLibrary.dll
+C:\Users\carl.wessels\source\repos\DBLayerGeneratorTest\ApplicationClient\bin\Debug\GeneratedLibrary.pdb

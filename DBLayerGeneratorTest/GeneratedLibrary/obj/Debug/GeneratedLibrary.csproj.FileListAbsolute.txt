@@ -1,0 +1,5 @@
+C:\Users\carl.wessels\source\repos\DBLayerGeneratorTest\GeneratedLibrary\bin\Debug\GeneratedLibrary.dll
+C:\Users\carl.wessels\source\repos\DBLayerGeneratorTest\GeneratedLibrary\bin\Debug\GeneratedLibrary.pdb
+C:\Users\carl.wessels\source\repos\DBLayerGeneratorTest\GeneratedLibrary\obj\Debug\GeneratedLibrary.csproj.CoreCompileInputs.cache
+C:\Users\carl.wessels\source\repos\DBLayerGeneratorTest\GeneratedLibrary\obj\Debug\GeneratedLibrary.dll
+C:\Users\carl.wessels\source\repos\DBLayerGeneratorTest\GeneratedLibrary\obj\Debug\GeneratedLibrary.pdb

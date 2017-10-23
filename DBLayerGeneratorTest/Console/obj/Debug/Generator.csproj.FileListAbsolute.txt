@@ -1,0 +1,7 @@
+C:\Users\carl.wessels\source\repos\DBLayerGeneratorTest\Console\bin\Debug\Console.exe.config
+C:\Users\carl.wessels\source\repos\DBLayerGeneratorTest\Console\bin\Debug\Console.exe
+C:\Users\carl.wessels\source\repos\DBLayerGeneratorTest\Console\bin\Debug\Console.pdb
+C:\Users\carl.wessels\source\repos\DBLayerGeneratorTest\Console\obj\Debug\Generator.csprojResolveAssemblyReference.cache
+C:\Users\carl.wessels\source\repos\DBLayerGeneratorTest\Console\obj\Debug\Generator.csproj.CoreCompileInputs.cache
+C:\Users\carl.wessels\source\repos\DBLayerGeneratorTest\Console\obj\Debug\Console.exe
+C:\Users\carl.wessels\source\repos\DBLayerGeneratorTest\Console\obj\Debug\Console.pdb
