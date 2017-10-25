@@ -33,7 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GeneratedLibrary">
-      <HintPath>..\ConsoleApp1\bin\Debug\GeneratedLibrary.dll</HintPath>
+      <HintPath>..\GeneratedLibrary\bin\Debug\GeneratedLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -50,8 +50,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppointmentService.cs" />
-    <Compile Include="Connected Services\AppointmentServiceClient\Reference.cs">
+    <Compile Include="..\Console\bin\Debug\GeneratedServiceCalls.cs">
+      <Link>GeneratedServiceCalls.cs</Link>
+    </Compile>
+    <Compile Include="AppointmentServiceClient.cs" />
+    <Compile Include="Connected Services\AppointmentService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -61,11 +64,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Connected Services\AppointmentServiceClient\AppointmentService.wsdl" />
-    <None Include="Connected Services\AppointmentServiceClient\AppointmentService.xsd">
+    <None Include="Connected Services\AppointmentService\AppointmentService.wsdl" />
+    <None Include="Connected Services\AppointmentService\AppointmentService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\AppointmentServiceClient\AppointmentService1.xsd">
+    <None Include="Connected Services\AppointmentService\AppointmentService1.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
@@ -74,19 +77,19 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\AppointmentServiceClient\" />
+    <WCFMetadataStorage Include="Connected Services\AppointmentService\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\AppointmentServiceClient\AppointmentService.disco" />
+    <None Include="Connected Services\AppointmentService\AppointmentService.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\AppointmentServiceClient\configuration91.svcinfo" />
+    <None Include="Connected Services\AppointmentService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\AppointmentServiceClient\configuration.svcinfo" />
+    <None Include="Connected Services\AppointmentService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\AppointmentServiceClient\Reference.svcmap">
+    <None Include="Connected Services\AppointmentService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

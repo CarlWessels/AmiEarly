@@ -115,7 +115,7 @@ FROM sys.dm_exec_describe_first_result_set_for_object
         }
 
 
-        private static string auditHeader;
+        public static string AuditHeader;
 
         public static string GetFieldsAsString(string connectionString, string procName, List<SqlParameter> parameters)
         {
@@ -186,7 +186,7 @@ FROM sys.dm_exec_describe_first_result_set_for_object
                         }
                         bool isAudit = procName == "spAuditLogUpsert";
                         //string auditHeader = "|GUID|ID|DateTimeCreated|Action|Source|TableGUID|ActionSystemUserGUID";
-                        bool isAuditHeader = fields == auditHeader;
+                        bool isAuditHeader = fields == AuditHeader;
                         while (isAuditHeader && !isAudit)
                         {
                             reader.NextResult();
@@ -195,7 +195,7 @@ FROM sys.dm_exec_describe_first_result_set_for_object
                             {
                                 fields += "|" + reader.GetName(i);
                             }
-                            isAuditHeader = fields == auditHeader;
+                            isAuditHeader = fields == AuditHeader;
                         }
                         if (!isAuditHeader || (isAudit && isAuditHeader))
                         {

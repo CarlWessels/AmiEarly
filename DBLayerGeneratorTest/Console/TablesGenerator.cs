@@ -24,8 +24,10 @@ namespace Console
                         while (reader.Read())
                         {
                             string name = $"{reader["name"].ToString()}";
-                            POCO vw = new POCO();
-                            vw.Name = name;
+                            POCO vw = new POCO
+                            {
+                                Name = name
+                            };
                             ret.Add(vw);
                         }
                     }

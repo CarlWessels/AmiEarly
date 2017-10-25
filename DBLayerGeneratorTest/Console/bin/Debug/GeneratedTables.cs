@@ -95,6 +95,8 @@ namespace AppointmentLibrary.Tables
 		public string TerminationDateTime {get;set;}
 		public string IsActiveForNow {get;set;}
 		public string Username {get;set;}
+		public string PasswordHash {get;set;}
+		public string PasswordSalt {get;set;}
 	}
 	public partial class tblAuditLog
 	{
@@ -107,5 +109,12 @@ namespace AppointmentLibrary.Tables
 		public string BeforeSnapshot {get;set;}
 		public string AfterSnapshot {get;set;}
 		public string SystemUserGUID {get;set;}
+	}
+	public partial class tblMyTestTable
+	{
+		public string GUID {get;set;}
+		public string ID {get;set;}
+		public string DateTimeCreated {get;set;}
+		public string MyTestField {get;set;}
 	}
 }

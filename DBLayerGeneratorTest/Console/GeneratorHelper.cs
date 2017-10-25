@@ -135,6 +135,9 @@ namespace Console
                 case "TIME":
                     ret = SqlDbType.Time;
                     break;
+                case "BINARY":
+                    ret = SqlDbType.Binary;
+                    break;
                 default:
                     throw new Exception("No type found");
 
@@ -229,10 +232,13 @@ namespace Console
                 case System.Data.SqlDbType.Time:
                     paramType = "TimeSpan";
                     break;
+                case System.Data.SqlDbType.Binary:
+                    paramType = "Byte[]";
+                    break;
                 default:
                     throw new Exception("No type found");
             }
-
+            
             return paramType;
         }
 

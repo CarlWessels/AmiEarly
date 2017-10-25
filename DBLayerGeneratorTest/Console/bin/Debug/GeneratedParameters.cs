@@ -4,33 +4,6 @@ namespace AppointmentLibrary.Parameters
 	public interface IParameter
 	{
 	}
-	public partial class spAccountUpsertParameters : IParameter
-	{
-		public Guid? GUID { get; set;}
-		public bool? IsDeleted { get; set;}
-		public DateTime? ActiveDateTime { get; set;}
-		public DateTime? TerminationDateTime { get; set;}
-		public string AccountName { get; set;}
-		public Guid? SystemUserGUID { get; set;}
-		public bool? ReturnResults { get; set;}
-	}
-	public partial class spAccountGetParameters : IParameter
-	{
-		public Guid? AccountGUID { get; set;}
-	}
-	public partial class spActivityTypeUpsertParameters : IParameter
-	{
-		public Guid? GUID { get; set;}
-		public bool? IsDeleted { get; set;}
-		public string ActivityType { get; set;}
-		public Guid? AccountGUID { get; set;}
-		public Guid? SystemUserGUID { get; set;}
-		public bool? ReturnResults { get; set;}
-	}
-	public partial class spActivityTypeGetParameters : IParameter
-	{
-		public Guid? ActivityTypeGUID { get; set;}
-	}
 	public partial class spAppointmentUpsertParameters : IParameter
 	{
 		public Guid? GUID { get; set;}
@@ -44,10 +17,6 @@ namespace AppointmentLibrary.Parameters
 		public Guid? ServiceProviderGUID { get; set;}
 		public Guid? SystemUserGUID { get; set;}
 		public bool? ReturnResults { get; set;}
-	}
-	public partial class spCreateUpsertParameters : IParameter
-	{
-		public string TableName { get; set;}
 	}
 	public partial class spAppointmentGetParameters : IParameter
 	{
@@ -101,6 +70,10 @@ namespace AppointmentLibrary.Parameters
 	{
 		public Guid? ActivityScheduleGUID { get; set;}
 	}
+	public partial class spCreateUpsertParameters : IParameter
+	{
+		public string TableName { get; set;}
+	}
 	public partial class spStoreUpsertParameters : IParameter
 	{
 		public Guid? GUID { get; set;}
@@ -123,12 +96,18 @@ namespace AppointmentLibrary.Parameters
 		public DateTime? ActiveDateTime { get; set;}
 		public DateTime? TerminationDateTime { get; set;}
 		public string Username { get; set;}
+		public string Password { get; set;}
 		public Guid? SystemUserGUID { get; set;}
 		public bool? ReturnResults { get; set;}
 	}
 	public partial class spSystemUserGetParameters : IParameter
 	{
 		public Guid? SystemUserGUID { get; set;}
+	}
+	public partial class spLoginParameters : IParameter
+	{
+		public string UserName { get; set;}
+		public string Password { get; set;}
 	}
 	public partial class spAuditLogUpsertParameters : IParameter
 	{
@@ -140,5 +119,32 @@ namespace AppointmentLibrary.Parameters
 		public Guid? TableGUID { get; set;}
 		public Guid? SystemUserGUID { get; set;}
 		public bool? ReturnResults { get; set;}
+	}
+	public partial class spAccountUpsertParameters : IParameter
+	{
+		public Guid? GUID { get; set;}
+		public bool? IsDeleted { get; set;}
+		public DateTime? ActiveDateTime { get; set;}
+		public DateTime? TerminationDateTime { get; set;}
+		public string AccountName { get; set;}
+		public Guid? SystemUserGUID { get; set;}
+		public bool? ReturnResults { get; set;}
+	}
+	public partial class spAccountGetParameters : IParameter
+	{
+		public Guid? AccountGUID { get; set;}
+	}
+	public partial class spActivityTypeUpsertParameters : IParameter
+	{
+		public Guid? GUID { get; set;}
+		public bool? IsDeleted { get; set;}
+		public string ActivityType { get; set;}
+		public Guid? AccountGUID { get; set;}
+		public Guid? SystemUserGUID { get; set;}
+		public bool? ReturnResults { get; set;}
+	}
+	public partial class spActivityTypeGetParameters : IParameter
+	{
+		public Guid? ActivityTypeGUID { get; set;}
 	}
 }

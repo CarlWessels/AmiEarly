@@ -7,212 +7,6 @@ namespace AppointmentLibrary.Calls
 	using System.Collections.Generic;
 	public static class Calls
 	{
-			public static List<spAccountUpsertResult> spAccountUpsertCall(Guid? GUID, bool? IsDeleted, DateTime? ActiveDateTime, DateTime? TerminationDateTime, string AccountName, Guid? SystemUserGUID, bool? ReturnResults, string connectionString)
-			{
-				spAccountUpsertParameters parameters = new spAccountUpsertParameters();
-				parameters.GUID = GUID;
-				parameters.IsDeleted = IsDeleted;
-				parameters.ActiveDateTime = ActiveDateTime;
-				parameters.TerminationDateTime = TerminationDateTime;
-				parameters.AccountName = AccountName;
-				parameters.SystemUserGUID = SystemUserGUID;
-				parameters.ReturnResults = ReturnResults;
-
-				return spAccountUpsertCall (parameters, connectionString);
-			}
-			public static List<spAccountUpsertResult> spAccountUpsertCall (spAccountUpsertParameters parameters, string connectionString)
-			{
-				List<spAccountUpsertResult> ret = new List<spAccountUpsertResult>();
-				using (SqlConnection conn = new SqlConnection(connectionString))
-				{
-				conn.Open();
-					string qry = "EXEC spAccountUpsert @GUID = @GUID, @IsDeleted = @IsDeleted, @ActiveDateTime = @ActiveDateTime, @TerminationDateTime = @TerminationDateTime, @AccountName = @AccountName, @SystemUserGUID = @SystemUserGUID, @ReturnResults = @ReturnResults";
-
-					using (SqlCommand cmd = new SqlCommand(qry, conn))
-					{
-						cmd.Parameters.Add(new SqlParameter("@GUID", parameters.GUID == null ? (object)DBNull.Value :  parameters.GUID));
-						cmd.Parameters.Add(new SqlParameter("@IsDeleted", parameters.IsDeleted == null ? (object)DBNull.Value :  parameters.IsDeleted));
-						cmd.Parameters.Add(new SqlParameter("@ActiveDateTime", parameters.ActiveDateTime == null ? (object)DBNull.Value :  parameters.ActiveDateTime));
-						cmd.Parameters.Add(new SqlParameter("@TerminationDateTime", parameters.TerminationDateTime == null ? (object)DBNull.Value :  parameters.TerminationDateTime));
-						cmd.Parameters.Add(new SqlParameter("@AccountName", parameters.AccountName == null ? (object)DBNull.Value :  parameters.AccountName));
-						cmd.Parameters.Add(new SqlParameter("@SystemUserGUID", parameters.SystemUserGUID == null ? (object)DBNull.Value :  parameters.SystemUserGUID));
-						cmd.Parameters.Add(new SqlParameter("@ReturnResults", parameters.ReturnResults == null ? (object)DBNull.Value :  parameters.ReturnResults));
-				        using (SqlDataReader reader = cmd.ExecuteReader())
-				        {
-				            while (reader.Read())
-				            { 
-					            spAccountUpsertResult res = new spAccountUpsertResult();
-								res.GUID = new Guid(reader["GUID"].ToString());
-								if (!String.IsNullOrWhiteSpace(reader["ID"].ToString()))
-								{
-								    res.ID = int.Parse(reader["ID"].ToString());
-								}
-								if (!String.IsNullOrWhiteSpace(reader["DateTimeCreated"].ToString()))
-								{
-								    res.DateTimeCreated = DateTime.Parse(reader["DateTimeCreated"].ToString());
-								}
-								res.IsDeleted = (bool)reader["IsDeleted"];
-								if (!String.IsNullOrWhiteSpace(reader["ActiveDateTime"].ToString()))
-								{
-								    res.ActiveDateTime = DateTime.Parse(reader["ActiveDateTime"].ToString());
-								}
-								if (!String.IsNullOrWhiteSpace(reader["TerminationDateTime"].ToString()))
-								{
-								    res.TerminationDateTime = DateTime.Parse(reader["TerminationDateTime"].ToString());
-								}
-								res.IsActiveForNow = (bool)reader["IsActiveForNow"];
-								res.AccountName = reader["AccountName"].ToString();
-								ret.Add(res);
-				            }
-				        }
-				    }
-				}
-				return ret;
-			}
-			public static List<spAccountGetResult> spAccountGetCall(Guid? AccountGUID, string connectionString)
-			{
-				spAccountGetParameters parameters = new spAccountGetParameters();
-				parameters.AccountGUID = AccountGUID;
-
-				return spAccountGetCall (parameters, connectionString);
-			}
-			public static List<spAccountGetResult> spAccountGetCall (spAccountGetParameters parameters, string connectionString)
-			{
-				List<spAccountGetResult> ret = new List<spAccountGetResult>();
-				using (SqlConnection conn = new SqlConnection(connectionString))
-				{
-				conn.Open();
-					string qry = "EXEC spAccountGet @AccountGUID = @AccountGUID";
-
-					using (SqlCommand cmd = new SqlCommand(qry, conn))
-					{
-						cmd.Parameters.Add(new SqlParameter("@AccountGUID", parameters.AccountGUID == null ? (object)DBNull.Value :  parameters.AccountGUID));
-				        using (SqlDataReader reader = cmd.ExecuteReader())
-				        {
-				            while (reader.Read())
-				            { 
-					            spAccountGetResult res = new spAccountGetResult();
-								res.GUID = new Guid(reader["GUID"].ToString());
-								if (!String.IsNullOrWhiteSpace(reader["ID"].ToString()))
-								{
-								    res.ID = int.Parse(reader["ID"].ToString());
-								}
-								if (!String.IsNullOrWhiteSpace(reader["DateTimeCreated"].ToString()))
-								{
-								    res.DateTimeCreated = DateTime.Parse(reader["DateTimeCreated"].ToString());
-								}
-								res.IsDeleted = (bool)reader["IsDeleted"];
-								if (!String.IsNullOrWhiteSpace(reader["ActiveDateTime"].ToString()))
-								{
-								    res.ActiveDateTime = DateTime.Parse(reader["ActiveDateTime"].ToString());
-								}
-								if (!String.IsNullOrWhiteSpace(reader["TerminationDateTime"].ToString()))
-								{
-								    res.TerminationDateTime = DateTime.Parse(reader["TerminationDateTime"].ToString());
-								}
-								res.IsActiveForNow = (bool)reader["IsActiveForNow"];
-								res.AccountName = reader["AccountName"].ToString();
-								ret.Add(res);
-				            }
-				        }
-				    }
-				}
-				return ret;
-			}
-			public static List<spActivityTypeUpsertResult> spActivityTypeUpsertCall(Guid? GUID, bool? IsDeleted, string ActivityType, Guid? AccountGUID, Guid? SystemUserGUID, bool? ReturnResults, string connectionString)
-			{
-				spActivityTypeUpsertParameters parameters = new spActivityTypeUpsertParameters();
-				parameters.GUID = GUID;
-				parameters.IsDeleted = IsDeleted;
-				parameters.ActivityType = ActivityType;
-				parameters.AccountGUID = AccountGUID;
-				parameters.SystemUserGUID = SystemUserGUID;
-				parameters.ReturnResults = ReturnResults;
-
-				return spActivityTypeUpsertCall (parameters, connectionString);
-			}
-			public static List<spActivityTypeUpsertResult> spActivityTypeUpsertCall (spActivityTypeUpsertParameters parameters, string connectionString)
-			{
-				List<spActivityTypeUpsertResult> ret = new List<spActivityTypeUpsertResult>();
-				using (SqlConnection conn = new SqlConnection(connectionString))
-				{
-				conn.Open();
-					string qry = "EXEC spActivityTypeUpsert @GUID = @GUID, @IsDeleted = @IsDeleted, @ActivityType = @ActivityType, @AccountGUID = @AccountGUID, @SystemUserGUID = @SystemUserGUID, @ReturnResults = @ReturnResults";
-
-					using (SqlCommand cmd = new SqlCommand(qry, conn))
-					{
-						cmd.Parameters.Add(new SqlParameter("@GUID", parameters.GUID == null ? (object)DBNull.Value :  parameters.GUID));
-						cmd.Parameters.Add(new SqlParameter("@IsDeleted", parameters.IsDeleted == null ? (object)DBNull.Value :  parameters.IsDeleted));
-						cmd.Parameters.Add(new SqlParameter("@ActivityType", parameters.ActivityType == null ? (object)DBNull.Value :  parameters.ActivityType));
-						cmd.Parameters.Add(new SqlParameter("@AccountGUID", parameters.AccountGUID == null ? (object)DBNull.Value :  parameters.AccountGUID));
-						cmd.Parameters.Add(new SqlParameter("@SystemUserGUID", parameters.SystemUserGUID == null ? (object)DBNull.Value :  parameters.SystemUserGUID));
-						cmd.Parameters.Add(new SqlParameter("@ReturnResults", parameters.ReturnResults == null ? (object)DBNull.Value :  parameters.ReturnResults));
-				        using (SqlDataReader reader = cmd.ExecuteReader())
-				        {
-				            while (reader.Read())
-				            { 
-					            spActivityTypeUpsertResult res = new spActivityTypeUpsertResult();
-								res.GUID = new Guid(reader["GUID"].ToString());
-								if (!String.IsNullOrWhiteSpace(reader["ID"].ToString()))
-								{
-								    res.ID = int.Parse(reader["ID"].ToString());
-								}
-								if (!String.IsNullOrWhiteSpace(reader["DateTimeCreated"].ToString()))
-								{
-								    res.DateTimeCreated = DateTime.Parse(reader["DateTimeCreated"].ToString());
-								}
-								res.IsDeleted = (bool)reader["IsDeleted"];
-								res.ActivityType = reader["ActivityType"].ToString();
-								res.AccountGUID = new Guid(reader["AccountGUID"].ToString());
-								ret.Add(res);
-				            }
-				        }
-				    }
-				}
-				return ret;
-			}
-			public static List<spActivityTypeGetResult> spActivityTypeGetCall(Guid? ActivityTypeGUID, string connectionString)
-			{
-				spActivityTypeGetParameters parameters = new spActivityTypeGetParameters();
-				parameters.ActivityTypeGUID = ActivityTypeGUID;
-
-				return spActivityTypeGetCall (parameters, connectionString);
-			}
-			public static List<spActivityTypeGetResult> spActivityTypeGetCall (spActivityTypeGetParameters parameters, string connectionString)
-			{
-				List<spActivityTypeGetResult> ret = new List<spActivityTypeGetResult>();
-				using (SqlConnection conn = new SqlConnection(connectionString))
-				{
-				conn.Open();
-					string qry = "EXEC spActivityTypeGet @ActivityTypeGUID = @ActivityTypeGUID";
-
-					using (SqlCommand cmd = new SqlCommand(qry, conn))
-					{
-						cmd.Parameters.Add(new SqlParameter("@ActivityTypeGUID", parameters.ActivityTypeGUID == null ? (object)DBNull.Value :  parameters.ActivityTypeGUID));
-				        using (SqlDataReader reader = cmd.ExecuteReader())
-				        {
-				            while (reader.Read())
-				            { 
-					            spActivityTypeGetResult res = new spActivityTypeGetResult();
-								res.GUID = new Guid(reader["GUID"].ToString());
-								if (!String.IsNullOrWhiteSpace(reader["ID"].ToString()))
-								{
-								    res.ID = int.Parse(reader["ID"].ToString());
-								}
-								if (!String.IsNullOrWhiteSpace(reader["DateTimeCreated"].ToString()))
-								{
-								    res.DateTimeCreated = DateTime.Parse(reader["DateTimeCreated"].ToString());
-								}
-								res.IsDeleted = (bool)reader["IsDeleted"];
-								res.ActivityType = reader["ActivityType"].ToString();
-								res.AccountGUID = new Guid(reader["AccountGUID"].ToString());
-								ret.Add(res);
-				            }
-				        }
-				    }
-				}
-				return ret;
-			}
 			public static List<spAppointmentUpsertResult> spAppointmentUpsertCall(Guid? GUID, bool? IsDeleted, DateTime? StartDateTime, TimeSpan? Duration, DateTime? ActualStartDateTime, DateTime? ActualEndDateTime, Guid? CustomerGUID, Guid? StoreGUID, Guid? ServiceProviderGUID, Guid? SystemUserGUID, bool? ReturnResults, string connectionString)
 			{
 				spAppointmentUpsertParameters parameters = new spAppointmentUpsertParameters();
@@ -289,36 +83,6 @@ namespace AppointmentLibrary.Calls
 								res.CustomerGUID = new Guid(reader["CustomerGUID"].ToString());
 								res.StoreGUID = new Guid(reader["StoreGUID"].ToString());
 								res.ServiceProviderGUID = new Guid(reader["ServiceProviderGUID"].ToString());
-								ret.Add(res);
-				            }
-				        }
-				    }
-				}
-				return ret;
-			}
-			public static List<spCreateUpsertResult> spCreateUpsertCall(string TableName, string connectionString)
-			{
-				spCreateUpsertParameters parameters = new spCreateUpsertParameters();
-				parameters.TableName = TableName;
-
-				return spCreateUpsertCall (parameters, connectionString);
-			}
-			public static List<spCreateUpsertResult> spCreateUpsertCall (spCreateUpsertParameters parameters, string connectionString)
-			{
-				List<spCreateUpsertResult> ret = new List<spCreateUpsertResult>();
-				using (SqlConnection conn = new SqlConnection(connectionString))
-				{
-				conn.Open();
-					string qry = "EXEC spCreateUpsert @TableName = @TableName";
-
-					using (SqlCommand cmd = new SqlCommand(qry, conn))
-					{
-						cmd.Parameters.Add(new SqlParameter("@TableName", parameters.TableName == null ? (object)DBNull.Value :  parameters.TableName));
-				        using (SqlDataReader reader = cmd.ExecuteReader())
-				        {
-				            while (reader.Read())
-				            { 
-					            spCreateUpsertResult res = new spCreateUpsertResult();
 								ret.Add(res);
 				            }
 				        }
@@ -762,6 +526,36 @@ namespace AppointmentLibrary.Calls
 				}
 				return ret;
 			}
+			public static List<spCreateUpsertResult> spCreateUpsertCall(string TableName, string connectionString)
+			{
+				spCreateUpsertParameters parameters = new spCreateUpsertParameters();
+				parameters.TableName = TableName;
+
+				return spCreateUpsertCall (parameters, connectionString);
+			}
+			public static List<spCreateUpsertResult> spCreateUpsertCall (spCreateUpsertParameters parameters, string connectionString)
+			{
+				List<spCreateUpsertResult> ret = new List<spCreateUpsertResult>();
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+				conn.Open();
+					string qry = "EXEC spCreateUpsert @TableName = @TableName";
+
+					using (SqlCommand cmd = new SqlCommand(qry, conn))
+					{
+						cmd.Parameters.Add(new SqlParameter("@TableName", parameters.TableName == null ? (object)DBNull.Value :  parameters.TableName));
+				        using (SqlDataReader reader = cmd.ExecuteReader())
+				        {
+				            while (reader.Read())
+				            { 
+					            spCreateUpsertResult res = new spCreateUpsertResult();
+								ret.Add(res);
+				            }
+				        }
+				    }
+				}
+				return ret;
+			}
 			public static List<spStoreUpsertResult> spStoreUpsertCall(Guid? GUID, bool? IsDeleted, DateTime? ActiveDateTime, DateTime? TerminationDateTime, string StoreName, Guid? AccountGUID, Guid? SystemUserGUID, bool? ReturnResults, string connectionString)
 			{
 				spStoreUpsertParameters parameters = new spStoreUpsertParameters();
@@ -878,7 +672,7 @@ namespace AppointmentLibrary.Calls
 				}
 				return ret;
 			}
-			public static List<spSystemUserUpsertResult> spSystemUserUpsertCall(Guid? GUID, bool? IsDeleted, DateTime? ActiveDateTime, DateTime? TerminationDateTime, string Username, Guid? SystemUserGUID, bool? ReturnResults, string connectionString)
+			public static List<spSystemUserUpsertResult> spSystemUserUpsertCall(Guid? GUID, bool? IsDeleted, DateTime? ActiveDateTime, DateTime? TerminationDateTime, string Username, string Password, Guid? SystemUserGUID, bool? ReturnResults, string connectionString)
 			{
 				spSystemUserUpsertParameters parameters = new spSystemUserUpsertParameters();
 				parameters.GUID = GUID;
@@ -886,6 +680,7 @@ namespace AppointmentLibrary.Calls
 				parameters.ActiveDateTime = ActiveDateTime;
 				parameters.TerminationDateTime = TerminationDateTime;
 				parameters.Username = Username;
+				parameters.Password = Password;
 				parameters.SystemUserGUID = SystemUserGUID;
 				parameters.ReturnResults = ReturnResults;
 
@@ -897,7 +692,7 @@ namespace AppointmentLibrary.Calls
 				using (SqlConnection conn = new SqlConnection(connectionString))
 				{
 				conn.Open();
-					string qry = "EXEC spSystemUserUpsert @GUID = @GUID, @IsDeleted = @IsDeleted, @ActiveDateTime = @ActiveDateTime, @TerminationDateTime = @TerminationDateTime, @Username = @Username, @SystemUserGUID = @SystemUserGUID, @ReturnResults = @ReturnResults";
+					string qry = "EXEC spSystemUserUpsert @GUID = @GUID, @IsDeleted = @IsDeleted, @ActiveDateTime = @ActiveDateTime, @TerminationDateTime = @TerminationDateTime, @Username = @Username, @Password = @Password, @SystemUserGUID = @SystemUserGUID, @ReturnResults = @ReturnResults";
 
 					using (SqlCommand cmd = new SqlCommand(qry, conn))
 					{
@@ -906,6 +701,7 @@ namespace AppointmentLibrary.Calls
 						cmd.Parameters.Add(new SqlParameter("@ActiveDateTime", parameters.ActiveDateTime == null ? (object)DBNull.Value :  parameters.ActiveDateTime));
 						cmd.Parameters.Add(new SqlParameter("@TerminationDateTime", parameters.TerminationDateTime == null ? (object)DBNull.Value :  parameters.TerminationDateTime));
 						cmd.Parameters.Add(new SqlParameter("@Username", parameters.Username == null ? (object)DBNull.Value :  parameters.Username));
+						cmd.Parameters.Add(new SqlParameter("@Password", parameters.Password == null ? (object)DBNull.Value :  parameters.Password));
 						cmd.Parameters.Add(new SqlParameter("@SystemUserGUID", parameters.SystemUserGUID == null ? (object)DBNull.Value :  parameters.SystemUserGUID));
 						cmd.Parameters.Add(new SqlParameter("@ReturnResults", parameters.ReturnResults == null ? (object)DBNull.Value :  parameters.ReturnResults));
 				        using (SqlDataReader reader = cmd.ExecuteReader())
@@ -933,6 +729,8 @@ namespace AppointmentLibrary.Calls
 								}
 								res.IsActiveForNow = (bool)reader["IsActiveForNow"];
 								res.Username = reader["Username"].ToString();
+								res.PasswordHash = (byte[])(reader["PasswordHash"]);
+								res.PasswordSalt = new Guid(reader["PasswordSalt"].ToString());
 								ret.Add(res);
 				            }
 				        }
@@ -983,6 +781,60 @@ namespace AppointmentLibrary.Calls
 								}
 								res.IsActiveForNow = (bool)reader["IsActiveForNow"];
 								res.Username = reader["Username"].ToString();
+								ret.Add(res);
+				            }
+				        }
+				    }
+				}
+				return ret;
+			}
+			public static List<spLoginResult> spLoginCall(string UserName, string Password, string connectionString)
+			{
+				spLoginParameters parameters = new spLoginParameters();
+				parameters.UserName = UserName;
+				parameters.Password = Password;
+
+				return spLoginCall (parameters, connectionString);
+			}
+			public static List<spLoginResult> spLoginCall (spLoginParameters parameters, string connectionString)
+			{
+				List<spLoginResult> ret = new List<spLoginResult>();
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+				conn.Open();
+					string qry = "EXEC spLogin @UserName = @UserName, @Password = @Password";
+
+					using (SqlCommand cmd = new SqlCommand(qry, conn))
+					{
+						cmd.Parameters.Add(new SqlParameter("@UserName", parameters.UserName == null ? (object)DBNull.Value :  parameters.UserName));
+						cmd.Parameters.Add(new SqlParameter("@Password", parameters.Password == null ? (object)DBNull.Value :  parameters.Password));
+				        using (SqlDataReader reader = cmd.ExecuteReader())
+				        {
+				            while (reader.Read())
+				            { 
+					            spLoginResult res = new spLoginResult();
+								res.GUID = new Guid(reader["GUID"].ToString());
+								if (!String.IsNullOrWhiteSpace(reader["ID"].ToString()))
+								{
+								    res.ID = int.Parse(reader["ID"].ToString());
+								}
+								if (!String.IsNullOrWhiteSpace(reader["DateTimeCreated"].ToString()))
+								{
+								    res.DateTimeCreated = DateTime.Parse(reader["DateTimeCreated"].ToString());
+								}
+								res.IsDeleted = (bool)reader["IsDeleted"];
+								if (!String.IsNullOrWhiteSpace(reader["ActiveDateTime"].ToString()))
+								{
+								    res.ActiveDateTime = DateTime.Parse(reader["ActiveDateTime"].ToString());
+								}
+								if (!String.IsNullOrWhiteSpace(reader["TerminationDateTime"].ToString()))
+								{
+								    res.TerminationDateTime = DateTime.Parse(reader["TerminationDateTime"].ToString());
+								}
+								res.IsActiveForNow = (bool)reader["IsActiveForNow"];
+								res.Username = reader["Username"].ToString();
+								res.PasswordHash = (byte[])(reader["PasswordHash"]);
+								res.PasswordSalt = new Guid(reader["PasswordSalt"].ToString());
 								ret.Add(res);
 				            }
 				        }
@@ -1042,6 +894,212 @@ namespace AppointmentLibrary.Calls
 								res.BeforeSnapshot = reader["BeforeSnapshot"].ToString();
 								res.AfterSnapshot = reader["AfterSnapshot"].ToString();
 								res.SystemUserGUID = new Guid(reader["SystemUserGUID"].ToString());
+								ret.Add(res);
+				            }
+				        }
+				    }
+				}
+				return ret;
+			}
+			public static List<spAccountUpsertResult> spAccountUpsertCall(Guid? GUID, bool? IsDeleted, DateTime? ActiveDateTime, DateTime? TerminationDateTime, string AccountName, Guid? SystemUserGUID, bool? ReturnResults, string connectionString)
+			{
+				spAccountUpsertParameters parameters = new spAccountUpsertParameters();
+				parameters.GUID = GUID;
+				parameters.IsDeleted = IsDeleted;
+				parameters.ActiveDateTime = ActiveDateTime;
+				parameters.TerminationDateTime = TerminationDateTime;
+				parameters.AccountName = AccountName;
+				parameters.SystemUserGUID = SystemUserGUID;
+				parameters.ReturnResults = ReturnResults;
+
+				return spAccountUpsertCall (parameters, connectionString);
+			}
+			public static List<spAccountUpsertResult> spAccountUpsertCall (spAccountUpsertParameters parameters, string connectionString)
+			{
+				List<spAccountUpsertResult> ret = new List<spAccountUpsertResult>();
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+				conn.Open();
+					string qry = "EXEC spAccountUpsert @GUID = @GUID, @IsDeleted = @IsDeleted, @ActiveDateTime = @ActiveDateTime, @TerminationDateTime = @TerminationDateTime, @AccountName = @AccountName, @SystemUserGUID = @SystemUserGUID, @ReturnResults = @ReturnResults";
+
+					using (SqlCommand cmd = new SqlCommand(qry, conn))
+					{
+						cmd.Parameters.Add(new SqlParameter("@GUID", parameters.GUID == null ? (object)DBNull.Value :  parameters.GUID));
+						cmd.Parameters.Add(new SqlParameter("@IsDeleted", parameters.IsDeleted == null ? (object)DBNull.Value :  parameters.IsDeleted));
+						cmd.Parameters.Add(new SqlParameter("@ActiveDateTime", parameters.ActiveDateTime == null ? (object)DBNull.Value :  parameters.ActiveDateTime));
+						cmd.Parameters.Add(new SqlParameter("@TerminationDateTime", parameters.TerminationDateTime == null ? (object)DBNull.Value :  parameters.TerminationDateTime));
+						cmd.Parameters.Add(new SqlParameter("@AccountName", parameters.AccountName == null ? (object)DBNull.Value :  parameters.AccountName));
+						cmd.Parameters.Add(new SqlParameter("@SystemUserGUID", parameters.SystemUserGUID == null ? (object)DBNull.Value :  parameters.SystemUserGUID));
+						cmd.Parameters.Add(new SqlParameter("@ReturnResults", parameters.ReturnResults == null ? (object)DBNull.Value :  parameters.ReturnResults));
+				        using (SqlDataReader reader = cmd.ExecuteReader())
+				        {
+				            while (reader.Read())
+				            { 
+					            spAccountUpsertResult res = new spAccountUpsertResult();
+								res.GUID = new Guid(reader["GUID"].ToString());
+								if (!String.IsNullOrWhiteSpace(reader["ID"].ToString()))
+								{
+								    res.ID = int.Parse(reader["ID"].ToString());
+								}
+								if (!String.IsNullOrWhiteSpace(reader["DateTimeCreated"].ToString()))
+								{
+								    res.DateTimeCreated = DateTime.Parse(reader["DateTimeCreated"].ToString());
+								}
+								res.IsDeleted = (bool)reader["IsDeleted"];
+								if (!String.IsNullOrWhiteSpace(reader["ActiveDateTime"].ToString()))
+								{
+								    res.ActiveDateTime = DateTime.Parse(reader["ActiveDateTime"].ToString());
+								}
+								if (!String.IsNullOrWhiteSpace(reader["TerminationDateTime"].ToString()))
+								{
+								    res.TerminationDateTime = DateTime.Parse(reader["TerminationDateTime"].ToString());
+								}
+								res.IsActiveForNow = (bool)reader["IsActiveForNow"];
+								res.AccountName = reader["AccountName"].ToString();
+								ret.Add(res);
+				            }
+				        }
+				    }
+				}
+				return ret;
+			}
+			public static List<spAccountGetResult> spAccountGetCall(Guid? AccountGUID, string connectionString)
+			{
+				spAccountGetParameters parameters = new spAccountGetParameters();
+				parameters.AccountGUID = AccountGUID;
+
+				return spAccountGetCall (parameters, connectionString);
+			}
+			public static List<spAccountGetResult> spAccountGetCall (spAccountGetParameters parameters, string connectionString)
+			{
+				List<spAccountGetResult> ret = new List<spAccountGetResult>();
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+				conn.Open();
+					string qry = "EXEC spAccountGet @AccountGUID = @AccountGUID";
+
+					using (SqlCommand cmd = new SqlCommand(qry, conn))
+					{
+						cmd.Parameters.Add(new SqlParameter("@AccountGUID", parameters.AccountGUID == null ? (object)DBNull.Value :  parameters.AccountGUID));
+				        using (SqlDataReader reader = cmd.ExecuteReader())
+				        {
+				            while (reader.Read())
+				            { 
+					            spAccountGetResult res = new spAccountGetResult();
+								res.GUID = new Guid(reader["GUID"].ToString());
+								if (!String.IsNullOrWhiteSpace(reader["ID"].ToString()))
+								{
+								    res.ID = int.Parse(reader["ID"].ToString());
+								}
+								if (!String.IsNullOrWhiteSpace(reader["DateTimeCreated"].ToString()))
+								{
+								    res.DateTimeCreated = DateTime.Parse(reader["DateTimeCreated"].ToString());
+								}
+								res.IsDeleted = (bool)reader["IsDeleted"];
+								if (!String.IsNullOrWhiteSpace(reader["ActiveDateTime"].ToString()))
+								{
+								    res.ActiveDateTime = DateTime.Parse(reader["ActiveDateTime"].ToString());
+								}
+								if (!String.IsNullOrWhiteSpace(reader["TerminationDateTime"].ToString()))
+								{
+								    res.TerminationDateTime = DateTime.Parse(reader["TerminationDateTime"].ToString());
+								}
+								res.IsActiveForNow = (bool)reader["IsActiveForNow"];
+								res.AccountName = reader["AccountName"].ToString();
+								ret.Add(res);
+				            }
+				        }
+				    }
+				}
+				return ret;
+			}
+			public static List<spActivityTypeUpsertResult> spActivityTypeUpsertCall(Guid? GUID, bool? IsDeleted, string ActivityType, Guid? AccountGUID, Guid? SystemUserGUID, bool? ReturnResults, string connectionString)
+			{
+				spActivityTypeUpsertParameters parameters = new spActivityTypeUpsertParameters();
+				parameters.GUID = GUID;
+				parameters.IsDeleted = IsDeleted;
+				parameters.ActivityType = ActivityType;
+				parameters.AccountGUID = AccountGUID;
+				parameters.SystemUserGUID = SystemUserGUID;
+				parameters.ReturnResults = ReturnResults;
+
+				return spActivityTypeUpsertCall (parameters, connectionString);
+			}
+			public static List<spActivityTypeUpsertResult> spActivityTypeUpsertCall (spActivityTypeUpsertParameters parameters, string connectionString)
+			{
+				List<spActivityTypeUpsertResult> ret = new List<spActivityTypeUpsertResult>();
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+				conn.Open();
+					string qry = "EXEC spActivityTypeUpsert @GUID = @GUID, @IsDeleted = @IsDeleted, @ActivityType = @ActivityType, @AccountGUID = @AccountGUID, @SystemUserGUID = @SystemUserGUID, @ReturnResults = @ReturnResults";
+
+					using (SqlCommand cmd = new SqlCommand(qry, conn))
+					{
+						cmd.Parameters.Add(new SqlParameter("@GUID", parameters.GUID == null ? (object)DBNull.Value :  parameters.GUID));
+						cmd.Parameters.Add(new SqlParameter("@IsDeleted", parameters.IsDeleted == null ? (object)DBNull.Value :  parameters.IsDeleted));
+						cmd.Parameters.Add(new SqlParameter("@ActivityType", parameters.ActivityType == null ? (object)DBNull.Value :  parameters.ActivityType));
+						cmd.Parameters.Add(new SqlParameter("@AccountGUID", parameters.AccountGUID == null ? (object)DBNull.Value :  parameters.AccountGUID));
+						cmd.Parameters.Add(new SqlParameter("@SystemUserGUID", parameters.SystemUserGUID == null ? (object)DBNull.Value :  parameters.SystemUserGUID));
+						cmd.Parameters.Add(new SqlParameter("@ReturnResults", parameters.ReturnResults == null ? (object)DBNull.Value :  parameters.ReturnResults));
+				        using (SqlDataReader reader = cmd.ExecuteReader())
+				        {
+				            while (reader.Read())
+				            { 
+					            spActivityTypeUpsertResult res = new spActivityTypeUpsertResult();
+								res.GUID = new Guid(reader["GUID"].ToString());
+								if (!String.IsNullOrWhiteSpace(reader["ID"].ToString()))
+								{
+								    res.ID = int.Parse(reader["ID"].ToString());
+								}
+								if (!String.IsNullOrWhiteSpace(reader["DateTimeCreated"].ToString()))
+								{
+								    res.DateTimeCreated = DateTime.Parse(reader["DateTimeCreated"].ToString());
+								}
+								res.IsDeleted = (bool)reader["IsDeleted"];
+								res.ActivityType = reader["ActivityType"].ToString();
+								res.AccountGUID = new Guid(reader["AccountGUID"].ToString());
+								ret.Add(res);
+				            }
+				        }
+				    }
+				}
+				return ret;
+			}
+			public static List<spActivityTypeGetResult> spActivityTypeGetCall(Guid? ActivityTypeGUID, string connectionString)
+			{
+				spActivityTypeGetParameters parameters = new spActivityTypeGetParameters();
+				parameters.ActivityTypeGUID = ActivityTypeGUID;
+
+				return spActivityTypeGetCall (parameters, connectionString);
+			}
+			public static List<spActivityTypeGetResult> spActivityTypeGetCall (spActivityTypeGetParameters parameters, string connectionString)
+			{
+				List<spActivityTypeGetResult> ret = new List<spActivityTypeGetResult>();
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+				conn.Open();
+					string qry = "EXEC spActivityTypeGet @ActivityTypeGUID = @ActivityTypeGUID";
+
+					using (SqlCommand cmd = new SqlCommand(qry, conn))
+					{
+						cmd.Parameters.Add(new SqlParameter("@ActivityTypeGUID", parameters.ActivityTypeGUID == null ? (object)DBNull.Value :  parameters.ActivityTypeGUID));
+				        using (SqlDataReader reader = cmd.ExecuteReader())
+				        {
+				            while (reader.Read())
+				            { 
+					            spActivityTypeGetResult res = new spActivityTypeGetResult();
+								res.GUID = new Guid(reader["GUID"].ToString());
+								if (!String.IsNullOrWhiteSpace(reader["ID"].ToString()))
+								{
+								    res.ID = int.Parse(reader["ID"].ToString());
+								}
+								if (!String.IsNullOrWhiteSpace(reader["DateTimeCreated"].ToString()))
+								{
+								    res.DateTimeCreated = DateTime.Parse(reader["DateTimeCreated"].ToString());
+								}
+								res.IsDeleted = (bool)reader["IsDeleted"];
+								res.ActivityType = reader["ActivityType"].ToString();
+								res.AccountGUID = new Guid(reader["AccountGUID"].ToString());
 								ret.Add(res);
 				            }
 				        }

@@ -13,39 +13,57 @@ namespace ApplicationClient
     {
         static void Main(string[] args)
         {
-            Guid systemUserGUID = new Guid("5F6106EF-DBB7-E711-80C2-0003FF433AE0");
-            List<spAccountUpsertResult>  results = AppointmentService.AccountUpsert(null, "The test account", DateTime.Now, null, false, systemUserGUID);
-            spAccountUpsertResult result = results.FirstOrDefault();
-            Console.WriteLine($"{result.AccountName} = {result.GUID.ToString()} - Deleted = {result.IsDeleted.ToString()}");
-            //Console.ReadKey();
-
-            results = AppointmentService.AccountUpsert(result.GUID, "The test account", DateTime.Now, null, true, systemUserGUID);
-
-
-            List<spAccountGetResult> accountGets = AppointmentService.AccountGet(result.GUID);
-            foreach (spAccountGetResult ag in accountGets)
+            try
             {
-                Console.WriteLine($"{result.AccountName} = {result.GUID.ToString()} - Deleted = {ag.IsDeleted.ToString()}");
+                AppointmentServiceClient appointmentService = new AppointmentServiceClient("SYSTEM", "PASSWORD");
+                List<spSystemUserGetResult> users = AppointmentServiceClient.SystemUserGet(null);
+
+                spSystemUserGetResult systemUser = users.Where(u => u.Username == "SYSTEM").FirstOrDefault();
+                Guid systemGUID = users.Where(u => u.Username == "SYSTEM").FirstOrDefault().GUID;
+
+
+                Guid? testerGUID = null;
+                spSystemUserGetResult tester = users.Where(u => u.Username == "TESTER").FirstOrDefault();
+                if (tester == null)
+                {
+                    List<spSystemUserUpsertResult> user = AppointmentServiceClient.SystemUserUpsert(null, false, DateTime.Now,null,"TESTER", "PASSWORD", systemGUID, true);
+                    testerGUID = user.FirstOrDefault().GUID;
+                }
+
+                List<spAccountUpsertResult>  results = AppointmentServiceClient.AccountUpsert(null, true, DateTime.Now, null, "The test account", testerGUID, true);
+                spAccountUpsertResult result = results.FirstOrDefault();
+                Console.WriteLine($"{result.AccountName} = {result.GUID.ToString()} - Deleted = {result.IsDeleted.ToString()}");
+
+                results = AppointmentServiceClient.AccountUpsert(result.GUID, false, DateTime.Now, null, "The test account", testerGUID, true);
+
+                List<spAccountGetResult> accountGets = AppointmentServiceClient.AccountGet(result.GUID);
+                foreach (spAccountGetResult ag in accountGets)
+                {
+                    Console.WriteLine($"{result.AccountName} = {result.GUID.ToString()} - Deleted = {ag.IsDeleted.ToString()}");
+                }
+                AppointmentServiceClient.AccountUpsert(result.GUID, true, DateTime.Now, null, "The test account", testerGUID, true);
+
+
+
+                spAccountGetResult accountGet = AppointmentServiceClient.AccountGet(result.GUID).FirstOrDefault();
+                Console.WriteLine($"{result.AccountName} = {result.GUID.ToString()} - Deleted = {accountGet.IsDeleted.ToString()}");
+
+
+                List<spAppointmentGetResult> appGet = AppointmentServiceClient.AppointmentGet(null);
+
+                foreach (spAppointmentGetResult res in appGet)
+                {
+                    Console.WriteLine($"{res.StartDateTime.ToString()}\t{res.EndDateTime}\t{res.ExpectedDelay}");
+                }
             }
-            results = AppointmentService.AccountUpsert(result.GUID, "The test account", result.ActiveDateTime, null, false, systemUserGUID);
-
-
-            spAccountGetResult accountGet = AppointmentService.AccountGet(result.GUID).FirstOrDefault();
-            Console.WriteLine($"{result.AccountName} = {result.GUID.ToString()} - Deleted = {accountGet.IsDeleted.ToString()}");
-
-
-            List<spAppointmentGetResult> appGet = AppointmentService.AppointmentGet(null);
-
-            foreach (spAppointmentGetResult res in appGet)
+            catch (Exception ex)
             {
-                Console.WriteLine($"{res.StartDateTime.ToString()}\t{res.EndDateTime}\t{res.ExpectedDelay}");
+
             }
             
-
             Console.ReadKey();
 
         }
-
        
     }
 }

@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AppointmentService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="wsSecureService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp />
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <sp:EndorsingSupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:SecureConversationToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+              <wsp:Policy>
+                <sp:BootstrapPolicy>
+                  <wsp:Policy>
+                    <sp:SignedParts>
+                      <sp:Body />
+                      <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+                    </sp:SignedParts>
+                    <sp:EncryptedParts>
+                      <sp:Body />
+                    </sp:EncryptedParts>
+                    <sp:TransportBinding>
+                      <wsp:Policy>
+                        <sp:TransportToken>
+                          <wsp:Policy>
+                            <sp:HttpsToken RequireClientCertificate="false" />
+                          </wsp:Policy>
+                        </sp:TransportToken>
+                        <sp:AlgorithmSuite>
+                          <wsp:Policy>
+                            <sp:Basic256 />
+                          </wsp:Policy>
+                        </sp:AlgorithmSuite>
+                        <sp:Layout>
+                          <wsp:Policy>
+                            <sp:Strict />
+                          </wsp:Policy>
+                        </sp:Layout>
+                        <sp:IncludeTimestamp />
+                      </wsp:Policy>
+                    </sp:TransportBinding>
+                    <sp:SignedSupportingTokens>
+                      <wsp:Policy>
+                        <sp:UsernameToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+                          <wsp:Policy>
+                            <sp:WssUsernameToken10 />
+                          </wsp:Policy>
+                        </sp:UsernameToken>
+                      </wsp:Policy>
+                    </sp:SignedSupportingTokens>
+                    <sp:Wss11>
+                      <wsp:Policy />
+                    </sp:Wss11>
+                    <sp:Trust10>
+                      <wsp:Policy>
+                        <sp:MustSupportIssuedTokens />
+                        <sp:RequireClientEntropy />
+                        <sp:RequireServerEntropy />
+                      </wsp:Policy>
+                    </sp:Trust10>
+                  </wsp:Policy>
+                </sp:BootstrapPolicy>
+              </wsp:Policy>
+            </sp:SecureConversationToken>
+          </wsp:Policy>
+        </sp:EndorsingSupportingTokens>
+        <sp:Wss11 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy />
+        </sp:Wss11>
+        <sp:Trust10 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:MustSupportIssuedTokens />
+            <sp:RequireClientEntropy />
+            <sp:RequireServerEntropy />
+          </wsp:Policy>
+        </sp:Trust10>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:24599/AppointmentService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:24599/AppointmentService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IAppointmentService_CreateUpsert_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateUpsert" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_CreateUpsert_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateUpsertResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_SystemUserUpsert_InputMessage">
+    <wsdl:part name="parameters" element="tns:SystemUserUpsert" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_SystemUserUpsert_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SystemUserUpsertResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_SystemUserGet_InputMessage">
+    <wsdl:part name="parameters" element="tns:SystemUserGet" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_SystemUserGet_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SystemUserGetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_AccountUpsert_InputMessage">
+    <wsdl:part name="parameters" element="tns:AccountUpsert" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_AccountUpsert_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AccountUpsertResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_AccountGet_InputMessage">
+    <wsdl:part name="parameters" element="tns:AccountGet" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_AccountGet_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AccountGetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_ActivityTypeUpsert_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActivityTypeUpsert" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_ActivityTypeUpsert_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActivityTypeUpsertResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_ActivityTypeGet_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActivityTypeGet" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_ActivityTypeGet_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActivityTypeGetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_AppointmentUpsert_InputMessage">
+    <wsdl:part name="parameters" element="tns:AppointmentUpsert" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_AppointmentUpsert_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AppointmentUpsertResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_AppointmentGet_InputMessage">
+    <wsdl:part name="parameters" element="tns:AppointmentGet" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_AppointmentGet_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AppointmentGetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_ServiceProviderUpsert_InputMessage">
+    <wsdl:part name="parameters" element="tns:ServiceProviderUpsert" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_ServiceProviderUpsert_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ServiceProviderUpsertResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_ServiceProviderGet_InputMessage">
+    <wsdl:part name="parameters" element="tns:ServiceProviderGet" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_ServiceProviderGet_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ServiceProviderGetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_CustomerUpsert_InputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerUpsert" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_CustomerUpsert_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerUpsertResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_CustomerGet_InputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerGet" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_CustomerGet_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerGetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_ActivityScheduleUpsert_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActivityScheduleUpsert" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_ActivityScheduleUpsert_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActivityScheduleUpsertResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_ActivityScheduleGet_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActivityScheduleGet" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_ActivityScheduleGet_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActivityScheduleGetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_StoreUpsert_InputMessage">
+    <wsdl:part name="parameters" element="tns:StoreUpsert" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_StoreUpsert_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StoreUpsertResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_StoreGet_InputMessage">
+    <wsdl:part name="parameters" element="tns:StoreGet" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_StoreGet_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StoreGetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_MyTestTableUpsert_InputMessage">
+    <wsdl:part name="parameters" element="tns:MyTestTableUpsert" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_MyTestTableUpsert_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MyTestTableUpsertResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_MyTestTableGet_InputMessage">
+    <wsdl:part name="parameters" element="tns:MyTestTableGet" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_MyTestTableGet_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MyTestTableGetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_AuditLogUpsert_InputMessage">
+    <wsdl:part name="parameters" element="tns:AuditLogUpsert" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_AuditLogUpsert_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AuditLogUpsertResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IAppointmentService">
+    <wsdl:operation name="CreateUpsert">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/CreateUpsert" message="tns:IAppointmentService_CreateUpsert_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/CreateUpsertResponse" message="tns:IAppointmentService_CreateUpsert_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SystemUserUpsert">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/SystemUserUpsert" message="tns:IAppointmentService_SystemUserUpsert_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/SystemUserUpsertResponse" message="tns:IAppointmentService_SystemUserUpsert_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SystemUserGet">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/SystemUserGet" message="tns:IAppointmentService_SystemUserGet_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/SystemUserGetResponse" message="tns:IAppointmentService_SystemUserGet_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AccountUpsert">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/AccountUpsert" message="tns:IAppointmentService_AccountUpsert_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/AccountUpsertResponse" message="tns:IAppointmentService_AccountUpsert_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AccountGet">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/AccountGet" message="tns:IAppointmentService_AccountGet_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/AccountGetResponse" message="tns:IAppointmentService_AccountGet_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActivityTypeUpsert">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/ActivityTypeUpsert" message="tns:IAppointmentService_ActivityTypeUpsert_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/ActivityTypeUpsertResponse" message="tns:IAppointmentService_ActivityTypeUpsert_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActivityTypeGet">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/ActivityTypeGet" message="tns:IAppointmentService_ActivityTypeGet_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/ActivityTypeGetResponse" message="tns:IAppointmentService_ActivityTypeGet_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AppointmentUpsert">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/AppointmentUpsert" message="tns:IAppointmentService_AppointmentUpsert_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/AppointmentUpsertResponse" message="tns:IAppointmentService_AppointmentUpsert_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AppointmentGet">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/AppointmentGet" message="tns:IAppointmentService_AppointmentGet_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/AppointmentGetResponse" message="tns:IAppointmentService_AppointmentGet_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ServiceProviderUpsert">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/ServiceProviderUpsert" message="tns:IAppointmentService_ServiceProviderUpsert_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/ServiceProviderUpsertResponse" message="tns:IAppointmentService_ServiceProviderUpsert_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ServiceProviderGet">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/ServiceProviderGet" message="tns:IAppointmentService_ServiceProviderGet_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/ServiceProviderGetResponse" message="tns:IAppointmentService_ServiceProviderGet_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CustomerUpsert">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/CustomerUpsert" message="tns:IAppointmentService_CustomerUpsert_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/CustomerUpsertResponse" message="tns:IAppointmentService_CustomerUpsert_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CustomerGet">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/CustomerGet" message="tns:IAppointmentService_CustomerGet_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/CustomerGetResponse" message="tns:IAppointmentService_CustomerGet_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActivityScheduleUpsert">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/ActivityScheduleUpsert" message="tns:IAppointmentService_ActivityScheduleUpsert_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/ActivityScheduleUpsertResponse" message="tns:IAppointmentService_ActivityScheduleUpsert_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActivityScheduleGet">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/ActivityScheduleGet" message="tns:IAppointmentService_ActivityScheduleGet_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/ActivityScheduleGetResponse" message="tns:IAppointmentService_ActivityScheduleGet_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreUpsert">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/StoreUpsert" message="tns:IAppointmentService_StoreUpsert_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/StoreUpsertResponse" message="tns:IAppointmentService_StoreUpsert_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreGet">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/StoreGet" message="tns:IAppointmentService_StoreGet_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/StoreGetResponse" message="tns:IAppointmentService_StoreGet_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MyTestTableUpsert">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/MyTestTableUpsert" message="tns:IAppointmentService_MyTestTableUpsert_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/MyTestTableUpsertResponse" message="tns:IAppointmentService_MyTestTableUpsert_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MyTestTableGet">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/MyTestTableGet" message="tns:IAppointmentService_MyTestTableGet_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/MyTestTableGetResponse" message="tns:IAppointmentService_MyTestTableGet_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/Login" message="tns:IAppointmentService_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/LoginResponse" message="tns:IAppointmentService_Login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AuditLogUpsert">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/AuditLogUpsert" message="tns:IAppointmentService_AuditLogUpsert_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/AuditLogUpsertResponse" message="tns:IAppointmentService_AuditLogUpsert_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="wsSecureService" type="tns:IAppointmentService">
+    <wsp:PolicyReference URI="#wsSecureService_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateUpsert">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/CreateUpsert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SystemUserUpsert">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/SystemUserUpsert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SystemUserGet">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/SystemUserGet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AccountUpsert">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/AccountUpsert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AccountGet">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/AccountGet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActivityTypeUpsert">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/ActivityTypeUpsert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActivityTypeGet">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/ActivityTypeGet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AppointmentUpsert">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/AppointmentUpsert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AppointmentGet">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/AppointmentGet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ServiceProviderUpsert">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/ServiceProviderUpsert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ServiceProviderGet">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/ServiceProviderGet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomerUpsert">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/CustomerUpsert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomerGet">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/CustomerGet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActivityScheduleUpsert">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/ActivityScheduleUpsert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActivityScheduleGet">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/ActivityScheduleGet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreUpsert">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/StoreUpsert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreGet">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/StoreGet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MyTestTableUpsert">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/MyTestTableUpsert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MyTestTableGet">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/MyTestTableGet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/Login" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuditLogUpsert">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/AuditLogUpsert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AppointmentService">
+    <wsdl:port name="wsSecureService" binding="tns:wsSecureService">
+      <soap12:address location="https://localhost:44335/AppointmentService.svc" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>https://localhost:44335/AppointmentService.svc</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

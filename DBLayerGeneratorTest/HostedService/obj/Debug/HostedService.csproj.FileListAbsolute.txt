@@ -1,0 +1,11 @@
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\HostedService\bin\HostedService.dll.config
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\HostedService\bin\HostedService.dll
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\HostedService\bin\HostedService.pdb
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\HostedService\bin\GeneratedLibrary.dll
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\HostedService\bin\Newtonsoft.Json.dll
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\HostedService\bin\GeneratedLibrary.pdb
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\HostedService\bin\Newtonsoft.Json.xml
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\HostedService\obj\Debug\HostedService.csprojResolveAssemblyReference.cache
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\HostedService\obj\Debug\HostedService.csproj.CoreCompileInputs.cache
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\HostedService\obj\Debug\HostedService.dll
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\HostedService\obj\Debug\HostedService.pdb

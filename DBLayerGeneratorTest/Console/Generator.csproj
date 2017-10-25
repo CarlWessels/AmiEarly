@@ -42,8 +42,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CallsGenerator.cs" />
+    <Compile Include="GeneratorHelper.cs" />
+    <Compile Include="ParametersGenerator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResultsGenerator.cs" />
+    <Compile Include="ServiceGenerator.cs" />
+    <Compile Include="TablesGenerator.cs" />
+    <Compile Include="ViewsGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

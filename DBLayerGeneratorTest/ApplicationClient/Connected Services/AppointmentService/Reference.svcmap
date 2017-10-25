@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="52a0918b-917c-40b9-84ad-c4342842b665" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="818cea81-fbd6-4e21-bb77-00f93d5806f0" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,13 +19,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:8733/AppointmentService" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:24599/AppointmentService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="AppointmentService.disco" MetadataType="Disco" ID="0b089e27-45dd-43c5-817b-de3f77bf14f3" SourceId="1" SourceUrl="http://localhost:8733/AppointmentService?disco" />
-    <MetadataFile FileName="AppointmentService.wsdl" MetadataType="Wsdl" ID="d536eeac-2623-4c9d-aae7-35652cd912d3" SourceId="1" SourceUrl="http://localhost:8733/AppointmentService?wsdl" />
-    <MetadataFile FileName="AppointmentService.xsd" MetadataType="Schema" ID="c519d35d-af20-423a-8784-180d1c314b97" SourceId="1" SourceUrl="http://localhost:8733/AppointmentService?xsd=xsd0" />
-    <MetadataFile FileName="AppointmentService1.xsd" MetadataType="Schema" ID="97fdae3f-67ef-46aa-8472-8d78342e5a17" SourceId="1" SourceUrl="http://localhost:8733/AppointmentService?xsd=xsd1" />
+    <MetadataFile FileName="AppointmentService.xsd" MetadataType="Schema" ID="5966fb20-2b61-4917-bcd8-450b057eabee" SourceId="1" SourceUrl="http://localhost:24599/AppointmentService.svc?xsd=xsd1" />
+    <MetadataFile FileName="AppointmentService.wsdl" MetadataType="Wsdl" ID="713c49e2-423b-447d-b3fa-3626da09417d" SourceId="1" SourceUrl="http://localhost:24599/AppointmentService.svc?wsdl" />
+    <MetadataFile FileName="AppointmentService1.xsd" MetadataType="Schema" ID="ac61fd08-0d64-473b-a758-59d784703f17" SourceId="1" SourceUrl="http://localhost:24599/AppointmentService.svc?xsd=xsd0" />
+    <MetadataFile FileName="AppointmentService.disco" MetadataType="Disco" ID="c57f8468-521b-470c-8e5f-691a771284ce" SourceId="1" SourceUrl="http://localhost:24599/AppointmentService.svc?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

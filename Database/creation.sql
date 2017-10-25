@@ -188,9 +188,11 @@
 													ELSE CONVERT(BIT,0)
 											END
 								END,
-		Username VARCHAR(MAX) NOT NULL
+		Username VARCHAR(MAX) NOT NULL,
+		PasswordHash BINARY(64) NOT NULL,
+		PasswordSalt UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID()
 	)
-	INSERT INTO SystemUser(ActiveDateTime, Username) SELECT GETDATE(), 'SYSTEM'
+	--INSERT INTO SystemUser(ActiveDateTime, Username) SELECT GETDATE(), 'SYSTEM'
 
 	GO
 	CREATE TABLE AuditLog
@@ -221,5 +223,5 @@
 	EXEC spCreateUpsert 'ActivitySchedule'
 	EXEC spCreateUpsert 'Store'
 	
-	EXEC spCreateUpsert 'SystemUser'
+	--EXEC spCreateUpsert 'SystemUser'
 	--EXEC spCreateUpsert 'AuditLog'

@@ -15,7 +15,7 @@ namespace Console
         {
             string connectionString = @"Server=tcp:carlwessels.database.windows.net,1433;Initial Catalog=TestDb;Persist Security Info=False;User ID=carlwessels;Password=p@551234;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
             List<SqlParameter> parameters = GeneratorHelper.GetParameters("spAuditLogUpsert", connectionString);
-            //auditHeader = GetFieldsAsString(connectionString, "spAuditLogUpsert", parameters);
+            ResultsGenerator.AuditHeader = ResultsGenerator.GetFieldsAsString(connectionString, "spAuditLogUpsert", parameters);
 
             bool build = true;
 
@@ -30,6 +30,10 @@ namespace Console
             StringBuilder resultsSb = new StringBuilder();
             StringBuilder parametersSb = new StringBuilder();
             StringBuilder callsSb = new StringBuilder();
+            StringBuilder serviceCalls = new StringBuilder();
+            StringBuilder interfaceSb = new StringBuilder();
+            StringBuilder serviceSb = new StringBuilder();
+
             string nameSpace = "AppointmentLibrary";
             GeneratorHelper.BuildNamespacePre($"{nameSpace}.ProcResults", ref resultsSb);
             GeneratorHelper.BuildNamespacePre($"{nameSpace}.Parameters", ref parametersSb);
@@ -38,7 +42,9 @@ namespace Console
             ResultsGenerator.BuildResultsUsing(ref resultsSb);
             ResultsGenerator.BuildResultsUsing(ref parametersSb);
             CallsGenerator.BuildCallsUsing(ref callsSb, nameSpace);
-
+            ServiceGenerator.GenerateServiceCallsPre(serviceCalls);
+            ServiceGenerator.GenerateInterfacePre(interfaceSb);
+            ServiceGenerator.GenerateSerivcePre(serviceSb);
             GeneratorHelper.BuildParametersPre(ref parametersSb);
             CallsGenerator.BuildCallClassPre(ref callsSb);
 
@@ -49,15 +55,19 @@ namespace Console
 
                 List<SqlParameter> parameters = GeneratorHelper.GetParameters(sp, connectionString);
                 List<SqlParameter> values = ResultsGenerator.GetResults(connectionString, sp, parameters);
-                //List<string> results = GetResults(connectionString, sp, parameters);
+
                 ResultsGenerator.BuildResultClass(sp, values, ref resultsSb);
                 ParametersGenerator.BuildParametersClass(sp, parameters, ref parametersSb);
-                //BuildCallWithClass(sp, parameters, results, ref callsSb, 1);
                 CallsGenerator.BuildCalls(sp, parameters, values, ref callsSb, 1);
-                //File.WriteAllText(@"test.txt",resultsSb.ToString());
+                
+                ServiceGenerator.GenerateServiceCalls(sp, parameters, serviceCalls, 0);
+                ServiceGenerator.GenerateInterface(sp, parameters, interfaceSb, 0);
+                ServiceGenerator.GenerateService(sp, parameters, serviceSb, 0);
             }
             CallsGenerator.BuildCallClassPost(ref callsSb);
-
+            ServiceGenerator.GenerateServiceCallsPost(serviceCalls);
+            ServiceGenerator.GenerateInterfacePost(interfaceSb);
+            ServiceGenerator.GenerateSerivcePost(serviceSb);
             GeneratorHelper.BuildNamespacePost(ref resultsSb);
             GeneratorHelper.BuildNamespacePost(ref parametersSb);
             GeneratorHelper.BuildNamespacePost(ref callsSb);
@@ -88,6 +98,9 @@ namespace Console
             File.WriteAllText("GeneratedCalls.cs", callsSb.ToString());
             File.WriteAllText("GeneratedViews.cs", viewSb.ToString());
             File.WriteAllText("GeneratedTables.cs", tableSb.ToString());
+            File.WriteAllText("GeneratedServiceCalls.cs", serviceCalls.ToString());
+            File.WriteAllText("GeneratedInterface.cs", interfaceSb.ToString());
+            File.WriteAllText("GeneratedService.cs", serviceSb.ToString());
         }
 
 

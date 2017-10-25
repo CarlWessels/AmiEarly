@@ -194,6 +194,37 @@ BEGIN
 	SET @Result = @Result + 'GO' + @EOL
 
 
+	DECLARE @GUIDParameter VARCHAR(MAX)
+	DECLARE @GETProcName VARCHAR(MAX)
+	SET @GUIDParameter = '@' + @TableName + 'GUID'
+	SET @GETProcName = 'sp' + @TableName + 'Get'
+
+	SET @Result = @Result + 'IF EXISTS(SELECT 1 FROM   INFORMATION_SCHEMA.ROUTINES WHERE  ROUTINE_NAME = ''' + @GETProcName+ ''' AND SPECIFIC_SCHEMA = ''dbo'')' + @EOL
+	SET @Result = @Result + 'BEGIN' + @EOL
+    SET @Result = @Result + '	DROP PROCEDURE ' + @GETProcName + @EOL
+	SET @Result = @Result + 'END' + @EOL
+	SET @Result = @Result + 'GO' + @EOL
+	SET @Result = @Result + 'CREATE PROCEDURE ' + @GETProcName + @EOL
+	SET @Result = @Result + '(' + @EOL
+	SET @Result = @Result + '	' + @GUIDParameter + ' UNIQUEIDENTIFIER' + @EOL
+	SET @Result = @Result + ')' + @EOL
+	SET @Result = @Result + 'AS' + @EOL
+	SET @Result = @Result + 'BEGIN' + @EOL
+	SET @Result = @Result + '	IF (' + @GUIDParameter + ' IS NULL)' + @EOL
+	SET @Result = @Result + '	BEGIN' + @EOL
+	SET @Result = @Result + '		SELECT *' + @EOL
+	SET @Result = @Result + '		FROM dbo.vw' + @TableName + @EOL
+	SET @Result = @Result + '	END ' + @EOL
+	SET @Result = @Result + '	ELSE' + @EOL
+	SET @Result = @Result + '	BEGIN' + @EOL
+	SET @Result = @Result + '		SELECT *' + @EOL
+	SET @Result = @Result + '		FROM vw' + @TableName + @EOL
+	SET @Result = @Result + '		WHERE GUID = ' + @GUIDParameter + @EOL
+	SET @Result = @Result + '	END' + @EOL
+	SET @Result = @Result + 'END' + @EOL
+	SET @Result = @Result + 'GO ' + @EOL
+
+
 	PRINT @Result
 
 END

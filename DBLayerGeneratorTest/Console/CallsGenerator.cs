@@ -225,7 +225,9 @@ namespace Console
                         resultLine += indentSeven + $@"    res.{name} = TimeSpan.Parse(reader[""{name}""].ToString());" + Environment.NewLine;
                         resultLine += indentSeven + @"}";
                         break;
-
+                    case "BYTE[]":
+                        resultLine = (String.Format(@"res.{0} = (byte[])(reader[""{0}""]);", name));
+                        break;
                     default:
                         throw new Exception("No type found");
 
