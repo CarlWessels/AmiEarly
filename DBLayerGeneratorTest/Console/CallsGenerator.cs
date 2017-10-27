@@ -46,7 +46,7 @@ namespace Console
         {
             string callName = String.Format("{0}Call", procname);
             string parameterName = procname + "Parameters";
-            string returnName = procname + "Result";
+            string returnName = procname.Substring(2, procname.Length-2) + "Result";
 
             string indentTwo = GeneratorHelper.Indent(baseIndent + 2);
             string indentThree = GeneratorHelper.Indent(baseIndent + 3);
@@ -94,7 +94,7 @@ namespace Console
             string indentSix = GeneratorHelper.Indent(baseIndent + 6);
             string indentSeven = GeneratorHelper.Indent(baseIndent + 7);
 
-            string returnName = procname + "Result";
+            string returnName = procname.Substring(2, procname.Length - 2) + "Result";
             StringBuilder callLine = new StringBuilder(String.Format(String.Format(@"string qry = ""EXEC {0} ", procname)));
             bool first = true;
             foreach (SqlParameter param in parameters)

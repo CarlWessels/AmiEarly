@@ -28,11 +28,17 @@ namespace Console
         public static void DoBuild(string connectionString)
         {
             StringBuilder resultsSb = new StringBuilder();
+            GeneratorHelper.AddHeader(resultsSb);
             StringBuilder parametersSb = new StringBuilder();
+            GeneratorHelper.AddHeader(parametersSb);
             StringBuilder callsSb = new StringBuilder();
+            GeneratorHelper.AddHeader(callsSb);
             StringBuilder serviceCalls = new StringBuilder();
+            GeneratorHelper.AddHeader(serviceCalls);
             StringBuilder interfaceSb = new StringBuilder();
+            GeneratorHelper.AddHeader(interfaceSb);
             StringBuilder serviceSb = new StringBuilder();
+            GeneratorHelper.AddHeader(serviceSb);
 
             string nameSpace = "AppointmentLibrary";
             GeneratorHelper.BuildNamespacePre($"{nameSpace}.ProcResults", ref resultsSb);

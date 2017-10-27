@@ -13,15 +13,10 @@ namespace Console
         #region Resuls
         public static void BuildResultClass(string procName, List<SqlParameter> values, ref StringBuilder sb)
         {
-            sb.AppendLine(String.Format("\tpublic partial class {0}Result", procName));
+            sb.AppendLine($"\tpublic class {procName.Substring(2, procName.Length-2)}Result");
             sb.AppendLine("\t{");
             foreach (SqlParameter value in values)
             {
-                /*List<string> split = value.Split('|').ToList();
-                string name = split[0];
-                string type = split[1];
-                //bool nullable = split[2] == "True" ? true : false;
-                string size = "";*/
                 string name = value.ParameterName;
                 string type = GeneratorHelper.ParamType(value.SqlDbType);
                 string size = "";
@@ -36,40 +31,6 @@ namespace Console
                 }
 
                 string typeStripped = size == "" ? type : type.Replace(size, "").Replace("(", "").Replace(")", "");
-                /*string varType = "";
-                switch (typeStripped.ToUpper())
-                {
-                    case "VARCHAR":
-                    case "NVARCHAR":
-                        varType = "string";
-                        break;
-                    case "INT":
-                        varType = "int";
-                        break;
-                    case "BIT":
-                        varType = "bool";
-                        break;
-                    case "MONEY":
-                        varType = "decimal";
-                        break;
-                    case "UNIQUEIDENTIFIER":
-                        varType = "Guid";
-                        break;
-                    case "DATETIME":
-                        varType = "DateTime";
-                        break;
-                    case "TIME":
-                        varType = "TimeSpan";
-                        break;
-
-                    default:
-                        throw new Exception("No type found");
-
-                }*/
-                /*if (nullable && varType != "string")
-                {
-                    varType = varType + "?";
-                }*/
                 sb.AppendLine(String.Format("\t\tpublic {0} {1} {2}", type, name, @"{get;set;}"));
 
             }

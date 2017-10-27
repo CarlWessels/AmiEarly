@@ -25,7 +25,7 @@ namespace HostedService
         }
         public override void Validate(string userName, string password)
         {
-            List<spLoginResult> result = Calls.spLoginCall(userName, password, ConnectionString);
+            List<LoginResult> result = Calls.spLoginCall(userName, password, ConnectionString);
             if (result.Count == 0)
             {
                 throw new SecurityTokenException("Invalid username or password");

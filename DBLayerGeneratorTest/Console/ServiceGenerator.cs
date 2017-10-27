@@ -31,7 +31,7 @@ namespace Console
             }
 
             string tableName = procName.Substring(2, procName.Length - 2);
-            string resultName = $"{procName}Result";
+            string resultName = $"{procName.Substring(2, procName.Length-2)}Result";
             tableName = tableName.Replace("Get", "");
             tableName = tableName.Replace("Upsert", "");
 
@@ -219,7 +219,7 @@ namespace Console
             string indentSeven = GeneratorHelper.Indent(baseIndent + 7);
 
             string paramName = $"{procName}Parameters";
-            string resultName = $"{procName}Result";
+            string resultName = $"{procName.Substring(2, procName.Length-2)}Result";
             string callName = "";
             string tableName = procName.Substring(2, procName.Length - 2);
             tableName = tableName.Replace("Get", "");

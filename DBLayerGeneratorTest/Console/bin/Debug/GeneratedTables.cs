@@ -1,5 +1,18 @@
 namespace AppointmentLibrary.Tables
 {
+	public partial class tblSystemUser
+	{
+		public string GUID {get;set;}
+		public string ID {get;set;}
+		public string DateTimeCreated {get;set;}
+		public string IsDeleted {get;set;}
+		public string ActiveDateTime {get;set;}
+		public string TerminationDateTime {get;set;}
+		public string IsActiveForNow {get;set;}
+		public string Username {get;set;}
+		public string PasswordHash {get;set;}
+		public string PasswordSalt {get;set;}
+	}
 	public partial class tblAccount
 	{
 		public string GUID {get;set;}
@@ -10,6 +23,7 @@ namespace AppointmentLibrary.Tables
 		public string TerminationDateTime {get;set;}
 		public string IsActiveForNow {get;set;}
 		public string AccountName {get;set;}
+		public string SystemUserGUID {get;set;}
 	}
 	public partial class tblStore
 	{
@@ -22,6 +36,7 @@ namespace AppointmentLibrary.Tables
 		public string IsActiveForNow {get;set;}
 		public string StoreName {get;set;}
 		public string AccountGUID {get;set;}
+		public string SystemUserGUID {get;set;}
 	}
 	public partial class tblCustomer
 	{
@@ -35,6 +50,7 @@ namespace AppointmentLibrary.Tables
 		public string Firstname {get;set;}
 		public string Surname {get;set;}
 		public string AccountGUID {get;set;}
+		public string SystemUserGUID {get;set;}
 	}
 	public partial class tblServiceProvider
 	{
@@ -48,6 +64,7 @@ namespace AppointmentLibrary.Tables
 		public string Firstname {get;set;}
 		public string Surname {get;set;}
 		public string AccountGUID {get;set;}
+		public string SystemUserGUID {get;set;}
 	}
 	public partial class tblAppointment
 	{
@@ -63,6 +80,7 @@ namespace AppointmentLibrary.Tables
 		public string CustomerGUID {get;set;}
 		public string StoreGUID {get;set;}
 		public string ServiceProviderGUID {get;set;}
+		public string SystemUserGUID {get;set;}
 	}
 	public partial class tblActivityType
 	{
@@ -72,6 +90,7 @@ namespace AppointmentLibrary.Tables
 		public string IsDeleted {get;set;}
 		public string ActivityType {get;set;}
 		public string AccountGUID {get;set;}
+		public string SystemUserGUID {get;set;}
 	}
 	public partial class tblActivitySchedule
 	{
@@ -84,19 +103,7 @@ namespace AppointmentLibrary.Tables
 		public string EndTime {get;set;}
 		public string ActivityTypeGUID {get;set;}
 		public string ServiceProviderGUID {get;set;}
-	}
-	public partial class tblSystemUser
-	{
-		public string GUID {get;set;}
-		public string ID {get;set;}
-		public string DateTimeCreated {get;set;}
-		public string IsDeleted {get;set;}
-		public string ActiveDateTime {get;set;}
-		public string TerminationDateTime {get;set;}
-		public string IsActiveForNow {get;set;}
-		public string Username {get;set;}
-		public string PasswordHash {get;set;}
-		public string PasswordSalt {get;set;}
+		public string SystemUserGUID {get;set;}
 	}
 	public partial class tblAuditLog
 	{
