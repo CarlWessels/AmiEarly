@@ -53,7 +53,7 @@
     <Compile Include="..\Console\bin\Debug\GeneratedServiceCalls.cs">
       <Link>GeneratedServiceCalls.cs</Link>
     </Compile>
-    <Compile Include="AppointmentServiceClient.cs" />
+    <Compile Include="AppointmentServiceClient.Test.cs" />
     <Compile Include="Connected Services\AppointmentService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

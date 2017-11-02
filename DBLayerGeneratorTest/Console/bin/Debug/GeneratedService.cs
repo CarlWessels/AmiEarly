@@ -22,7 +22,7 @@ using System.Web.Configuration;
 
 namespace HostedService
     {
-        public class AppointmentService : IAppointmentService
+        public partial class AppointmentService : IAppointmentService
         {
             public string ConnectionString { get; set; }
 
@@ -45,578 +45,11 @@ namespace HostedService
             {
                 this.ConnectionString = connectionString;
             }
-			public string CreateUpsert(string parameters)
-			{
-				try
-				{
-				    spCreateUpsertParameters casted = JsonConvert.DeserializeObject<spCreateUpsertParameters> (parameters);
-				    List<CreateUpsertResult> result = Calls.spCreateUpsertCall(casted, ConnectionString);
-				
-				    string json = JsonConvert.SerializeObject(result);
-				    return json;
-				}
-				catch (Exception ex)
-				{
-				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
-				    response.StatusCode = HttpStatusCode.BadRequest;
-				    if (ReturnExceptionMessage)
-				    {
-				        response.StatusDescription = ex.Message;
-				        HttpContext.Current.Response.Write(ex.Message);
-				    }
-				    else
-				    {
-				        response.StatusDescription = "Failed with transaction";
-				        HttpContext.Current.Response.Write("Failed with transaction");
-				    }
-				    return null;
-				}
-			}
-			public string SystemUserUpsert(string parameters)
-			{
-				try
-				{
-				    spSystemUserUpsertParameters casted = JsonConvert.DeserializeObject<spSystemUserUpsertParameters> (parameters);
-				    List<SystemUserUpsertResult> result = Calls.spSystemUserUpsertCall(casted, ConnectionString);
-				
-				    string json = JsonConvert.SerializeObject(result);
-				    return json;
-				}
-				catch (Exception ex)
-				{
-				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
-				    response.StatusCode = HttpStatusCode.BadRequest;
-				    if (ReturnExceptionMessage)
-				    {
-				        response.StatusDescription = ex.Message;
-				        HttpContext.Current.Response.Write(ex.Message);
-				    }
-				    else
-				    {
-				        response.StatusDescription = "Failed with transaction";
-				        HttpContext.Current.Response.Write("Failed with transaction");
-				    }
-				    return null;
-				}
-			}
-			public string SystemUserGet(string parameters)
-			{
-				try
-				{
-				    spSystemUserGetParameters casted = JsonConvert.DeserializeObject<spSystemUserGetParameters> (parameters);
-				    List<SystemUserGetResult> result = Calls.spSystemUserGetCall(casted, ConnectionString);
-				
-				    string json = JsonConvert.SerializeObject(result);
-				    return json;
-				}
-				catch (Exception ex)
-				{
-				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
-				    response.StatusCode = HttpStatusCode.BadRequest;
-				    if (ReturnExceptionMessage)
-				    {
-				        response.StatusDescription = ex.Message;
-				        HttpContext.Current.Response.Write(ex.Message);
-				    }
-				    else
-				    {
-				        response.StatusDescription = "Failed with transaction";
-				        HttpContext.Current.Response.Write("Failed with transaction");
-				    }
-				    return null;
-				}
-			}
-			public string GetChildren(string parameters)
-			{
-				try
-				{
-				    spGetChildrenParameters casted = JsonConvert.DeserializeObject<spGetChildrenParameters> (parameters);
-				    List<GetChildrenResult> result = Calls.spGetChildrenCall(casted, ConnectionString);
-				
-				    string json = JsonConvert.SerializeObject(result);
-				    return json;
-				}
-				catch (Exception ex)
-				{
-				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
-				    response.StatusCode = HttpStatusCode.BadRequest;
-				    if (ReturnExceptionMessage)
-				    {
-				        response.StatusDescription = ex.Message;
-				        HttpContext.Current.Response.Write(ex.Message);
-				    }
-				    else
-				    {
-				        response.StatusDescription = "Failed with transaction";
-				        HttpContext.Current.Response.Write("Failed with transaction");
-				    }
-				    return null;
-				}
-			}
-			public string CreateToXml(string parameters)
-			{
-				try
-				{
-				    spCreateToXmlParameters casted = JsonConvert.DeserializeObject<spCreateToXmlParameters> (parameters);
-				    List<CreateToXmlResult> result = Calls.spCreateToXmlCall(casted, ConnectionString);
-				
-				    string json = JsonConvert.SerializeObject(result);
-				    return json;
-				}
-				catch (Exception ex)
-				{
-				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
-				    response.StatusCode = HttpStatusCode.BadRequest;
-				    if (ReturnExceptionMessage)
-				    {
-				        response.StatusDescription = ex.Message;
-				        HttpContext.Current.Response.Write(ex.Message);
-				    }
-				    else
-				    {
-				        response.StatusDescription = "Failed with transaction";
-				        HttpContext.Current.Response.Write("Failed with transaction");
-				    }
-				    return null;
-				}
-			}
-			public string AccountUpsert(string parameters)
-			{
-				try
-				{
-				    spAccountUpsertParameters casted = JsonConvert.DeserializeObject<spAccountUpsertParameters> (parameters);
-				    List<AccountUpsertResult> result = Calls.spAccountUpsertCall(casted, ConnectionString);
-				
-				    string json = JsonConvert.SerializeObject(result);
-				    return json;
-				}
-				catch (Exception ex)
-				{
-				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
-				    response.StatusCode = HttpStatusCode.BadRequest;
-				    if (ReturnExceptionMessage)
-				    {
-				        response.StatusDescription = ex.Message;
-				        HttpContext.Current.Response.Write(ex.Message);
-				    }
-				    else
-				    {
-				        response.StatusDescription = "Failed with transaction";
-				        HttpContext.Current.Response.Write("Failed with transaction");
-				    }
-				    return null;
-				}
-			}
-			public string AccountGet(string parameters)
-			{
-				try
-				{
-				    spAccountGetParameters casted = JsonConvert.DeserializeObject<spAccountGetParameters> (parameters);
-				    List<AccountGetResult> result = Calls.spAccountGetCall(casted, ConnectionString);
-				
-				    string json = JsonConvert.SerializeObject(result);
-				    return json;
-				}
-				catch (Exception ex)
-				{
-				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
-				    response.StatusCode = HttpStatusCode.BadRequest;
-				    if (ReturnExceptionMessage)
-				    {
-				        response.StatusDescription = ex.Message;
-				        HttpContext.Current.Response.Write(ex.Message);
-				    }
-				    else
-				    {
-				        response.StatusDescription = "Failed with transaction";
-				        HttpContext.Current.Response.Write("Failed with transaction");
-				    }
-				    return null;
-				}
-			}
-			public string ActivityTypeUpsert(string parameters)
-			{
-				try
-				{
-				    spActivityTypeUpsertParameters casted = JsonConvert.DeserializeObject<spActivityTypeUpsertParameters> (parameters);
-				    List<ActivityTypeUpsertResult> result = Calls.spActivityTypeUpsertCall(casted, ConnectionString);
-				
-				    string json = JsonConvert.SerializeObject(result);
-				    return json;
-				}
-				catch (Exception ex)
-				{
-				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
-				    response.StatusCode = HttpStatusCode.BadRequest;
-				    if (ReturnExceptionMessage)
-				    {
-				        response.StatusDescription = ex.Message;
-				        HttpContext.Current.Response.Write(ex.Message);
-				    }
-				    else
-				    {
-				        response.StatusDescription = "Failed with transaction";
-				        HttpContext.Current.Response.Write("Failed with transaction");
-				    }
-				    return null;
-				}
-			}
-			public string ActivityTypeGet(string parameters)
-			{
-				try
-				{
-				    spActivityTypeGetParameters casted = JsonConvert.DeserializeObject<spActivityTypeGetParameters> (parameters);
-				    List<ActivityTypeGetResult> result = Calls.spActivityTypeGetCall(casted, ConnectionString);
-				
-				    string json = JsonConvert.SerializeObject(result);
-				    return json;
-				}
-				catch (Exception ex)
-				{
-				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
-				    response.StatusCode = HttpStatusCode.BadRequest;
-				    if (ReturnExceptionMessage)
-				    {
-				        response.StatusDescription = ex.Message;
-				        HttpContext.Current.Response.Write(ex.Message);
-				    }
-				    else
-				    {
-				        response.StatusDescription = "Failed with transaction";
-				        HttpContext.Current.Response.Write("Failed with transaction");
-				    }
-				    return null;
-				}
-			}
-			public string AppointmentUpsert(string parameters)
-			{
-				try
-				{
-				    spAppointmentUpsertParameters casted = JsonConvert.DeserializeObject<spAppointmentUpsertParameters> (parameters);
-				    List<AppointmentUpsertResult> result = Calls.spAppointmentUpsertCall(casted, ConnectionString);
-				
-				    string json = JsonConvert.SerializeObject(result);
-				    return json;
-				}
-				catch (Exception ex)
-				{
-				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
-				    response.StatusCode = HttpStatusCode.BadRequest;
-				    if (ReturnExceptionMessage)
-				    {
-				        response.StatusDescription = ex.Message;
-				        HttpContext.Current.Response.Write(ex.Message);
-				    }
-				    else
-				    {
-				        response.StatusDescription = "Failed with transaction";
-				        HttpContext.Current.Response.Write("Failed with transaction");
-				    }
-				    return null;
-				}
-			}
-			public string AppointmentGet(string parameters)
-			{
-				try
-				{
-				    spAppointmentGetParameters casted = JsonConvert.DeserializeObject<spAppointmentGetParameters> (parameters);
-				    List<AppointmentGetResult> result = Calls.spAppointmentGetCall(casted, ConnectionString);
-				
-				    string json = JsonConvert.SerializeObject(result);
-				    return json;
-				}
-				catch (Exception ex)
-				{
-				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
-				    response.StatusCode = HttpStatusCode.BadRequest;
-				    if (ReturnExceptionMessage)
-				    {
-				        response.StatusDescription = ex.Message;
-				        HttpContext.Current.Response.Write(ex.Message);
-				    }
-				    else
-				    {
-				        response.StatusDescription = "Failed with transaction";
-				        HttpContext.Current.Response.Write("Failed with transaction");
-				    }
-				    return null;
-				}
-			}
-			public string Login(string parameters)
-			{
-				try
-				{
-				    spLoginParameters casted = JsonConvert.DeserializeObject<spLoginParameters> (parameters);
-				    List<LoginResult> result = Calls.spLoginCall(casted, ConnectionString);
-				
-				    string json = JsonConvert.SerializeObject(result);
-				    return json;
-				}
-				catch (Exception ex)
-				{
-				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
-				    response.StatusCode = HttpStatusCode.BadRequest;
-				    if (ReturnExceptionMessage)
-				    {
-				        response.StatusDescription = ex.Message;
-				        HttpContext.Current.Response.Write(ex.Message);
-				    }
-				    else
-				    {
-				        response.StatusDescription = "Failed with transaction";
-				        HttpContext.Current.Response.Write("Failed with transaction");
-				    }
-				    return null;
-				}
-			}
-			public string ServiceProviderUpsert(string parameters)
-			{
-				try
-				{
-				    spServiceProviderUpsertParameters casted = JsonConvert.DeserializeObject<spServiceProviderUpsertParameters> (parameters);
-				    List<ServiceProviderUpsertResult> result = Calls.spServiceProviderUpsertCall(casted, ConnectionString);
-				
-				    string json = JsonConvert.SerializeObject(result);
-				    return json;
-				}
-				catch (Exception ex)
-				{
-				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
-				    response.StatusCode = HttpStatusCode.BadRequest;
-				    if (ReturnExceptionMessage)
-				    {
-				        response.StatusDescription = ex.Message;
-				        HttpContext.Current.Response.Write(ex.Message);
-				    }
-				    else
-				    {
-				        response.StatusDescription = "Failed with transaction";
-				        HttpContext.Current.Response.Write("Failed with transaction");
-				    }
-				    return null;
-				}
-			}
-			public string ServiceProviderGet(string parameters)
-			{
-				try
-				{
-				    spServiceProviderGetParameters casted = JsonConvert.DeserializeObject<spServiceProviderGetParameters> (parameters);
-				    List<ServiceProviderGetResult> result = Calls.spServiceProviderGetCall(casted, ConnectionString);
-				
-				    string json = JsonConvert.SerializeObject(result);
-				    return json;
-				}
-				catch (Exception ex)
-				{
-				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
-				    response.StatusCode = HttpStatusCode.BadRequest;
-				    if (ReturnExceptionMessage)
-				    {
-				        response.StatusDescription = ex.Message;
-				        HttpContext.Current.Response.Write(ex.Message);
-				    }
-				    else
-				    {
-				        response.StatusDescription = "Failed with transaction";
-				        HttpContext.Current.Response.Write("Failed with transaction");
-				    }
-				    return null;
-				}
-			}
-			public string CustomerUpsert(string parameters)
-			{
-				try
-				{
-				    spCustomerUpsertParameters casted = JsonConvert.DeserializeObject<spCustomerUpsertParameters> (parameters);
-				    List<CustomerUpsertResult> result = Calls.spCustomerUpsertCall(casted, ConnectionString);
-				
-				    string json = JsonConvert.SerializeObject(result);
-				    return json;
-				}
-				catch (Exception ex)
-				{
-				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
-				    response.StatusCode = HttpStatusCode.BadRequest;
-				    if (ReturnExceptionMessage)
-				    {
-				        response.StatusDescription = ex.Message;
-				        HttpContext.Current.Response.Write(ex.Message);
-				    }
-				    else
-				    {
-				        response.StatusDescription = "Failed with transaction";
-				        HttpContext.Current.Response.Write("Failed with transaction");
-				    }
-				    return null;
-				}
-			}
-			public string CustomerGet(string parameters)
-			{
-				try
-				{
-				    spCustomerGetParameters casted = JsonConvert.DeserializeObject<spCustomerGetParameters> (parameters);
-				    List<CustomerGetResult> result = Calls.spCustomerGetCall(casted, ConnectionString);
-				
-				    string json = JsonConvert.SerializeObject(result);
-				    return json;
-				}
-				catch (Exception ex)
-				{
-				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
-				    response.StatusCode = HttpStatusCode.BadRequest;
-				    if (ReturnExceptionMessage)
-				    {
-				        response.StatusDescription = ex.Message;
-				        HttpContext.Current.Response.Write(ex.Message);
-				    }
-				    else
-				    {
-				        response.StatusDescription = "Failed with transaction";
-				        HttpContext.Current.Response.Write("Failed with transaction");
-				    }
-				    return null;
-				}
-			}
-			public string ActivityScheduleUpsert(string parameters)
-			{
-				try
-				{
-				    spActivityScheduleUpsertParameters casted = JsonConvert.DeserializeObject<spActivityScheduleUpsertParameters> (parameters);
-				    List<ActivityScheduleUpsertResult> result = Calls.spActivityScheduleUpsertCall(casted, ConnectionString);
-				
-				    string json = JsonConvert.SerializeObject(result);
-				    return json;
-				}
-				catch (Exception ex)
-				{
-				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
-				    response.StatusCode = HttpStatusCode.BadRequest;
-				    if (ReturnExceptionMessage)
-				    {
-				        response.StatusDescription = ex.Message;
-				        HttpContext.Current.Response.Write(ex.Message);
-				    }
-				    else
-				    {
-				        response.StatusDescription = "Failed with transaction";
-				        HttpContext.Current.Response.Write("Failed with transaction");
-				    }
-				    return null;
-				}
-			}
-			public string ActivityScheduleGet(string parameters)
-			{
-				try
-				{
-				    spActivityScheduleGetParameters casted = JsonConvert.DeserializeObject<spActivityScheduleGetParameters> (parameters);
-				    List<ActivityScheduleGetResult> result = Calls.spActivityScheduleGetCall(casted, ConnectionString);
-				
-				    string json = JsonConvert.SerializeObject(result);
-				    return json;
-				}
-				catch (Exception ex)
-				{
-				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
-				    response.StatusCode = HttpStatusCode.BadRequest;
-				    if (ReturnExceptionMessage)
-				    {
-				        response.StatusDescription = ex.Message;
-				        HttpContext.Current.Response.Write(ex.Message);
-				    }
-				    else
-				    {
-				        response.StatusDescription = "Failed with transaction";
-				        HttpContext.Current.Response.Write("Failed with transaction");
-				    }
-				    return null;
-				}
-			}
-			public string StoreUpsert(string parameters)
-			{
-				try
-				{
-				    spStoreUpsertParameters casted = JsonConvert.DeserializeObject<spStoreUpsertParameters> (parameters);
-				    List<StoreUpsertResult> result = Calls.spStoreUpsertCall(casted, ConnectionString);
-				
-				    string json = JsonConvert.SerializeObject(result);
-				    return json;
-				}
-				catch (Exception ex)
-				{
-				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
-				    response.StatusCode = HttpStatusCode.BadRequest;
-				    if (ReturnExceptionMessage)
-				    {
-				        response.StatusDescription = ex.Message;
-				        HttpContext.Current.Response.Write(ex.Message);
-				    }
-				    else
-				    {
-				        response.StatusDescription = "Failed with transaction";
-				        HttpContext.Current.Response.Write("Failed with transaction");
-				    }
-				    return null;
-				}
-			}
-			public string StoreGet(string parameters)
-			{
-				try
-				{
-				    spStoreGetParameters casted = JsonConvert.DeserializeObject<spStoreGetParameters> (parameters);
-				    List<StoreGetResult> result = Calls.spStoreGetCall(casted, ConnectionString);
-				
-				    string json = JsonConvert.SerializeObject(result);
-				    return json;
-				}
-				catch (Exception ex)
-				{
-				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
-				    response.StatusCode = HttpStatusCode.BadRequest;
-				    if (ReturnExceptionMessage)
-				    {
-				        response.StatusDescription = ex.Message;
-				        HttpContext.Current.Response.Write(ex.Message);
-				    }
-				    else
-				    {
-				        response.StatusDescription = "Failed with transaction";
-				        HttpContext.Current.Response.Write("Failed with transaction");
-				    }
-				    return null;
-				}
-			}
-			public string AccountToXML(string parameters)
-			{
-				try
-				{
-				    spAccountToXMLParameters casted = JsonConvert.DeserializeObject<spAccountToXMLParameters> (parameters);
-				    List<AccountToXMLResult> result = Calls.spAccountToXMLCall(casted, ConnectionString);
-				
-				    string json = JsonConvert.SerializeObject(result);
-				    return json;
-				}
-				catch (Exception ex)
-				{
-				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
-				    response.StatusCode = HttpStatusCode.BadRequest;
-				    if (ReturnExceptionMessage)
-				    {
-				        response.StatusDescription = ex.Message;
-				        HttpContext.Current.Response.Write(ex.Message);
-				    }
-				    else
-				    {
-				        response.StatusDescription = "Failed with transaction";
-				        HttpContext.Current.Response.Write("Failed with transaction");
-				    }
-				    return null;
-				}
-			}
 			public string AccountToXMLByDateTime(string parameters)
 			{
 				try
 				{
-				    spAccountToXMLByDateTimeParameters casted = JsonConvert.DeserializeObject<spAccountToXMLByDateTimeParameters> (parameters);
+				    AccountToXMLByDateTimeParameters casted = JsonConvert.DeserializeObject<AccountToXMLByDateTimeParameters> (parameters);
 				    List<AccountToXMLByDateTimeResult> result = Calls.spAccountToXMLByDateTimeCall(casted, ConnectionString);
 				
 				    string json = JsonConvert.SerializeObject(result);
@@ -643,7 +76,7 @@ namespace HostedService
 			{
 				try
 				{
-				    spActivityTypeToXMLParameters casted = JsonConvert.DeserializeObject<spActivityTypeToXMLParameters> (parameters);
+				    ActivityTypeToXMLParameters casted = JsonConvert.DeserializeObject<ActivityTypeToXMLParameters> (parameters);
 				    List<ActivityTypeToXMLResult> result = Calls.spActivityTypeToXMLCall(casted, ConnectionString);
 				
 				    string json = JsonConvert.SerializeObject(result);
@@ -670,7 +103,7 @@ namespace HostedService
 			{
 				try
 				{
-				    spActivityTypeToXMLByDateTimeParameters casted = JsonConvert.DeserializeObject<spActivityTypeToXMLByDateTimeParameters> (parameters);
+				    ActivityTypeToXMLByDateTimeParameters casted = JsonConvert.DeserializeObject<ActivityTypeToXMLByDateTimeParameters> (parameters);
 				    List<ActivityTypeToXMLByDateTimeResult> result = Calls.spActivityTypeToXMLByDateTimeCall(casted, ConnectionString);
 				
 				    string json = JsonConvert.SerializeObject(result);
@@ -697,7 +130,7 @@ namespace HostedService
 			{
 				try
 				{
-				    spAppointmentToXMLParameters casted = JsonConvert.DeserializeObject<spAppointmentToXMLParameters> (parameters);
+				    AppointmentToXMLParameters casted = JsonConvert.DeserializeObject<AppointmentToXMLParameters> (parameters);
 				    List<AppointmentToXMLResult> result = Calls.spAppointmentToXMLCall(casted, ConnectionString);
 				
 				    string json = JsonConvert.SerializeObject(result);
@@ -724,7 +157,7 @@ namespace HostedService
 			{
 				try
 				{
-				    spAppointmentToXMLByDateTimeParameters casted = JsonConvert.DeserializeObject<spAppointmentToXMLByDateTimeParameters> (parameters);
+				    AppointmentToXMLByDateTimeParameters casted = JsonConvert.DeserializeObject<AppointmentToXMLByDateTimeParameters> (parameters);
 				    List<AppointmentToXMLByDateTimeResult> result = Calls.spAppointmentToXMLByDateTimeCall(casted, ConnectionString);
 				
 				    string json = JsonConvert.SerializeObject(result);
@@ -751,8 +184,35 @@ namespace HostedService
 			{
 				try
 				{
-				    spServiceProviderToXMLParameters casted = JsonConvert.DeserializeObject<spServiceProviderToXMLParameters> (parameters);
+				    ServiceProviderToXMLParameters casted = JsonConvert.DeserializeObject<ServiceProviderToXMLParameters> (parameters);
 				    List<ServiceProviderToXMLResult> result = Calls.spServiceProviderToXMLCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string CreateUpsert(string parameters)
+			{
+				try
+				{
+				    CreateUpsertParameters casted = JsonConvert.DeserializeObject<CreateUpsertParameters> (parameters);
+				    List<CreateUpsertResult> result = Calls.spCreateUpsertCall(casted, ConnectionString);
 				
 				    string json = JsonConvert.SerializeObject(result);
 				    return json;
@@ -778,7 +238,7 @@ namespace HostedService
 			{
 				try
 				{
-				    spServiceProviderToXMLByDateTimeParameters casted = JsonConvert.DeserializeObject<spServiceProviderToXMLByDateTimeParameters> (parameters);
+				    ServiceProviderToXMLByDateTimeParameters casted = JsonConvert.DeserializeObject<ServiceProviderToXMLByDateTimeParameters> (parameters);
 				    List<ServiceProviderToXMLByDateTimeResult> result = Calls.spServiceProviderToXMLByDateTimeCall(casted, ConnectionString);
 				
 				    string json = JsonConvert.SerializeObject(result);
@@ -805,8 +265,35 @@ namespace HostedService
 			{
 				try
 				{
-				    spCustomerToXMLParameters casted = JsonConvert.DeserializeObject<spCustomerToXMLParameters> (parameters);
+				    CustomerToXMLParameters casted = JsonConvert.DeserializeObject<CustomerToXMLParameters> (parameters);
 				    List<CustomerToXMLResult> result = Calls.spCustomerToXMLCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string SystemUserUpsert(string parameters)
+			{
+				try
+				{
+				    SystemUserUpsertParameters casted = JsonConvert.DeserializeObject<SystemUserUpsertParameters> (parameters);
+				    List<SystemUserUpsertResult> result = Calls.spSystemUserUpsertCall(casted, ConnectionString);
 				
 				    string json = JsonConvert.SerializeObject(result);
 				    return json;
@@ -832,8 +319,35 @@ namespace HostedService
 			{
 				try
 				{
-				    spCustomerToXMLByDateTimeParameters casted = JsonConvert.DeserializeObject<spCustomerToXMLByDateTimeParameters> (parameters);
+				    CustomerToXMLByDateTimeParameters casted = JsonConvert.DeserializeObject<CustomerToXMLByDateTimeParameters> (parameters);
 				    List<CustomerToXMLByDateTimeResult> result = Calls.spCustomerToXMLByDateTimeCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string SystemUserGet(string parameters)
+			{
+				try
+				{
+				    SystemUserGetParameters casted = JsonConvert.DeserializeObject<SystemUserGetParameters> (parameters);
+				    List<SystemUserGetResult> result = Calls.spSystemUserGetCall(casted, ConnectionString);
 				
 				    string json = JsonConvert.SerializeObject(result);
 				    return json;
@@ -859,7 +373,7 @@ namespace HostedService
 			{
 				try
 				{
-				    spActivityScheduleToXMLParameters casted = JsonConvert.DeserializeObject<spActivityScheduleToXMLParameters> (parameters);
+				    ActivityScheduleToXMLParameters casted = JsonConvert.DeserializeObject<ActivityScheduleToXMLParameters> (parameters);
 				    List<ActivityScheduleToXMLResult> result = Calls.spActivityScheduleToXMLCall(casted, ConnectionString);
 				
 				    string json = JsonConvert.SerializeObject(result);
@@ -886,7 +400,7 @@ namespace HostedService
 			{
 				try
 				{
-				    spActivityScheduleToXMLByDateTimeParameters casted = JsonConvert.DeserializeObject<spActivityScheduleToXMLByDateTimeParameters> (parameters);
+				    ActivityScheduleToXMLByDateTimeParameters casted = JsonConvert.DeserializeObject<ActivityScheduleToXMLByDateTimeParameters> (parameters);
 				    List<ActivityScheduleToXMLByDateTimeResult> result = Calls.spActivityScheduleToXMLByDateTimeCall(casted, ConnectionString);
 				
 				    string json = JsonConvert.SerializeObject(result);
@@ -913,7 +427,7 @@ namespace HostedService
 			{
 				try
 				{
-				    spStoreToXMLParameters casted = JsonConvert.DeserializeObject<spStoreToXMLParameters> (parameters);
+				    StoreToXMLParameters casted = JsonConvert.DeserializeObject<StoreToXMLParameters> (parameters);
 				    List<StoreToXMLResult> result = Calls.spStoreToXMLCall(casted, ConnectionString);
 				
 				    string json = JsonConvert.SerializeObject(result);
@@ -940,8 +454,926 @@ namespace HostedService
 			{
 				try
 				{
-				    spStoreToXMLByDateTimeParameters casted = JsonConvert.DeserializeObject<spStoreToXMLByDateTimeParameters> (parameters);
+				    StoreToXMLByDateTimeParameters casted = JsonConvert.DeserializeObject<StoreToXMLByDateTimeParameters> (parameters);
 				    List<StoreToXMLByDateTimeResult> result = Calls.spStoreToXMLByDateTimeCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string PermissionToXML(string parameters)
+			{
+				try
+				{
+				    PermissionToXMLParameters casted = JsonConvert.DeserializeObject<PermissionToXMLParameters> (parameters);
+				    List<PermissionToXMLResult> result = Calls.spPermissionToXMLCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string PermissionToXMLByDateTime(string parameters)
+			{
+				try
+				{
+				    PermissionToXMLByDateTimeParameters casted = JsonConvert.DeserializeObject<PermissionToXMLByDateTimeParameters> (parameters);
+				    List<PermissionToXMLByDateTimeResult> result = Calls.spPermissionToXMLByDateTimeCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string SystemUserPermissionToXML(string parameters)
+			{
+				try
+				{
+				    SystemUserPermissionToXMLParameters casted = JsonConvert.DeserializeObject<SystemUserPermissionToXMLParameters> (parameters);
+				    List<SystemUserPermissionToXMLResult> result = Calls.spSystemUserPermissionToXMLCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string SystemUserPermissionToXMLByDateTime(string parameters)
+			{
+				try
+				{
+				    SystemUserPermissionToXMLByDateTimeParameters casted = JsonConvert.DeserializeObject<SystemUserPermissionToXMLByDateTimeParameters> (parameters);
+				    List<SystemUserPermissionToXMLByDateTimeResult> result = Calls.spSystemUserPermissionToXMLByDateTimeCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string SystemUserGroupToXML(string parameters)
+			{
+				try
+				{
+				    SystemUserGroupToXMLParameters casted = JsonConvert.DeserializeObject<SystemUserGroupToXMLParameters> (parameters);
+				    List<SystemUserGroupToXMLResult> result = Calls.spSystemUserGroupToXMLCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string SystemUserGroupToXMLByDateTime(string parameters)
+			{
+				try
+				{
+				    SystemUserGroupToXMLByDateTimeParameters casted = JsonConvert.DeserializeObject<SystemUserGroupToXMLByDateTimeParameters> (parameters);
+				    List<SystemUserGroupToXMLByDateTimeResult> result = Calls.spSystemUserGroupToXMLByDateTimeCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string SystemUserGroupLineToXML(string parameters)
+			{
+				try
+				{
+				    SystemUserGroupLineToXMLParameters casted = JsonConvert.DeserializeObject<SystemUserGroupLineToXMLParameters> (parameters);
+				    List<SystemUserGroupLineToXMLResult> result = Calls.spSystemUserGroupLineToXMLCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string SystemUserGroupLineToXMLByDateTime(string parameters)
+			{
+				try
+				{
+				    SystemUserGroupLineToXMLByDateTimeParameters casted = JsonConvert.DeserializeObject<SystemUserGroupLineToXMLByDateTimeParameters> (parameters);
+				    List<SystemUserGroupLineToXMLByDateTimeResult> result = Calls.spSystemUserGroupLineToXMLByDateTimeCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string SystemUserGroupPermissionToXML(string parameters)
+			{
+				try
+				{
+				    SystemUserGroupPermissionToXMLParameters casted = JsonConvert.DeserializeObject<SystemUserGroupPermissionToXMLParameters> (parameters);
+				    List<SystemUserGroupPermissionToXMLResult> result = Calls.spSystemUserGroupPermissionToXMLCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string SystemUserGroupPermissionToXMLByDateTime(string parameters)
+			{
+				try
+				{
+				    SystemUserGroupPermissionToXMLByDateTimeParameters casted = JsonConvert.DeserializeObject<SystemUserGroupPermissionToXMLByDateTimeParameters> (parameters);
+				    List<SystemUserGroupPermissionToXMLByDateTimeResult> result = Calls.spSystemUserGroupPermissionToXMLByDateTimeCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string GetChildren(string parameters)
+			{
+				try
+				{
+				    GetChildrenParameters casted = JsonConvert.DeserializeObject<GetChildrenParameters> (parameters);
+				    List<GetChildrenResult> result = Calls.spGetChildrenCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string CreateToXml(string parameters)
+			{
+				try
+				{
+				    CreateToXmlParameters casted = JsonConvert.DeserializeObject<CreateToXmlParameters> (parameters);
+				    List<CreateToXmlResult> result = Calls.spCreateToXmlCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string Login(string parameters)
+			{
+				try
+				{
+				    LoginParameters casted = JsonConvert.DeserializeObject<LoginParameters> (parameters);
+				    List<LoginResult> result = Calls.spLoginCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string AccountUpsert(string parameters)
+			{
+				try
+				{
+				    AccountUpsertParameters casted = JsonConvert.DeserializeObject<AccountUpsertParameters> (parameters);
+				    List<AccountUpsertResult> result = Calls.spAccountUpsertCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string AccountGet(string parameters)
+			{
+				try
+				{
+				    AccountGetParameters casted = JsonConvert.DeserializeObject<AccountGetParameters> (parameters);
+				    List<AccountGetResult> result = Calls.spAccountGetCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string ActivityTypeUpsert(string parameters)
+			{
+				try
+				{
+				    ActivityTypeUpsertParameters casted = JsonConvert.DeserializeObject<ActivityTypeUpsertParameters> (parameters);
+				    List<ActivityTypeUpsertResult> result = Calls.spActivityTypeUpsertCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string ActivityTypeGet(string parameters)
+			{
+				try
+				{
+				    ActivityTypeGetParameters casted = JsonConvert.DeserializeObject<ActivityTypeGetParameters> (parameters);
+				    List<ActivityTypeGetResult> result = Calls.spActivityTypeGetCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string AppointmentUpsert(string parameters)
+			{
+				try
+				{
+				    AppointmentUpsertParameters casted = JsonConvert.DeserializeObject<AppointmentUpsertParameters> (parameters);
+				    List<AppointmentUpsertResult> result = Calls.spAppointmentUpsertCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string AppointmentGet(string parameters)
+			{
+				try
+				{
+				    AppointmentGetParameters casted = JsonConvert.DeserializeObject<AppointmentGetParameters> (parameters);
+				    List<AppointmentGetResult> result = Calls.spAppointmentGetCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string ServiceProviderUpsert(string parameters)
+			{
+				try
+				{
+				    ServiceProviderUpsertParameters casted = JsonConvert.DeserializeObject<ServiceProviderUpsertParameters> (parameters);
+				    List<ServiceProviderUpsertResult> result = Calls.spServiceProviderUpsertCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string ServiceProviderGet(string parameters)
+			{
+				try
+				{
+				    ServiceProviderGetParameters casted = JsonConvert.DeserializeObject<ServiceProviderGetParameters> (parameters);
+				    List<ServiceProviderGetResult> result = Calls.spServiceProviderGetCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string CustomerUpsert(string parameters)
+			{
+				try
+				{
+				    CustomerUpsertParameters casted = JsonConvert.DeserializeObject<CustomerUpsertParameters> (parameters);
+				    List<CustomerUpsertResult> result = Calls.spCustomerUpsertCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string CustomerGet(string parameters)
+			{
+				try
+				{
+				    CustomerGetParameters casted = JsonConvert.DeserializeObject<CustomerGetParameters> (parameters);
+				    List<CustomerGetResult> result = Calls.spCustomerGetCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string ActivityScheduleUpsert(string parameters)
+			{
+				try
+				{
+				    ActivityScheduleUpsertParameters casted = JsonConvert.DeserializeObject<ActivityScheduleUpsertParameters> (parameters);
+				    List<ActivityScheduleUpsertResult> result = Calls.spActivityScheduleUpsertCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string ActivityScheduleGet(string parameters)
+			{
+				try
+				{
+				    ActivityScheduleGetParameters casted = JsonConvert.DeserializeObject<ActivityScheduleGetParameters> (parameters);
+				    List<ActivityScheduleGetResult> result = Calls.spActivityScheduleGetCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string StoreUpsert(string parameters)
+			{
+				try
+				{
+				    StoreUpsertParameters casted = JsonConvert.DeserializeObject<StoreUpsertParameters> (parameters);
+				    List<StoreUpsertResult> result = Calls.spStoreUpsertCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string StoreGet(string parameters)
+			{
+				try
+				{
+				    StoreGetParameters casted = JsonConvert.DeserializeObject<StoreGetParameters> (parameters);
+				    List<StoreGetResult> result = Calls.spStoreGetCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string PermissionUpsert(string parameters)
+			{
+				try
+				{
+				    PermissionUpsertParameters casted = JsonConvert.DeserializeObject<PermissionUpsertParameters> (parameters);
+				    List<PermissionUpsertResult> result = Calls.spPermissionUpsertCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string PermissionGet(string parameters)
+			{
+				try
+				{
+				    PermissionGetParameters casted = JsonConvert.DeserializeObject<PermissionGetParameters> (parameters);
+				    List<PermissionGetResult> result = Calls.spPermissionGetCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string SystemUserPermissionUpsert(string parameters)
+			{
+				try
+				{
+				    SystemUserPermissionUpsertParameters casted = JsonConvert.DeserializeObject<SystemUserPermissionUpsertParameters> (parameters);
+				    List<SystemUserPermissionUpsertResult> result = Calls.spSystemUserPermissionUpsertCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string SystemUserPermissionGet(string parameters)
+			{
+				try
+				{
+				    SystemUserPermissionGetParameters casted = JsonConvert.DeserializeObject<SystemUserPermissionGetParameters> (parameters);
+				    List<SystemUserPermissionGetResult> result = Calls.spSystemUserPermissionGetCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string SystemUserGroupUpsert(string parameters)
+			{
+				try
+				{
+				    SystemUserGroupUpsertParameters casted = JsonConvert.DeserializeObject<SystemUserGroupUpsertParameters> (parameters);
+				    List<SystemUserGroupUpsertResult> result = Calls.spSystemUserGroupUpsertCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string SystemUserGroupGet(string parameters)
+			{
+				try
+				{
+				    SystemUserGroupGetParameters casted = JsonConvert.DeserializeObject<SystemUserGroupGetParameters> (parameters);
+				    List<SystemUserGroupGetResult> result = Calls.spSystemUserGroupGetCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string SystemUserGroupPermissionUpsert(string parameters)
+			{
+				try
+				{
+				    SystemUserGroupPermissionUpsertParameters casted = JsonConvert.DeserializeObject<SystemUserGroupPermissionUpsertParameters> (parameters);
+				    List<SystemUserGroupPermissionUpsertResult> result = Calls.spSystemUserGroupPermissionUpsertCall(casted, ConnectionString);
 				
 				    string json = JsonConvert.SerializeObject(result);
 				    return json;
@@ -967,8 +1399,89 @@ namespace HostedService
 			{
 				try
 				{
-				    spAuditLogUpsertParameters casted = JsonConvert.DeserializeObject<spAuditLogUpsertParameters> (parameters);
+				    AuditLogUpsertParameters casted = JsonConvert.DeserializeObject<AuditLogUpsertParameters> (parameters);
 				    List<AuditLogUpsertResult> result = Calls.spAuditLogUpsertCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string SystemUserGroupPermissionGet(string parameters)
+			{
+				try
+				{
+				    SystemUserGroupPermissionGetParameters casted = JsonConvert.DeserializeObject<SystemUserGroupPermissionGetParameters> (parameters);
+				    List<SystemUserGroupPermissionGetResult> result = Calls.spSystemUserGroupPermissionGetCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string Tester(string parameters)
+			{
+				try
+				{
+				    TesterParameters casted = JsonConvert.DeserializeObject<TesterParameters> (parameters);
+				    List<TesterResult> result = Calls.spTesterCall(casted, ConnectionString);
+				
+				    string json = JsonConvert.SerializeObject(result);
+				    return json;
+				}
+				catch (Exception ex)
+				{
+				    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+				    response.StatusCode = HttpStatusCode.BadRequest;
+				    if (ReturnExceptionMessage)
+				    {
+				        response.StatusDescription = ex.Message;
+				        HttpContext.Current.Response.Write(ex.Message);
+				    }
+				    else
+				    {
+				        response.StatusDescription = "Failed with transaction";
+				        HttpContext.Current.Response.Write("Failed with transaction");
+				    }
+				    return null;
+				}
+			}
+			public string AccountToXML(string parameters)
+			{
+				try
+				{
+				    AccountToXMLParameters casted = JsonConvert.DeserializeObject<AccountToXMLParameters> (parameters);
+				    List<AccountToXMLResult> result = Calls.spAccountToXMLCall(casted, ConnectionString);
 				
 				    string json = JsonConvert.SerializeObject(result);
 				    return json;

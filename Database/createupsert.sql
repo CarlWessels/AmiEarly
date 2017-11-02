@@ -75,24 +75,38 @@ BEGIN
 		UPDATE @Fields SET Done = 1 WHERE ID = @I
 		SELECT @I = (SELECT MIN(ID) FROM @Fields WHERE Done = 0)
 	END
-	SET @Result = @Result + '	@SystemUserGUID UNIQUEIDENTIFIER,' + @EOL
+	SET @Result = @Result + '	@Token VARBINARY(MAX),' + @EOL
 	SET @Result = @Result + '	@ReturnResults BIT = 0' + @EOL
 	SET @Result = @Result + ')' + @EOL
 	SET @Result = @Result + 'AS' + @EOL
 	SET @Result = @Result + 'BEGIN' + @EOL
+	SET @Result = @Result + '	IF (SELECT COUNT(*) FROM SystemUser WHERE GUID = @SystemUserGUID AND Token = @Token) = 0' + @EOL
+	SET @Result = @Result + '	BEGIN' + @EOL
+	SET @Result = @Result + '		UPDATE SystemUser SET Token = NULL, TokenExpires = NULL WHERE GUID = @SystemUserGUID;' + @EOL
+	SET @Result = @Result + '		THROW 51000, ''Invalid token'', 1;  '+ @EOL
+	SET @Result = @Result + '	END' + @EOL
+	SET @Result = @Result + '	EXEC spRefreshToken @SystemUserGUID, 0' + @EOL
+	SET @Result = @Result + '	DECLARE @UpdatePermissionGUID UNIQUEIDENTIFIER = (SELECT GUID FROM Permission WHERE Permission = ''' + @TableName + 'Update'')' + @EOL
+	SET @Result = @Result + '	DECLARE @InsertPermissionGUID UNIQUEIDENTIFIER = (SELECT GUID FROM Permission WHERE Permission = ''' + @TableName + 'Insert'')' + @EOL
 	SET @Result = @Result + '	DECLARE @BeforeXML NVARCHAR(MAX)' + @EOL
 	SET @Result = @Result + '	DECLARE @AfterXML NVARCHAR(MAX)' + @EOL
 
 	SET @Result = @Result + '	IF (@GUID IS NULL)' + @EOL
 	SET @Result = @Result + '	BEGIN' + @EOL
-	SET @Result = @Result + '		DECLARE @GUIDS TABLE (GUID UNIQUEIDENTIFIER)' + @EOL
-	SET @Result = @Result + '		INSERT INTO ' + @TableName
+	SET @Result = @Result + '		IF (SELECT dbo.fnHasPermission(@SystemUserGUID, @InsertPermissionGUID)) = 0' + @EOL
+	SET @Result = @Result + '		BEGIN' + @EOL
+    SET @Result = @Result + '			THROW 51000, ''The user does not haver permission to INSERT into ' + @TableName + ''', 1;  '+ @EOL
+	SET @Result = @Result + '		END' + @EOL
+	SET @Result = @Result + '		ELSE' + @EOL
+	SET @Result = @Result + '		BEGIN' + @EOL
+	SET @Result = @Result + '			DECLARE @GUIDS TABLE (GUID UNIQUEIDENTIFIER)' + @EOL
+	SET @Result = @Result + '			INSERT INTO ' + @TableName
 
 	UPDATE @Fields SET Done = 0
 	SELECT @I = (SELECT MIN(ID) FROM @Fields WHERE Done = 0)
 
 	DECLARE @FieldNames VARCHAR(MAX) = '('
-	DECLARE @Values VARCHAR(MAX) = '		SELECT ' + @EOL
+	DECLARE @Values VARCHAR(MAX) = '			SELECT ' + @EOL
 
 	WHILE (@I IS NOT NULL)
 	BEGIN
@@ -113,7 +127,7 @@ BEGIN
 		IF (@Computed = 0 AND @Name != 'GUID' AND @Name != 'ID' AND @Name != 'DateTimeCreated')
 		BEGIN
 			SET @FieldNames = @FieldNames + @Name
-			SET @Values = @Values + '			' + @Name + ' = @' + @Name
+			SET @Values = @Values + '				' + @Name + ' = @' + @Name
 
 			IF (@I IS NOT NULL)
 			BEGIN
@@ -125,19 +139,23 @@ BEGIN
 		END
 	END
 	SET @Result = @Result + @FieldNames + ')' + @EOL
-	SET @Result = @Result + '		OUTPUT inserted.GUID INTO @GUIDS (GUID)' + @EOL
+	SET @Result = @Result + '			OUTPUT inserted.GUID INTO @GUIDS (GUID)' + @EOL
 	SET @Result = @Result + @Values + @EOL
-	SET @Result = @Result + '		SELECT @GUID = GUID FROM @GUIDS' + @EOL
+	SET @Result = @Result + '			SELECT @GUID = GUID FROM @GUIDS' + @EOL
 
 	IF (@TableName != 'AuditLog')
 	BEGIN
-		SET @Result = @Result + '		SET @AfterXML = (SELECT * from ' + @TableName + ' WHERE GUID = @GUID FOR XML AUTO)' + @EOL
-		SET @Result = @Result + '		EXEC spAuditLogUpsert NULL, ''sp' + @TableName + 'Upsert'', ''' + @TableName + ''',@BeforeXML, @AfterXML, @GUID,  @SystemUserGUID,0' +  + @EOL
+		SET @Result = @Result + '			SET @AfterXML = (SELECT * from ' + @TableName + ' WHERE GUID = @GUID FOR XML AUTO)' + @EOL
+		SET @Result = @Result + '			EXEC spAuditLogUpsert NULL, ''sp' + @TableName + 'Upsert'', ''' + @TableName + ''',@BeforeXML, @AfterXML, @GUID,  @SystemUserGUID,0' +  + @EOL
 	END
-
+	SET @Result = @Result + '		END' + @EOL
 	SET @Result = @Result + '	END' + @EOL
 	SET @Result = @Result + '	ELSE' + @EOL
 	SET @Result = @Result + '	BEGIN' + @EOL
+	SET @Result = @Result + '		IF (SELECT dbo.fnHasPermission(@SystemUserGUID, @UpdatePermissionGUID)) = 0' + @EOL
+	SET @Result = @Result + '		BEGIN' + @EOL
+    SET @Result = @Result + '			THROW 51000, ''The user does not haver permission to UPDATE ' + @TableName + ''', 1;  '+ @EOL
+	SET @Result = @Result + '		END' + @EOL
 	SET @Result = @Result + '		SET @BeforeXML = (SELECT * from ' + @TableName + ' WHERE GUID = @GUID FOR XML AUTO)' + @EOL
 	--SET @Result = @Result + '		SELECT @BeforeXML' + @EOL
 	SET @Result = @Result + '		UPDATE ' + @TableName + @EOL
@@ -206,20 +224,44 @@ BEGIN
 	SET @Result = @Result + 'GO' + @EOL
 	SET @Result = @Result + 'CREATE PROCEDURE ' + @GETProcName + @EOL
 	SET @Result = @Result + '(' + @EOL
-	SET @Result = @Result + '	' + @GUIDParameter + ' UNIQUEIDENTIFIER' + @EOL
+	SET @Result = @Result + '	' + @GUIDParameter + ' UNIQUEIDENTIFIER,' + @EOL
+	SET @Result = @Result + '	@Token VARBINARY(MAX),' + @EOL
+	SET @Result = @Result + '	@SystemUserGUID UNIQUEIDENTIFIER' + @EOL
 	SET @Result = @Result + ')' + @EOL
 	SET @Result = @Result + 'AS' + @EOL
 	SET @Result = @Result + 'BEGIN' + @EOL
+	SET @Result = @Result + '	IF (SELECT COUNT(*) FROM SystemUser WHERE GUID = @SystemUserGUID AND Token = @Token) = 0' + @EOL
+	SET @Result = @Result + '	BEGIN' + @EOL
+	SET @Result = @Result + '		UPDATE SystemUser SET Token = NULL, TokenExpires = NULL WHERE GUID = @SystemUserGUID;' + @EOL
+	SET @Result = @Result + '		THROW 51000, ''Invalid token'', 1;  '+ @EOL
+	SET @Result = @Result + '	END' + @EOL
+	SET @Result = @Result + '	EXEC spRefreshToken @SystemUserGUID, 0' + @EOL
+	SET @Result = @Result + '	DECLARE @GetPermissionGUID UNIQUEIDENTIFIER = (SELECT GUID FROM Permission WHERE Permission = ''' + @TableName + 'Get'')' + @EOL
+	SET @Result = @Result + '	DECLARE @GetAllPermissionGUID UNIQUEIDENTIFIER = (SELECT GUID FROM Permission WHERE Permission = ''' + @TableName + 'GetAll'')' + @EOL
 	SET @Result = @Result + '	IF (' + @GUIDParameter + ' IS NULL)' + @EOL
 	SET @Result = @Result + '	BEGIN' + @EOL
-	SET @Result = @Result + '		SELECT *' + @EOL
-	SET @Result = @Result + '		FROM dbo.vw' + @TableName + @EOL
+	SET @Result = @Result + '		IF (SELECT dbo.fnHasPermission(@SystemUserGUID, @GetAllPermissionGUID)) = 0' + @EOL
+	SET @Result = @Result + '		BEGIN' + @EOL
+    SET @Result = @Result + '			THROW 51000, ''The user does not haver permission to GETALL from ' + @TableName + ''', 1;  '+ @EOL
+	SET @Result = @Result + '		END' + @EOL
+	SET @Result = @Result + '		ELSE' + @EOL
+	SET @Result = @Result + '		BEGIN' + @EOL
+	SET @Result = @Result + '			SELECT *' + @EOL
+	SET @Result = @Result + '			FROM dbo.vw' + @TableName + @EOL
+	SET @Result = @Result + '		END' + @EOL
 	SET @Result = @Result + '	END ' + @EOL
 	SET @Result = @Result + '	ELSE' + @EOL
 	SET @Result = @Result + '	BEGIN' + @EOL
-	SET @Result = @Result + '		SELECT *' + @EOL
-	SET @Result = @Result + '		FROM vw' + @TableName + @EOL
-	SET @Result = @Result + '		WHERE GUID = ' + @GUIDParameter + @EOL
+	SET @Result = @Result + '		IF (SELECT dbo.fnHasPermission(@SystemUserGUID, @GetPermissionGUID)) = 0' + @EOL
+	SET @Result = @Result + '		BEGIN' + @EOL
+    SET @Result = @Result + '			THROW 51000, ''The user does not haver permission to GET from ' + @TableName + ''', 1;  '+ @EOL
+	SET @Result = @Result + '		END' + @EOL
+	SET @Result = @Result + '		ELSE' + @EOL
+	SET @Result = @Result + '		BEGIN' + @EOL
+	SET @Result = @Result + '			SELECT *' + @EOL
+	SET @Result = @Result + '			FROM vw' + @TableName + @EOL
+	SET @Result = @Result + '			WHERE GUID = ' + @GUIDParameter + @EOL
+	SET @Result = @Result + '		END' + @EOL
 	SET @Result = @Result + '	END' + @EOL
 	SET @Result = @Result + 'END' + @EOL
 	SET @Result = @Result + 'GO ' + @EOL

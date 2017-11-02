@@ -50,10 +50,10 @@ namespace Console
                 callName = procName.Replace("sp", "");
             }
 
-            sb.Append(indentTwo + $"public static List<{procName}Result> {callName} (");
+            sb.Append(indentTwo + $"public static List<{resultName}> {callName} (");
 
             StringBuilder parameterList = new StringBuilder();
-
+            string procNameCleaned = procName.Substring(2, procName.Length - 2);
             bool first = true;
             foreach(SqlParameter param in parameters)
             {
@@ -74,14 +74,17 @@ namespace Console
                     parameterType += "?";
                 }
 
-
+                if (param.Direction == System.Data.ParameterDirection.InputOutput)
+                {
+                    sb.Append(" ref ");
+                }
                 sb.Append($"{parameterType} {parameterNameLowered}");
                 
                 parameterList.AppendLine($"{paramNameClean} = {parameterNameLowered}");
 
                 first = false;
             }
-            string parametersName = $"{procName}Parameters";
+            string parametersName = $"{procNameCleaned}Parameters";
             sb.AppendLine(")");
             sb.AppendLine(indentTwo + @"{");
             sb.AppendLine(indentThree + $"{parametersName} p = new {parametersName}()");
@@ -149,7 +152,7 @@ namespace Console
             sb.AppendLine("namespace HostedService");
             sb.AppendLine("{");
             sb.AppendLine("    [ServiceContract]");
-            sb.AppendLine("    public interface IAppointmentService");
+            sb.AppendLine("    public partial interface IAppointmentService");
             sb.AppendLine("    {");
         }
 
@@ -177,7 +180,7 @@ namespace Console
             sb.AppendLine("");
             sb.AppendLine("namespace HostedService");
             sb.AppendLine("    {");
-            sb.AppendLine("        public class AppointmentService : IAppointmentService");
+            sb.AppendLine("        public partial class AppointmentService : IAppointmentService");
             sb.AppendLine("        {");
             sb.AppendLine("            public string ConnectionString { get; set; }");
             sb.AppendLine("");
@@ -217,8 +220,8 @@ namespace Console
             string indentFive = GeneratorHelper.Indent(baseIndent + 5);
             string indentSix = GeneratorHelper.Indent(baseIndent + 6);
             string indentSeven = GeneratorHelper.Indent(baseIndent + 7);
-
-            string paramName = $"{procName}Parameters";
+            string procNameCleaned = procName.Substring(2, procName.Length - 2);
+            string paramName = $"{procNameCleaned}Parameters";
             string resultName = $"{procName.Substring(2, procName.Length-2)}Result";
             string callName = "";
             string tableName = procName.Substring(2, procName.Length - 2);

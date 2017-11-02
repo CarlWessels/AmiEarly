@@ -30,8 +30,28 @@
 	IF OBJECT_ID('dbo.AuditLog', 'U') IS NOT NULL 
 		DROP TABLE dbo.AuditLog; 
 	
+	IF OBJECT_ID('dbo.SystemUserPermission', 'U') IS NOT NULL 
+		DROP TABLE dbo.SystemUserPermission; 
+
+	IF OBJECT_ID('dbo.SystemUserGroupPermission', 'U') IS NOT NULL 
+		DROP TABLE dbo.SystemUserGroupPermission; 
+
+	IF OBJECT_ID('dbo.Permission', 'U') IS NOT NULL 
+		DROP TABLE dbo.Permission; 
+
+	IF OBJECT_ID('dbo.SystemUserGroupLine', 'U') IS NOT NULL 
+		DROP TABLE dbo.SystemUserGroupLine; 
+
+	IF OBJECT_ID('dbo.SystemUserGroup', 'U') IS NOT NULL 
+		DROP TABLE dbo.SystemUserGroup; 
+
+
 	IF OBJECT_ID('dbo.SystemUser', 'U') IS NOT NULL 
 		DROP TABLE dbo.SystemUser; 
+
+
+		
+
 	CREATE TABLE SystemUser
 	(
 		GUID UNIQUEIDENTIFIER NOT NULL DEFAULT  NEWSEQUENTIALID() PRIMARY KEY,
@@ -48,6 +68,8 @@
 													ELSE CONVERT(BIT,0)
 											END
 								END,
+		Token VARBINARY(MAX) NULL,
+		TokenExpires DATETIME NULL,
 		Username VARCHAR(MAX) NOT NULL,
 		PasswordHash BINARY(64) NOT NULL,
 		PasswordSalt UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID()
@@ -223,25 +245,104 @@
 
 	)
 
-	EXEC spCreateUpsert 'Account'
-	EXEC spCreateUpsert 'ActivitySchedule'
-	EXEC spCreateUpsert 'ActivityType'
-	EXEC spCreateUpsert 'ActivitySchedule'
-	EXEC spCreateUpsert 'Appointment'
-	EXEC spCreateUpsert 'ServiceProvider'
-	EXEC spCreateUpsert 'Customer'
-	EXEC spCreateUpsert 'ActivitySchedule'
-	EXEC spCreateUpsert 'Store'
-	
-	EXEC spCreateToXml 'Account'
-	EXEC spCreateToXml 'ActivitySchedule'
-	EXEC spCreateToXml 'ActivityType'
-	EXEC spCreateToXml 'ActivitySchedule'
-	EXEC spCreateToXml 'Appointment'
-	EXEC spCreateToXml 'ServiceProvider'
-	EXEC spCreateToXml 'Customer'
-	EXEC spCreateToXml 'ActivitySchedule'
-	EXEC spCreateToXml 'Store'
-	
-	--EXEC spCreateUpsert 'SystemUser'
-	--EXEC spCreateUpsert 'AuditLog'
+	GO
+	CREATE TABLE Permission
+	(
+		GUID UNIQUEIDENTIFIER NOT NULL DEFAULT  NEWSEQUENTIALID() PRIMARY KEY,
+		ID INT IDENTITY(1,1) NOT  NULL,
+		DateTimeCreated DATETIME NOT NULL DEFAULT GETDATE(),
+		IsDeleted BIT NOT NULL DEFAULT 0,
+		Permission VARCHAR(MAX),
+
+		SystemUserGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.SystemUser(GUID)
+
+	)
+
+	GO
+	CREATE TABLE SystemUserPermission
+	(
+		GUID UNIQUEIDENTIFIER NOT NULL DEFAULT  NEWSEQUENTIALID() PRIMARY KEY,
+		ID INT IDENTITY(1,1) NOT  NULL,
+		DateTimeCreated DATETIME NOT NULL DEFAULT GETDATE(),
+		IsDeleted BIT NOT NULL DEFAULT 0,
+		ActiveDateTime DATETIME NOT NULL DEFAULT GETDATE(),
+		TerminationDateTime DATETIME,
+		IsActiveForNow  AS		CASE 
+									WHEN IsDeleted = CONVERT(BIT,0) THEN CONVERT(BIT,1 )
+									ELSE	CASE	
+													WHEN GETDATE() BETWEEN ActiveDateTime AND ISNULL(TerminationDateTime, '2099-01-01') THEN CONVERT(BIT,1)
+													ELSE CONVERT(BIT,0)
+											END
+								END,
+		ForSystemUserGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.SystemUser(GUID),
+		PermissionGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.Permission(GUID),
+		SystemUserGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.SystemUser(GUID)
+
+	)
+
+	GO
+	CREATE TABLE SystemUserGroup
+	(
+		GUID UNIQUEIDENTIFIER NOT NULL DEFAULT  NEWSEQUENTIALID() PRIMARY KEY,
+		ID INT IDENTITY(1,1) NOT  NULL,
+		DateTimeCreated DATETIME NOT NULL DEFAULT GETDATE(),
+		IsDeleted BIT NOT NULL DEFAULT 0,
+		ActiveDateTime DATETIME NOT NULL DEFAULT GETDATE(),
+		TerminationDateTime DATETIME,
+		IsActiveForNow  AS		CASE 
+									WHEN IsDeleted = CONVERT(BIT,0) THEN CONVERT(BIT,1 )
+									ELSE	CASE	
+													WHEN GETDATE() BETWEEN ActiveDateTime AND ISNULL(TerminationDateTime, '2099-01-01') THEN CONVERT(BIT,1)
+													ELSE CONVERT(BIT,0)
+											END
+								END,
+		Description VARCHAR(MAX) NOT NULL,
+		SystemUserGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.SystemUser(GUID)
+
+	)
+
+	GO
+	CREATE TABLE SystemUserGroupPermission
+	(
+		GUID UNIQUEIDENTIFIER NOT NULL DEFAULT  NEWSEQUENTIALID() PRIMARY KEY,
+		ID INT IDENTITY(1,1) NOT  NULL,
+		DateTimeCreated DATETIME NOT NULL DEFAULT GETDATE(),
+		IsDeleted BIT NOT NULL DEFAULT 0,
+		ActiveDateTime DATETIME NOT NULL DEFAULT GETDATE(),
+		TerminationDateTime DATETIME,
+		IsActiveForNow  AS		CASE 
+									WHEN IsDeleted = CONVERT(BIT,0) THEN CONVERT(BIT,1 )
+									ELSE	CASE	
+													WHEN GETDATE() BETWEEN ActiveDateTime AND ISNULL(TerminationDateTime, '2099-01-01') THEN CONVERT(BIT,1)
+													ELSE CONVERT(BIT,0)
+											END
+								END,
+		PermissionGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.Permission(GUID),
+		SystemUserGroupGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.SystemUserGroup(GUID),
+		SystemUserGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.SystemUser(GUID)
+
+	)
+
+
+	GO
+	CREATE TABLE SystemUserGroupLine
+	(
+		GUID UNIQUEIDENTIFIER NOT NULL DEFAULT  NEWSEQUENTIALID() PRIMARY KEY,
+		ID INT IDENTITY(1,1) NOT  NULL,
+		DateTimeCreated DATETIME NOT NULL DEFAULT GETDATE(),
+		IsDeleted BIT NOT NULL DEFAULT 0,
+		ActiveDateTime DATETIME NOT NULL DEFAULT GETDATE(),
+		TerminationDateTime DATETIME,
+		IsActiveForNow  AS		CASE 
+									WHEN IsDeleted = CONVERT(BIT,0) THEN CONVERT(BIT,1 )
+									ELSE	CASE	
+													WHEN GETDATE() BETWEEN ActiveDateTime AND ISNULL(TerminationDateTime, '2099-01-01') THEN CONVERT(BIT,1)
+													ELSE CONVERT(BIT,0)
+											END
+								END,
+		ForSystemUserGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.SystemUser(GUID),
+		SystemUserGroupGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.SystemUserGroup(GUID),
+		SystemUserGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.SystemUser(GUID)
+
+	)
+

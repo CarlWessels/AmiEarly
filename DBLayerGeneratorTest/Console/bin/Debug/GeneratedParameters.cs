@@ -12,11 +12,47 @@ namespace AppointmentLibrary.Parameters
 	public interface IParameter
 	{
 	}
-	public partial class spCreateUpsertParameters : IParameter
+	public partial class AccountToXMLByDateTimeParameters : IParameter
+	{
+		public DateTime? FromDateTime { get; set;}
+		public DateTime? ToDateTime { get; set;}
+	}
+	public partial class ActivityTypeToXMLParameters : IParameter
+	{
+		public string GUIDS { get; set;}
+	}
+	public partial class ActivityTypeToXMLByDateTimeParameters : IParameter
+	{
+		public DateTime? FromDateTime { get; set;}
+		public DateTime? ToDateTime { get; set;}
+	}
+	public partial class AppointmentToXMLParameters : IParameter
+	{
+		public string GUIDS { get; set;}
+	}
+	public partial class AppointmentToXMLByDateTimeParameters : IParameter
+	{
+		public DateTime? FromDateTime { get; set;}
+		public DateTime? ToDateTime { get; set;}
+	}
+	public partial class ServiceProviderToXMLParameters : IParameter
+	{
+		public string GUIDS { get; set;}
+	}
+	public partial class CreateUpsertParameters : IParameter
 	{
 		public string TableName { get; set;}
 	}
-	public partial class spSystemUserUpsertParameters : IParameter
+	public partial class ServiceProviderToXMLByDateTimeParameters : IParameter
+	{
+		public DateTime? FromDateTime { get; set;}
+		public DateTime? ToDateTime { get; set;}
+	}
+	public partial class CustomerToXMLParameters : IParameter
+	{
+		public string GUIDS { get; set;}
+	}
+	public partial class SystemUserUpsertParameters : IParameter
 	{
 		public Guid? GUID { get; set;}
 		public bool? IsDeleted { get; set;}
@@ -27,19 +63,92 @@ namespace AppointmentLibrary.Parameters
 		public Guid? SystemUserGUID { get; set;}
 		public bool? ReturnResults { get; set;}
 	}
-	public partial class spSystemUserGetParameters : IParameter
+	public partial class CustomerToXMLByDateTimeParameters : IParameter
+	{
+		public DateTime? FromDateTime { get; set;}
+		public DateTime? ToDateTime { get; set;}
+	}
+	public partial class SystemUserGetParameters : IParameter
 	{
 		public Guid? SystemUserGUID { get; set;}
 	}
-	public partial class spGetChildrenParameters : IParameter
+	public partial class ActivityScheduleToXMLParameters : IParameter
+	{
+		public string GUIDS { get; set;}
+	}
+	public partial class ActivityScheduleToXMLByDateTimeParameters : IParameter
+	{
+		public DateTime? FromDateTime { get; set;}
+		public DateTime? ToDateTime { get; set;}
+	}
+	public partial class StoreToXMLParameters : IParameter
+	{
+		public string GUIDS { get; set;}
+	}
+	public partial class StoreToXMLByDateTimeParameters : IParameter
+	{
+		public DateTime? FromDateTime { get; set;}
+		public DateTime? ToDateTime { get; set;}
+	}
+	public partial class PermissionToXMLParameters : IParameter
+	{
+		public string GUIDS { get; set;}
+	}
+	public partial class PermissionToXMLByDateTimeParameters : IParameter
+	{
+		public DateTime? FromDateTime { get; set;}
+		public DateTime? ToDateTime { get; set;}
+	}
+	public partial class SystemUserPermissionToXMLParameters : IParameter
+	{
+		public string GUIDS { get; set;}
+	}
+	public partial class SystemUserPermissionToXMLByDateTimeParameters : IParameter
+	{
+		public DateTime? FromDateTime { get; set;}
+		public DateTime? ToDateTime { get; set;}
+	}
+	public partial class SystemUserGroupToXMLParameters : IParameter
+	{
+		public string GUIDS { get; set;}
+	}
+	public partial class SystemUserGroupToXMLByDateTimeParameters : IParameter
+	{
+		public DateTime? FromDateTime { get; set;}
+		public DateTime? ToDateTime { get; set;}
+	}
+	public partial class SystemUserGroupLineToXMLParameters : IParameter
+	{
+		public string GUIDS { get; set;}
+	}
+	public partial class SystemUserGroupLineToXMLByDateTimeParameters : IParameter
+	{
+		public DateTime? FromDateTime { get; set;}
+		public DateTime? ToDateTime { get; set;}
+	}
+	public partial class SystemUserGroupPermissionToXMLParameters : IParameter
+	{
+		public string GUIDS { get; set;}
+	}
+	public partial class SystemUserGroupPermissionToXMLByDateTimeParameters : IParameter
+	{
+		public DateTime? FromDateTime { get; set;}
+		public DateTime? ToDateTime { get; set;}
+	}
+	public partial class GetChildrenParameters : IParameter
 	{
 		public string TableName { get; set;}
 	}
-	public partial class spCreateToXmlParameters : IParameter
+	public partial class CreateToXmlParameters : IParameter
 	{
 		public string TableName { get; set;}
 	}
-	public partial class spAccountUpsertParameters : IParameter
+	public partial class LoginParameters : IParameter
+	{
+		public string UserName { get; set;}
+		public string Password { get; set;}
+	}
+	public partial class AccountUpsertParameters : IParameter
 	{
 		public Guid? GUID { get; set;}
 		public bool? IsDeleted { get; set;}
@@ -49,11 +158,12 @@ namespace AppointmentLibrary.Parameters
 		public Guid? SystemUserGUID { get; set;}
 		public bool? ReturnResults { get; set;}
 	}
-	public partial class spAccountGetParameters : IParameter
+	public partial class AccountGetParameters : IParameter
 	{
 		public Guid? AccountGUID { get; set;}
+		public Guid? SystemUserGUID { get; set;}
 	}
-	public partial class spActivityTypeUpsertParameters : IParameter
+	public partial class ActivityTypeUpsertParameters : IParameter
 	{
 		public Guid? GUID { get; set;}
 		public bool? IsDeleted { get; set;}
@@ -62,11 +172,12 @@ namespace AppointmentLibrary.Parameters
 		public Guid? SystemUserGUID { get; set;}
 		public bool? ReturnResults { get; set;}
 	}
-	public partial class spActivityTypeGetParameters : IParameter
+	public partial class ActivityTypeGetParameters : IParameter
 	{
 		public Guid? ActivityTypeGUID { get; set;}
+		public Guid? SystemUserGUID { get; set;}
 	}
-	public partial class spAppointmentUpsertParameters : IParameter
+	public partial class AppointmentUpsertParameters : IParameter
 	{
 		public Guid? GUID { get; set;}
 		public bool? IsDeleted { get; set;}
@@ -80,16 +191,12 @@ namespace AppointmentLibrary.Parameters
 		public Guid? SystemUserGUID { get; set;}
 		public bool? ReturnResults { get; set;}
 	}
-	public partial class spAppointmentGetParameters : IParameter
+	public partial class AppointmentGetParameters : IParameter
 	{
 		public Guid? AppointmentGUID { get; set;}
+		public Guid? SystemUserGUID { get; set;}
 	}
-	public partial class spLoginParameters : IParameter
-	{
-		public string UserName { get; set;}
-		public string Password { get; set;}
-	}
-	public partial class spServiceProviderUpsertParameters : IParameter
+	public partial class ServiceProviderUpsertParameters : IParameter
 	{
 		public Guid? GUID { get; set;}
 		public bool? IsDeleted { get; set;}
@@ -101,11 +208,12 @@ namespace AppointmentLibrary.Parameters
 		public Guid? SystemUserGUID { get; set;}
 		public bool? ReturnResults { get; set;}
 	}
-	public partial class spServiceProviderGetParameters : IParameter
+	public partial class ServiceProviderGetParameters : IParameter
 	{
 		public Guid? ServiceProviderGUID { get; set;}
+		public Guid? SystemUserGUID { get; set;}
 	}
-	public partial class spCustomerUpsertParameters : IParameter
+	public partial class CustomerUpsertParameters : IParameter
 	{
 		public Guid? GUID { get; set;}
 		public bool? IsDeleted { get; set;}
@@ -117,11 +225,12 @@ namespace AppointmentLibrary.Parameters
 		public Guid? SystemUserGUID { get; set;}
 		public bool? ReturnResults { get; set;}
 	}
-	public partial class spCustomerGetParameters : IParameter
+	public partial class CustomerGetParameters : IParameter
 	{
 		public Guid? CustomerGUID { get; set;}
+		public Guid? SystemUserGUID { get; set;}
 	}
-	public partial class spActivityScheduleUpsertParameters : IParameter
+	public partial class ActivityScheduleUpsertParameters : IParameter
 	{
 		public Guid? GUID { get; set;}
 		public bool? IsDeleted { get; set;}
@@ -133,11 +242,12 @@ namespace AppointmentLibrary.Parameters
 		public Guid? SystemUserGUID { get; set;}
 		public bool? ReturnResults { get; set;}
 	}
-	public partial class spActivityScheduleGetParameters : IParameter
+	public partial class ActivityScheduleGetParameters : IParameter
 	{
 		public Guid? ActivityScheduleGUID { get; set;}
+		public Guid? SystemUserGUID { get; set;}
 	}
-	public partial class spStoreUpsertParameters : IParameter
+	public partial class StoreUpsertParameters : IParameter
 	{
 		public Guid? GUID { get; set;}
 		public bool? IsDeleted { get; set;}
@@ -148,74 +258,67 @@ namespace AppointmentLibrary.Parameters
 		public Guid? SystemUserGUID { get; set;}
 		public bool? ReturnResults { get; set;}
 	}
-	public partial class spStoreGetParameters : IParameter
+	public partial class StoreGetParameters : IParameter
 	{
 		public Guid? StoreGUID { get; set;}
+		public Guid? SystemUserGUID { get; set;}
 	}
-	public partial class spAccountToXMLParameters : IParameter
+	public partial class PermissionUpsertParameters : IParameter
 	{
-		public string GUIDS { get; set;}
+		public Guid? GUID { get; set;}
+		public bool? IsDeleted { get; set;}
+		public string Permission { get; set;}
+		public Guid? SystemUserGUID { get; set;}
+		public bool? ReturnResults { get; set;}
 	}
-	public partial class spAccountToXMLByDateTimeParameters : IParameter
+	public partial class PermissionGetParameters : IParameter
 	{
-		public DateTime? FromDateTime { get; set;}
-		public DateTime? ToDateTime { get; set;}
+		public Guid? PermissionGUID { get; set;}
+		public Guid? SystemUserGUID { get; set;}
 	}
-	public partial class spActivityTypeToXMLParameters : IParameter
+	public partial class SystemUserPermissionUpsertParameters : IParameter
 	{
-		public string GUIDS { get; set;}
+		public Guid? GUID { get; set;}
+		public bool? IsDeleted { get; set;}
+		public DateTime? ActiveDateTime { get; set;}
+		public DateTime? TerminationDateTime { get; set;}
+		public Guid? ForSystemUserGUID { get; set;}
+		public Guid? PermissionGUID { get; set;}
+		public Guid? SystemUserGUID { get; set;}
+		public bool? ReturnResults { get; set;}
 	}
-	public partial class spActivityTypeToXMLByDateTimeParameters : IParameter
+	public partial class SystemUserPermissionGetParameters : IParameter
 	{
-		public DateTime? FromDateTime { get; set;}
-		public DateTime? ToDateTime { get; set;}
+		public Guid? SystemUserPermissionGUID { get; set;}
+		public Guid? SystemUserGUID { get; set;}
 	}
-	public partial class spAppointmentToXMLParameters : IParameter
+	public partial class SystemUserGroupUpsertParameters : IParameter
 	{
-		public string GUIDS { get; set;}
+		public Guid? GUID { get; set;}
+		public bool? IsDeleted { get; set;}
+		public DateTime? ActiveDateTime { get; set;}
+		public DateTime? TerminationDateTime { get; set;}
+		public string Description { get; set;}
+		public Guid? SystemUserGUID { get; set;}
+		public bool? ReturnResults { get; set;}
 	}
-	public partial class spAppointmentToXMLByDateTimeParameters : IParameter
+	public partial class SystemUserGroupGetParameters : IParameter
 	{
-		public DateTime? FromDateTime { get; set;}
-		public DateTime? ToDateTime { get; set;}
+		public Guid? SystemUserGroupGUID { get; set;}
+		public Guid? SystemUserGUID { get; set;}
 	}
-	public partial class spServiceProviderToXMLParameters : IParameter
+	public partial class SystemUserGroupPermissionUpsertParameters : IParameter
 	{
-		public string GUIDS { get; set;}
+		public Guid? GUID { get; set;}
+		public bool? IsDeleted { get; set;}
+		public DateTime? ActiveDateTime { get; set;}
+		public DateTime? TerminationDateTime { get; set;}
+		public Guid? PermissionGUID { get; set;}
+		public Guid? SystemUserGroupGUID { get; set;}
+		public Guid? SystemUserGUID { get; set;}
+		public bool? ReturnResults { get; set;}
 	}
-	public partial class spServiceProviderToXMLByDateTimeParameters : IParameter
-	{
-		public DateTime? FromDateTime { get; set;}
-		public DateTime? ToDateTime { get; set;}
-	}
-	public partial class spCustomerToXMLParameters : IParameter
-	{
-		public string GUIDS { get; set;}
-	}
-	public partial class spCustomerToXMLByDateTimeParameters : IParameter
-	{
-		public DateTime? FromDateTime { get; set;}
-		public DateTime? ToDateTime { get; set;}
-	}
-	public partial class spActivityScheduleToXMLParameters : IParameter
-	{
-		public string GUIDS { get; set;}
-	}
-	public partial class spActivityScheduleToXMLByDateTimeParameters : IParameter
-	{
-		public DateTime? FromDateTime { get; set;}
-		public DateTime? ToDateTime { get; set;}
-	}
-	public partial class spStoreToXMLParameters : IParameter
-	{
-		public string GUIDS { get; set;}
-	}
-	public partial class spStoreToXMLByDateTimeParameters : IParameter
-	{
-		public DateTime? FromDateTime { get; set;}
-		public DateTime? ToDateTime { get; set;}
-	}
-	public partial class spAuditLogUpsertParameters : IParameter
+	public partial class AuditLogUpsertParameters : IParameter
 	{
 		public Guid? GUID { get; set;}
 		public string Source { get; set;}
@@ -225,5 +328,19 @@ namespace AppointmentLibrary.Parameters
 		public Guid? TableGUID { get; set;}
 		public Guid? SystemUserGUID { get; set;}
 		public bool? ReturnResults { get; set;}
+	}
+	public partial class SystemUserGroupPermissionGetParameters : IParameter
+	{
+		public Guid? SystemUserGroupPermissionGUID { get; set;}
+		public Guid? SystemUserGUID { get; set;}
+	}
+	public partial class TesterParameters : IParameter
+	{
+		public string First { get; set;}
+		public string Second { get; set;}
+	}
+	public partial class AccountToXMLParameters : IParameter
+	{
+		public string GUIDS { get; set;}
 	}
 }

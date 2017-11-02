@@ -9,8 +9,40 @@
 namespace AppointmentLibrary.ProcResults
 {
 	using System;
+	public class AccountToXMLByDateTimeResult
+	{
+		public string XML {get;set;}
+	}
+	public class ActivityTypeToXMLResult
+	{
+		public string XML {get;set;}
+	}
+	public class ActivityTypeToXMLByDateTimeResult
+	{
+		public string XML {get;set;}
+	}
+	public class AppointmentToXMLResult
+	{
+		public string XML {get;set;}
+	}
+	public class AppointmentToXMLByDateTimeResult
+	{
+		public string XML {get;set;}
+	}
+	public class ServiceProviderToXMLResult
+	{
+		public string XML {get;set;}
+	}
 	public class CreateUpsertResult
 	{
+	}
+	public class ServiceProviderToXMLByDateTimeResult
+	{
+		public string XML {get;set;}
+	}
+	public class CustomerToXMLResult
+	{
+		public string XML {get;set;}
 	}
 	public class SystemUserUpsertResult
 	{
@@ -25,6 +57,10 @@ namespace AppointmentLibrary.ProcResults
 		public Byte[] PasswordHash {get;set;}
 		public Guid PasswordSalt {get;set;}
 	}
+	public class CustomerToXMLByDateTimeResult
+	{
+		public string XML {get;set;}
+	}
 	public class SystemUserGetResult
 	{
 		public Guid GUID {get;set;}
@@ -35,6 +71,62 @@ namespace AppointmentLibrary.ProcResults
 		public DateTime TerminationDateTime {get;set;}
 		public bool IsActiveForNow {get;set;}
 		public string Username {get;set;}
+	}
+	public class ActivityScheduleToXMLResult
+	{
+		public string XML {get;set;}
+	}
+	public class ActivityScheduleToXMLByDateTimeResult
+	{
+		public string XML {get;set;}
+	}
+	public class StoreToXMLResult
+	{
+		public string XML {get;set;}
+	}
+	public class StoreToXMLByDateTimeResult
+	{
+		public string XML {get;set;}
+	}
+	public class PermissionToXMLResult
+	{
+		public string XML {get;set;}
+	}
+	public class PermissionToXMLByDateTimeResult
+	{
+		public string XML {get;set;}
+	}
+	public class SystemUserPermissionToXMLResult
+	{
+		public string XML {get;set;}
+	}
+	public class SystemUserPermissionToXMLByDateTimeResult
+	{
+		public string XML {get;set;}
+	}
+	public class SystemUserGroupToXMLResult
+	{
+		public string XML {get;set;}
+	}
+	public class SystemUserGroupToXMLByDateTimeResult
+	{
+		public string XML {get;set;}
+	}
+	public class SystemUserGroupLineToXMLResult
+	{
+		public string XML {get;set;}
+	}
+	public class SystemUserGroupLineToXMLByDateTimeResult
+	{
+		public string XML {get;set;}
+	}
+	public class SystemUserGroupPermissionToXMLResult
+	{
+		public string XML {get;set;}
+	}
+	public class SystemUserGroupPermissionToXMLByDateTimeResult
+	{
+		public string XML {get;set;}
 	}
 	public class GetChildrenResult
 	{
@@ -48,6 +140,19 @@ namespace AppointmentLibrary.ProcResults
 	}
 	public class CreateToXmlResult
 	{
+	}
+	public class LoginResult
+	{
+		public Guid GUID {get;set;}
+		public int ID {get;set;}
+		public DateTime DateTimeCreated {get;set;}
+		public bool IsDeleted {get;set;}
+		public DateTime ActiveDateTime {get;set;}
+		public DateTime TerminationDateTime {get;set;}
+		public bool IsActiveForNow {get;set;}
+		public string Username {get;set;}
+		public Byte[] PasswordHash {get;set;}
+		public Guid PasswordSalt {get;set;}
 	}
 	public class AccountUpsertResult
 	{
@@ -124,19 +229,6 @@ namespace AppointmentLibrary.ProcResults
 		public int ExpectedDelay {get;set;}
 		public DateTime ExpectedStartDateTime {get;set;}
 		public string Colour {get;set;}
-	}
-	public class LoginResult
-	{
-		public Guid GUID {get;set;}
-		public int ID {get;set;}
-		public DateTime DateTimeCreated {get;set;}
-		public bool IsDeleted {get;set;}
-		public DateTime ActiveDateTime {get;set;}
-		public DateTime TerminationDateTime {get;set;}
-		public bool IsActiveForNow {get;set;}
-		public string Username {get;set;}
-		public Byte[] PasswordHash {get;set;}
-		public Guid PasswordSalt {get;set;}
 	}
 	public class ServiceProviderUpsertResult
 	{
@@ -242,61 +334,88 @@ namespace AppointmentLibrary.ProcResults
 		public string StoreName {get;set;}
 		public Guid AccountGUID {get;set;}
 	}
-	public class AccountToXMLResult
+	public class PermissionUpsertResult
 	{
-		public string XML {get;set;}
+		public Guid GUID {get;set;}
+		public int ID {get;set;}
+		public DateTime DateTimeCreated {get;set;}
+		public bool IsDeleted {get;set;}
+		public string Permission {get;set;}
+		public Guid SystemUserGUID {get;set;}
 	}
-	public class AccountToXMLByDateTimeResult
+	public class PermissionGetResult
 	{
-		public string XML {get;set;}
+		public Guid GUID {get;set;}
+		public int ID {get;set;}
+		public DateTime DateTimeCreated {get;set;}
+		public bool IsDeleted {get;set;}
+		public string Permission {get;set;}
+		public Guid SystemUserGUID {get;set;}
 	}
-	public class ActivityTypeToXMLResult
+	public class SystemUserPermissionUpsertResult
 	{
-		public string XML {get;set;}
+		public Guid GUID {get;set;}
+		public int ID {get;set;}
+		public DateTime DateTimeCreated {get;set;}
+		public bool IsDeleted {get;set;}
+		public DateTime ActiveDateTime {get;set;}
+		public DateTime TerminationDateTime {get;set;}
+		public bool IsActiveForNow {get;set;}
+		public Guid ForSystemUserGUID {get;set;}
+		public Guid PermissionGUID {get;set;}
+		public Guid SystemUserGUID {get;set;}
 	}
-	public class ActivityTypeToXMLByDateTimeResult
+	public class SystemUserPermissionGetResult
 	{
-		public string XML {get;set;}
+		public Guid GUID {get;set;}
+		public int ID {get;set;}
+		public DateTime DateTimeCreated {get;set;}
+		public bool IsDeleted {get;set;}
+		public DateTime ActiveDateTime {get;set;}
+		public DateTime TerminationDateTime {get;set;}
+		public bool IsActiveForNow {get;set;}
+		public Guid ForSystemUserGUID {get;set;}
+		public Guid PermissionGUID {get;set;}
+		public Guid SystemUserGUID {get;set;}
+		public string Username {get;set;}
+		public string Permission {get;set;}
 	}
-	public class AppointmentToXMLResult
+	public class SystemUserGroupUpsertResult
 	{
-		public string XML {get;set;}
+		public Guid GUID {get;set;}
+		public int ID {get;set;}
+		public DateTime DateTimeCreated {get;set;}
+		public bool IsDeleted {get;set;}
+		public DateTime ActiveDateTime {get;set;}
+		public DateTime TerminationDateTime {get;set;}
+		public bool IsActiveForNow {get;set;}
+		public string Description {get;set;}
+		public Guid SystemUserGUID {get;set;}
 	}
-	public class AppointmentToXMLByDateTimeResult
+	public class SystemUserGroupGetResult
 	{
-		public string XML {get;set;}
+		public Guid GUID {get;set;}
+		public int ID {get;set;}
+		public DateTime DateTimeCreated {get;set;}
+		public bool IsDeleted {get;set;}
+		public DateTime ActiveDateTime {get;set;}
+		public DateTime TerminationDateTime {get;set;}
+		public bool IsActiveForNow {get;set;}
+		public string Description {get;set;}
+		public Guid SystemUserGUID {get;set;}
 	}
-	public class ServiceProviderToXMLResult
+	public class SystemUserGroupPermissionUpsertResult
 	{
-		public string XML {get;set;}
-	}
-	public class ServiceProviderToXMLByDateTimeResult
-	{
-		public string XML {get;set;}
-	}
-	public class CustomerToXMLResult
-	{
-		public string XML {get;set;}
-	}
-	public class CustomerToXMLByDateTimeResult
-	{
-		public string XML {get;set;}
-	}
-	public class ActivityScheduleToXMLResult
-	{
-		public string XML {get;set;}
-	}
-	public class ActivityScheduleToXMLByDateTimeResult
-	{
-		public string XML {get;set;}
-	}
-	public class StoreToXMLResult
-	{
-		public string XML {get;set;}
-	}
-	public class StoreToXMLByDateTimeResult
-	{
-		public string XML {get;set;}
+		public Guid GUID {get;set;}
+		public int ID {get;set;}
+		public DateTime DateTimeCreated {get;set;}
+		public bool IsDeleted {get;set;}
+		public DateTime ActiveDateTime {get;set;}
+		public DateTime TerminationDateTime {get;set;}
+		public bool IsActiveForNow {get;set;}
+		public Guid PermissionGUID {get;set;}
+		public Guid SystemUserGroupGUID {get;set;}
+		public Guid SystemUserGUID {get;set;}
 	}
 	public class AuditLogUpsertResult
 	{
@@ -309,5 +428,26 @@ namespace AppointmentLibrary.ProcResults
 		public string BeforeSnapshot {get;set;}
 		public string AfterSnapshot {get;set;}
 		public Guid SystemUserGUID {get;set;}
+	}
+	public class SystemUserGroupPermissionGetResult
+	{
+		public Guid GUID {get;set;}
+		public int ID {get;set;}
+		public DateTime DateTimeCreated {get;set;}
+		public bool IsDeleted {get;set;}
+		public DateTime ActiveDateTime {get;set;}
+		public DateTime TerminationDateTime {get;set;}
+		public bool IsActiveForNow {get;set;}
+		public Guid PermissionGUID {get;set;}
+		public Guid SystemUserGroupGUID {get;set;}
+		public Guid SystemUserGUID {get;set;}
+	}
+	public class TesterResult
+	{
+		public string First {get;set;}
+	}
+	public class AccountToXMLResult
+	{
+		public string XML {get;set;}
 	}
 }

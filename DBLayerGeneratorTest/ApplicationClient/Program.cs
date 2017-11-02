@@ -16,28 +16,42 @@ namespace ApplicationClient
             try
             {
                 AppointmentServiceClient appointmentService = new AppointmentServiceClient("SYSTEM", "PASSWORD");
-                List<spSystemUserGetResult> users = AppointmentServiceClient.SystemUserGet(null);
 
-                spSystemUserGetResult systemUser = users.Where(u => u.Username == "SYSTEM").FirstOrDefault();
+                
+
+                List<SystemUserGetResult> users = AppointmentServiceClient.SystemUserGet(null);
+
+                SystemUserGetResult systemUser = users.Where(u => u.Username == "SYSTEM").FirstOrDefault();
                 Guid systemGUID = users.Where(u => u.Username == "SYSTEM").FirstOrDefault().GUID;
 
 
                 Guid? testerGUID = null;
-                spSystemUserGetResult tester = users.Where(u => u.Username == "TESTER").FirstOrDefault();
+                SystemUserGetResult tester = users.Where(u => u.Username == "TESTER").FirstOrDefault();
                 if (tester == null)
                 {
-                    List<spSystemUserUpsertResult> user = AppointmentServiceClient.SystemUserUpsert(null, false, DateTime.Now,null,"TESTER", "PASSWORD", systemGUID, true);
+                    List<SystemUserUpsertResult> user = AppointmentServiceClient.SystemUserUpsert(null, false, DateTime.Now,null,"TESTER", "PASSWORD", systemGUID, true);
                     testerGUID = user.FirstOrDefault().GUID;
                 }
+                else
+                {
+                    testerGUID = tester.GUID;
+                }
 
-                List<spAccountUpsertResult>  results = AppointmentServiceClient.AccountUpsert(null, true, DateTime.Now, null, "The test account", testerGUID, true);
-                spAccountUpsertResult result = results.FirstOrDefault();
+                List<PermissionGetResult> permissions = AppointmentServiceClient.PermissionGet(null, systemGUID);
+                Guid accountInsertPermissionGUID = permissions.Where(p => p.Permission == "AccountInsert").FirstOrDefault().GUID;
+                Guid accountUpdatePermissionGUID = permissions.Where(p => p.Permission == "AccountUpdate").FirstOrDefault().GUID;
+
+                AppointmentServiceClient.SystemUserPermissionUpsert(null, false, DateTime.Now, null, testerGUID, accountInsertPermissionGUID, systemGUID, true);
+                AppointmentServiceClient.SystemUserPermissionUpsert(null, false, DateTime.Now, null, testerGUID, accountUpdatePermissionGUID, systemGUID, true);
+
+                List<AccountUpsertResult>  results = AppointmentServiceClient.AccountUpsert(null, true, DateTime.Now, null, "The test account", testerGUID, true);
+                AccountUpsertResult result = results.FirstOrDefault();
                 Console.WriteLine($"{result.AccountName} = {result.GUID.ToString()} - Deleted = {result.IsDeleted.ToString()}");
 
                 results = AppointmentServiceClient.AccountUpsert(result.GUID, false, DateTime.Now, null, "The test account", testerGUID, true);
 
-                List<spAccountGetResult> accountGets = AppointmentServiceClient.AccountGet(result.GUID);
-                foreach (spAccountGetResult ag in accountGets)
+                List<AccountGetResult> accountGets = AppointmentServiceClient.AccountGet(result.GUID, systemGUID);
+                foreach (AccountGetResult ag in accountGets)
                 {
                     Console.WriteLine($"{result.AccountName} = {result.GUID.ToString()} - Deleted = {ag.IsDeleted.ToString()}");
                 }
@@ -45,13 +59,13 @@ namespace ApplicationClient
 
 
 
-                spAccountGetResult accountGet = AppointmentServiceClient.AccountGet(result.GUID).FirstOrDefault();
+                AccountGetResult accountGet = AppointmentServiceClient.AccountGet(result.GUID, systemGUID).FirstOrDefault();
                 Console.WriteLine($"{result.AccountName} = {result.GUID.ToString()} - Deleted = {accountGet.IsDeleted.ToString()}");
 
 
-                List<spAppointmentGetResult> appGet = AppointmentServiceClient.AppointmentGet(null);
+                List<AppointmentGetResult> appGet = AppointmentServiceClient.AppointmentGet(null, systemGUID);
 
-                foreach (spAppointmentGetResult res in appGet)
+                foreach (AppointmentGetResult res in appGet)
                 {
                     Console.WriteLine($"{res.StartDateTime.ToString()}\t{res.EndDateTime}\t{res.ExpectedDelay}");
                 }

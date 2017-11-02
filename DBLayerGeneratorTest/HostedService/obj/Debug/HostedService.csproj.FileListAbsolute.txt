@@ -9,3 +9,10 @@ C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\Hosted
 C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\HostedService\obj\Debug\HostedService.csproj.CoreCompileInputs.cache
 C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\HostedService\obj\Debug\HostedService.dll
 C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\HostedService\obj\Debug\HostedService.pdb
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\HostedService\bin\Microsoft.IdentityModel.Logging.dll
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\HostedService\bin\Microsoft.IdentityModel.Tokens.dll
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\HostedService\bin\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\HostedService\bin\Microsoft.IdentityModel.Logging.xml
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\HostedService\bin\Microsoft.IdentityModel.Tokens.xml
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\HostedService\bin\System.IdentityModel.Tokens.Jwt.xml
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\HostedService\bin\Microsoft.IdentityModel.dll

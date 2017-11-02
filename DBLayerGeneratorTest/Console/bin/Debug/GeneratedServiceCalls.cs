@@ -34,9 +34,90 @@ namespace ApplicationClient
                 return service;
             }
         }
-		public static List<spCreateUpsertResult> CreateUpsert (string tableName)
+		public static List<AccountToXMLByDateTimeResult> AccountToXMLByDateTime (DateTime? fromDateTime, DateTime? toDateTime)
 		{
-			spCreateUpsertParameters p = new spCreateUpsertParameters()
+			AccountToXMLByDateTimeParameters p = new AccountToXMLByDateTimeParameters()
+			{
+				FromDateTime = fromDateTime
+				, ToDateTime = toDateTime
+
+			};
+			
+			string parameters = JsonConvert.SerializeObject(p);
+			string resultStr = Service.AccountToXMLByDateTime(parameters);
+			List<AccountToXMLByDateTimeResult> result = JsonConvert.DeserializeObject<List<AccountToXMLByDateTimeResult>>(resultStr);
+			return result;
+		}
+		public static List<ActivityTypeToXMLResult> ActivityTypeToXML (string gUIDS)
+		{
+			ActivityTypeToXMLParameters p = new ActivityTypeToXMLParameters()
+			{
+				GUIDS = gUIDS
+
+			};
+			
+			string parameters = JsonConvert.SerializeObject(p);
+			string resultStr = Service.ActivityTypeToXML(parameters);
+			List<ActivityTypeToXMLResult> result = JsonConvert.DeserializeObject<List<ActivityTypeToXMLResult>>(resultStr);
+			return result;
+		}
+		public static List<ActivityTypeToXMLByDateTimeResult> ActivityTypeToXMLByDateTime (DateTime? fromDateTime, DateTime? toDateTime)
+		{
+			ActivityTypeToXMLByDateTimeParameters p = new ActivityTypeToXMLByDateTimeParameters()
+			{
+				FromDateTime = fromDateTime
+				, ToDateTime = toDateTime
+
+			};
+			
+			string parameters = JsonConvert.SerializeObject(p);
+			string resultStr = Service.ActivityTypeToXMLByDateTime(parameters);
+			List<ActivityTypeToXMLByDateTimeResult> result = JsonConvert.DeserializeObject<List<ActivityTypeToXMLByDateTimeResult>>(resultStr);
+			return result;
+		}
+		public static List<AppointmentToXMLResult> AppointmentToXML (string gUIDS)
+		{
+			AppointmentToXMLParameters p = new AppointmentToXMLParameters()
+			{
+				GUIDS = gUIDS
+
+			};
+			
+			string parameters = JsonConvert.SerializeObject(p);
+			string resultStr = Service.AppointmentToXML(parameters);
+			List<AppointmentToXMLResult> result = JsonConvert.DeserializeObject<List<AppointmentToXMLResult>>(resultStr);
+			return result;
+		}
+		public static List<AppointmentToXMLByDateTimeResult> AppointmentToXMLByDateTime (DateTime? fromDateTime, DateTime? toDateTime)
+		{
+			AppointmentToXMLByDateTimeParameters p = new AppointmentToXMLByDateTimeParameters()
+			{
+				FromDateTime = fromDateTime
+				, ToDateTime = toDateTime
+
+			};
+			
+			string parameters = JsonConvert.SerializeObject(p);
+			string resultStr = Service.AppointmentToXMLByDateTime(parameters);
+			List<AppointmentToXMLByDateTimeResult> result = JsonConvert.DeserializeObject<List<AppointmentToXMLByDateTimeResult>>(resultStr);
+			return result;
+		}
+		public static List<ServiceProviderToXMLResult> ServiceProviderToXML (string gUIDS)
+		{
+			ServiceProviderToXMLParameters p = new ServiceProviderToXMLParameters()
+			{
+				GUIDS = gUIDS
+
+			};
+			
+			string parameters = JsonConvert.SerializeObject(p);
+			string resultStr = Service.ServiceProviderToXML(parameters);
+			List<ServiceProviderToXMLResult> result = JsonConvert.DeserializeObject<List<ServiceProviderToXMLResult>>(resultStr);
+			return result;
+		}
+		public static List<CreateUpsertResult> CreateUpsert (string tableName)
+		{
+			CreateUpsertParameters p = new CreateUpsertParameters()
 			{
 				TableName = tableName
 
@@ -47,9 +128,36 @@ namespace ApplicationClient
 			List<CreateUpsertResult> result = JsonConvert.DeserializeObject<List<CreateUpsertResult>>(resultStr);
 			return result;
 		}
-		public static List<spSystemUserUpsertResult> SystemUserUpsert (Guid? gUID, bool? isDeleted, DateTime? activeDateTime, DateTime? terminationDateTime, string username, string password, Guid? systemUserGUID, bool? returnResults)
+		public static List<ServiceProviderToXMLByDateTimeResult> ServiceProviderToXMLByDateTime (DateTime? fromDateTime, DateTime? toDateTime)
 		{
-			spSystemUserUpsertParameters p = new spSystemUserUpsertParameters()
+			ServiceProviderToXMLByDateTimeParameters p = new ServiceProviderToXMLByDateTimeParameters()
+			{
+				FromDateTime = fromDateTime
+				, ToDateTime = toDateTime
+
+			};
+			
+			string parameters = JsonConvert.SerializeObject(p);
+			string resultStr = Service.ServiceProviderToXMLByDateTime(parameters);
+			List<ServiceProviderToXMLByDateTimeResult> result = JsonConvert.DeserializeObject<List<ServiceProviderToXMLByDateTimeResult>>(resultStr);
+			return result;
+		}
+		public static List<CustomerToXMLResult> CustomerToXML (string gUIDS)
+		{
+			CustomerToXMLParameters p = new CustomerToXMLParameters()
+			{
+				GUIDS = gUIDS
+
+			};
+			
+			string parameters = JsonConvert.SerializeObject(p);
+			string resultStr = Service.CustomerToXML(parameters);
+			List<CustomerToXMLResult> result = JsonConvert.DeserializeObject<List<CustomerToXMLResult>>(resultStr);
+			return result;
+		}
+		public static List<SystemUserUpsertResult> SystemUserUpsert (Guid? gUID, bool? isDeleted, DateTime? activeDateTime, DateTime? terminationDateTime, string username, string password, Guid? systemUserGUID, bool? returnResults)
+		{
+			SystemUserUpsertParameters p = new SystemUserUpsertParameters()
 			{
 				GUID = gUID
 				, IsDeleted = isDeleted
@@ -67,9 +175,23 @@ namespace ApplicationClient
 			List<SystemUserUpsertResult> result = JsonConvert.DeserializeObject<List<SystemUserUpsertResult>>(resultStr);
 			return result;
 		}
-		public static List<spSystemUserGetResult> SystemUserGet (Guid? systemUserGUID)
+		public static List<CustomerToXMLByDateTimeResult> CustomerToXMLByDateTime (DateTime? fromDateTime, DateTime? toDateTime)
 		{
-			spSystemUserGetParameters p = new spSystemUserGetParameters()
+			CustomerToXMLByDateTimeParameters p = new CustomerToXMLByDateTimeParameters()
+			{
+				FromDateTime = fromDateTime
+				, ToDateTime = toDateTime
+
+			};
+			
+			string parameters = JsonConvert.SerializeObject(p);
+			string resultStr = Service.CustomerToXMLByDateTime(parameters);
+			List<CustomerToXMLByDateTimeResult> result = JsonConvert.DeserializeObject<List<CustomerToXMLByDateTimeResult>>(resultStr);
+			return result;
+		}
+		public static List<SystemUserGetResult> SystemUserGet (Guid? systemUserGUID)
+		{
+			SystemUserGetParameters p = new SystemUserGetParameters()
 			{
 				SystemUserGUID = systemUserGUID
 
@@ -80,9 +202,198 @@ namespace ApplicationClient
 			List<SystemUserGetResult> result = JsonConvert.DeserializeObject<List<SystemUserGetResult>>(resultStr);
 			return result;
 		}
-		public static List<spGetChildrenResult> GetChildren (string tableName)
+		public static List<ActivityScheduleToXMLResult> ActivityScheduleToXML (string gUIDS)
 		{
-			spGetChildrenParameters p = new spGetChildrenParameters()
+			ActivityScheduleToXMLParameters p = new ActivityScheduleToXMLParameters()
+			{
+				GUIDS = gUIDS
+
+			};
+			
+			string parameters = JsonConvert.SerializeObject(p);
+			string resultStr = Service.ActivityScheduleToXML(parameters);
+			List<ActivityScheduleToXMLResult> result = JsonConvert.DeserializeObject<List<ActivityScheduleToXMLResult>>(resultStr);
+			return result;
+		}
+		public static List<ActivityScheduleToXMLByDateTimeResult> ActivityScheduleToXMLByDateTime (DateTime? fromDateTime, DateTime? toDateTime)
+		{
+			ActivityScheduleToXMLByDateTimeParameters p = new ActivityScheduleToXMLByDateTimeParameters()
+			{
+				FromDateTime = fromDateTime
+				, ToDateTime = toDateTime
+
+			};
+			
+			string parameters = JsonConvert.SerializeObject(p);
+			string resultStr = Service.ActivityScheduleToXMLByDateTime(parameters);
+			List<ActivityScheduleToXMLByDateTimeResult> result = JsonConvert.DeserializeObject<List<ActivityScheduleToXMLByDateTimeResult>>(resultStr);
+			return result;
+		}
+		public static List<StoreToXMLResult> StoreToXML (string gUIDS)
+		{
+			StoreToXMLParameters p = new StoreToXMLParameters()
+			{
+				GUIDS = gUIDS
+
+			};
+			
+			string parameters = JsonConvert.SerializeObject(p);
+			string resultStr = Service.StoreToXML(parameters);
+			List<StoreToXMLResult> result = JsonConvert.DeserializeObject<List<StoreToXMLResult>>(resultStr);
+			return result;
+		}
+		public static List<StoreToXMLByDateTimeResult> StoreToXMLByDateTime (DateTime? fromDateTime, DateTime? toDateTime)
+		{
+			StoreToXMLByDateTimeParameters p = new StoreToXMLByDateTimeParameters()
+			{
+				FromDateTime = fromDateTime
+				, ToDateTime = toDateTime
+
+			};
+			
+			string parameters = JsonConvert.SerializeObject(p);
+			string resultStr = Service.StoreToXMLByDateTime(parameters);
+			List<StoreToXMLByDateTimeResult> result = JsonConvert.DeserializeObject<List<StoreToXMLByDateTimeResult>>(resultStr);
+			return result;
+		}
+		public static List<PermissionToXMLResult> PermissionToXML (string gUIDS)
+		{
+			PermissionToXMLParameters p = new PermissionToXMLParameters()
+			{
+				GUIDS = gUIDS
+
+			};
+			
+			string parameters = JsonConvert.SerializeObject(p);
+			string resultStr = Service.PermissionToXML(parameters);
+			List<PermissionToXMLResult> result = JsonConvert.DeserializeObject<List<PermissionToXMLResult>>(resultStr);
+			return result;
+		}
+		public static List<PermissionToXMLByDateTimeResult> PermissionToXMLByDateTime (DateTime? fromDateTime, DateTime? toDateTime)
+		{
+			PermissionToXMLByDateTimeParameters p = new PermissionToXMLByDateTimeParameters()
+			{
+				FromDateTime = fromDateTime
+				, ToDateTime = toDateTime
+
+			};
+			
+			string parameters = JsonConvert.SerializeObject(p);
+			string resultStr = Service.PermissionToXMLByDateTime(parameters);
+			List<PermissionToXMLByDateTimeResult> result = JsonConvert.DeserializeObject<List<PermissionToXMLByDateTimeResult>>(resultStr);
+			return result;
+		}
+		public static List<SystemUserPermissionToXMLResult> SystemUserPermissionToXML (string gUIDS)
+		{
+			SystemUserPermissionToXMLParameters p = new SystemUserPermissionToXMLParameters()
+			{
+				GUIDS = gUIDS
+
+			};
+			
+			string parameters = JsonConvert.SerializeObject(p);
+			string resultStr = Service.SystemUserPermissionToXML(parameters);
+			List<SystemUserPermissionToXMLResult> result = JsonConvert.DeserializeObject<List<SystemUserPermissionToXMLResult>>(resultStr);
+			return result;
+		}
+		public static List<SystemUserPermissionToXMLByDateTimeResult> SystemUserPermissionToXMLByDateTime (DateTime? fromDateTime, DateTime? toDateTime)
+		{
+			SystemUserPermissionToXMLByDateTimeParameters p = new SystemUserPermissionToXMLByDateTimeParameters()
+			{
+				FromDateTime = fromDateTime
+				, ToDateTime = toDateTime
+
+			};
+			
+			string parameters = JsonConvert.SerializeObject(p);
+			string resultStr = Service.SystemUserPermissionToXMLByDateTime(parameters);
+			List<SystemUserPermissionToXMLByDateTimeResult> result = JsonConvert.DeserializeObject<List<SystemUserPermissionToXMLByDateTimeResult>>(resultStr);
+			return result;
+		}
+		public static List<SystemUserGroupToXMLResult> SystemUserGroupToXML (string gUIDS)
+		{
+			SystemUserGroupToXMLParameters p = new SystemUserGroupToXMLParameters()
+			{
+				GUIDS = gUIDS
+
+			};
+			
+			string parameters = JsonConvert.SerializeObject(p);
+			string resultStr = Service.SystemUserGroupToXML(parameters);
+			List<SystemUserGroupToXMLResult> result = JsonConvert.DeserializeObject<List<SystemUserGroupToXMLResult>>(resultStr);
+			return result;
+		}
+		public static List<SystemUserGroupToXMLByDateTimeResult> SystemUserGroupToXMLByDateTime (DateTime? fromDateTime, DateTime? toDateTime)
+		{
+			SystemUserGroupToXMLByDateTimeParameters p = new SystemUserGroupToXMLByDateTimeParameters()
+			{
+				FromDateTime = fromDateTime
+				, ToDateTime = toDateTime
+
+			};
+			
+			string parameters = JsonConvert.SerializeObject(p);
+			string resultStr = Service.SystemUserGroupToXMLByDateTime(parameters);
+			List<SystemUserGroupToXMLByDateTimeResult> result = JsonConvert.DeserializeObject<List<SystemUserGroupToXMLByDateTimeResult>>(resultStr);
+			return result;
+		}
+		public static List<SystemUserGroupLineToXMLResult> SystemUserGroupLineToXML (string gUIDS)
+		{
+			SystemUserGroupLineToXMLParameters p = new SystemUserGroupLineToXMLParameters()
+			{
+				GUIDS = gUIDS
+
+			};
+			
+			string parameters = JsonConvert.SerializeObject(p);
+			string resultStr = Service.SystemUserGroupLineToXML(parameters);
+			List<SystemUserGroupLineToXMLResult> result = JsonConvert.DeserializeObject<List<SystemUserGroupLineToXMLResult>>(resultStr);
+			return result;
+		}
+		public static List<SystemUserGroupLineToXMLByDateTimeResult> SystemUserGroupLineToXMLByDateTime (DateTime? fromDateTime, DateTime? toDateTime)
+		{
+			SystemUserGroupLineToXMLByDateTimeParameters p = new SystemUserGroupLineToXMLByDateTimeParameters()
+			{
+				FromDateTime = fromDateTime
+				, ToDateTime = toDateTime
+
+			};
+			
+			string parameters = JsonConvert.SerializeObject(p);
+			string resultStr = Service.SystemUserGroupLineToXMLByDateTime(parameters);
+			List<SystemUserGroupLineToXMLByDateTimeResult> result = JsonConvert.DeserializeObject<List<SystemUserGroupLineToXMLByDateTimeResult>>(resultStr);
+			return result;
+		}
+		public static List<SystemUserGroupPermissionToXMLResult> SystemUserGroupPermissionToXML (string gUIDS)
+		{
+			SystemUserGroupPermissionToXMLParameters p = new SystemUserGroupPermissionToXMLParameters()
+			{
+				GUIDS = gUIDS
+
+			};
+			
+			string parameters = JsonConvert.SerializeObject(p);
+			string resultStr = Service.SystemUserGroupPermissionToXML(parameters);
+			List<SystemUserGroupPermissionToXMLResult> result = JsonConvert.DeserializeObject<List<SystemUserGroupPermissionToXMLResult>>(resultStr);
+			return result;
+		}
+		public static List<SystemUserGroupPermissionToXMLByDateTimeResult> SystemUserGroupPermissionToXMLByDateTime (DateTime? fromDateTime, DateTime? toDateTime)
+		{
+			SystemUserGroupPermissionToXMLByDateTimeParameters p = new SystemUserGroupPermissionToXMLByDateTimeParameters()
+			{
+				FromDateTime = fromDateTime
+				, ToDateTime = toDateTime
+
+			};
+			
+			string parameters = JsonConvert.SerializeObject(p);
+			string resultStr = Service.SystemUserGroupPermissionToXMLByDateTime(parameters);
+			List<SystemUserGroupPermissionToXMLByDateTimeResult> result = JsonConvert.DeserializeObject<List<SystemUserGroupPermissionToXMLByDateTimeResult>>(resultStr);
+			return result;
+		}
+		public static List<GetChildrenResult> GetChildren (string tableName)
+		{
+			GetChildrenParameters p = new GetChildrenParameters()
 			{
 				TableName = tableName
 
@@ -93,9 +404,9 @@ namespace ApplicationClient
 			List<GetChildrenResult> result = JsonConvert.DeserializeObject<List<GetChildrenResult>>(resultStr);
 			return result;
 		}
-		public static List<spCreateToXmlResult> CreateToXml (string tableName)
+		public static List<CreateToXmlResult> CreateToXml (string tableName)
 		{
-			spCreateToXmlParameters p = new spCreateToXmlParameters()
+			CreateToXmlParameters p = new CreateToXmlParameters()
 			{
 				TableName = tableName
 
@@ -106,9 +417,23 @@ namespace ApplicationClient
 			List<CreateToXmlResult> result = JsonConvert.DeserializeObject<List<CreateToXmlResult>>(resultStr);
 			return result;
 		}
-		public static List<spAccountUpsertResult> AccountUpsert (Guid? gUID, bool? isDeleted, DateTime? activeDateTime, DateTime? terminationDateTime, string accountName, Guid? systemUserGUID, bool? returnResults)
+		public static List<LoginResult> Login (string userName, string password)
 		{
-			spAccountUpsertParameters p = new spAccountUpsertParameters()
+			LoginParameters p = new LoginParameters()
+			{
+				UserName = userName
+				, Password = password
+
+			};
+			
+			string parameters = JsonConvert.SerializeObject(p);
+			string resultStr = Service.Login(parameters);
+			List<LoginResult> result = JsonConvert.DeserializeObject<List<LoginResult>>(resultStr);
+			return result;
+		}
+		public static List<AccountUpsertResult> AccountUpsert (Guid? gUID, bool? isDeleted, DateTime? activeDateTime, DateTime? terminationDateTime, string accountName, Guid? systemUserGUID, bool? returnResults)
+		{
+			AccountUpsertParameters p = new AccountUpsertParameters()
 			{
 				GUID = gUID
 				, IsDeleted = isDeleted
@@ -125,11 +450,12 @@ namespace ApplicationClient
 			List<AccountUpsertResult> result = JsonConvert.DeserializeObject<List<AccountUpsertResult>>(resultStr);
 			return result;
 		}
-		public static List<spAccountGetResult> AccountGet (Guid? accountGUID)
+		public static List<AccountGetResult> AccountGet (Guid? accountGUID, Guid? systemUserGUID)
 		{
-			spAccountGetParameters p = new spAccountGetParameters()
+			AccountGetParameters p = new AccountGetParameters()
 			{
 				AccountGUID = accountGUID
+				, SystemUserGUID = systemUserGUID
 
 			};
 			
@@ -138,9 +464,9 @@ namespace ApplicationClient
 			List<AccountGetResult> result = JsonConvert.DeserializeObject<List<AccountGetResult>>(resultStr);
 			return result;
 		}
-		public static List<spActivityTypeUpsertResult> ActivityTypeUpsert (Guid? gUID, bool? isDeleted, string activityType, Guid? accountGUID, Guid? systemUserGUID, bool? returnResults)
+		public static List<ActivityTypeUpsertResult> ActivityTypeUpsert (Guid? gUID, bool? isDeleted, string activityType, Guid? accountGUID, Guid? systemUserGUID, bool? returnResults)
 		{
-			spActivityTypeUpsertParameters p = new spActivityTypeUpsertParameters()
+			ActivityTypeUpsertParameters p = new ActivityTypeUpsertParameters()
 			{
 				GUID = gUID
 				, IsDeleted = isDeleted
@@ -156,11 +482,12 @@ namespace ApplicationClient
 			List<ActivityTypeUpsertResult> result = JsonConvert.DeserializeObject<List<ActivityTypeUpsertResult>>(resultStr);
 			return result;
 		}
-		public static List<spActivityTypeGetResult> ActivityTypeGet (Guid? activityTypeGUID)
+		public static List<ActivityTypeGetResult> ActivityTypeGet (Guid? activityTypeGUID, Guid? systemUserGUID)
 		{
-			spActivityTypeGetParameters p = new spActivityTypeGetParameters()
+			ActivityTypeGetParameters p = new ActivityTypeGetParameters()
 			{
 				ActivityTypeGUID = activityTypeGUID
+				, SystemUserGUID = systemUserGUID
 
 			};
 			
@@ -169,9 +496,9 @@ namespace ApplicationClient
 			List<ActivityTypeGetResult> result = JsonConvert.DeserializeObject<List<ActivityTypeGetResult>>(resultStr);
 			return result;
 		}
-		public static List<spAppointmentUpsertResult> AppointmentUpsert (Guid? gUID, bool? isDeleted, DateTime? startDateTime, TimeSpan? duration, DateTime? actualStartDateTime, DateTime? actualEndDateTime, Guid? customerGUID, Guid? storeGUID, Guid? serviceProviderGUID, Guid? systemUserGUID, bool? returnResults)
+		public static List<AppointmentUpsertResult> AppointmentUpsert (Guid? gUID, bool? isDeleted, DateTime? startDateTime, TimeSpan? duration, DateTime? actualStartDateTime, DateTime? actualEndDateTime, Guid? customerGUID, Guid? storeGUID, Guid? serviceProviderGUID, Guid? systemUserGUID, bool? returnResults)
 		{
-			spAppointmentUpsertParameters p = new spAppointmentUpsertParameters()
+			AppointmentUpsertParameters p = new AppointmentUpsertParameters()
 			{
 				GUID = gUID
 				, IsDeleted = isDeleted
@@ -192,11 +519,12 @@ namespace ApplicationClient
 			List<AppointmentUpsertResult> result = JsonConvert.DeserializeObject<List<AppointmentUpsertResult>>(resultStr);
 			return result;
 		}
-		public static List<spAppointmentGetResult> AppointmentGet (Guid? appointmentGUID)
+		public static List<AppointmentGetResult> AppointmentGet (Guid? appointmentGUID, Guid? systemUserGUID)
 		{
-			spAppointmentGetParameters p = new spAppointmentGetParameters()
+			AppointmentGetParameters p = new AppointmentGetParameters()
 			{
 				AppointmentGUID = appointmentGUID
+				, SystemUserGUID = systemUserGUID
 
 			};
 			
@@ -205,23 +533,9 @@ namespace ApplicationClient
 			List<AppointmentGetResult> result = JsonConvert.DeserializeObject<List<AppointmentGetResult>>(resultStr);
 			return result;
 		}
-		public static List<spLoginResult> Login (string userName, string password)
+		public static List<ServiceProviderUpsertResult> ServiceProviderUpsert (Guid? gUID, bool? isDeleted, DateTime? activeDateTime, DateTime? terminationDateTime, string firstname, string surname, Guid? accountGUID, Guid? systemUserGUID, bool? returnResults)
 		{
-			spLoginParameters p = new spLoginParameters()
-			{
-				UserName = userName
-				, Password = password
-
-			};
-			
-			string parameters = JsonConvert.SerializeObject(p);
-			string resultStr = Service.Login(parameters);
-			List<LoginResult> result = JsonConvert.DeserializeObject<List<LoginResult>>(resultStr);
-			return result;
-		}
-		public static List<spServiceProviderUpsertResult> ServiceProviderUpsert (Guid? gUID, bool? isDeleted, DateTime? activeDateTime, DateTime? terminationDateTime, string firstname, string surname, Guid? accountGUID, Guid? systemUserGUID, bool? returnResults)
-		{
-			spServiceProviderUpsertParameters p = new spServiceProviderUpsertParameters()
+			ServiceProviderUpsertParameters p = new ServiceProviderUpsertParameters()
 			{
 				GUID = gUID
 				, IsDeleted = isDeleted
@@ -240,11 +554,12 @@ namespace ApplicationClient
 			List<ServiceProviderUpsertResult> result = JsonConvert.DeserializeObject<List<ServiceProviderUpsertResult>>(resultStr);
 			return result;
 		}
-		public static List<spServiceProviderGetResult> ServiceProviderGet (Guid? serviceProviderGUID)
+		public static List<ServiceProviderGetResult> ServiceProviderGet (Guid? serviceProviderGUID, Guid? systemUserGUID)
 		{
-			spServiceProviderGetParameters p = new spServiceProviderGetParameters()
+			ServiceProviderGetParameters p = new ServiceProviderGetParameters()
 			{
 				ServiceProviderGUID = serviceProviderGUID
+				, SystemUserGUID = systemUserGUID
 
 			};
 			
@@ -253,9 +568,9 @@ namespace ApplicationClient
 			List<ServiceProviderGetResult> result = JsonConvert.DeserializeObject<List<ServiceProviderGetResult>>(resultStr);
 			return result;
 		}
-		public static List<spCustomerUpsertResult> CustomerUpsert (Guid? gUID, bool? isDeleted, DateTime? activeDateTime, DateTime? terminationDateTime, string firstname, string surname, Guid? accountGUID, Guid? systemUserGUID, bool? returnResults)
+		public static List<CustomerUpsertResult> CustomerUpsert (Guid? gUID, bool? isDeleted, DateTime? activeDateTime, DateTime? terminationDateTime, string firstname, string surname, Guid? accountGUID, Guid? systemUserGUID, bool? returnResults)
 		{
-			spCustomerUpsertParameters p = new spCustomerUpsertParameters()
+			CustomerUpsertParameters p = new CustomerUpsertParameters()
 			{
 				GUID = gUID
 				, IsDeleted = isDeleted
@@ -274,11 +589,12 @@ namespace ApplicationClient
 			List<CustomerUpsertResult> result = JsonConvert.DeserializeObject<List<CustomerUpsertResult>>(resultStr);
 			return result;
 		}
-		public static List<spCustomerGetResult> CustomerGet (Guid? customerGUID)
+		public static List<CustomerGetResult> CustomerGet (Guid? customerGUID, Guid? systemUserGUID)
 		{
-			spCustomerGetParameters p = new spCustomerGetParameters()
+			CustomerGetParameters p = new CustomerGetParameters()
 			{
 				CustomerGUID = customerGUID
+				, SystemUserGUID = systemUserGUID
 
 			};
 			
@@ -287,9 +603,9 @@ namespace ApplicationClient
 			List<CustomerGetResult> result = JsonConvert.DeserializeObject<List<CustomerGetResult>>(resultStr);
 			return result;
 		}
-		public static List<spActivityScheduleUpsertResult> ActivityScheduleUpsert (Guid? gUID, bool? isDeleted, int? doW, TimeSpan? startTime, TimeSpan? endTime, Guid? activityTypeGUID, Guid? serviceProviderGUID, Guid? systemUserGUID, bool? returnResults)
+		public static List<ActivityScheduleUpsertResult> ActivityScheduleUpsert (Guid? gUID, bool? isDeleted, int? doW, TimeSpan? startTime, TimeSpan? endTime, Guid? activityTypeGUID, Guid? serviceProviderGUID, Guid? systemUserGUID, bool? returnResults)
 		{
-			spActivityScheduleUpsertParameters p = new spActivityScheduleUpsertParameters()
+			ActivityScheduleUpsertParameters p = new ActivityScheduleUpsertParameters()
 			{
 				GUID = gUID
 				, IsDeleted = isDeleted
@@ -308,11 +624,12 @@ namespace ApplicationClient
 			List<ActivityScheduleUpsertResult> result = JsonConvert.DeserializeObject<List<ActivityScheduleUpsertResult>>(resultStr);
 			return result;
 		}
-		public static List<spActivityScheduleGetResult> ActivityScheduleGet (Guid? activityScheduleGUID)
+		public static List<ActivityScheduleGetResult> ActivityScheduleGet (Guid? activityScheduleGUID, Guid? systemUserGUID)
 		{
-			spActivityScheduleGetParameters p = new spActivityScheduleGetParameters()
+			ActivityScheduleGetParameters p = new ActivityScheduleGetParameters()
 			{
 				ActivityScheduleGUID = activityScheduleGUID
+				, SystemUserGUID = systemUserGUID
 
 			};
 			
@@ -321,9 +638,9 @@ namespace ApplicationClient
 			List<ActivityScheduleGetResult> result = JsonConvert.DeserializeObject<List<ActivityScheduleGetResult>>(resultStr);
 			return result;
 		}
-		public static List<spStoreUpsertResult> StoreUpsert (Guid? gUID, bool? isDeleted, DateTime? activeDateTime, DateTime? terminationDateTime, string storeName, Guid? accountGUID, Guid? systemUserGUID, bool? returnResults)
+		public static List<StoreUpsertResult> StoreUpsert (Guid? gUID, bool? isDeleted, DateTime? activeDateTime, DateTime? terminationDateTime, string storeName, Guid? accountGUID, Guid? systemUserGUID, bool? returnResults)
 		{
-			spStoreUpsertParameters p = new spStoreUpsertParameters()
+			StoreUpsertParameters p = new StoreUpsertParameters()
 			{
 				GUID = gUID
 				, IsDeleted = isDeleted
@@ -341,11 +658,12 @@ namespace ApplicationClient
 			List<StoreUpsertResult> result = JsonConvert.DeserializeObject<List<StoreUpsertResult>>(resultStr);
 			return result;
 		}
-		public static List<spStoreGetResult> StoreGet (Guid? storeGUID)
+		public static List<StoreGetResult> StoreGet (Guid? storeGUID, Guid? systemUserGUID)
 		{
-			spStoreGetParameters p = new spStoreGetParameters()
+			StoreGetParameters p = new StoreGetParameters()
 			{
 				StoreGUID = storeGUID
+				, SystemUserGUID = systemUserGUID
 
 			};
 			
@@ -354,198 +672,127 @@ namespace ApplicationClient
 			List<StoreGetResult> result = JsonConvert.DeserializeObject<List<StoreGetResult>>(resultStr);
 			return result;
 		}
-		public static List<spAccountToXMLResult> AccountToXML (string gUIDS)
+		public static List<PermissionUpsertResult> PermissionUpsert (Guid? gUID, bool? isDeleted, string permission, Guid? systemUserGUID, bool? returnResults)
 		{
-			spAccountToXMLParameters p = new spAccountToXMLParameters()
+			PermissionUpsertParameters p = new PermissionUpsertParameters()
 			{
-				GUIDS = gUIDS
+				GUID = gUID
+				, IsDeleted = isDeleted
+				, Permission = permission
+				, SystemUserGUID = systemUserGUID
+				, ReturnResults = returnResults
 
 			};
 			
 			string parameters = JsonConvert.SerializeObject(p);
-			string resultStr = Service.AccountToXML(parameters);
-			List<AccountToXMLResult> result = JsonConvert.DeserializeObject<List<AccountToXMLResult>>(resultStr);
+			string resultStr = Service.PermissionUpsert(parameters);
+			List<PermissionUpsertResult> result = JsonConvert.DeserializeObject<List<PermissionUpsertResult>>(resultStr);
 			return result;
 		}
-		public static List<spAccountToXMLByDateTimeResult> AccountToXMLByDateTime (DateTime? fromDateTime, DateTime? toDateTime)
+		public static List<PermissionGetResult> PermissionGet (Guid? permissionGUID, Guid? systemUserGUID)
 		{
-			spAccountToXMLByDateTimeParameters p = new spAccountToXMLByDateTimeParameters()
+			PermissionGetParameters p = new PermissionGetParameters()
 			{
-				FromDateTime = fromDateTime
-				, ToDateTime = toDateTime
+				PermissionGUID = permissionGUID
+				, SystemUserGUID = systemUserGUID
 
 			};
 			
 			string parameters = JsonConvert.SerializeObject(p);
-			string resultStr = Service.AccountToXMLByDateTime(parameters);
-			List<AccountToXMLByDateTimeResult> result = JsonConvert.DeserializeObject<List<AccountToXMLByDateTimeResult>>(resultStr);
+			string resultStr = Service.PermissionGet(parameters);
+			List<PermissionGetResult> result = JsonConvert.DeserializeObject<List<PermissionGetResult>>(resultStr);
 			return result;
 		}
-		public static List<spActivityTypeToXMLResult> ActivityTypeToXML (string gUIDS)
+		public static List<SystemUserPermissionUpsertResult> SystemUserPermissionUpsert (Guid? gUID, bool? isDeleted, DateTime? activeDateTime, DateTime? terminationDateTime, Guid? forSystemUserGUID, Guid? permissionGUID, Guid? systemUserGUID, bool? returnResults)
 		{
-			spActivityTypeToXMLParameters p = new spActivityTypeToXMLParameters()
+			SystemUserPermissionUpsertParameters p = new SystemUserPermissionUpsertParameters()
 			{
-				GUIDS = gUIDS
+				GUID = gUID
+				, IsDeleted = isDeleted
+				, ActiveDateTime = activeDateTime
+				, TerminationDateTime = terminationDateTime
+				, ForSystemUserGUID = forSystemUserGUID
+				, PermissionGUID = permissionGUID
+				, SystemUserGUID = systemUserGUID
+				, ReturnResults = returnResults
 
 			};
 			
 			string parameters = JsonConvert.SerializeObject(p);
-			string resultStr = Service.ActivityTypeToXML(parameters);
-			List<ActivityTypeToXMLResult> result = JsonConvert.DeserializeObject<List<ActivityTypeToXMLResult>>(resultStr);
+			string resultStr = Service.SystemUserPermissionUpsert(parameters);
+			List<SystemUserPermissionUpsertResult> result = JsonConvert.DeserializeObject<List<SystemUserPermissionUpsertResult>>(resultStr);
 			return result;
 		}
-		public static List<spActivityTypeToXMLByDateTimeResult> ActivityTypeToXMLByDateTime (DateTime? fromDateTime, DateTime? toDateTime)
+		public static List<SystemUserPermissionGetResult> SystemUserPermissionGet (Guid? systemUserPermissionGUID, Guid? systemUserGUID)
 		{
-			spActivityTypeToXMLByDateTimeParameters p = new spActivityTypeToXMLByDateTimeParameters()
+			SystemUserPermissionGetParameters p = new SystemUserPermissionGetParameters()
 			{
-				FromDateTime = fromDateTime
-				, ToDateTime = toDateTime
+				SystemUserPermissionGUID = systemUserPermissionGUID
+				, SystemUserGUID = systemUserGUID
 
 			};
 			
 			string parameters = JsonConvert.SerializeObject(p);
-			string resultStr = Service.ActivityTypeToXMLByDateTime(parameters);
-			List<ActivityTypeToXMLByDateTimeResult> result = JsonConvert.DeserializeObject<List<ActivityTypeToXMLByDateTimeResult>>(resultStr);
+			string resultStr = Service.SystemUserPermissionGet(parameters);
+			List<SystemUserPermissionGetResult> result = JsonConvert.DeserializeObject<List<SystemUserPermissionGetResult>>(resultStr);
 			return result;
 		}
-		public static List<spAppointmentToXMLResult> AppointmentToXML (string gUIDS)
+		public static List<SystemUserGroupUpsertResult> SystemUserGroupUpsert (Guid? gUID, bool? isDeleted, DateTime? activeDateTime, DateTime? terminationDateTime, string description, Guid? systemUserGUID, bool? returnResults)
 		{
-			spAppointmentToXMLParameters p = new spAppointmentToXMLParameters()
+			SystemUserGroupUpsertParameters p = new SystemUserGroupUpsertParameters()
 			{
-				GUIDS = gUIDS
+				GUID = gUID
+				, IsDeleted = isDeleted
+				, ActiveDateTime = activeDateTime
+				, TerminationDateTime = terminationDateTime
+				, Description = description
+				, SystemUserGUID = systemUserGUID
+				, ReturnResults = returnResults
 
 			};
 			
 			string parameters = JsonConvert.SerializeObject(p);
-			string resultStr = Service.AppointmentToXML(parameters);
-			List<AppointmentToXMLResult> result = JsonConvert.DeserializeObject<List<AppointmentToXMLResult>>(resultStr);
+			string resultStr = Service.SystemUserGroupUpsert(parameters);
+			List<SystemUserGroupUpsertResult> result = JsonConvert.DeserializeObject<List<SystemUserGroupUpsertResult>>(resultStr);
 			return result;
 		}
-		public static List<spAppointmentToXMLByDateTimeResult> AppointmentToXMLByDateTime (DateTime? fromDateTime, DateTime? toDateTime)
+		public static List<SystemUserGroupGetResult> SystemUserGroupGet (Guid? systemUserGroupGUID, Guid? systemUserGUID)
 		{
-			spAppointmentToXMLByDateTimeParameters p = new spAppointmentToXMLByDateTimeParameters()
+			SystemUserGroupGetParameters p = new SystemUserGroupGetParameters()
 			{
-				FromDateTime = fromDateTime
-				, ToDateTime = toDateTime
+				SystemUserGroupGUID = systemUserGroupGUID
+				, SystemUserGUID = systemUserGUID
 
 			};
 			
 			string parameters = JsonConvert.SerializeObject(p);
-			string resultStr = Service.AppointmentToXMLByDateTime(parameters);
-			List<AppointmentToXMLByDateTimeResult> result = JsonConvert.DeserializeObject<List<AppointmentToXMLByDateTimeResult>>(resultStr);
+			string resultStr = Service.SystemUserGroupGet(parameters);
+			List<SystemUserGroupGetResult> result = JsonConvert.DeserializeObject<List<SystemUserGroupGetResult>>(resultStr);
 			return result;
 		}
-		public static List<spServiceProviderToXMLResult> ServiceProviderToXML (string gUIDS)
+		public static List<SystemUserGroupPermissionUpsertResult> SystemUserGroupPermissionUpsert (Guid? gUID, bool? isDeleted, DateTime? activeDateTime, DateTime? terminationDateTime, Guid? permissionGUID, Guid? systemUserGroupGUID, Guid? systemUserGUID, bool? returnResults)
 		{
-			spServiceProviderToXMLParameters p = new spServiceProviderToXMLParameters()
+			SystemUserGroupPermissionUpsertParameters p = new SystemUserGroupPermissionUpsertParameters()
 			{
-				GUIDS = gUIDS
+				GUID = gUID
+				, IsDeleted = isDeleted
+				, ActiveDateTime = activeDateTime
+				, TerminationDateTime = terminationDateTime
+				, PermissionGUID = permissionGUID
+				, SystemUserGroupGUID = systemUserGroupGUID
+				, SystemUserGUID = systemUserGUID
+				, ReturnResults = returnResults
 
 			};
 			
 			string parameters = JsonConvert.SerializeObject(p);
-			string resultStr = Service.ServiceProviderToXML(parameters);
-			List<ServiceProviderToXMLResult> result = JsonConvert.DeserializeObject<List<ServiceProviderToXMLResult>>(resultStr);
+			string resultStr = Service.SystemUserGroupPermissionUpsert(parameters);
+			List<SystemUserGroupPermissionUpsertResult> result = JsonConvert.DeserializeObject<List<SystemUserGroupPermissionUpsertResult>>(resultStr);
 			return result;
 		}
-		public static List<spServiceProviderToXMLByDateTimeResult> ServiceProviderToXMLByDateTime (DateTime? fromDateTime, DateTime? toDateTime)
+		public static List<AuditLogUpsertResult> AuditLogUpsert (Guid? gUID, string source, string tableName, string beforeSnapshot, string afterSnapshot, Guid? tableGUID, Guid? systemUserGUID, bool? returnResults)
 		{
-			spServiceProviderToXMLByDateTimeParameters p = new spServiceProviderToXMLByDateTimeParameters()
-			{
-				FromDateTime = fromDateTime
-				, ToDateTime = toDateTime
-
-			};
-			
-			string parameters = JsonConvert.SerializeObject(p);
-			string resultStr = Service.ServiceProviderToXMLByDateTime(parameters);
-			List<ServiceProviderToXMLByDateTimeResult> result = JsonConvert.DeserializeObject<List<ServiceProviderToXMLByDateTimeResult>>(resultStr);
-			return result;
-		}
-		public static List<spCustomerToXMLResult> CustomerToXML (string gUIDS)
-		{
-			spCustomerToXMLParameters p = new spCustomerToXMLParameters()
-			{
-				GUIDS = gUIDS
-
-			};
-			
-			string parameters = JsonConvert.SerializeObject(p);
-			string resultStr = Service.CustomerToXML(parameters);
-			List<CustomerToXMLResult> result = JsonConvert.DeserializeObject<List<CustomerToXMLResult>>(resultStr);
-			return result;
-		}
-		public static List<spCustomerToXMLByDateTimeResult> CustomerToXMLByDateTime (DateTime? fromDateTime, DateTime? toDateTime)
-		{
-			spCustomerToXMLByDateTimeParameters p = new spCustomerToXMLByDateTimeParameters()
-			{
-				FromDateTime = fromDateTime
-				, ToDateTime = toDateTime
-
-			};
-			
-			string parameters = JsonConvert.SerializeObject(p);
-			string resultStr = Service.CustomerToXMLByDateTime(parameters);
-			List<CustomerToXMLByDateTimeResult> result = JsonConvert.DeserializeObject<List<CustomerToXMLByDateTimeResult>>(resultStr);
-			return result;
-		}
-		public static List<spActivityScheduleToXMLResult> ActivityScheduleToXML (string gUIDS)
-		{
-			spActivityScheduleToXMLParameters p = new spActivityScheduleToXMLParameters()
-			{
-				GUIDS = gUIDS
-
-			};
-			
-			string parameters = JsonConvert.SerializeObject(p);
-			string resultStr = Service.ActivityScheduleToXML(parameters);
-			List<ActivityScheduleToXMLResult> result = JsonConvert.DeserializeObject<List<ActivityScheduleToXMLResult>>(resultStr);
-			return result;
-		}
-		public static List<spActivityScheduleToXMLByDateTimeResult> ActivityScheduleToXMLByDateTime (DateTime? fromDateTime, DateTime? toDateTime)
-		{
-			spActivityScheduleToXMLByDateTimeParameters p = new spActivityScheduleToXMLByDateTimeParameters()
-			{
-				FromDateTime = fromDateTime
-				, ToDateTime = toDateTime
-
-			};
-			
-			string parameters = JsonConvert.SerializeObject(p);
-			string resultStr = Service.ActivityScheduleToXMLByDateTime(parameters);
-			List<ActivityScheduleToXMLByDateTimeResult> result = JsonConvert.DeserializeObject<List<ActivityScheduleToXMLByDateTimeResult>>(resultStr);
-			return result;
-		}
-		public static List<spStoreToXMLResult> StoreToXML (string gUIDS)
-		{
-			spStoreToXMLParameters p = new spStoreToXMLParameters()
-			{
-				GUIDS = gUIDS
-
-			};
-			
-			string parameters = JsonConvert.SerializeObject(p);
-			string resultStr = Service.StoreToXML(parameters);
-			List<StoreToXMLResult> result = JsonConvert.DeserializeObject<List<StoreToXMLResult>>(resultStr);
-			return result;
-		}
-		public static List<spStoreToXMLByDateTimeResult> StoreToXMLByDateTime (DateTime? fromDateTime, DateTime? toDateTime)
-		{
-			spStoreToXMLByDateTimeParameters p = new spStoreToXMLByDateTimeParameters()
-			{
-				FromDateTime = fromDateTime
-				, ToDateTime = toDateTime
-
-			};
-			
-			string parameters = JsonConvert.SerializeObject(p);
-			string resultStr = Service.StoreToXMLByDateTime(parameters);
-			List<StoreToXMLByDateTimeResult> result = JsonConvert.DeserializeObject<List<StoreToXMLByDateTimeResult>>(resultStr);
-			return result;
-		}
-		public static List<spAuditLogUpsertResult> AuditLogUpsert (Guid? gUID, string source, string tableName, string beforeSnapshot, string afterSnapshot, Guid? tableGUID, Guid? systemUserGUID, bool? returnResults)
-		{
-			spAuditLogUpsertParameters p = new spAuditLogUpsertParameters()
+			AuditLogUpsertParameters p = new AuditLogUpsertParameters()
 			{
 				GUID = gUID
 				, Source = source
@@ -561,6 +808,47 @@ namespace ApplicationClient
 			string parameters = JsonConvert.SerializeObject(p);
 			string resultStr = Service.AuditLogUpsert(parameters);
 			List<AuditLogUpsertResult> result = JsonConvert.DeserializeObject<List<AuditLogUpsertResult>>(resultStr);
+			return result;
+		}
+		public static List<SystemUserGroupPermissionGetResult> SystemUserGroupPermissionGet (Guid? systemUserGroupPermissionGUID, Guid? systemUserGUID)
+		{
+			SystemUserGroupPermissionGetParameters p = new SystemUserGroupPermissionGetParameters()
+			{
+				SystemUserGroupPermissionGUID = systemUserGroupPermissionGUID
+				, SystemUserGUID = systemUserGUID
+
+			};
+			
+			string parameters = JsonConvert.SerializeObject(p);
+			string resultStr = Service.SystemUserGroupPermissionGet(parameters);
+			List<SystemUserGroupPermissionGetResult> result = JsonConvert.DeserializeObject<List<SystemUserGroupPermissionGetResult>>(resultStr);
+			return result;
+		}
+		public static List<TesterResult> Tester (string first,  ref string second)
+		{
+			TesterParameters p = new TesterParameters()
+			{
+				First = first
+				, Second = second
+
+			};
+			
+			string parameters = JsonConvert.SerializeObject(p);
+			string resultStr = Service.Tester(parameters);
+			List<TesterResult> result = JsonConvert.DeserializeObject<List<TesterResult>>(resultStr);
+			return result;
+		}
+		public static List<AccountToXMLResult> AccountToXML (string gUIDS)
+		{
+			AccountToXMLParameters p = new AccountToXMLParameters()
+			{
+				GUIDS = gUIDS
+
+			};
+			
+			string parameters = JsonConvert.SerializeObject(p);
+			string resultStr = Service.AccountToXML(parameters);
+			List<AccountToXMLResult> result = JsonConvert.DeserializeObject<List<AccountToXMLResult>>(resultStr);
 			return result;
 		}
      }

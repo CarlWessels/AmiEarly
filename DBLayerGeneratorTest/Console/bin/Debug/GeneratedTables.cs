@@ -1,5 +1,77 @@
 namespace AppointmentLibrary.Tables
 {
+	public partial class tblAuditLog
+	{
+		public string GUID {get;set;}
+		public string ID {get;set;}
+		public string DateTimeCreated {get;set;}
+		public string Source {get;set;}
+		public string TableGUID {get;set;}
+		public string TableName {get;set;}
+		public string BeforeSnapshot {get;set;}
+		public string AfterSnapshot {get;set;}
+		public string SystemUserGUID {get;set;}
+	}
+	public partial class tblPermission
+	{
+		public string GUID {get;set;}
+		public string ID {get;set;}
+		public string DateTimeCreated {get;set;}
+		public string IsDeleted {get;set;}
+		public string Permission {get;set;}
+		public string SystemUserGUID {get;set;}
+	}
+	public partial class tblSystemUserPermission
+	{
+		public string GUID {get;set;}
+		public string ID {get;set;}
+		public string DateTimeCreated {get;set;}
+		public string IsDeleted {get;set;}
+		public string ActiveDateTime {get;set;}
+		public string TerminationDateTime {get;set;}
+		public string IsActiveForNow {get;set;}
+		public string ForSystemUserGUID {get;set;}
+		public string PermissionGUID {get;set;}
+		public string SystemUserGUID {get;set;}
+	}
+	public partial class tblSystemUserGroup
+	{
+		public string GUID {get;set;}
+		public string ID {get;set;}
+		public string DateTimeCreated {get;set;}
+		public string IsDeleted {get;set;}
+		public string ActiveDateTime {get;set;}
+		public string TerminationDateTime {get;set;}
+		public string IsActiveForNow {get;set;}
+		public string Description {get;set;}
+		public string SystemUserGUID {get;set;}
+	}
+	public partial class tblSystemUserGroupPermission
+	{
+		public string GUID {get;set;}
+		public string ID {get;set;}
+		public string DateTimeCreated {get;set;}
+		public string IsDeleted {get;set;}
+		public string ActiveDateTime {get;set;}
+		public string TerminationDateTime {get;set;}
+		public string IsActiveForNow {get;set;}
+		public string PermissionGUID {get;set;}
+		public string SystemUserGroupGUID {get;set;}
+		public string SystemUserGUID {get;set;}
+	}
+	public partial class tblSystemUserGroupLine
+	{
+		public string GUID {get;set;}
+		public string ID {get;set;}
+		public string DateTimeCreated {get;set;}
+		public string IsDeleted {get;set;}
+		public string ActiveDateTime {get;set;}
+		public string TerminationDateTime {get;set;}
+		public string IsActiveForNow {get;set;}
+		public string ForSystemUserGUID {get;set;}
+		public string SystemUserGroupGUID {get;set;}
+		public string SystemUserGUID {get;set;}
+	}
 	public partial class tblSystemUser
 	{
 		public string GUID {get;set;}
@@ -92,6 +164,13 @@ namespace AppointmentLibrary.Tables
 		public string AccountGUID {get;set;}
 		public string SystemUserGUID {get;set;}
 	}
+	public partial class tblMyTestTable
+	{
+		public string GUID {get;set;}
+		public string ID {get;set;}
+		public string DateTimeCreated {get;set;}
+		public string MyTestField {get;set;}
+	}
 	public partial class tblActivitySchedule
 	{
 		public string GUID {get;set;}
@@ -104,24 +183,5 @@ namespace AppointmentLibrary.Tables
 		public string ActivityTypeGUID {get;set;}
 		public string ServiceProviderGUID {get;set;}
 		public string SystemUserGUID {get;set;}
-	}
-	public partial class tblAuditLog
-	{
-		public string GUID {get;set;}
-		public string ID {get;set;}
-		public string DateTimeCreated {get;set;}
-		public string Source {get;set;}
-		public string TableGUID {get;set;}
-		public string TableName {get;set;}
-		public string BeforeSnapshot {get;set;}
-		public string AfterSnapshot {get;set;}
-		public string SystemUserGUID {get;set;}
-	}
-	public partial class tblMyTestTable
-	{
-		public string GUID {get;set;}
-		public string ID {get;set;}
-		public string DateTimeCreated {get;set;}
-		public string MyTestField {get;set;}
 	}
 }

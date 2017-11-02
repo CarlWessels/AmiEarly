@@ -15,11 +15,59 @@ namespace ApplicationClient.AppointmentService {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="AppointmentService.IAppointmentService")]
     public interface IAppointmentService {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/AccountToXMLByDateTime", ReplyAction="http://tempuri.org/IAppointmentService/AccountToXMLByDateTimeResponse")]
+        string AccountToXMLByDateTime(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/AccountToXMLByDateTime", ReplyAction="http://tempuri.org/IAppointmentService/AccountToXMLByDateTimeResponse")]
+        System.Threading.Tasks.Task<string> AccountToXMLByDateTimeAsync(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/ActivityTypeToXML", ReplyAction="http://tempuri.org/IAppointmentService/ActivityTypeToXMLResponse")]
+        string ActivityTypeToXML(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/ActivityTypeToXML", ReplyAction="http://tempuri.org/IAppointmentService/ActivityTypeToXMLResponse")]
+        System.Threading.Tasks.Task<string> ActivityTypeToXMLAsync(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/ActivityTypeToXMLByDateTime", ReplyAction="http://tempuri.org/IAppointmentService/ActivityTypeToXMLByDateTimeResponse")]
+        string ActivityTypeToXMLByDateTime(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/ActivityTypeToXMLByDateTime", ReplyAction="http://tempuri.org/IAppointmentService/ActivityTypeToXMLByDateTimeResponse")]
+        System.Threading.Tasks.Task<string> ActivityTypeToXMLByDateTimeAsync(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/AppointmentToXML", ReplyAction="http://tempuri.org/IAppointmentService/AppointmentToXMLResponse")]
+        string AppointmentToXML(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/AppointmentToXML", ReplyAction="http://tempuri.org/IAppointmentService/AppointmentToXMLResponse")]
+        System.Threading.Tasks.Task<string> AppointmentToXMLAsync(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/AppointmentToXMLByDateTime", ReplyAction="http://tempuri.org/IAppointmentService/AppointmentToXMLByDateTimeResponse")]
+        string AppointmentToXMLByDateTime(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/AppointmentToXMLByDateTime", ReplyAction="http://tempuri.org/IAppointmentService/AppointmentToXMLByDateTimeResponse")]
+        System.Threading.Tasks.Task<string> AppointmentToXMLByDateTimeAsync(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/ServiceProviderToXML", ReplyAction="http://tempuri.org/IAppointmentService/ServiceProviderToXMLResponse")]
+        string ServiceProviderToXML(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/ServiceProviderToXML", ReplyAction="http://tempuri.org/IAppointmentService/ServiceProviderToXMLResponse")]
+        System.Threading.Tasks.Task<string> ServiceProviderToXMLAsync(string parameters);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/CreateUpsert", ReplyAction="http://tempuri.org/IAppointmentService/CreateUpsertResponse")]
         string CreateUpsert(string parameters);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/CreateUpsert", ReplyAction="http://tempuri.org/IAppointmentService/CreateUpsertResponse")]
         System.Threading.Tasks.Task<string> CreateUpsertAsync(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/ServiceProviderToXMLByDateTime", ReplyAction="http://tempuri.org/IAppointmentService/ServiceProviderToXMLByDateTimeResponse")]
+        string ServiceProviderToXMLByDateTime(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/ServiceProviderToXMLByDateTime", ReplyAction="http://tempuri.org/IAppointmentService/ServiceProviderToXMLByDateTimeResponse")]
+        System.Threading.Tasks.Task<string> ServiceProviderToXMLByDateTimeAsync(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/CustomerToXML", ReplyAction="http://tempuri.org/IAppointmentService/CustomerToXMLResponse")]
+        string CustomerToXML(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/CustomerToXML", ReplyAction="http://tempuri.org/IAppointmentService/CustomerToXMLResponse")]
+        System.Threading.Tasks.Task<string> CustomerToXMLAsync(string parameters);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/SystemUserUpsert", ReplyAction="http://tempuri.org/IAppointmentService/SystemUserUpsertResponse")]
         string SystemUserUpsert(string parameters);
@@ -27,11 +75,125 @@ namespace ApplicationClient.AppointmentService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/SystemUserUpsert", ReplyAction="http://tempuri.org/IAppointmentService/SystemUserUpsertResponse")]
         System.Threading.Tasks.Task<string> SystemUserUpsertAsync(string parameters);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/CustomerToXMLByDateTime", ReplyAction="http://tempuri.org/IAppointmentService/CustomerToXMLByDateTimeResponse")]
+        string CustomerToXMLByDateTime(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/CustomerToXMLByDateTime", ReplyAction="http://tempuri.org/IAppointmentService/CustomerToXMLByDateTimeResponse")]
+        System.Threading.Tasks.Task<string> CustomerToXMLByDateTimeAsync(string parameters);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/SystemUserGet", ReplyAction="http://tempuri.org/IAppointmentService/SystemUserGetResponse")]
         string SystemUserGet(string parameters);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/SystemUserGet", ReplyAction="http://tempuri.org/IAppointmentService/SystemUserGetResponse")]
         System.Threading.Tasks.Task<string> SystemUserGetAsync(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/ActivityScheduleToXML", ReplyAction="http://tempuri.org/IAppointmentService/ActivityScheduleToXMLResponse")]
+        string ActivityScheduleToXML(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/ActivityScheduleToXML", ReplyAction="http://tempuri.org/IAppointmentService/ActivityScheduleToXMLResponse")]
+        System.Threading.Tasks.Task<string> ActivityScheduleToXMLAsync(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/ActivityScheduleToXMLByDateTime", ReplyAction="http://tempuri.org/IAppointmentService/ActivityScheduleToXMLByDateTimeResponse")]
+        string ActivityScheduleToXMLByDateTime(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/ActivityScheduleToXMLByDateTime", ReplyAction="http://tempuri.org/IAppointmentService/ActivityScheduleToXMLByDateTimeResponse")]
+        System.Threading.Tasks.Task<string> ActivityScheduleToXMLByDateTimeAsync(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/StoreToXML", ReplyAction="http://tempuri.org/IAppointmentService/StoreToXMLResponse")]
+        string StoreToXML(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/StoreToXML", ReplyAction="http://tempuri.org/IAppointmentService/StoreToXMLResponse")]
+        System.Threading.Tasks.Task<string> StoreToXMLAsync(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/StoreToXMLByDateTime", ReplyAction="http://tempuri.org/IAppointmentService/StoreToXMLByDateTimeResponse")]
+        string StoreToXMLByDateTime(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/StoreToXMLByDateTime", ReplyAction="http://tempuri.org/IAppointmentService/StoreToXMLByDateTimeResponse")]
+        System.Threading.Tasks.Task<string> StoreToXMLByDateTimeAsync(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/PermissionToXML", ReplyAction="http://tempuri.org/IAppointmentService/PermissionToXMLResponse")]
+        string PermissionToXML(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/PermissionToXML", ReplyAction="http://tempuri.org/IAppointmentService/PermissionToXMLResponse")]
+        System.Threading.Tasks.Task<string> PermissionToXMLAsync(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/PermissionToXMLByDateTime", ReplyAction="http://tempuri.org/IAppointmentService/PermissionToXMLByDateTimeResponse")]
+        string PermissionToXMLByDateTime(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/PermissionToXMLByDateTime", ReplyAction="http://tempuri.org/IAppointmentService/PermissionToXMLByDateTimeResponse")]
+        System.Threading.Tasks.Task<string> PermissionToXMLByDateTimeAsync(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/SystemUserPermissionToXML", ReplyAction="http://tempuri.org/IAppointmentService/SystemUserPermissionToXMLResponse")]
+        string SystemUserPermissionToXML(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/SystemUserPermissionToXML", ReplyAction="http://tempuri.org/IAppointmentService/SystemUserPermissionToXMLResponse")]
+        System.Threading.Tasks.Task<string> SystemUserPermissionToXMLAsync(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/SystemUserPermissionToXMLByDateTime", ReplyAction="http://tempuri.org/IAppointmentService/SystemUserPermissionToXMLByDateTimeRespons" +
+            "e")]
+        string SystemUserPermissionToXMLByDateTime(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/SystemUserPermissionToXMLByDateTime", ReplyAction="http://tempuri.org/IAppointmentService/SystemUserPermissionToXMLByDateTimeRespons" +
+            "e")]
+        System.Threading.Tasks.Task<string> SystemUserPermissionToXMLByDateTimeAsync(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/SystemUserGroupToXML", ReplyAction="http://tempuri.org/IAppointmentService/SystemUserGroupToXMLResponse")]
+        string SystemUserGroupToXML(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/SystemUserGroupToXML", ReplyAction="http://tempuri.org/IAppointmentService/SystemUserGroupToXMLResponse")]
+        System.Threading.Tasks.Task<string> SystemUserGroupToXMLAsync(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/SystemUserGroupToXMLByDateTime", ReplyAction="http://tempuri.org/IAppointmentService/SystemUserGroupToXMLByDateTimeResponse")]
+        string SystemUserGroupToXMLByDateTime(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/SystemUserGroupToXMLByDateTime", ReplyAction="http://tempuri.org/IAppointmentService/SystemUserGroupToXMLByDateTimeResponse")]
+        System.Threading.Tasks.Task<string> SystemUserGroupToXMLByDateTimeAsync(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/SystemUserGroupLineToXML", ReplyAction="http://tempuri.org/IAppointmentService/SystemUserGroupLineToXMLResponse")]
+        string SystemUserGroupLineToXML(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/SystemUserGroupLineToXML", ReplyAction="http://tempuri.org/IAppointmentService/SystemUserGroupLineToXMLResponse")]
+        System.Threading.Tasks.Task<string> SystemUserGroupLineToXMLAsync(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/SystemUserGroupLineToXMLByDateTime", ReplyAction="http://tempuri.org/IAppointmentService/SystemUserGroupLineToXMLByDateTimeResponse" +
+            "")]
+        string SystemUserGroupLineToXMLByDateTime(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/SystemUserGroupLineToXMLByDateTime", ReplyAction="http://tempuri.org/IAppointmentService/SystemUserGroupLineToXMLByDateTimeResponse" +
+            "")]
+        System.Threading.Tasks.Task<string> SystemUserGroupLineToXMLByDateTimeAsync(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/SystemUserGroupPermissionToXML", ReplyAction="http://tempuri.org/IAppointmentService/SystemUserGroupPermissionToXMLResponse")]
+        string SystemUserGroupPermissionToXML(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/SystemUserGroupPermissionToXML", ReplyAction="http://tempuri.org/IAppointmentService/SystemUserGroupPermissionToXMLResponse")]
+        System.Threading.Tasks.Task<string> SystemUserGroupPermissionToXMLAsync(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/SystemUserGroupPermissionToXMLByDateTime", ReplyAction="http://tempuri.org/IAppointmentService/SystemUserGroupPermissionToXMLByDateTimeRe" +
+            "sponse")]
+        string SystemUserGroupPermissionToXMLByDateTime(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/SystemUserGroupPermissionToXMLByDateTime", ReplyAction="http://tempuri.org/IAppointmentService/SystemUserGroupPermissionToXMLByDateTimeRe" +
+            "sponse")]
+        System.Threading.Tasks.Task<string> SystemUserGroupPermissionToXMLByDateTimeAsync(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/GetChildren", ReplyAction="http://tempuri.org/IAppointmentService/GetChildrenResponse")]
+        string GetChildren(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/GetChildren", ReplyAction="http://tempuri.org/IAppointmentService/GetChildrenResponse")]
+        System.Threading.Tasks.Task<string> GetChildrenAsync(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/CreateToXml", ReplyAction="http://tempuri.org/IAppointmentService/CreateToXmlResponse")]
+        string CreateToXml(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/CreateToXml", ReplyAction="http://tempuri.org/IAppointmentService/CreateToXmlResponse")]
+        System.Threading.Tasks.Task<string> CreateToXmlAsync(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/Login", ReplyAction="http://tempuri.org/IAppointmentService/LoginResponse")]
+        string Login(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/Login", ReplyAction="http://tempuri.org/IAppointmentService/LoginResponse")]
+        System.Threading.Tasks.Task<string> LoginAsync(string parameters);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/AccountUpsert", ReplyAction="http://tempuri.org/IAppointmentService/AccountUpsertResponse")]
         string AccountUpsert(string parameters);
@@ -117,29 +279,71 @@ namespace ApplicationClient.AppointmentService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/StoreGet", ReplyAction="http://tempuri.org/IAppointmentService/StoreGetResponse")]
         System.Threading.Tasks.Task<string> StoreGetAsync(string parameters);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/MyTestTableUpsert", ReplyAction="http://tempuri.org/IAppointmentService/MyTestTableUpsertResponse")]
-        string MyTestTableUpsert(string parameters);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/PermissionUpsert", ReplyAction="http://tempuri.org/IAppointmentService/PermissionUpsertResponse")]
+        string PermissionUpsert(string parameters);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/MyTestTableUpsert", ReplyAction="http://tempuri.org/IAppointmentService/MyTestTableUpsertResponse")]
-        System.Threading.Tasks.Task<string> MyTestTableUpsertAsync(string parameters);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/PermissionUpsert", ReplyAction="http://tempuri.org/IAppointmentService/PermissionUpsertResponse")]
+        System.Threading.Tasks.Task<string> PermissionUpsertAsync(string parameters);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/MyTestTableGet", ReplyAction="http://tempuri.org/IAppointmentService/MyTestTableGetResponse")]
-        string MyTestTableGet(string parameters);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/PermissionGet", ReplyAction="http://tempuri.org/IAppointmentService/PermissionGetResponse")]
+        string PermissionGet(string parameters);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/MyTestTableGet", ReplyAction="http://tempuri.org/IAppointmentService/MyTestTableGetResponse")]
-        System.Threading.Tasks.Task<string> MyTestTableGetAsync(string parameters);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/PermissionGet", ReplyAction="http://tempuri.org/IAppointmentService/PermissionGetResponse")]
+        System.Threading.Tasks.Task<string> PermissionGetAsync(string parameters);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/Login", ReplyAction="http://tempuri.org/IAppointmentService/LoginResponse")]
-        string Login(string parameters);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/SystemUserPermissionUpsert", ReplyAction="http://tempuri.org/IAppointmentService/SystemUserPermissionUpsertResponse")]
+        string SystemUserPermissionUpsert(string parameters);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/Login", ReplyAction="http://tempuri.org/IAppointmentService/LoginResponse")]
-        System.Threading.Tasks.Task<string> LoginAsync(string parameters);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/SystemUserPermissionUpsert", ReplyAction="http://tempuri.org/IAppointmentService/SystemUserPermissionUpsertResponse")]
+        System.Threading.Tasks.Task<string> SystemUserPermissionUpsertAsync(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/SystemUserPermissionGet", ReplyAction="http://tempuri.org/IAppointmentService/SystemUserPermissionGetResponse")]
+        string SystemUserPermissionGet(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/SystemUserPermissionGet", ReplyAction="http://tempuri.org/IAppointmentService/SystemUserPermissionGetResponse")]
+        System.Threading.Tasks.Task<string> SystemUserPermissionGetAsync(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/SystemUserGroupUpsert", ReplyAction="http://tempuri.org/IAppointmentService/SystemUserGroupUpsertResponse")]
+        string SystemUserGroupUpsert(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/SystemUserGroupUpsert", ReplyAction="http://tempuri.org/IAppointmentService/SystemUserGroupUpsertResponse")]
+        System.Threading.Tasks.Task<string> SystemUserGroupUpsertAsync(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/SystemUserGroupGet", ReplyAction="http://tempuri.org/IAppointmentService/SystemUserGroupGetResponse")]
+        string SystemUserGroupGet(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/SystemUserGroupGet", ReplyAction="http://tempuri.org/IAppointmentService/SystemUserGroupGetResponse")]
+        System.Threading.Tasks.Task<string> SystemUserGroupGetAsync(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/SystemUserGroupPermissionUpsert", ReplyAction="http://tempuri.org/IAppointmentService/SystemUserGroupPermissionUpsertResponse")]
+        string SystemUserGroupPermissionUpsert(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/SystemUserGroupPermissionUpsert", ReplyAction="http://tempuri.org/IAppointmentService/SystemUserGroupPermissionUpsertResponse")]
+        System.Threading.Tasks.Task<string> SystemUserGroupPermissionUpsertAsync(string parameters);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/AuditLogUpsert", ReplyAction="http://tempuri.org/IAppointmentService/AuditLogUpsertResponse")]
         string AuditLogUpsert(string parameters);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/AuditLogUpsert", ReplyAction="http://tempuri.org/IAppointmentService/AuditLogUpsertResponse")]
         System.Threading.Tasks.Task<string> AuditLogUpsertAsync(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/SystemUserGroupPermissionGet", ReplyAction="http://tempuri.org/IAppointmentService/SystemUserGroupPermissionGetResponse")]
+        string SystemUserGroupPermissionGet(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/SystemUserGroupPermissionGet", ReplyAction="http://tempuri.org/IAppointmentService/SystemUserGroupPermissionGetResponse")]
+        System.Threading.Tasks.Task<string> SystemUserGroupPermissionGetAsync(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/Tester", ReplyAction="http://tempuri.org/IAppointmentService/TesterResponse")]
+        string Tester(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/Tester", ReplyAction="http://tempuri.org/IAppointmentService/TesterResponse")]
+        System.Threading.Tasks.Task<string> TesterAsync(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/AccountToXML", ReplyAction="http://tempuri.org/IAppointmentService/AccountToXMLResponse")]
+        string AccountToXML(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentService/AccountToXML", ReplyAction="http://tempuri.org/IAppointmentService/AccountToXMLResponse")]
+        System.Threading.Tasks.Task<string> AccountToXMLAsync(string parameters);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -169,12 +373,76 @@ namespace ApplicationClient.AppointmentService {
                 base(binding, remoteAddress) {
         }
         
+        public string AccountToXMLByDateTime(string parameters) {
+            return base.Channel.AccountToXMLByDateTime(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> AccountToXMLByDateTimeAsync(string parameters) {
+            return base.Channel.AccountToXMLByDateTimeAsync(parameters);
+        }
+        
+        public string ActivityTypeToXML(string parameters) {
+            return base.Channel.ActivityTypeToXML(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> ActivityTypeToXMLAsync(string parameters) {
+            return base.Channel.ActivityTypeToXMLAsync(parameters);
+        }
+        
+        public string ActivityTypeToXMLByDateTime(string parameters) {
+            return base.Channel.ActivityTypeToXMLByDateTime(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> ActivityTypeToXMLByDateTimeAsync(string parameters) {
+            return base.Channel.ActivityTypeToXMLByDateTimeAsync(parameters);
+        }
+        
+        public string AppointmentToXML(string parameters) {
+            return base.Channel.AppointmentToXML(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> AppointmentToXMLAsync(string parameters) {
+            return base.Channel.AppointmentToXMLAsync(parameters);
+        }
+        
+        public string AppointmentToXMLByDateTime(string parameters) {
+            return base.Channel.AppointmentToXMLByDateTime(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> AppointmentToXMLByDateTimeAsync(string parameters) {
+            return base.Channel.AppointmentToXMLByDateTimeAsync(parameters);
+        }
+        
+        public string ServiceProviderToXML(string parameters) {
+            return base.Channel.ServiceProviderToXML(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> ServiceProviderToXMLAsync(string parameters) {
+            return base.Channel.ServiceProviderToXMLAsync(parameters);
+        }
+        
         public string CreateUpsert(string parameters) {
             return base.Channel.CreateUpsert(parameters);
         }
         
         public System.Threading.Tasks.Task<string> CreateUpsertAsync(string parameters) {
             return base.Channel.CreateUpsertAsync(parameters);
+        }
+        
+        public string ServiceProviderToXMLByDateTime(string parameters) {
+            return base.Channel.ServiceProviderToXMLByDateTime(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> ServiceProviderToXMLByDateTimeAsync(string parameters) {
+            return base.Channel.ServiceProviderToXMLByDateTimeAsync(parameters);
+        }
+        
+        public string CustomerToXML(string parameters) {
+            return base.Channel.CustomerToXML(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> CustomerToXMLAsync(string parameters) {
+            return base.Channel.CustomerToXMLAsync(parameters);
         }
         
         public string SystemUserUpsert(string parameters) {
@@ -185,12 +453,156 @@ namespace ApplicationClient.AppointmentService {
             return base.Channel.SystemUserUpsertAsync(parameters);
         }
         
+        public string CustomerToXMLByDateTime(string parameters) {
+            return base.Channel.CustomerToXMLByDateTime(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> CustomerToXMLByDateTimeAsync(string parameters) {
+            return base.Channel.CustomerToXMLByDateTimeAsync(parameters);
+        }
+        
         public string SystemUserGet(string parameters) {
             return base.Channel.SystemUserGet(parameters);
         }
         
         public System.Threading.Tasks.Task<string> SystemUserGetAsync(string parameters) {
             return base.Channel.SystemUserGetAsync(parameters);
+        }
+        
+        public string ActivityScheduleToXML(string parameters) {
+            return base.Channel.ActivityScheduleToXML(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> ActivityScheduleToXMLAsync(string parameters) {
+            return base.Channel.ActivityScheduleToXMLAsync(parameters);
+        }
+        
+        public string ActivityScheduleToXMLByDateTime(string parameters) {
+            return base.Channel.ActivityScheduleToXMLByDateTime(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> ActivityScheduleToXMLByDateTimeAsync(string parameters) {
+            return base.Channel.ActivityScheduleToXMLByDateTimeAsync(parameters);
+        }
+        
+        public string StoreToXML(string parameters) {
+            return base.Channel.StoreToXML(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> StoreToXMLAsync(string parameters) {
+            return base.Channel.StoreToXMLAsync(parameters);
+        }
+        
+        public string StoreToXMLByDateTime(string parameters) {
+            return base.Channel.StoreToXMLByDateTime(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> StoreToXMLByDateTimeAsync(string parameters) {
+            return base.Channel.StoreToXMLByDateTimeAsync(parameters);
+        }
+        
+        public string PermissionToXML(string parameters) {
+            return base.Channel.PermissionToXML(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> PermissionToXMLAsync(string parameters) {
+            return base.Channel.PermissionToXMLAsync(parameters);
+        }
+        
+        public string PermissionToXMLByDateTime(string parameters) {
+            return base.Channel.PermissionToXMLByDateTime(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> PermissionToXMLByDateTimeAsync(string parameters) {
+            return base.Channel.PermissionToXMLByDateTimeAsync(parameters);
+        }
+        
+        public string SystemUserPermissionToXML(string parameters) {
+            return base.Channel.SystemUserPermissionToXML(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> SystemUserPermissionToXMLAsync(string parameters) {
+            return base.Channel.SystemUserPermissionToXMLAsync(parameters);
+        }
+        
+        public string SystemUserPermissionToXMLByDateTime(string parameters) {
+            return base.Channel.SystemUserPermissionToXMLByDateTime(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> SystemUserPermissionToXMLByDateTimeAsync(string parameters) {
+            return base.Channel.SystemUserPermissionToXMLByDateTimeAsync(parameters);
+        }
+        
+        public string SystemUserGroupToXML(string parameters) {
+            return base.Channel.SystemUserGroupToXML(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> SystemUserGroupToXMLAsync(string parameters) {
+            return base.Channel.SystemUserGroupToXMLAsync(parameters);
+        }
+        
+        public string SystemUserGroupToXMLByDateTime(string parameters) {
+            return base.Channel.SystemUserGroupToXMLByDateTime(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> SystemUserGroupToXMLByDateTimeAsync(string parameters) {
+            return base.Channel.SystemUserGroupToXMLByDateTimeAsync(parameters);
+        }
+        
+        public string SystemUserGroupLineToXML(string parameters) {
+            return base.Channel.SystemUserGroupLineToXML(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> SystemUserGroupLineToXMLAsync(string parameters) {
+            return base.Channel.SystemUserGroupLineToXMLAsync(parameters);
+        }
+        
+        public string SystemUserGroupLineToXMLByDateTime(string parameters) {
+            return base.Channel.SystemUserGroupLineToXMLByDateTime(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> SystemUserGroupLineToXMLByDateTimeAsync(string parameters) {
+            return base.Channel.SystemUserGroupLineToXMLByDateTimeAsync(parameters);
+        }
+        
+        public string SystemUserGroupPermissionToXML(string parameters) {
+            return base.Channel.SystemUserGroupPermissionToXML(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> SystemUserGroupPermissionToXMLAsync(string parameters) {
+            return base.Channel.SystemUserGroupPermissionToXMLAsync(parameters);
+        }
+        
+        public string SystemUserGroupPermissionToXMLByDateTime(string parameters) {
+            return base.Channel.SystemUserGroupPermissionToXMLByDateTime(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> SystemUserGroupPermissionToXMLByDateTimeAsync(string parameters) {
+            return base.Channel.SystemUserGroupPermissionToXMLByDateTimeAsync(parameters);
+        }
+        
+        public string GetChildren(string parameters) {
+            return base.Channel.GetChildren(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetChildrenAsync(string parameters) {
+            return base.Channel.GetChildrenAsync(parameters);
+        }
+        
+        public string CreateToXml(string parameters) {
+            return base.Channel.CreateToXml(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> CreateToXmlAsync(string parameters) {
+            return base.Channel.CreateToXmlAsync(parameters);
+        }
+        
+        public string Login(string parameters) {
+            return base.Channel.Login(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> LoginAsync(string parameters) {
+            return base.Channel.LoginAsync(parameters);
         }
         
         public string AccountUpsert(string parameters) {
@@ -305,28 +717,60 @@ namespace ApplicationClient.AppointmentService {
             return base.Channel.StoreGetAsync(parameters);
         }
         
-        public string MyTestTableUpsert(string parameters) {
-            return base.Channel.MyTestTableUpsert(parameters);
+        public string PermissionUpsert(string parameters) {
+            return base.Channel.PermissionUpsert(parameters);
         }
         
-        public System.Threading.Tasks.Task<string> MyTestTableUpsertAsync(string parameters) {
-            return base.Channel.MyTestTableUpsertAsync(parameters);
+        public System.Threading.Tasks.Task<string> PermissionUpsertAsync(string parameters) {
+            return base.Channel.PermissionUpsertAsync(parameters);
         }
         
-        public string MyTestTableGet(string parameters) {
-            return base.Channel.MyTestTableGet(parameters);
+        public string PermissionGet(string parameters) {
+            return base.Channel.PermissionGet(parameters);
         }
         
-        public System.Threading.Tasks.Task<string> MyTestTableGetAsync(string parameters) {
-            return base.Channel.MyTestTableGetAsync(parameters);
+        public System.Threading.Tasks.Task<string> PermissionGetAsync(string parameters) {
+            return base.Channel.PermissionGetAsync(parameters);
         }
         
-        public string Login(string parameters) {
-            return base.Channel.Login(parameters);
+        public string SystemUserPermissionUpsert(string parameters) {
+            return base.Channel.SystemUserPermissionUpsert(parameters);
         }
         
-        public System.Threading.Tasks.Task<string> LoginAsync(string parameters) {
-            return base.Channel.LoginAsync(parameters);
+        public System.Threading.Tasks.Task<string> SystemUserPermissionUpsertAsync(string parameters) {
+            return base.Channel.SystemUserPermissionUpsertAsync(parameters);
+        }
+        
+        public string SystemUserPermissionGet(string parameters) {
+            return base.Channel.SystemUserPermissionGet(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> SystemUserPermissionGetAsync(string parameters) {
+            return base.Channel.SystemUserPermissionGetAsync(parameters);
+        }
+        
+        public string SystemUserGroupUpsert(string parameters) {
+            return base.Channel.SystemUserGroupUpsert(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> SystemUserGroupUpsertAsync(string parameters) {
+            return base.Channel.SystemUserGroupUpsertAsync(parameters);
+        }
+        
+        public string SystemUserGroupGet(string parameters) {
+            return base.Channel.SystemUserGroupGet(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> SystemUserGroupGetAsync(string parameters) {
+            return base.Channel.SystemUserGroupGetAsync(parameters);
+        }
+        
+        public string SystemUserGroupPermissionUpsert(string parameters) {
+            return base.Channel.SystemUserGroupPermissionUpsert(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> SystemUserGroupPermissionUpsertAsync(string parameters) {
+            return base.Channel.SystemUserGroupPermissionUpsertAsync(parameters);
         }
         
         public string AuditLogUpsert(string parameters) {
@@ -335,6 +779,30 @@ namespace ApplicationClient.AppointmentService {
         
         public System.Threading.Tasks.Task<string> AuditLogUpsertAsync(string parameters) {
             return base.Channel.AuditLogUpsertAsync(parameters);
+        }
+        
+        public string SystemUserGroupPermissionGet(string parameters) {
+            return base.Channel.SystemUserGroupPermissionGet(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> SystemUserGroupPermissionGetAsync(string parameters) {
+            return base.Channel.SystemUserGroupPermissionGetAsync(parameters);
+        }
+        
+        public string Tester(string parameters) {
+            return base.Channel.Tester(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> TesterAsync(string parameters) {
+            return base.Channel.TesterAsync(parameters);
+        }
+        
+        public string AccountToXML(string parameters) {
+            return base.Channel.AccountToXML(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> AccountToXMLAsync(string parameters) {
+            return base.Channel.AccountToXMLAsync(parameters);
         }
     }
 }

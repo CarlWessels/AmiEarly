@@ -15,19 +15,211 @@ namespace AppointmentLibrary.Calls
 	using System.Collections.Generic;
 	public static class Calls
 	{
-			public static List<CreateUpsertResult> spCreateUpsertCall(string TableName, string connectionString)
+			public static List<AccountToXMLByDateTimeResult> spAccountToXMLByDateTimeCall(DateTime? fromDateTime, DateTime? toDateTime, string connectionString)
 			{
-				spCreateUpsertParameters parameters = new spCreateUpsertParameters();
-				parameters.TableName = TableName;
+				AccountToXMLByDateTimeParameters parameters = new AccountToXMLByDateTimeParameters();
+				parameters.FromDateTime = fromDateTime;
+				parameters.ToDateTime = toDateTime;
+
+				return spAccountToXMLByDateTimeCall (parameters, connectionString);
+			}
+			public static List<AccountToXMLByDateTimeResult> spAccountToXMLByDateTimeCall (AccountToXMLByDateTimeParameters parameters, string connectionString)
+			{
+				List<AccountToXMLByDateTimeResult> ret = new List<AccountToXMLByDateTimeResult>();
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
+					string qry = "EXEC spAccountToXMLByDateTime @FromDateTime = @FromDateTime, @ToDateTime = @ToDateTime";
+
+					using (SqlCommand cmd = new SqlCommand(qry, conn))
+					{
+						cmd.Parameters.Add(new SqlParameter("@FromDateTime", parameters.FromDateTime == null ? (object)DBNull.Value :  parameters.FromDateTime));
+						cmd.Parameters.Add(new SqlParameter("@ToDateTime", parameters.ToDateTime == null ? (object)DBNull.Value :  parameters.ToDateTime));
+				        using (SqlDataReader reader = cmd.ExecuteReader())
+				        {
+				            while (reader.Read())
+				            { 
+					            AccountToXMLByDateTimeResult res = new AccountToXMLByDateTimeResult();
+								res.XML = reader["XML"].ToString();
+								ret.Add(res);
+				            }
+				        }
+				    }
+				}
+				return ret;
+			}
+			public static List<ActivityTypeToXMLResult> spActivityTypeToXMLCall(string gUIDS, string connectionString)
+			{
+				ActivityTypeToXMLParameters parameters = new ActivityTypeToXMLParameters();
+				parameters.GUIDS = gUIDS;
+
+				return spActivityTypeToXMLCall (parameters, connectionString);
+			}
+			public static List<ActivityTypeToXMLResult> spActivityTypeToXMLCall (ActivityTypeToXMLParameters parameters, string connectionString)
+			{
+				List<ActivityTypeToXMLResult> ret = new List<ActivityTypeToXMLResult>();
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
+					string qry = "EXEC spActivityTypeToXML @GUIDS = @GUIDS";
+
+					using (SqlCommand cmd = new SqlCommand(qry, conn))
+					{
+						cmd.Parameters.Add(new SqlParameter("@GUIDS", parameters.GUIDS == null ? (object)DBNull.Value :  parameters.GUIDS));
+				        using (SqlDataReader reader = cmd.ExecuteReader())
+				        {
+				            while (reader.Read())
+				            { 
+					            ActivityTypeToXMLResult res = new ActivityTypeToXMLResult();
+								res.XML = reader["XML"].ToString();
+								ret.Add(res);
+				            }
+				        }
+				    }
+				}
+				return ret;
+			}
+			public static List<ActivityTypeToXMLByDateTimeResult> spActivityTypeToXMLByDateTimeCall(DateTime? fromDateTime, DateTime? toDateTime, string connectionString)
+			{
+				ActivityTypeToXMLByDateTimeParameters parameters = new ActivityTypeToXMLByDateTimeParameters();
+				parameters.FromDateTime = fromDateTime;
+				parameters.ToDateTime = toDateTime;
+
+				return spActivityTypeToXMLByDateTimeCall (parameters, connectionString);
+			}
+			public static List<ActivityTypeToXMLByDateTimeResult> spActivityTypeToXMLByDateTimeCall (ActivityTypeToXMLByDateTimeParameters parameters, string connectionString)
+			{
+				List<ActivityTypeToXMLByDateTimeResult> ret = new List<ActivityTypeToXMLByDateTimeResult>();
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
+					string qry = "EXEC spActivityTypeToXMLByDateTime @FromDateTime = @FromDateTime, @ToDateTime = @ToDateTime";
+
+					using (SqlCommand cmd = new SqlCommand(qry, conn))
+					{
+						cmd.Parameters.Add(new SqlParameter("@FromDateTime", parameters.FromDateTime == null ? (object)DBNull.Value :  parameters.FromDateTime));
+						cmd.Parameters.Add(new SqlParameter("@ToDateTime", parameters.ToDateTime == null ? (object)DBNull.Value :  parameters.ToDateTime));
+				        using (SqlDataReader reader = cmd.ExecuteReader())
+				        {
+				            while (reader.Read())
+				            { 
+					            ActivityTypeToXMLByDateTimeResult res = new ActivityTypeToXMLByDateTimeResult();
+								res.XML = reader["XML"].ToString();
+								ret.Add(res);
+				            }
+				        }
+				    }
+				}
+				return ret;
+			}
+			public static List<AppointmentToXMLResult> spAppointmentToXMLCall(string gUIDS, string connectionString)
+			{
+				AppointmentToXMLParameters parameters = new AppointmentToXMLParameters();
+				parameters.GUIDS = gUIDS;
+
+				return spAppointmentToXMLCall (parameters, connectionString);
+			}
+			public static List<AppointmentToXMLResult> spAppointmentToXMLCall (AppointmentToXMLParameters parameters, string connectionString)
+			{
+				List<AppointmentToXMLResult> ret = new List<AppointmentToXMLResult>();
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
+					string qry = "EXEC spAppointmentToXML @GUIDS = @GUIDS";
+
+					using (SqlCommand cmd = new SqlCommand(qry, conn))
+					{
+						cmd.Parameters.Add(new SqlParameter("@GUIDS", parameters.GUIDS == null ? (object)DBNull.Value :  parameters.GUIDS));
+				        using (SqlDataReader reader = cmd.ExecuteReader())
+				        {
+				            while (reader.Read())
+				            { 
+					            AppointmentToXMLResult res = new AppointmentToXMLResult();
+								res.XML = reader["XML"].ToString();
+								ret.Add(res);
+				            }
+				        }
+				    }
+				}
+				return ret;
+			}
+			public static List<AppointmentToXMLByDateTimeResult> spAppointmentToXMLByDateTimeCall(DateTime? fromDateTime, DateTime? toDateTime, string connectionString)
+			{
+				AppointmentToXMLByDateTimeParameters parameters = new AppointmentToXMLByDateTimeParameters();
+				parameters.FromDateTime = fromDateTime;
+				parameters.ToDateTime = toDateTime;
+
+				return spAppointmentToXMLByDateTimeCall (parameters, connectionString);
+			}
+			public static List<AppointmentToXMLByDateTimeResult> spAppointmentToXMLByDateTimeCall (AppointmentToXMLByDateTimeParameters parameters, string connectionString)
+			{
+				List<AppointmentToXMLByDateTimeResult> ret = new List<AppointmentToXMLByDateTimeResult>();
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
+					string qry = "EXEC spAppointmentToXMLByDateTime @FromDateTime = @FromDateTime, @ToDateTime = @ToDateTime";
+
+					using (SqlCommand cmd = new SqlCommand(qry, conn))
+					{
+						cmd.Parameters.Add(new SqlParameter("@FromDateTime", parameters.FromDateTime == null ? (object)DBNull.Value :  parameters.FromDateTime));
+						cmd.Parameters.Add(new SqlParameter("@ToDateTime", parameters.ToDateTime == null ? (object)DBNull.Value :  parameters.ToDateTime));
+				        using (SqlDataReader reader = cmd.ExecuteReader())
+				        {
+				            while (reader.Read())
+				            { 
+					            AppointmentToXMLByDateTimeResult res = new AppointmentToXMLByDateTimeResult();
+								res.XML = reader["XML"].ToString();
+								ret.Add(res);
+				            }
+				        }
+				    }
+				}
+				return ret;
+			}
+			public static List<ServiceProviderToXMLResult> spServiceProviderToXMLCall(string gUIDS, string connectionString)
+			{
+				ServiceProviderToXMLParameters parameters = new ServiceProviderToXMLParameters();
+				parameters.GUIDS = gUIDS;
+
+				return spServiceProviderToXMLCall (parameters, connectionString);
+			}
+			public static List<ServiceProviderToXMLResult> spServiceProviderToXMLCall (ServiceProviderToXMLParameters parameters, string connectionString)
+			{
+				List<ServiceProviderToXMLResult> ret = new List<ServiceProviderToXMLResult>();
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
+					string qry = "EXEC spServiceProviderToXML @GUIDS = @GUIDS";
+
+					using (SqlCommand cmd = new SqlCommand(qry, conn))
+					{
+						cmd.Parameters.Add(new SqlParameter("@GUIDS", parameters.GUIDS == null ? (object)DBNull.Value :  parameters.GUIDS));
+				        using (SqlDataReader reader = cmd.ExecuteReader())
+				        {
+				            while (reader.Read())
+				            { 
+					            ServiceProviderToXMLResult res = new ServiceProviderToXMLResult();
+								res.XML = reader["XML"].ToString();
+								ret.Add(res);
+				            }
+				        }
+				    }
+				}
+				return ret;
+			}
+			public static List<CreateUpsertResult> spCreateUpsertCall(string tableName, string connectionString)
+			{
+				CreateUpsertParameters parameters = new CreateUpsertParameters();
+				parameters.TableName = tableName;
 
 				return spCreateUpsertCall (parameters, connectionString);
 			}
-			public static List<CreateUpsertResult> spCreateUpsertCall (spCreateUpsertParameters parameters, string connectionString)
+			public static List<CreateUpsertResult> spCreateUpsertCall (CreateUpsertParameters parameters, string connectionString)
 			{
 				List<CreateUpsertResult> ret = new List<CreateUpsertResult>();
 				using (SqlConnection conn = new SqlConnection(connectionString))
 				{
-				conn.Open();
+					conn.Open();
 					string qry = "EXEC spCreateUpsert @TableName = @TableName";
 
 					using (SqlCommand cmd = new SqlCommand(qry, conn))
@@ -45,26 +237,90 @@ namespace AppointmentLibrary.Calls
 				}
 				return ret;
 			}
-			public static List<SystemUserUpsertResult> spSystemUserUpsertCall(Guid? GUID, bool? IsDeleted, DateTime? ActiveDateTime, DateTime? TerminationDateTime, string Username, string Password, Guid? SystemUserGUID, bool? ReturnResults, string connectionString)
+			public static List<ServiceProviderToXMLByDateTimeResult> spServiceProviderToXMLByDateTimeCall(DateTime? fromDateTime, DateTime? toDateTime, string connectionString)
 			{
-				spSystemUserUpsertParameters parameters = new spSystemUserUpsertParameters();
-				parameters.GUID = GUID;
-				parameters.IsDeleted = IsDeleted;
-				parameters.ActiveDateTime = ActiveDateTime;
-				parameters.TerminationDateTime = TerminationDateTime;
-				parameters.Username = Username;
-				parameters.Password = Password;
-				parameters.SystemUserGUID = SystemUserGUID;
-				parameters.ReturnResults = ReturnResults;
+				ServiceProviderToXMLByDateTimeParameters parameters = new ServiceProviderToXMLByDateTimeParameters();
+				parameters.FromDateTime = fromDateTime;
+				parameters.ToDateTime = toDateTime;
+
+				return spServiceProviderToXMLByDateTimeCall (parameters, connectionString);
+			}
+			public static List<ServiceProviderToXMLByDateTimeResult> spServiceProviderToXMLByDateTimeCall (ServiceProviderToXMLByDateTimeParameters parameters, string connectionString)
+			{
+				List<ServiceProviderToXMLByDateTimeResult> ret = new List<ServiceProviderToXMLByDateTimeResult>();
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
+					string qry = "EXEC spServiceProviderToXMLByDateTime @FromDateTime = @FromDateTime, @ToDateTime = @ToDateTime";
+
+					using (SqlCommand cmd = new SqlCommand(qry, conn))
+					{
+						cmd.Parameters.Add(new SqlParameter("@FromDateTime", parameters.FromDateTime == null ? (object)DBNull.Value :  parameters.FromDateTime));
+						cmd.Parameters.Add(new SqlParameter("@ToDateTime", parameters.ToDateTime == null ? (object)DBNull.Value :  parameters.ToDateTime));
+				        using (SqlDataReader reader = cmd.ExecuteReader())
+				        {
+				            while (reader.Read())
+				            { 
+					            ServiceProviderToXMLByDateTimeResult res = new ServiceProviderToXMLByDateTimeResult();
+								res.XML = reader["XML"].ToString();
+								ret.Add(res);
+				            }
+				        }
+				    }
+				}
+				return ret;
+			}
+			public static List<CustomerToXMLResult> spCustomerToXMLCall(string gUIDS, string connectionString)
+			{
+				CustomerToXMLParameters parameters = new CustomerToXMLParameters();
+				parameters.GUIDS = gUIDS;
+
+				return spCustomerToXMLCall (parameters, connectionString);
+			}
+			public static List<CustomerToXMLResult> spCustomerToXMLCall (CustomerToXMLParameters parameters, string connectionString)
+			{
+				List<CustomerToXMLResult> ret = new List<CustomerToXMLResult>();
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
+					string qry = "EXEC spCustomerToXML @GUIDS = @GUIDS";
+
+					using (SqlCommand cmd = new SqlCommand(qry, conn))
+					{
+						cmd.Parameters.Add(new SqlParameter("@GUIDS", parameters.GUIDS == null ? (object)DBNull.Value :  parameters.GUIDS));
+				        using (SqlDataReader reader = cmd.ExecuteReader())
+				        {
+				            while (reader.Read())
+				            { 
+					            CustomerToXMLResult res = new CustomerToXMLResult();
+								res.XML = reader["XML"].ToString();
+								ret.Add(res);
+				            }
+				        }
+				    }
+				}
+				return ret;
+			}
+			public static List<SystemUserUpsertResult> spSystemUserUpsertCall(Guid? gUID, bool? isDeleted, DateTime? activeDateTime, DateTime? terminationDateTime, string username, string password, Guid? systemUserGUID, bool? returnResults, string connectionString)
+			{
+				SystemUserUpsertParameters parameters = new SystemUserUpsertParameters();
+				parameters.GUID = gUID;
+				parameters.IsDeleted = isDeleted;
+				parameters.ActiveDateTime = activeDateTime;
+				parameters.TerminationDateTime = terminationDateTime;
+				parameters.Username = username;
+				parameters.Password = password;
+				parameters.SystemUserGUID = systemUserGUID;
+				parameters.ReturnResults = returnResults;
 
 				return spSystemUserUpsertCall (parameters, connectionString);
 			}
-			public static List<SystemUserUpsertResult> spSystemUserUpsertCall (spSystemUserUpsertParameters parameters, string connectionString)
+			public static List<SystemUserUpsertResult> spSystemUserUpsertCall (SystemUserUpsertParameters parameters, string connectionString)
 			{
 				List<SystemUserUpsertResult> ret = new List<SystemUserUpsertResult>();
 				using (SqlConnection conn = new SqlConnection(connectionString))
 				{
-				conn.Open();
+					conn.Open();
 					string qry = "EXEC spSystemUserUpsert @GUID = @GUID, @IsDeleted = @IsDeleted, @ActiveDateTime = @ActiveDateTime, @TerminationDateTime = @TerminationDateTime, @Username = @Username, @Password = @Password, @SystemUserGUID = @SystemUserGUID, @ReturnResults = @ReturnResults";
 
 					using (SqlCommand cmd = new SqlCommand(qry, conn))
@@ -111,19 +367,52 @@ namespace AppointmentLibrary.Calls
 				}
 				return ret;
 			}
-			public static List<SystemUserGetResult> spSystemUserGetCall(Guid? SystemUserGUID, string connectionString)
+			public static List<CustomerToXMLByDateTimeResult> spCustomerToXMLByDateTimeCall(DateTime? fromDateTime, DateTime? toDateTime, string connectionString)
 			{
-				spSystemUserGetParameters parameters = new spSystemUserGetParameters();
-				parameters.SystemUserGUID = SystemUserGUID;
+				CustomerToXMLByDateTimeParameters parameters = new CustomerToXMLByDateTimeParameters();
+				parameters.FromDateTime = fromDateTime;
+				parameters.ToDateTime = toDateTime;
+
+				return spCustomerToXMLByDateTimeCall (parameters, connectionString);
+			}
+			public static List<CustomerToXMLByDateTimeResult> spCustomerToXMLByDateTimeCall (CustomerToXMLByDateTimeParameters parameters, string connectionString)
+			{
+				List<CustomerToXMLByDateTimeResult> ret = new List<CustomerToXMLByDateTimeResult>();
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
+					string qry = "EXEC spCustomerToXMLByDateTime @FromDateTime = @FromDateTime, @ToDateTime = @ToDateTime";
+
+					using (SqlCommand cmd = new SqlCommand(qry, conn))
+					{
+						cmd.Parameters.Add(new SqlParameter("@FromDateTime", parameters.FromDateTime == null ? (object)DBNull.Value :  parameters.FromDateTime));
+						cmd.Parameters.Add(new SqlParameter("@ToDateTime", parameters.ToDateTime == null ? (object)DBNull.Value :  parameters.ToDateTime));
+				        using (SqlDataReader reader = cmd.ExecuteReader())
+				        {
+				            while (reader.Read())
+				            { 
+					            CustomerToXMLByDateTimeResult res = new CustomerToXMLByDateTimeResult();
+								res.XML = reader["XML"].ToString();
+								ret.Add(res);
+				            }
+				        }
+				    }
+				}
+				return ret;
+			}
+			public static List<SystemUserGetResult> spSystemUserGetCall(Guid? systemUserGUID, string connectionString)
+			{
+				SystemUserGetParameters parameters = new SystemUserGetParameters();
+				parameters.SystemUserGUID = systemUserGUID;
 
 				return spSystemUserGetCall (parameters, connectionString);
 			}
-			public static List<SystemUserGetResult> spSystemUserGetCall (spSystemUserGetParameters parameters, string connectionString)
+			public static List<SystemUserGetResult> spSystemUserGetCall (SystemUserGetParameters parameters, string connectionString)
 			{
 				List<SystemUserGetResult> ret = new List<SystemUserGetResult>();
 				using (SqlConnection conn = new SqlConnection(connectionString))
 				{
-				conn.Open();
+					conn.Open();
 					string qry = "EXEC spSystemUserGet @SystemUserGUID = @SystemUserGUID";
 
 					using (SqlCommand cmd = new SqlCommand(qry, conn))
@@ -161,19 +450,467 @@ namespace AppointmentLibrary.Calls
 				}
 				return ret;
 			}
-			public static List<GetChildrenResult> spGetChildrenCall(string TableName, string connectionString)
+			public static List<ActivityScheduleToXMLResult> spActivityScheduleToXMLCall(string gUIDS, string connectionString)
 			{
-				spGetChildrenParameters parameters = new spGetChildrenParameters();
-				parameters.TableName = TableName;
+				ActivityScheduleToXMLParameters parameters = new ActivityScheduleToXMLParameters();
+				parameters.GUIDS = gUIDS;
+
+				return spActivityScheduleToXMLCall (parameters, connectionString);
+			}
+			public static List<ActivityScheduleToXMLResult> spActivityScheduleToXMLCall (ActivityScheduleToXMLParameters parameters, string connectionString)
+			{
+				List<ActivityScheduleToXMLResult> ret = new List<ActivityScheduleToXMLResult>();
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
+					string qry = "EXEC spActivityScheduleToXML @GUIDS = @GUIDS";
+
+					using (SqlCommand cmd = new SqlCommand(qry, conn))
+					{
+						cmd.Parameters.Add(new SqlParameter("@GUIDS", parameters.GUIDS == null ? (object)DBNull.Value :  parameters.GUIDS));
+				        using (SqlDataReader reader = cmd.ExecuteReader())
+				        {
+				            while (reader.Read())
+				            { 
+					            ActivityScheduleToXMLResult res = new ActivityScheduleToXMLResult();
+								res.XML = reader["XML"].ToString();
+								ret.Add(res);
+				            }
+				        }
+				    }
+				}
+				return ret;
+			}
+			public static List<ActivityScheduleToXMLByDateTimeResult> spActivityScheduleToXMLByDateTimeCall(DateTime? fromDateTime, DateTime? toDateTime, string connectionString)
+			{
+				ActivityScheduleToXMLByDateTimeParameters parameters = new ActivityScheduleToXMLByDateTimeParameters();
+				parameters.FromDateTime = fromDateTime;
+				parameters.ToDateTime = toDateTime;
+
+				return spActivityScheduleToXMLByDateTimeCall (parameters, connectionString);
+			}
+			public static List<ActivityScheduleToXMLByDateTimeResult> spActivityScheduleToXMLByDateTimeCall (ActivityScheduleToXMLByDateTimeParameters parameters, string connectionString)
+			{
+				List<ActivityScheduleToXMLByDateTimeResult> ret = new List<ActivityScheduleToXMLByDateTimeResult>();
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
+					string qry = "EXEC spActivityScheduleToXMLByDateTime @FromDateTime = @FromDateTime, @ToDateTime = @ToDateTime";
+
+					using (SqlCommand cmd = new SqlCommand(qry, conn))
+					{
+						cmd.Parameters.Add(new SqlParameter("@FromDateTime", parameters.FromDateTime == null ? (object)DBNull.Value :  parameters.FromDateTime));
+						cmd.Parameters.Add(new SqlParameter("@ToDateTime", parameters.ToDateTime == null ? (object)DBNull.Value :  parameters.ToDateTime));
+				        using (SqlDataReader reader = cmd.ExecuteReader())
+				        {
+				            while (reader.Read())
+				            { 
+					            ActivityScheduleToXMLByDateTimeResult res = new ActivityScheduleToXMLByDateTimeResult();
+								res.XML = reader["XML"].ToString();
+								ret.Add(res);
+				            }
+				        }
+				    }
+				}
+				return ret;
+			}
+			public static List<StoreToXMLResult> spStoreToXMLCall(string gUIDS, string connectionString)
+			{
+				StoreToXMLParameters parameters = new StoreToXMLParameters();
+				parameters.GUIDS = gUIDS;
+
+				return spStoreToXMLCall (parameters, connectionString);
+			}
+			public static List<StoreToXMLResult> spStoreToXMLCall (StoreToXMLParameters parameters, string connectionString)
+			{
+				List<StoreToXMLResult> ret = new List<StoreToXMLResult>();
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
+					string qry = "EXEC spStoreToXML @GUIDS = @GUIDS";
+
+					using (SqlCommand cmd = new SqlCommand(qry, conn))
+					{
+						cmd.Parameters.Add(new SqlParameter("@GUIDS", parameters.GUIDS == null ? (object)DBNull.Value :  parameters.GUIDS));
+				        using (SqlDataReader reader = cmd.ExecuteReader())
+				        {
+				            while (reader.Read())
+				            { 
+					            StoreToXMLResult res = new StoreToXMLResult();
+								res.XML = reader["XML"].ToString();
+								ret.Add(res);
+				            }
+				        }
+				    }
+				}
+				return ret;
+			}
+			public static List<StoreToXMLByDateTimeResult> spStoreToXMLByDateTimeCall(DateTime? fromDateTime, DateTime? toDateTime, string connectionString)
+			{
+				StoreToXMLByDateTimeParameters parameters = new StoreToXMLByDateTimeParameters();
+				parameters.FromDateTime = fromDateTime;
+				parameters.ToDateTime = toDateTime;
+
+				return spStoreToXMLByDateTimeCall (parameters, connectionString);
+			}
+			public static List<StoreToXMLByDateTimeResult> spStoreToXMLByDateTimeCall (StoreToXMLByDateTimeParameters parameters, string connectionString)
+			{
+				List<StoreToXMLByDateTimeResult> ret = new List<StoreToXMLByDateTimeResult>();
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
+					string qry = "EXEC spStoreToXMLByDateTime @FromDateTime = @FromDateTime, @ToDateTime = @ToDateTime";
+
+					using (SqlCommand cmd = new SqlCommand(qry, conn))
+					{
+						cmd.Parameters.Add(new SqlParameter("@FromDateTime", parameters.FromDateTime == null ? (object)DBNull.Value :  parameters.FromDateTime));
+						cmd.Parameters.Add(new SqlParameter("@ToDateTime", parameters.ToDateTime == null ? (object)DBNull.Value :  parameters.ToDateTime));
+				        using (SqlDataReader reader = cmd.ExecuteReader())
+				        {
+				            while (reader.Read())
+				            { 
+					            StoreToXMLByDateTimeResult res = new StoreToXMLByDateTimeResult();
+								res.XML = reader["XML"].ToString();
+								ret.Add(res);
+				            }
+				        }
+				    }
+				}
+				return ret;
+			}
+			public static List<PermissionToXMLResult> spPermissionToXMLCall(string gUIDS, string connectionString)
+			{
+				PermissionToXMLParameters parameters = new PermissionToXMLParameters();
+				parameters.GUIDS = gUIDS;
+
+				return spPermissionToXMLCall (parameters, connectionString);
+			}
+			public static List<PermissionToXMLResult> spPermissionToXMLCall (PermissionToXMLParameters parameters, string connectionString)
+			{
+				List<PermissionToXMLResult> ret = new List<PermissionToXMLResult>();
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
+					string qry = "EXEC spPermissionToXML @GUIDS = @GUIDS";
+
+					using (SqlCommand cmd = new SqlCommand(qry, conn))
+					{
+						cmd.Parameters.Add(new SqlParameter("@GUIDS", parameters.GUIDS == null ? (object)DBNull.Value :  parameters.GUIDS));
+				        using (SqlDataReader reader = cmd.ExecuteReader())
+				        {
+				            while (reader.Read())
+				            { 
+					            PermissionToXMLResult res = new PermissionToXMLResult();
+								res.XML = reader["XML"].ToString();
+								ret.Add(res);
+				            }
+				        }
+				    }
+				}
+				return ret;
+			}
+			public static List<PermissionToXMLByDateTimeResult> spPermissionToXMLByDateTimeCall(DateTime? fromDateTime, DateTime? toDateTime, string connectionString)
+			{
+				PermissionToXMLByDateTimeParameters parameters = new PermissionToXMLByDateTimeParameters();
+				parameters.FromDateTime = fromDateTime;
+				parameters.ToDateTime = toDateTime;
+
+				return spPermissionToXMLByDateTimeCall (parameters, connectionString);
+			}
+			public static List<PermissionToXMLByDateTimeResult> spPermissionToXMLByDateTimeCall (PermissionToXMLByDateTimeParameters parameters, string connectionString)
+			{
+				List<PermissionToXMLByDateTimeResult> ret = new List<PermissionToXMLByDateTimeResult>();
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
+					string qry = "EXEC spPermissionToXMLByDateTime @FromDateTime = @FromDateTime, @ToDateTime = @ToDateTime";
+
+					using (SqlCommand cmd = new SqlCommand(qry, conn))
+					{
+						cmd.Parameters.Add(new SqlParameter("@FromDateTime", parameters.FromDateTime == null ? (object)DBNull.Value :  parameters.FromDateTime));
+						cmd.Parameters.Add(new SqlParameter("@ToDateTime", parameters.ToDateTime == null ? (object)DBNull.Value :  parameters.ToDateTime));
+				        using (SqlDataReader reader = cmd.ExecuteReader())
+				        {
+				            while (reader.Read())
+				            { 
+					            PermissionToXMLByDateTimeResult res = new PermissionToXMLByDateTimeResult();
+								res.XML = reader["XML"].ToString();
+								ret.Add(res);
+				            }
+				        }
+				    }
+				}
+				return ret;
+			}
+			public static List<SystemUserPermissionToXMLResult> spSystemUserPermissionToXMLCall(string gUIDS, string connectionString)
+			{
+				SystemUserPermissionToXMLParameters parameters = new SystemUserPermissionToXMLParameters();
+				parameters.GUIDS = gUIDS;
+
+				return spSystemUserPermissionToXMLCall (parameters, connectionString);
+			}
+			public static List<SystemUserPermissionToXMLResult> spSystemUserPermissionToXMLCall (SystemUserPermissionToXMLParameters parameters, string connectionString)
+			{
+				List<SystemUserPermissionToXMLResult> ret = new List<SystemUserPermissionToXMLResult>();
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
+					string qry = "EXEC spSystemUserPermissionToXML @GUIDS = @GUIDS";
+
+					using (SqlCommand cmd = new SqlCommand(qry, conn))
+					{
+						cmd.Parameters.Add(new SqlParameter("@GUIDS", parameters.GUIDS == null ? (object)DBNull.Value :  parameters.GUIDS));
+				        using (SqlDataReader reader = cmd.ExecuteReader())
+				        {
+				            while (reader.Read())
+				            { 
+					            SystemUserPermissionToXMLResult res = new SystemUserPermissionToXMLResult();
+								res.XML = reader["XML"].ToString();
+								ret.Add(res);
+				            }
+				        }
+				    }
+				}
+				return ret;
+			}
+			public static List<SystemUserPermissionToXMLByDateTimeResult> spSystemUserPermissionToXMLByDateTimeCall(DateTime? fromDateTime, DateTime? toDateTime, string connectionString)
+			{
+				SystemUserPermissionToXMLByDateTimeParameters parameters = new SystemUserPermissionToXMLByDateTimeParameters();
+				parameters.FromDateTime = fromDateTime;
+				parameters.ToDateTime = toDateTime;
+
+				return spSystemUserPermissionToXMLByDateTimeCall (parameters, connectionString);
+			}
+			public static List<SystemUserPermissionToXMLByDateTimeResult> spSystemUserPermissionToXMLByDateTimeCall (SystemUserPermissionToXMLByDateTimeParameters parameters, string connectionString)
+			{
+				List<SystemUserPermissionToXMLByDateTimeResult> ret = new List<SystemUserPermissionToXMLByDateTimeResult>();
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
+					string qry = "EXEC spSystemUserPermissionToXMLByDateTime @FromDateTime = @FromDateTime, @ToDateTime = @ToDateTime";
+
+					using (SqlCommand cmd = new SqlCommand(qry, conn))
+					{
+						cmd.Parameters.Add(new SqlParameter("@FromDateTime", parameters.FromDateTime == null ? (object)DBNull.Value :  parameters.FromDateTime));
+						cmd.Parameters.Add(new SqlParameter("@ToDateTime", parameters.ToDateTime == null ? (object)DBNull.Value :  parameters.ToDateTime));
+				        using (SqlDataReader reader = cmd.ExecuteReader())
+				        {
+				            while (reader.Read())
+				            { 
+					            SystemUserPermissionToXMLByDateTimeResult res = new SystemUserPermissionToXMLByDateTimeResult();
+								res.XML = reader["XML"].ToString();
+								ret.Add(res);
+				            }
+				        }
+				    }
+				}
+				return ret;
+			}
+			public static List<SystemUserGroupToXMLResult> spSystemUserGroupToXMLCall(string gUIDS, string connectionString)
+			{
+				SystemUserGroupToXMLParameters parameters = new SystemUserGroupToXMLParameters();
+				parameters.GUIDS = gUIDS;
+
+				return spSystemUserGroupToXMLCall (parameters, connectionString);
+			}
+			public static List<SystemUserGroupToXMLResult> spSystemUserGroupToXMLCall (SystemUserGroupToXMLParameters parameters, string connectionString)
+			{
+				List<SystemUserGroupToXMLResult> ret = new List<SystemUserGroupToXMLResult>();
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
+					string qry = "EXEC spSystemUserGroupToXML @GUIDS = @GUIDS";
+
+					using (SqlCommand cmd = new SqlCommand(qry, conn))
+					{
+						cmd.Parameters.Add(new SqlParameter("@GUIDS", parameters.GUIDS == null ? (object)DBNull.Value :  parameters.GUIDS));
+				        using (SqlDataReader reader = cmd.ExecuteReader())
+				        {
+				            while (reader.Read())
+				            { 
+					            SystemUserGroupToXMLResult res = new SystemUserGroupToXMLResult();
+								res.XML = reader["XML"].ToString();
+								ret.Add(res);
+				            }
+				        }
+				    }
+				}
+				return ret;
+			}
+			public static List<SystemUserGroupToXMLByDateTimeResult> spSystemUserGroupToXMLByDateTimeCall(DateTime? fromDateTime, DateTime? toDateTime, string connectionString)
+			{
+				SystemUserGroupToXMLByDateTimeParameters parameters = new SystemUserGroupToXMLByDateTimeParameters();
+				parameters.FromDateTime = fromDateTime;
+				parameters.ToDateTime = toDateTime;
+
+				return spSystemUserGroupToXMLByDateTimeCall (parameters, connectionString);
+			}
+			public static List<SystemUserGroupToXMLByDateTimeResult> spSystemUserGroupToXMLByDateTimeCall (SystemUserGroupToXMLByDateTimeParameters parameters, string connectionString)
+			{
+				List<SystemUserGroupToXMLByDateTimeResult> ret = new List<SystemUserGroupToXMLByDateTimeResult>();
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
+					string qry = "EXEC spSystemUserGroupToXMLByDateTime @FromDateTime = @FromDateTime, @ToDateTime = @ToDateTime";
+
+					using (SqlCommand cmd = new SqlCommand(qry, conn))
+					{
+						cmd.Parameters.Add(new SqlParameter("@FromDateTime", parameters.FromDateTime == null ? (object)DBNull.Value :  parameters.FromDateTime));
+						cmd.Parameters.Add(new SqlParameter("@ToDateTime", parameters.ToDateTime == null ? (object)DBNull.Value :  parameters.ToDateTime));
+				        using (SqlDataReader reader = cmd.ExecuteReader())
+				        {
+				            while (reader.Read())
+				            { 
+					            SystemUserGroupToXMLByDateTimeResult res = new SystemUserGroupToXMLByDateTimeResult();
+								res.XML = reader["XML"].ToString();
+								ret.Add(res);
+				            }
+				        }
+				    }
+				}
+				return ret;
+			}
+			public static List<SystemUserGroupLineToXMLResult> spSystemUserGroupLineToXMLCall(string gUIDS, string connectionString)
+			{
+				SystemUserGroupLineToXMLParameters parameters = new SystemUserGroupLineToXMLParameters();
+				parameters.GUIDS = gUIDS;
+
+				return spSystemUserGroupLineToXMLCall (parameters, connectionString);
+			}
+			public static List<SystemUserGroupLineToXMLResult> spSystemUserGroupLineToXMLCall (SystemUserGroupLineToXMLParameters parameters, string connectionString)
+			{
+				List<SystemUserGroupLineToXMLResult> ret = new List<SystemUserGroupLineToXMLResult>();
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
+					string qry = "EXEC spSystemUserGroupLineToXML @GUIDS = @GUIDS";
+
+					using (SqlCommand cmd = new SqlCommand(qry, conn))
+					{
+						cmd.Parameters.Add(new SqlParameter("@GUIDS", parameters.GUIDS == null ? (object)DBNull.Value :  parameters.GUIDS));
+				        using (SqlDataReader reader = cmd.ExecuteReader())
+				        {
+				            while (reader.Read())
+				            { 
+					            SystemUserGroupLineToXMLResult res = new SystemUserGroupLineToXMLResult();
+								res.XML = reader["XML"].ToString();
+								ret.Add(res);
+				            }
+				        }
+				    }
+				}
+				return ret;
+			}
+			public static List<SystemUserGroupLineToXMLByDateTimeResult> spSystemUserGroupLineToXMLByDateTimeCall(DateTime? fromDateTime, DateTime? toDateTime, string connectionString)
+			{
+				SystemUserGroupLineToXMLByDateTimeParameters parameters = new SystemUserGroupLineToXMLByDateTimeParameters();
+				parameters.FromDateTime = fromDateTime;
+				parameters.ToDateTime = toDateTime;
+
+				return spSystemUserGroupLineToXMLByDateTimeCall (parameters, connectionString);
+			}
+			public static List<SystemUserGroupLineToXMLByDateTimeResult> spSystemUserGroupLineToXMLByDateTimeCall (SystemUserGroupLineToXMLByDateTimeParameters parameters, string connectionString)
+			{
+				List<SystemUserGroupLineToXMLByDateTimeResult> ret = new List<SystemUserGroupLineToXMLByDateTimeResult>();
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
+					string qry = "EXEC spSystemUserGroupLineToXMLByDateTime @FromDateTime = @FromDateTime, @ToDateTime = @ToDateTime";
+
+					using (SqlCommand cmd = new SqlCommand(qry, conn))
+					{
+						cmd.Parameters.Add(new SqlParameter("@FromDateTime", parameters.FromDateTime == null ? (object)DBNull.Value :  parameters.FromDateTime));
+						cmd.Parameters.Add(new SqlParameter("@ToDateTime", parameters.ToDateTime == null ? (object)DBNull.Value :  parameters.ToDateTime));
+				        using (SqlDataReader reader = cmd.ExecuteReader())
+				        {
+				            while (reader.Read())
+				            { 
+					            SystemUserGroupLineToXMLByDateTimeResult res = new SystemUserGroupLineToXMLByDateTimeResult();
+								res.XML = reader["XML"].ToString();
+								ret.Add(res);
+				            }
+				        }
+				    }
+				}
+				return ret;
+			}
+			public static List<SystemUserGroupPermissionToXMLResult> spSystemUserGroupPermissionToXMLCall(string gUIDS, string connectionString)
+			{
+				SystemUserGroupPermissionToXMLParameters parameters = new SystemUserGroupPermissionToXMLParameters();
+				parameters.GUIDS = gUIDS;
+
+				return spSystemUserGroupPermissionToXMLCall (parameters, connectionString);
+			}
+			public static List<SystemUserGroupPermissionToXMLResult> spSystemUserGroupPermissionToXMLCall (SystemUserGroupPermissionToXMLParameters parameters, string connectionString)
+			{
+				List<SystemUserGroupPermissionToXMLResult> ret = new List<SystemUserGroupPermissionToXMLResult>();
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
+					string qry = "EXEC spSystemUserGroupPermissionToXML @GUIDS = @GUIDS";
+
+					using (SqlCommand cmd = new SqlCommand(qry, conn))
+					{
+						cmd.Parameters.Add(new SqlParameter("@GUIDS", parameters.GUIDS == null ? (object)DBNull.Value :  parameters.GUIDS));
+				        using (SqlDataReader reader = cmd.ExecuteReader())
+				        {
+				            while (reader.Read())
+				            { 
+					            SystemUserGroupPermissionToXMLResult res = new SystemUserGroupPermissionToXMLResult();
+								res.XML = reader["XML"].ToString();
+								ret.Add(res);
+				            }
+				        }
+				    }
+				}
+				return ret;
+			}
+			public static List<SystemUserGroupPermissionToXMLByDateTimeResult> spSystemUserGroupPermissionToXMLByDateTimeCall(DateTime? fromDateTime, DateTime? toDateTime, string connectionString)
+			{
+				SystemUserGroupPermissionToXMLByDateTimeParameters parameters = new SystemUserGroupPermissionToXMLByDateTimeParameters();
+				parameters.FromDateTime = fromDateTime;
+				parameters.ToDateTime = toDateTime;
+
+				return spSystemUserGroupPermissionToXMLByDateTimeCall (parameters, connectionString);
+			}
+			public static List<SystemUserGroupPermissionToXMLByDateTimeResult> spSystemUserGroupPermissionToXMLByDateTimeCall (SystemUserGroupPermissionToXMLByDateTimeParameters parameters, string connectionString)
+			{
+				List<SystemUserGroupPermissionToXMLByDateTimeResult> ret = new List<SystemUserGroupPermissionToXMLByDateTimeResult>();
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
+					string qry = "EXEC spSystemUserGroupPermissionToXMLByDateTime @FromDateTime = @FromDateTime, @ToDateTime = @ToDateTime";
+
+					using (SqlCommand cmd = new SqlCommand(qry, conn))
+					{
+						cmd.Parameters.Add(new SqlParameter("@FromDateTime", parameters.FromDateTime == null ? (object)DBNull.Value :  parameters.FromDateTime));
+						cmd.Parameters.Add(new SqlParameter("@ToDateTime", parameters.ToDateTime == null ? (object)DBNull.Value :  parameters.ToDateTime));
+				        using (SqlDataReader reader = cmd.ExecuteReader())
+				        {
+				            while (reader.Read())
+				            { 
+					            SystemUserGroupPermissionToXMLByDateTimeResult res = new SystemUserGroupPermissionToXMLByDateTimeResult();
+								res.XML = reader["XML"].ToString();
+								ret.Add(res);
+				            }
+				        }
+				    }
+				}
+				return ret;
+			}
+			public static List<GetChildrenResult> spGetChildrenCall(string tableName, string connectionString)
+			{
+				GetChildrenParameters parameters = new GetChildrenParameters();
+				parameters.TableName = tableName;
 
 				return spGetChildrenCall (parameters, connectionString);
 			}
-			public static List<GetChildrenResult> spGetChildrenCall (spGetChildrenParameters parameters, string connectionString)
+			public static List<GetChildrenResult> spGetChildrenCall (GetChildrenParameters parameters, string connectionString)
 			{
 				List<GetChildrenResult> ret = new List<GetChildrenResult>();
 				using (SqlConnection conn = new SqlConnection(connectionString))
 				{
-				conn.Open();
+					conn.Open();
 					string qry = "EXEC spGetChildren @TableName = @TableName";
 
 					using (SqlCommand cmd = new SqlCommand(qry, conn))
@@ -210,19 +947,19 @@ namespace AppointmentLibrary.Calls
 				}
 				return ret;
 			}
-			public static List<CreateToXmlResult> spCreateToXmlCall(string TableName, string connectionString)
+			public static List<CreateToXmlResult> spCreateToXmlCall(string tableName, string connectionString)
 			{
-				spCreateToXmlParameters parameters = new spCreateToXmlParameters();
-				parameters.TableName = TableName;
+				CreateToXmlParameters parameters = new CreateToXmlParameters();
+				parameters.TableName = tableName;
 
 				return spCreateToXmlCall (parameters, connectionString);
 			}
-			public static List<CreateToXmlResult> spCreateToXmlCall (spCreateToXmlParameters parameters, string connectionString)
+			public static List<CreateToXmlResult> spCreateToXmlCall (CreateToXmlParameters parameters, string connectionString)
 			{
 				List<CreateToXmlResult> ret = new List<CreateToXmlResult>();
 				using (SqlConnection conn = new SqlConnection(connectionString))
 				{
-				conn.Open();
+					conn.Open();
 					string qry = "EXEC spCreateToXml @TableName = @TableName";
 
 					using (SqlCommand cmd = new SqlCommand(qry, conn))
@@ -240,25 +977,79 @@ namespace AppointmentLibrary.Calls
 				}
 				return ret;
 			}
-			public static List<AccountUpsertResult> spAccountUpsertCall(Guid? GUID, bool? IsDeleted, DateTime? ActiveDateTime, DateTime? TerminationDateTime, string AccountName, Guid? SystemUserGUID, bool? ReturnResults, string connectionString)
+			public static List<LoginResult> spLoginCall(string userName, string password, string connectionString)
 			{
-				spAccountUpsertParameters parameters = new spAccountUpsertParameters();
-				parameters.GUID = GUID;
-				parameters.IsDeleted = IsDeleted;
-				parameters.ActiveDateTime = ActiveDateTime;
-				parameters.TerminationDateTime = TerminationDateTime;
-				parameters.AccountName = AccountName;
-				parameters.SystemUserGUID = SystemUserGUID;
-				parameters.ReturnResults = ReturnResults;
+				LoginParameters parameters = new LoginParameters();
+				parameters.UserName = userName;
+				parameters.Password = password;
+
+				return spLoginCall (parameters, connectionString);
+			}
+			public static List<LoginResult> spLoginCall (LoginParameters parameters, string connectionString)
+			{
+				List<LoginResult> ret = new List<LoginResult>();
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
+					string qry = "EXEC spLogin @UserName = @UserName, @Password = @Password";
+
+					using (SqlCommand cmd = new SqlCommand(qry, conn))
+					{
+						cmd.Parameters.Add(new SqlParameter("@UserName", parameters.UserName == null ? (object)DBNull.Value :  parameters.UserName));
+						cmd.Parameters.Add(new SqlParameter("@Password", parameters.Password == null ? (object)DBNull.Value :  parameters.Password));
+				        using (SqlDataReader reader = cmd.ExecuteReader())
+				        {
+				            while (reader.Read())
+				            { 
+					            LoginResult res = new LoginResult();
+								res.GUID = new Guid(reader["GUID"].ToString());
+								if (!String.IsNullOrWhiteSpace(reader["ID"].ToString()))
+								{
+								    res.ID = int.Parse(reader["ID"].ToString());
+								}
+								if (!String.IsNullOrWhiteSpace(reader["DateTimeCreated"].ToString()))
+								{
+								    res.DateTimeCreated = DateTime.Parse(reader["DateTimeCreated"].ToString());
+								}
+								res.IsDeleted = (bool)reader["IsDeleted"];
+								if (!String.IsNullOrWhiteSpace(reader["ActiveDateTime"].ToString()))
+								{
+								    res.ActiveDateTime = DateTime.Parse(reader["ActiveDateTime"].ToString());
+								}
+								if (!String.IsNullOrWhiteSpace(reader["TerminationDateTime"].ToString()))
+								{
+								    res.TerminationDateTime = DateTime.Parse(reader["TerminationDateTime"].ToString());
+								}
+								res.IsActiveForNow = (bool)reader["IsActiveForNow"];
+								res.Username = reader["Username"].ToString();
+								res.PasswordHash = (byte[])(reader["PasswordHash"]);
+								res.PasswordSalt = new Guid(reader["PasswordSalt"].ToString());
+								ret.Add(res);
+				            }
+				        }
+				    }
+				}
+				return ret;
+			}
+			public static List<AccountUpsertResult> spAccountUpsertCall(Guid? gUID, bool? isDeleted, DateTime? activeDateTime, DateTime? terminationDateTime, string accountName, Guid? systemUserGUID, bool? returnResults, string connectionString)
+			{
+				AccountUpsertParameters parameters = new AccountUpsertParameters();
+				parameters.GUID = gUID;
+				parameters.IsDeleted = isDeleted;
+				parameters.ActiveDateTime = activeDateTime;
+				parameters.TerminationDateTime = terminationDateTime;
+				parameters.AccountName = accountName;
+				parameters.SystemUserGUID = systemUserGUID;
+				parameters.ReturnResults = returnResults;
 
 				return spAccountUpsertCall (parameters, connectionString);
 			}
-			public static List<AccountUpsertResult> spAccountUpsertCall (spAccountUpsertParameters parameters, string connectionString)
+			public static List<AccountUpsertResult> spAccountUpsertCall (AccountUpsertParameters parameters, string connectionString)
 			{
 				List<AccountUpsertResult> ret = new List<AccountUpsertResult>();
 				using (SqlConnection conn = new SqlConnection(connectionString))
 				{
-				conn.Open();
+					conn.Open();
 					string qry = "EXEC spAccountUpsert @GUID = @GUID, @IsDeleted = @IsDeleted, @ActiveDateTime = @ActiveDateTime, @TerminationDateTime = @TerminationDateTime, @AccountName = @AccountName, @SystemUserGUID = @SystemUserGUID, @ReturnResults = @ReturnResults";
 
 					using (SqlCommand cmd = new SqlCommand(qry, conn))
@@ -303,24 +1094,26 @@ namespace AppointmentLibrary.Calls
 				}
 				return ret;
 			}
-			public static List<AccountGetResult> spAccountGetCall(Guid? AccountGUID, string connectionString)
+			public static List<AccountGetResult> spAccountGetCall(Guid? accountGUID, Guid? systemUserGUID, string connectionString)
 			{
-				spAccountGetParameters parameters = new spAccountGetParameters();
-				parameters.AccountGUID = AccountGUID;
+				AccountGetParameters parameters = new AccountGetParameters();
+				parameters.AccountGUID = accountGUID;
+				parameters.SystemUserGUID = systemUserGUID;
 
 				return spAccountGetCall (parameters, connectionString);
 			}
-			public static List<AccountGetResult> spAccountGetCall (spAccountGetParameters parameters, string connectionString)
+			public static List<AccountGetResult> spAccountGetCall (AccountGetParameters parameters, string connectionString)
 			{
 				List<AccountGetResult> ret = new List<AccountGetResult>();
 				using (SqlConnection conn = new SqlConnection(connectionString))
 				{
-				conn.Open();
-					string qry = "EXEC spAccountGet @AccountGUID = @AccountGUID";
+					conn.Open();
+					string qry = "EXEC spAccountGet @AccountGUID = @AccountGUID, @SystemUserGUID = @SystemUserGUID";
 
 					using (SqlCommand cmd = new SqlCommand(qry, conn))
 					{
 						cmd.Parameters.Add(new SqlParameter("@AccountGUID", parameters.AccountGUID == null ? (object)DBNull.Value :  parameters.AccountGUID));
+						cmd.Parameters.Add(new SqlParameter("@SystemUserGUID", parameters.SystemUserGUID == null ? (object)DBNull.Value :  parameters.SystemUserGUID));
 				        using (SqlDataReader reader = cmd.ExecuteReader())
 				        {
 				            while (reader.Read())
@@ -353,24 +1146,24 @@ namespace AppointmentLibrary.Calls
 				}
 				return ret;
 			}
-			public static List<ActivityTypeUpsertResult> spActivityTypeUpsertCall(Guid? GUID, bool? IsDeleted, string ActivityType, Guid? AccountGUID, Guid? SystemUserGUID, bool? ReturnResults, string connectionString)
+			public static List<ActivityTypeUpsertResult> spActivityTypeUpsertCall(Guid? gUID, bool? isDeleted, string activityType, Guid? accountGUID, Guid? systemUserGUID, bool? returnResults, string connectionString)
 			{
-				spActivityTypeUpsertParameters parameters = new spActivityTypeUpsertParameters();
-				parameters.GUID = GUID;
-				parameters.IsDeleted = IsDeleted;
-				parameters.ActivityType = ActivityType;
-				parameters.AccountGUID = AccountGUID;
-				parameters.SystemUserGUID = SystemUserGUID;
-				parameters.ReturnResults = ReturnResults;
+				ActivityTypeUpsertParameters parameters = new ActivityTypeUpsertParameters();
+				parameters.GUID = gUID;
+				parameters.IsDeleted = isDeleted;
+				parameters.ActivityType = activityType;
+				parameters.AccountGUID = accountGUID;
+				parameters.SystemUserGUID = systemUserGUID;
+				parameters.ReturnResults = returnResults;
 
 				return spActivityTypeUpsertCall (parameters, connectionString);
 			}
-			public static List<ActivityTypeUpsertResult> spActivityTypeUpsertCall (spActivityTypeUpsertParameters parameters, string connectionString)
+			public static List<ActivityTypeUpsertResult> spActivityTypeUpsertCall (ActivityTypeUpsertParameters parameters, string connectionString)
 			{
 				List<ActivityTypeUpsertResult> ret = new List<ActivityTypeUpsertResult>();
 				using (SqlConnection conn = new SqlConnection(connectionString))
 				{
-				conn.Open();
+					conn.Open();
 					string qry = "EXEC spActivityTypeUpsert @GUID = @GUID, @IsDeleted = @IsDeleted, @ActivityType = @ActivityType, @AccountGUID = @AccountGUID, @SystemUserGUID = @SystemUserGUID, @ReturnResults = @ReturnResults";
 
 					using (SqlCommand cmd = new SqlCommand(qry, conn))
@@ -406,24 +1199,26 @@ namespace AppointmentLibrary.Calls
 				}
 				return ret;
 			}
-			public static List<ActivityTypeGetResult> spActivityTypeGetCall(Guid? ActivityTypeGUID, string connectionString)
+			public static List<ActivityTypeGetResult> spActivityTypeGetCall(Guid? activityTypeGUID, Guid? systemUserGUID, string connectionString)
 			{
-				spActivityTypeGetParameters parameters = new spActivityTypeGetParameters();
-				parameters.ActivityTypeGUID = ActivityTypeGUID;
+				ActivityTypeGetParameters parameters = new ActivityTypeGetParameters();
+				parameters.ActivityTypeGUID = activityTypeGUID;
+				parameters.SystemUserGUID = systemUserGUID;
 
 				return spActivityTypeGetCall (parameters, connectionString);
 			}
-			public static List<ActivityTypeGetResult> spActivityTypeGetCall (spActivityTypeGetParameters parameters, string connectionString)
+			public static List<ActivityTypeGetResult> spActivityTypeGetCall (ActivityTypeGetParameters parameters, string connectionString)
 			{
 				List<ActivityTypeGetResult> ret = new List<ActivityTypeGetResult>();
 				using (SqlConnection conn = new SqlConnection(connectionString))
 				{
-				conn.Open();
-					string qry = "EXEC spActivityTypeGet @ActivityTypeGUID = @ActivityTypeGUID";
+					conn.Open();
+					string qry = "EXEC spActivityTypeGet @ActivityTypeGUID = @ActivityTypeGUID, @SystemUserGUID = @SystemUserGUID";
 
 					using (SqlCommand cmd = new SqlCommand(qry, conn))
 					{
 						cmd.Parameters.Add(new SqlParameter("@ActivityTypeGUID", parameters.ActivityTypeGUID == null ? (object)DBNull.Value :  parameters.ActivityTypeGUID));
+						cmd.Parameters.Add(new SqlParameter("@SystemUserGUID", parameters.SystemUserGUID == null ? (object)DBNull.Value :  parameters.SystemUserGUID));
 				        using (SqlDataReader reader = cmd.ExecuteReader())
 				        {
 				            while (reader.Read())
@@ -448,29 +1243,29 @@ namespace AppointmentLibrary.Calls
 				}
 				return ret;
 			}
-			public static List<AppointmentUpsertResult> spAppointmentUpsertCall(Guid? GUID, bool? IsDeleted, DateTime? StartDateTime, TimeSpan? Duration, DateTime? ActualStartDateTime, DateTime? ActualEndDateTime, Guid? CustomerGUID, Guid? StoreGUID, Guid? ServiceProviderGUID, Guid? SystemUserGUID, bool? ReturnResults, string connectionString)
+			public static List<AppointmentUpsertResult> spAppointmentUpsertCall(Guid? gUID, bool? isDeleted, DateTime? startDateTime, TimeSpan? duration, DateTime? actualStartDateTime, DateTime? actualEndDateTime, Guid? customerGUID, Guid? storeGUID, Guid? serviceProviderGUID, Guid? systemUserGUID, bool? returnResults, string connectionString)
 			{
-				spAppointmentUpsertParameters parameters = new spAppointmentUpsertParameters();
-				parameters.GUID = GUID;
-				parameters.IsDeleted = IsDeleted;
-				parameters.StartDateTime = StartDateTime;
-				parameters.Duration = Duration;
-				parameters.ActualStartDateTime = ActualStartDateTime;
-				parameters.ActualEndDateTime = ActualEndDateTime;
-				parameters.CustomerGUID = CustomerGUID;
-				parameters.StoreGUID = StoreGUID;
-				parameters.ServiceProviderGUID = ServiceProviderGUID;
-				parameters.SystemUserGUID = SystemUserGUID;
-				parameters.ReturnResults = ReturnResults;
+				AppointmentUpsertParameters parameters = new AppointmentUpsertParameters();
+				parameters.GUID = gUID;
+				parameters.IsDeleted = isDeleted;
+				parameters.StartDateTime = startDateTime;
+				parameters.Duration = duration;
+				parameters.ActualStartDateTime = actualStartDateTime;
+				parameters.ActualEndDateTime = actualEndDateTime;
+				parameters.CustomerGUID = customerGUID;
+				parameters.StoreGUID = storeGUID;
+				parameters.ServiceProviderGUID = serviceProviderGUID;
+				parameters.SystemUserGUID = systemUserGUID;
+				parameters.ReturnResults = returnResults;
 
 				return spAppointmentUpsertCall (parameters, connectionString);
 			}
-			public static List<AppointmentUpsertResult> spAppointmentUpsertCall (spAppointmentUpsertParameters parameters, string connectionString)
+			public static List<AppointmentUpsertResult> spAppointmentUpsertCall (AppointmentUpsertParameters parameters, string connectionString)
 			{
 				List<AppointmentUpsertResult> ret = new List<AppointmentUpsertResult>();
 				using (SqlConnection conn = new SqlConnection(connectionString))
 				{
-				conn.Open();
+					conn.Open();
 					string qry = "EXEC spAppointmentUpsert @GUID = @GUID, @IsDeleted = @IsDeleted, @StartDateTime = @StartDateTime, @Duration = @Duration, @ActualStartDateTime = @ActualStartDateTime, @ActualEndDateTime = @ActualEndDateTime, @CustomerGUID = @CustomerGUID, @StoreGUID = @StoreGUID, @ServiceProviderGUID = @ServiceProviderGUID, @SystemUserGUID = @SystemUserGUID, @ReturnResults = @ReturnResults";
 
 					using (SqlCommand cmd = new SqlCommand(qry, conn))
@@ -532,24 +1327,26 @@ namespace AppointmentLibrary.Calls
 				}
 				return ret;
 			}
-			public static List<AppointmentGetResult> spAppointmentGetCall(Guid? AppointmentGUID, string connectionString)
+			public static List<AppointmentGetResult> spAppointmentGetCall(Guid? appointmentGUID, Guid? systemUserGUID, string connectionString)
 			{
-				spAppointmentGetParameters parameters = new spAppointmentGetParameters();
-				parameters.AppointmentGUID = AppointmentGUID;
+				AppointmentGetParameters parameters = new AppointmentGetParameters();
+				parameters.AppointmentGUID = appointmentGUID;
+				parameters.SystemUserGUID = systemUserGUID;
 
 				return spAppointmentGetCall (parameters, connectionString);
 			}
-			public static List<AppointmentGetResult> spAppointmentGetCall (spAppointmentGetParameters parameters, string connectionString)
+			public static List<AppointmentGetResult> spAppointmentGetCall (AppointmentGetParameters parameters, string connectionString)
 			{
 				List<AppointmentGetResult> ret = new List<AppointmentGetResult>();
 				using (SqlConnection conn = new SqlConnection(connectionString))
 				{
-				conn.Open();
-					string qry = "EXEC spAppointmentGet @AppointmentGUID = @AppointmentGUID";
+					conn.Open();
+					string qry = "EXEC spAppointmentGet @AppointmentGUID = @AppointmentGUID, @SystemUserGUID = @SystemUserGUID";
 
 					using (SqlCommand cmd = new SqlCommand(qry, conn))
 					{
 						cmd.Parameters.Add(new SqlParameter("@AppointmentGUID", parameters.AppointmentGUID == null ? (object)DBNull.Value :  parameters.AppointmentGUID));
+						cmd.Parameters.Add(new SqlParameter("@SystemUserGUID", parameters.SystemUserGUID == null ? (object)DBNull.Value :  parameters.SystemUserGUID));
 				        using (SqlDataReader reader = cmd.ExecuteReader())
 				        {
 				            while (reader.Read())
@@ -604,81 +1401,27 @@ namespace AppointmentLibrary.Calls
 				}
 				return ret;
 			}
-			public static List<LoginResult> spLoginCall(string UserName, string Password, string connectionString)
+			public static List<ServiceProviderUpsertResult> spServiceProviderUpsertCall(Guid? gUID, bool? isDeleted, DateTime? activeDateTime, DateTime? terminationDateTime, string firstname, string surname, Guid? accountGUID, Guid? systemUserGUID, bool? returnResults, string connectionString)
 			{
-				spLoginParameters parameters = new spLoginParameters();
-				parameters.UserName = UserName;
-				parameters.Password = Password;
-
-				return spLoginCall (parameters, connectionString);
-			}
-			public static List<LoginResult> spLoginCall (spLoginParameters parameters, string connectionString)
-			{
-				List<LoginResult> ret = new List<LoginResult>();
-				using (SqlConnection conn = new SqlConnection(connectionString))
-				{
-				conn.Open();
-					string qry = "EXEC spLogin @UserName = @UserName, @Password = @Password";
-
-					using (SqlCommand cmd = new SqlCommand(qry, conn))
-					{
-						cmd.Parameters.Add(new SqlParameter("@UserName", parameters.UserName == null ? (object)DBNull.Value :  parameters.UserName));
-						cmd.Parameters.Add(new SqlParameter("@Password", parameters.Password == null ? (object)DBNull.Value :  parameters.Password));
-				        using (SqlDataReader reader = cmd.ExecuteReader())
-				        {
-				            while (reader.Read())
-				            { 
-					            LoginResult res = new LoginResult();
-								res.GUID = new Guid(reader["GUID"].ToString());
-								if (!String.IsNullOrWhiteSpace(reader["ID"].ToString()))
-								{
-								    res.ID = int.Parse(reader["ID"].ToString());
-								}
-								if (!String.IsNullOrWhiteSpace(reader["DateTimeCreated"].ToString()))
-								{
-								    res.DateTimeCreated = DateTime.Parse(reader["DateTimeCreated"].ToString());
-								}
-								res.IsDeleted = (bool)reader["IsDeleted"];
-								if (!String.IsNullOrWhiteSpace(reader["ActiveDateTime"].ToString()))
-								{
-								    res.ActiveDateTime = DateTime.Parse(reader["ActiveDateTime"].ToString());
-								}
-								if (!String.IsNullOrWhiteSpace(reader["TerminationDateTime"].ToString()))
-								{
-								    res.TerminationDateTime = DateTime.Parse(reader["TerminationDateTime"].ToString());
-								}
-								res.IsActiveForNow = (bool)reader["IsActiveForNow"];
-								res.Username = reader["Username"].ToString();
-								res.PasswordHash = (byte[])(reader["PasswordHash"]);
-								res.PasswordSalt = new Guid(reader["PasswordSalt"].ToString());
-								ret.Add(res);
-				            }
-				        }
-				    }
-				}
-				return ret;
-			}
-			public static List<ServiceProviderUpsertResult> spServiceProviderUpsertCall(Guid? GUID, bool? IsDeleted, DateTime? ActiveDateTime, DateTime? TerminationDateTime, string Firstname, string Surname, Guid? AccountGUID, Guid? SystemUserGUID, bool? ReturnResults, string connectionString)
-			{
-				spServiceProviderUpsertParameters parameters = new spServiceProviderUpsertParameters();
-				parameters.GUID = GUID;
-				parameters.IsDeleted = IsDeleted;
-				parameters.ActiveDateTime = ActiveDateTime;
-				parameters.TerminationDateTime = TerminationDateTime;
-				parameters.Firstname = Firstname;
-				parameters.Surname = Surname;
-				parameters.AccountGUID = AccountGUID;
-				parameters.SystemUserGUID = SystemUserGUID;
-				parameters.ReturnResults = ReturnResults;
+				ServiceProviderUpsertParameters parameters = new ServiceProviderUpsertParameters();
+				parameters.GUID = gUID;
+				parameters.IsDeleted = isDeleted;
+				parameters.ActiveDateTime = activeDateTime;
+				parameters.TerminationDateTime = terminationDateTime;
+				parameters.Firstname = firstname;
+				parameters.Surname = surname;
+				parameters.AccountGUID = accountGUID;
+				parameters.SystemUserGUID = systemUserGUID;
+				parameters.ReturnResults = returnResults;
 
 				return spServiceProviderUpsertCall (parameters, connectionString);
 			}
-			public static List<ServiceProviderUpsertResult> spServiceProviderUpsertCall (spServiceProviderUpsertParameters parameters, string connectionString)
+			public static List<ServiceProviderUpsertResult> spServiceProviderUpsertCall (ServiceProviderUpsertParameters parameters, string connectionString)
 			{
 				List<ServiceProviderUpsertResult> ret = new List<ServiceProviderUpsertResult>();
 				using (SqlConnection conn = new SqlConnection(connectionString))
 				{
-				conn.Open();
+					conn.Open();
 					string qry = "EXEC spServiceProviderUpsert @GUID = @GUID, @IsDeleted = @IsDeleted, @ActiveDateTime = @ActiveDateTime, @TerminationDateTime = @TerminationDateTime, @Firstname = @Firstname, @Surname = @Surname, @AccountGUID = @AccountGUID, @SystemUserGUID = @SystemUserGUID, @ReturnResults = @ReturnResults";
 
 					using (SqlCommand cmd = new SqlCommand(qry, conn))
@@ -727,24 +1470,26 @@ namespace AppointmentLibrary.Calls
 				}
 				return ret;
 			}
-			public static List<ServiceProviderGetResult> spServiceProviderGetCall(Guid? ServiceProviderGUID, string connectionString)
+			public static List<ServiceProviderGetResult> spServiceProviderGetCall(Guid? serviceProviderGUID, Guid? systemUserGUID, string connectionString)
 			{
-				spServiceProviderGetParameters parameters = new spServiceProviderGetParameters();
-				parameters.ServiceProviderGUID = ServiceProviderGUID;
+				ServiceProviderGetParameters parameters = new ServiceProviderGetParameters();
+				parameters.ServiceProviderGUID = serviceProviderGUID;
+				parameters.SystemUserGUID = systemUserGUID;
 
 				return spServiceProviderGetCall (parameters, connectionString);
 			}
-			public static List<ServiceProviderGetResult> spServiceProviderGetCall (spServiceProviderGetParameters parameters, string connectionString)
+			public static List<ServiceProviderGetResult> spServiceProviderGetCall (ServiceProviderGetParameters parameters, string connectionString)
 			{
 				List<ServiceProviderGetResult> ret = new List<ServiceProviderGetResult>();
 				using (SqlConnection conn = new SqlConnection(connectionString))
 				{
-				conn.Open();
-					string qry = "EXEC spServiceProviderGet @ServiceProviderGUID = @ServiceProviderGUID";
+					conn.Open();
+					string qry = "EXEC spServiceProviderGet @ServiceProviderGUID = @ServiceProviderGUID, @SystemUserGUID = @SystemUserGUID";
 
 					using (SqlCommand cmd = new SqlCommand(qry, conn))
 					{
 						cmd.Parameters.Add(new SqlParameter("@ServiceProviderGUID", parameters.ServiceProviderGUID == null ? (object)DBNull.Value :  parameters.ServiceProviderGUID));
+						cmd.Parameters.Add(new SqlParameter("@SystemUserGUID", parameters.SystemUserGUID == null ? (object)DBNull.Value :  parameters.SystemUserGUID));
 				        using (SqlDataReader reader = cmd.ExecuteReader())
 				        {
 				            while (reader.Read())
@@ -779,27 +1524,27 @@ namespace AppointmentLibrary.Calls
 				}
 				return ret;
 			}
-			public static List<CustomerUpsertResult> spCustomerUpsertCall(Guid? GUID, bool? IsDeleted, DateTime? ActiveDateTime, DateTime? TerminationDateTime, string Firstname, string Surname, Guid? AccountGUID, Guid? SystemUserGUID, bool? ReturnResults, string connectionString)
+			public static List<CustomerUpsertResult> spCustomerUpsertCall(Guid? gUID, bool? isDeleted, DateTime? activeDateTime, DateTime? terminationDateTime, string firstname, string surname, Guid? accountGUID, Guid? systemUserGUID, bool? returnResults, string connectionString)
 			{
-				spCustomerUpsertParameters parameters = new spCustomerUpsertParameters();
-				parameters.GUID = GUID;
-				parameters.IsDeleted = IsDeleted;
-				parameters.ActiveDateTime = ActiveDateTime;
-				parameters.TerminationDateTime = TerminationDateTime;
-				parameters.Firstname = Firstname;
-				parameters.Surname = Surname;
-				parameters.AccountGUID = AccountGUID;
-				parameters.SystemUserGUID = SystemUserGUID;
-				parameters.ReturnResults = ReturnResults;
+				CustomerUpsertParameters parameters = new CustomerUpsertParameters();
+				parameters.GUID = gUID;
+				parameters.IsDeleted = isDeleted;
+				parameters.ActiveDateTime = activeDateTime;
+				parameters.TerminationDateTime = terminationDateTime;
+				parameters.Firstname = firstname;
+				parameters.Surname = surname;
+				parameters.AccountGUID = accountGUID;
+				parameters.SystemUserGUID = systemUserGUID;
+				parameters.ReturnResults = returnResults;
 
 				return spCustomerUpsertCall (parameters, connectionString);
 			}
-			public static List<CustomerUpsertResult> spCustomerUpsertCall (spCustomerUpsertParameters parameters, string connectionString)
+			public static List<CustomerUpsertResult> spCustomerUpsertCall (CustomerUpsertParameters parameters, string connectionString)
 			{
 				List<CustomerUpsertResult> ret = new List<CustomerUpsertResult>();
 				using (SqlConnection conn = new SqlConnection(connectionString))
 				{
-				conn.Open();
+					conn.Open();
 					string qry = "EXEC spCustomerUpsert @GUID = @GUID, @IsDeleted = @IsDeleted, @ActiveDateTime = @ActiveDateTime, @TerminationDateTime = @TerminationDateTime, @Firstname = @Firstname, @Surname = @Surname, @AccountGUID = @AccountGUID, @SystemUserGUID = @SystemUserGUID, @ReturnResults = @ReturnResults";
 
 					using (SqlCommand cmd = new SqlCommand(qry, conn))
@@ -848,24 +1593,26 @@ namespace AppointmentLibrary.Calls
 				}
 				return ret;
 			}
-			public static List<CustomerGetResult> spCustomerGetCall(Guid? CustomerGUID, string connectionString)
+			public static List<CustomerGetResult> spCustomerGetCall(Guid? customerGUID, Guid? systemUserGUID, string connectionString)
 			{
-				spCustomerGetParameters parameters = new spCustomerGetParameters();
-				parameters.CustomerGUID = CustomerGUID;
+				CustomerGetParameters parameters = new CustomerGetParameters();
+				parameters.CustomerGUID = customerGUID;
+				parameters.SystemUserGUID = systemUserGUID;
 
 				return spCustomerGetCall (parameters, connectionString);
 			}
-			public static List<CustomerGetResult> spCustomerGetCall (spCustomerGetParameters parameters, string connectionString)
+			public static List<CustomerGetResult> spCustomerGetCall (CustomerGetParameters parameters, string connectionString)
 			{
 				List<CustomerGetResult> ret = new List<CustomerGetResult>();
 				using (SqlConnection conn = new SqlConnection(connectionString))
 				{
-				conn.Open();
-					string qry = "EXEC spCustomerGet @CustomerGUID = @CustomerGUID";
+					conn.Open();
+					string qry = "EXEC spCustomerGet @CustomerGUID = @CustomerGUID, @SystemUserGUID = @SystemUserGUID";
 
 					using (SqlCommand cmd = new SqlCommand(qry, conn))
 					{
 						cmd.Parameters.Add(new SqlParameter("@CustomerGUID", parameters.CustomerGUID == null ? (object)DBNull.Value :  parameters.CustomerGUID));
+						cmd.Parameters.Add(new SqlParameter("@SystemUserGUID", parameters.SystemUserGUID == null ? (object)DBNull.Value :  parameters.SystemUserGUID));
 				        using (SqlDataReader reader = cmd.ExecuteReader())
 				        {
 				            while (reader.Read())
@@ -900,27 +1647,27 @@ namespace AppointmentLibrary.Calls
 				}
 				return ret;
 			}
-			public static List<ActivityScheduleUpsertResult> spActivityScheduleUpsertCall(Guid? GUID, bool? IsDeleted, int? DoW, TimeSpan? StartTime, TimeSpan? EndTime, Guid? ActivityTypeGUID, Guid? ServiceProviderGUID, Guid? SystemUserGUID, bool? ReturnResults, string connectionString)
+			public static List<ActivityScheduleUpsertResult> spActivityScheduleUpsertCall(Guid? gUID, bool? isDeleted, int? doW, TimeSpan? startTime, TimeSpan? endTime, Guid? activityTypeGUID, Guid? serviceProviderGUID, Guid? systemUserGUID, bool? returnResults, string connectionString)
 			{
-				spActivityScheduleUpsertParameters parameters = new spActivityScheduleUpsertParameters();
-				parameters.GUID = GUID;
-				parameters.IsDeleted = IsDeleted;
-				parameters.DoW = DoW;
-				parameters.StartTime = StartTime;
-				parameters.EndTime = EndTime;
-				parameters.ActivityTypeGUID = ActivityTypeGUID;
-				parameters.ServiceProviderGUID = ServiceProviderGUID;
-				parameters.SystemUserGUID = SystemUserGUID;
-				parameters.ReturnResults = ReturnResults;
+				ActivityScheduleUpsertParameters parameters = new ActivityScheduleUpsertParameters();
+				parameters.GUID = gUID;
+				parameters.IsDeleted = isDeleted;
+				parameters.DoW = doW;
+				parameters.StartTime = startTime;
+				parameters.EndTime = endTime;
+				parameters.ActivityTypeGUID = activityTypeGUID;
+				parameters.ServiceProviderGUID = serviceProviderGUID;
+				parameters.SystemUserGUID = systemUserGUID;
+				parameters.ReturnResults = returnResults;
 
 				return spActivityScheduleUpsertCall (parameters, connectionString);
 			}
-			public static List<ActivityScheduleUpsertResult> spActivityScheduleUpsertCall (spActivityScheduleUpsertParameters parameters, string connectionString)
+			public static List<ActivityScheduleUpsertResult> spActivityScheduleUpsertCall (ActivityScheduleUpsertParameters parameters, string connectionString)
 			{
 				List<ActivityScheduleUpsertResult> ret = new List<ActivityScheduleUpsertResult>();
 				using (SqlConnection conn = new SqlConnection(connectionString))
 				{
-				conn.Open();
+					conn.Open();
 					string qry = "EXEC spActivityScheduleUpsert @GUID = @GUID, @IsDeleted = @IsDeleted, @DoW = @DoW, @StartTime = @StartTime, @EndTime = @EndTime, @ActivityTypeGUID = @ActivityTypeGUID, @ServiceProviderGUID = @ServiceProviderGUID, @SystemUserGUID = @SystemUserGUID, @ReturnResults = @ReturnResults";
 
 					using (SqlCommand cmd = new SqlCommand(qry, conn))
@@ -971,24 +1718,26 @@ namespace AppointmentLibrary.Calls
 				}
 				return ret;
 			}
-			public static List<ActivityScheduleGetResult> spActivityScheduleGetCall(Guid? ActivityScheduleGUID, string connectionString)
+			public static List<ActivityScheduleGetResult> spActivityScheduleGetCall(Guid? activityScheduleGUID, Guid? systemUserGUID, string connectionString)
 			{
-				spActivityScheduleGetParameters parameters = new spActivityScheduleGetParameters();
-				parameters.ActivityScheduleGUID = ActivityScheduleGUID;
+				ActivityScheduleGetParameters parameters = new ActivityScheduleGetParameters();
+				parameters.ActivityScheduleGUID = activityScheduleGUID;
+				parameters.SystemUserGUID = systemUserGUID;
 
 				return spActivityScheduleGetCall (parameters, connectionString);
 			}
-			public static List<ActivityScheduleGetResult> spActivityScheduleGetCall (spActivityScheduleGetParameters parameters, string connectionString)
+			public static List<ActivityScheduleGetResult> spActivityScheduleGetCall (ActivityScheduleGetParameters parameters, string connectionString)
 			{
 				List<ActivityScheduleGetResult> ret = new List<ActivityScheduleGetResult>();
 				using (SqlConnection conn = new SqlConnection(connectionString))
 				{
-				conn.Open();
-					string qry = "EXEC spActivityScheduleGet @ActivityScheduleGUID = @ActivityScheduleGUID";
+					conn.Open();
+					string qry = "EXEC spActivityScheduleGet @ActivityScheduleGUID = @ActivityScheduleGUID, @SystemUserGUID = @SystemUserGUID";
 
 					using (SqlCommand cmd = new SqlCommand(qry, conn))
 					{
 						cmd.Parameters.Add(new SqlParameter("@ActivityScheduleGUID", parameters.ActivityScheduleGUID == null ? (object)DBNull.Value :  parameters.ActivityScheduleGUID));
+						cmd.Parameters.Add(new SqlParameter("@SystemUserGUID", parameters.SystemUserGUID == null ? (object)DBNull.Value :  parameters.SystemUserGUID));
 				        using (SqlDataReader reader = cmd.ExecuteReader())
 				        {
 				            while (reader.Read())
@@ -1025,26 +1774,26 @@ namespace AppointmentLibrary.Calls
 				}
 				return ret;
 			}
-			public static List<StoreUpsertResult> spStoreUpsertCall(Guid? GUID, bool? IsDeleted, DateTime? ActiveDateTime, DateTime? TerminationDateTime, string StoreName, Guid? AccountGUID, Guid? SystemUserGUID, bool? ReturnResults, string connectionString)
+			public static List<StoreUpsertResult> spStoreUpsertCall(Guid? gUID, bool? isDeleted, DateTime? activeDateTime, DateTime? terminationDateTime, string storeName, Guid? accountGUID, Guid? systemUserGUID, bool? returnResults, string connectionString)
 			{
-				spStoreUpsertParameters parameters = new spStoreUpsertParameters();
-				parameters.GUID = GUID;
-				parameters.IsDeleted = IsDeleted;
-				parameters.ActiveDateTime = ActiveDateTime;
-				parameters.TerminationDateTime = TerminationDateTime;
-				parameters.StoreName = StoreName;
-				parameters.AccountGUID = AccountGUID;
-				parameters.SystemUserGUID = SystemUserGUID;
-				parameters.ReturnResults = ReturnResults;
+				StoreUpsertParameters parameters = new StoreUpsertParameters();
+				parameters.GUID = gUID;
+				parameters.IsDeleted = isDeleted;
+				parameters.ActiveDateTime = activeDateTime;
+				parameters.TerminationDateTime = terminationDateTime;
+				parameters.StoreName = storeName;
+				parameters.AccountGUID = accountGUID;
+				parameters.SystemUserGUID = systemUserGUID;
+				parameters.ReturnResults = returnResults;
 
 				return spStoreUpsertCall (parameters, connectionString);
 			}
-			public static List<StoreUpsertResult> spStoreUpsertCall (spStoreUpsertParameters parameters, string connectionString)
+			public static List<StoreUpsertResult> spStoreUpsertCall (StoreUpsertParameters parameters, string connectionString)
 			{
 				List<StoreUpsertResult> ret = new List<StoreUpsertResult>();
 				using (SqlConnection conn = new SqlConnection(connectionString))
 				{
-				conn.Open();
+					conn.Open();
 					string qry = "EXEC spStoreUpsert @GUID = @GUID, @IsDeleted = @IsDeleted, @ActiveDateTime = @ActiveDateTime, @TerminationDateTime = @TerminationDateTime, @StoreName = @StoreName, @AccountGUID = @AccountGUID, @SystemUserGUID = @SystemUserGUID, @ReturnResults = @ReturnResults";
 
 					using (SqlCommand cmd = new SqlCommand(qry, conn))
@@ -1091,24 +1840,26 @@ namespace AppointmentLibrary.Calls
 				}
 				return ret;
 			}
-			public static List<StoreGetResult> spStoreGetCall(Guid? StoreGUID, string connectionString)
+			public static List<StoreGetResult> spStoreGetCall(Guid? storeGUID, Guid? systemUserGUID, string connectionString)
 			{
-				spStoreGetParameters parameters = new spStoreGetParameters();
-				parameters.StoreGUID = StoreGUID;
+				StoreGetParameters parameters = new StoreGetParameters();
+				parameters.StoreGUID = storeGUID;
+				parameters.SystemUserGUID = systemUserGUID;
 
 				return spStoreGetCall (parameters, connectionString);
 			}
-			public static List<StoreGetResult> spStoreGetCall (spStoreGetParameters parameters, string connectionString)
+			public static List<StoreGetResult> spStoreGetCall (StoreGetParameters parameters, string connectionString)
 			{
 				List<StoreGetResult> ret = new List<StoreGetResult>();
 				using (SqlConnection conn = new SqlConnection(connectionString))
 				{
-				conn.Open();
-					string qry = "EXEC spStoreGet @StoreGUID = @StoreGUID";
+					conn.Open();
+					string qry = "EXEC spStoreGet @StoreGUID = @StoreGUID, @SystemUserGUID = @SystemUserGUID";
 
 					using (SqlCommand cmd = new SqlCommand(qry, conn))
 					{
 						cmd.Parameters.Add(new SqlParameter("@StoreGUID", parameters.StoreGUID == null ? (object)DBNull.Value :  parameters.StoreGUID));
+						cmd.Parameters.Add(new SqlParameter("@SystemUserGUID", parameters.SystemUserGUID == null ? (object)DBNull.Value :  parameters.SystemUserGUID));
 				        using (SqlDataReader reader = cmd.ExecuteReader())
 				        {
 				            while (reader.Read())
@@ -1142,30 +1893,49 @@ namespace AppointmentLibrary.Calls
 				}
 				return ret;
 			}
-			public static List<AccountToXMLResult> spAccountToXMLCall(string GUIDS, string connectionString)
+			public static List<PermissionUpsertResult> spPermissionUpsertCall(Guid? gUID, bool? isDeleted, string permission, Guid? systemUserGUID, bool? returnResults, string connectionString)
 			{
-				spAccountToXMLParameters parameters = new spAccountToXMLParameters();
-				parameters.GUIDS = GUIDS;
+				PermissionUpsertParameters parameters = new PermissionUpsertParameters();
+				parameters.GUID = gUID;
+				parameters.IsDeleted = isDeleted;
+				parameters.Permission = permission;
+				parameters.SystemUserGUID = systemUserGUID;
+				parameters.ReturnResults = returnResults;
 
-				return spAccountToXMLCall (parameters, connectionString);
+				return spPermissionUpsertCall (parameters, connectionString);
 			}
-			public static List<AccountToXMLResult> spAccountToXMLCall (spAccountToXMLParameters parameters, string connectionString)
+			public static List<PermissionUpsertResult> spPermissionUpsertCall (PermissionUpsertParameters parameters, string connectionString)
 			{
-				List<AccountToXMLResult> ret = new List<AccountToXMLResult>();
+				List<PermissionUpsertResult> ret = new List<PermissionUpsertResult>();
 				using (SqlConnection conn = new SqlConnection(connectionString))
 				{
-				conn.Open();
-					string qry = "EXEC spAccountToXML @GUIDS = @GUIDS";
+					conn.Open();
+					string qry = "EXEC spPermissionUpsert @GUID = @GUID, @IsDeleted = @IsDeleted, @Permission = @Permission, @SystemUserGUID = @SystemUserGUID, @ReturnResults = @ReturnResults";
 
 					using (SqlCommand cmd = new SqlCommand(qry, conn))
 					{
-						cmd.Parameters.Add(new SqlParameter("@GUIDS", parameters.GUIDS == null ? (object)DBNull.Value :  parameters.GUIDS));
+						cmd.Parameters.Add(new SqlParameter("@GUID", parameters.GUID == null ? (object)DBNull.Value :  parameters.GUID));
+						cmd.Parameters.Add(new SqlParameter("@IsDeleted", parameters.IsDeleted == null ? (object)DBNull.Value :  parameters.IsDeleted));
+						cmd.Parameters.Add(new SqlParameter("@Permission", parameters.Permission == null ? (object)DBNull.Value :  parameters.Permission));
+						cmd.Parameters.Add(new SqlParameter("@SystemUserGUID", parameters.SystemUserGUID == null ? (object)DBNull.Value :  parameters.SystemUserGUID));
+						cmd.Parameters.Add(new SqlParameter("@ReturnResults", parameters.ReturnResults == null ? (object)DBNull.Value :  parameters.ReturnResults));
 				        using (SqlDataReader reader = cmd.ExecuteReader())
 				        {
 				            while (reader.Read())
 				            { 
-					            AccountToXMLResult res = new AccountToXMLResult();
-								res.XML = reader["XML"].ToString();
+					            PermissionUpsertResult res = new PermissionUpsertResult();
+								res.GUID = new Guid(reader["GUID"].ToString());
+								if (!String.IsNullOrWhiteSpace(reader["ID"].ToString()))
+								{
+								    res.ID = int.Parse(reader["ID"].ToString());
+								}
+								if (!String.IsNullOrWhiteSpace(reader["DateTimeCreated"].ToString()))
+								{
+								    res.DateTimeCreated = DateTime.Parse(reader["DateTimeCreated"].ToString());
+								}
+								res.IsDeleted = (bool)reader["IsDeleted"];
+								res.Permission = reader["Permission"].ToString();
+								res.SystemUserGUID = new Guid(reader["SystemUserGUID"].ToString());
 								ret.Add(res);
 				            }
 				        }
@@ -1173,32 +1943,43 @@ namespace AppointmentLibrary.Calls
 				}
 				return ret;
 			}
-			public static List<AccountToXMLByDateTimeResult> spAccountToXMLByDateTimeCall(DateTime? FromDateTime, DateTime? ToDateTime, string connectionString)
+			public static List<PermissionGetResult> spPermissionGetCall(Guid? permissionGUID, Guid? systemUserGUID, string connectionString)
 			{
-				spAccountToXMLByDateTimeParameters parameters = new spAccountToXMLByDateTimeParameters();
-				parameters.FromDateTime = FromDateTime;
-				parameters.ToDateTime = ToDateTime;
+				PermissionGetParameters parameters = new PermissionGetParameters();
+				parameters.PermissionGUID = permissionGUID;
+				parameters.SystemUserGUID = systemUserGUID;
 
-				return spAccountToXMLByDateTimeCall (parameters, connectionString);
+				return spPermissionGetCall (parameters, connectionString);
 			}
-			public static List<AccountToXMLByDateTimeResult> spAccountToXMLByDateTimeCall (spAccountToXMLByDateTimeParameters parameters, string connectionString)
+			public static List<PermissionGetResult> spPermissionGetCall (PermissionGetParameters parameters, string connectionString)
 			{
-				List<AccountToXMLByDateTimeResult> ret = new List<AccountToXMLByDateTimeResult>();
+				List<PermissionGetResult> ret = new List<PermissionGetResult>();
 				using (SqlConnection conn = new SqlConnection(connectionString))
 				{
-				conn.Open();
-					string qry = "EXEC spAccountToXMLByDateTime @FromDateTime = @FromDateTime, @ToDateTime = @ToDateTime";
+					conn.Open();
+					string qry = "EXEC spPermissionGet @PermissionGUID = @PermissionGUID, @SystemUserGUID = @SystemUserGUID";
 
 					using (SqlCommand cmd = new SqlCommand(qry, conn))
 					{
-						cmd.Parameters.Add(new SqlParameter("@FromDateTime", parameters.FromDateTime == null ? (object)DBNull.Value :  parameters.FromDateTime));
-						cmd.Parameters.Add(new SqlParameter("@ToDateTime", parameters.ToDateTime == null ? (object)DBNull.Value :  parameters.ToDateTime));
+						cmd.Parameters.Add(new SqlParameter("@PermissionGUID", parameters.PermissionGUID == null ? (object)DBNull.Value :  parameters.PermissionGUID));
+						cmd.Parameters.Add(new SqlParameter("@SystemUserGUID", parameters.SystemUserGUID == null ? (object)DBNull.Value :  parameters.SystemUserGUID));
 				        using (SqlDataReader reader = cmd.ExecuteReader())
 				        {
 				            while (reader.Read())
 				            { 
-					            AccountToXMLByDateTimeResult res = new AccountToXMLByDateTimeResult();
-								res.XML = reader["XML"].ToString();
+					            PermissionGetResult res = new PermissionGetResult();
+								res.GUID = new Guid(reader["GUID"].ToString());
+								if (!String.IsNullOrWhiteSpace(reader["ID"].ToString()))
+								{
+								    res.ID = int.Parse(reader["ID"].ToString());
+								}
+								if (!String.IsNullOrWhiteSpace(reader["DateTimeCreated"].ToString()))
+								{
+								    res.DateTimeCreated = DateTime.Parse(reader["DateTimeCreated"].ToString());
+								}
+								res.IsDeleted = (bool)reader["IsDeleted"];
+								res.Permission = reader["Permission"].ToString();
+								res.SystemUserGUID = new Guid(reader["SystemUserGUID"].ToString());
 								ret.Add(res);
 				            }
 				        }
@@ -1206,30 +1987,65 @@ namespace AppointmentLibrary.Calls
 				}
 				return ret;
 			}
-			public static List<ActivityTypeToXMLResult> spActivityTypeToXMLCall(string GUIDS, string connectionString)
+			public static List<SystemUserPermissionUpsertResult> spSystemUserPermissionUpsertCall(Guid? gUID, bool? isDeleted, DateTime? activeDateTime, DateTime? terminationDateTime, Guid? forSystemUserGUID, Guid? permissionGUID, Guid? systemUserGUID, bool? returnResults, string connectionString)
 			{
-				spActivityTypeToXMLParameters parameters = new spActivityTypeToXMLParameters();
-				parameters.GUIDS = GUIDS;
+				SystemUserPermissionUpsertParameters parameters = new SystemUserPermissionUpsertParameters();
+				parameters.GUID = gUID;
+				parameters.IsDeleted = isDeleted;
+				parameters.ActiveDateTime = activeDateTime;
+				parameters.TerminationDateTime = terminationDateTime;
+				parameters.ForSystemUserGUID = forSystemUserGUID;
+				parameters.PermissionGUID = permissionGUID;
+				parameters.SystemUserGUID = systemUserGUID;
+				parameters.ReturnResults = returnResults;
 
-				return spActivityTypeToXMLCall (parameters, connectionString);
+				return spSystemUserPermissionUpsertCall (parameters, connectionString);
 			}
-			public static List<ActivityTypeToXMLResult> spActivityTypeToXMLCall (spActivityTypeToXMLParameters parameters, string connectionString)
+			public static List<SystemUserPermissionUpsertResult> spSystemUserPermissionUpsertCall (SystemUserPermissionUpsertParameters parameters, string connectionString)
 			{
-				List<ActivityTypeToXMLResult> ret = new List<ActivityTypeToXMLResult>();
+				List<SystemUserPermissionUpsertResult> ret = new List<SystemUserPermissionUpsertResult>();
 				using (SqlConnection conn = new SqlConnection(connectionString))
 				{
-				conn.Open();
-					string qry = "EXEC spActivityTypeToXML @GUIDS = @GUIDS";
+					conn.Open();
+					string qry = "EXEC spSystemUserPermissionUpsert @GUID = @GUID, @IsDeleted = @IsDeleted, @ActiveDateTime = @ActiveDateTime, @TerminationDateTime = @TerminationDateTime, @ForSystemUserGUID = @ForSystemUserGUID, @PermissionGUID = @PermissionGUID, @SystemUserGUID = @SystemUserGUID, @ReturnResults = @ReturnResults";
 
 					using (SqlCommand cmd = new SqlCommand(qry, conn))
 					{
-						cmd.Parameters.Add(new SqlParameter("@GUIDS", parameters.GUIDS == null ? (object)DBNull.Value :  parameters.GUIDS));
+						cmd.Parameters.Add(new SqlParameter("@GUID", parameters.GUID == null ? (object)DBNull.Value :  parameters.GUID));
+						cmd.Parameters.Add(new SqlParameter("@IsDeleted", parameters.IsDeleted == null ? (object)DBNull.Value :  parameters.IsDeleted));
+						cmd.Parameters.Add(new SqlParameter("@ActiveDateTime", parameters.ActiveDateTime == null ? (object)DBNull.Value :  parameters.ActiveDateTime));
+						cmd.Parameters.Add(new SqlParameter("@TerminationDateTime", parameters.TerminationDateTime == null ? (object)DBNull.Value :  parameters.TerminationDateTime));
+						cmd.Parameters.Add(new SqlParameter("@ForSystemUserGUID", parameters.ForSystemUserGUID == null ? (object)DBNull.Value :  parameters.ForSystemUserGUID));
+						cmd.Parameters.Add(new SqlParameter("@PermissionGUID", parameters.PermissionGUID == null ? (object)DBNull.Value :  parameters.PermissionGUID));
+						cmd.Parameters.Add(new SqlParameter("@SystemUserGUID", parameters.SystemUserGUID == null ? (object)DBNull.Value :  parameters.SystemUserGUID));
+						cmd.Parameters.Add(new SqlParameter("@ReturnResults", parameters.ReturnResults == null ? (object)DBNull.Value :  parameters.ReturnResults));
 				        using (SqlDataReader reader = cmd.ExecuteReader())
 				        {
 				            while (reader.Read())
 				            { 
-					            ActivityTypeToXMLResult res = new ActivityTypeToXMLResult();
-								res.XML = reader["XML"].ToString();
+					            SystemUserPermissionUpsertResult res = new SystemUserPermissionUpsertResult();
+								res.GUID = new Guid(reader["GUID"].ToString());
+								if (!String.IsNullOrWhiteSpace(reader["ID"].ToString()))
+								{
+								    res.ID = int.Parse(reader["ID"].ToString());
+								}
+								if (!String.IsNullOrWhiteSpace(reader["DateTimeCreated"].ToString()))
+								{
+								    res.DateTimeCreated = DateTime.Parse(reader["DateTimeCreated"].ToString());
+								}
+								res.IsDeleted = (bool)reader["IsDeleted"];
+								if (!String.IsNullOrWhiteSpace(reader["ActiveDateTime"].ToString()))
+								{
+								    res.ActiveDateTime = DateTime.Parse(reader["ActiveDateTime"].ToString());
+								}
+								if (!String.IsNullOrWhiteSpace(reader["TerminationDateTime"].ToString()))
+								{
+								    res.TerminationDateTime = DateTime.Parse(reader["TerminationDateTime"].ToString());
+								}
+								res.IsActiveForNow = (bool)reader["IsActiveForNow"];
+								res.ForSystemUserGUID = new Guid(reader["ForSystemUserGUID"].ToString());
+								res.PermissionGUID = new Guid(reader["PermissionGUID"].ToString());
+								res.SystemUserGUID = new Guid(reader["SystemUserGUID"].ToString());
 								ret.Add(res);
 				            }
 				        }
@@ -1237,32 +2053,55 @@ namespace AppointmentLibrary.Calls
 				}
 				return ret;
 			}
-			public static List<ActivityTypeToXMLByDateTimeResult> spActivityTypeToXMLByDateTimeCall(DateTime? FromDateTime, DateTime? ToDateTime, string connectionString)
+			public static List<SystemUserPermissionGetResult> spSystemUserPermissionGetCall(Guid? systemUserPermissionGUID, Guid? systemUserGUID, string connectionString)
 			{
-				spActivityTypeToXMLByDateTimeParameters parameters = new spActivityTypeToXMLByDateTimeParameters();
-				parameters.FromDateTime = FromDateTime;
-				parameters.ToDateTime = ToDateTime;
+				SystemUserPermissionGetParameters parameters = new SystemUserPermissionGetParameters();
+				parameters.SystemUserPermissionGUID = systemUserPermissionGUID;
+				parameters.SystemUserGUID = systemUserGUID;
 
-				return spActivityTypeToXMLByDateTimeCall (parameters, connectionString);
+				return spSystemUserPermissionGetCall (parameters, connectionString);
 			}
-			public static List<ActivityTypeToXMLByDateTimeResult> spActivityTypeToXMLByDateTimeCall (spActivityTypeToXMLByDateTimeParameters parameters, string connectionString)
+			public static List<SystemUserPermissionGetResult> spSystemUserPermissionGetCall (SystemUserPermissionGetParameters parameters, string connectionString)
 			{
-				List<ActivityTypeToXMLByDateTimeResult> ret = new List<ActivityTypeToXMLByDateTimeResult>();
+				List<SystemUserPermissionGetResult> ret = new List<SystemUserPermissionGetResult>();
 				using (SqlConnection conn = new SqlConnection(connectionString))
 				{
-				conn.Open();
-					string qry = "EXEC spActivityTypeToXMLByDateTime @FromDateTime = @FromDateTime, @ToDateTime = @ToDateTime";
+					conn.Open();
+					string qry = "EXEC spSystemUserPermissionGet @SystemUserPermissionGUID = @SystemUserPermissionGUID, @SystemUserGUID = @SystemUserGUID";
 
 					using (SqlCommand cmd = new SqlCommand(qry, conn))
 					{
-						cmd.Parameters.Add(new SqlParameter("@FromDateTime", parameters.FromDateTime == null ? (object)DBNull.Value :  parameters.FromDateTime));
-						cmd.Parameters.Add(new SqlParameter("@ToDateTime", parameters.ToDateTime == null ? (object)DBNull.Value :  parameters.ToDateTime));
+						cmd.Parameters.Add(new SqlParameter("@SystemUserPermissionGUID", parameters.SystemUserPermissionGUID == null ? (object)DBNull.Value :  parameters.SystemUserPermissionGUID));
+						cmd.Parameters.Add(new SqlParameter("@SystemUserGUID", parameters.SystemUserGUID == null ? (object)DBNull.Value :  parameters.SystemUserGUID));
 				        using (SqlDataReader reader = cmd.ExecuteReader())
 				        {
 				            while (reader.Read())
 				            { 
-					            ActivityTypeToXMLByDateTimeResult res = new ActivityTypeToXMLByDateTimeResult();
-								res.XML = reader["XML"].ToString();
+					            SystemUserPermissionGetResult res = new SystemUserPermissionGetResult();
+								res.GUID = new Guid(reader["GUID"].ToString());
+								if (!String.IsNullOrWhiteSpace(reader["ID"].ToString()))
+								{
+								    res.ID = int.Parse(reader["ID"].ToString());
+								}
+								if (!String.IsNullOrWhiteSpace(reader["DateTimeCreated"].ToString()))
+								{
+								    res.DateTimeCreated = DateTime.Parse(reader["DateTimeCreated"].ToString());
+								}
+								res.IsDeleted = (bool)reader["IsDeleted"];
+								if (!String.IsNullOrWhiteSpace(reader["ActiveDateTime"].ToString()))
+								{
+								    res.ActiveDateTime = DateTime.Parse(reader["ActiveDateTime"].ToString());
+								}
+								if (!String.IsNullOrWhiteSpace(reader["TerminationDateTime"].ToString()))
+								{
+								    res.TerminationDateTime = DateTime.Parse(reader["TerminationDateTime"].ToString());
+								}
+								res.IsActiveForNow = (bool)reader["IsActiveForNow"];
+								res.ForSystemUserGUID = new Guid(reader["ForSystemUserGUID"].ToString());
+								res.PermissionGUID = new Guid(reader["PermissionGUID"].ToString());
+								res.SystemUserGUID = new Guid(reader["SystemUserGUID"].ToString());
+								res.Username = reader["Username"].ToString();
+								res.Permission = reader["Permission"].ToString();
 								ret.Add(res);
 				            }
 				        }
@@ -1270,30 +2109,62 @@ namespace AppointmentLibrary.Calls
 				}
 				return ret;
 			}
-			public static List<AppointmentToXMLResult> spAppointmentToXMLCall(string GUIDS, string connectionString)
+			public static List<SystemUserGroupUpsertResult> spSystemUserGroupUpsertCall(Guid? gUID, bool? isDeleted, DateTime? activeDateTime, DateTime? terminationDateTime, string description, Guid? systemUserGUID, bool? returnResults, string connectionString)
 			{
-				spAppointmentToXMLParameters parameters = new spAppointmentToXMLParameters();
-				parameters.GUIDS = GUIDS;
+				SystemUserGroupUpsertParameters parameters = new SystemUserGroupUpsertParameters();
+				parameters.GUID = gUID;
+				parameters.IsDeleted = isDeleted;
+				parameters.ActiveDateTime = activeDateTime;
+				parameters.TerminationDateTime = terminationDateTime;
+				parameters.Description = description;
+				parameters.SystemUserGUID = systemUserGUID;
+				parameters.ReturnResults = returnResults;
 
-				return spAppointmentToXMLCall (parameters, connectionString);
+				return spSystemUserGroupUpsertCall (parameters, connectionString);
 			}
-			public static List<AppointmentToXMLResult> spAppointmentToXMLCall (spAppointmentToXMLParameters parameters, string connectionString)
+			public static List<SystemUserGroupUpsertResult> spSystemUserGroupUpsertCall (SystemUserGroupUpsertParameters parameters, string connectionString)
 			{
-				List<AppointmentToXMLResult> ret = new List<AppointmentToXMLResult>();
+				List<SystemUserGroupUpsertResult> ret = new List<SystemUserGroupUpsertResult>();
 				using (SqlConnection conn = new SqlConnection(connectionString))
 				{
-				conn.Open();
-					string qry = "EXEC spAppointmentToXML @GUIDS = @GUIDS";
+					conn.Open();
+					string qry = "EXEC spSystemUserGroupUpsert @GUID = @GUID, @IsDeleted = @IsDeleted, @ActiveDateTime = @ActiveDateTime, @TerminationDateTime = @TerminationDateTime, @Description = @Description, @SystemUserGUID = @SystemUserGUID, @ReturnResults = @ReturnResults";
 
 					using (SqlCommand cmd = new SqlCommand(qry, conn))
 					{
-						cmd.Parameters.Add(new SqlParameter("@GUIDS", parameters.GUIDS == null ? (object)DBNull.Value :  parameters.GUIDS));
+						cmd.Parameters.Add(new SqlParameter("@GUID", parameters.GUID == null ? (object)DBNull.Value :  parameters.GUID));
+						cmd.Parameters.Add(new SqlParameter("@IsDeleted", parameters.IsDeleted == null ? (object)DBNull.Value :  parameters.IsDeleted));
+						cmd.Parameters.Add(new SqlParameter("@ActiveDateTime", parameters.ActiveDateTime == null ? (object)DBNull.Value :  parameters.ActiveDateTime));
+						cmd.Parameters.Add(new SqlParameter("@TerminationDateTime", parameters.TerminationDateTime == null ? (object)DBNull.Value :  parameters.TerminationDateTime));
+						cmd.Parameters.Add(new SqlParameter("@Description", parameters.Description == null ? (object)DBNull.Value :  parameters.Description));
+						cmd.Parameters.Add(new SqlParameter("@SystemUserGUID", parameters.SystemUserGUID == null ? (object)DBNull.Value :  parameters.SystemUserGUID));
+						cmd.Parameters.Add(new SqlParameter("@ReturnResults", parameters.ReturnResults == null ? (object)DBNull.Value :  parameters.ReturnResults));
 				        using (SqlDataReader reader = cmd.ExecuteReader())
 				        {
 				            while (reader.Read())
 				            { 
-					            AppointmentToXMLResult res = new AppointmentToXMLResult();
-								res.XML = reader["XML"].ToString();
+					            SystemUserGroupUpsertResult res = new SystemUserGroupUpsertResult();
+								res.GUID = new Guid(reader["GUID"].ToString());
+								if (!String.IsNullOrWhiteSpace(reader["ID"].ToString()))
+								{
+								    res.ID = int.Parse(reader["ID"].ToString());
+								}
+								if (!String.IsNullOrWhiteSpace(reader["DateTimeCreated"].ToString()))
+								{
+								    res.DateTimeCreated = DateTime.Parse(reader["DateTimeCreated"].ToString());
+								}
+								res.IsDeleted = (bool)reader["IsDeleted"];
+								if (!String.IsNullOrWhiteSpace(reader["ActiveDateTime"].ToString()))
+								{
+								    res.ActiveDateTime = DateTime.Parse(reader["ActiveDateTime"].ToString());
+								}
+								if (!String.IsNullOrWhiteSpace(reader["TerminationDateTime"].ToString()))
+								{
+								    res.TerminationDateTime = DateTime.Parse(reader["TerminationDateTime"].ToString());
+								}
+								res.IsActiveForNow = (bool)reader["IsActiveForNow"];
+								res.Description = reader["Description"].ToString();
+								res.SystemUserGUID = new Guid(reader["SystemUserGUID"].ToString());
 								ret.Add(res);
 				            }
 				        }
@@ -1301,32 +2172,52 @@ namespace AppointmentLibrary.Calls
 				}
 				return ret;
 			}
-			public static List<AppointmentToXMLByDateTimeResult> spAppointmentToXMLByDateTimeCall(DateTime? FromDateTime, DateTime? ToDateTime, string connectionString)
+			public static List<SystemUserGroupGetResult> spSystemUserGroupGetCall(Guid? systemUserGroupGUID, Guid? systemUserGUID, string connectionString)
 			{
-				spAppointmentToXMLByDateTimeParameters parameters = new spAppointmentToXMLByDateTimeParameters();
-				parameters.FromDateTime = FromDateTime;
-				parameters.ToDateTime = ToDateTime;
+				SystemUserGroupGetParameters parameters = new SystemUserGroupGetParameters();
+				parameters.SystemUserGroupGUID = systemUserGroupGUID;
+				parameters.SystemUserGUID = systemUserGUID;
 
-				return spAppointmentToXMLByDateTimeCall (parameters, connectionString);
+				return spSystemUserGroupGetCall (parameters, connectionString);
 			}
-			public static List<AppointmentToXMLByDateTimeResult> spAppointmentToXMLByDateTimeCall (spAppointmentToXMLByDateTimeParameters parameters, string connectionString)
+			public static List<SystemUserGroupGetResult> spSystemUserGroupGetCall (SystemUserGroupGetParameters parameters, string connectionString)
 			{
-				List<AppointmentToXMLByDateTimeResult> ret = new List<AppointmentToXMLByDateTimeResult>();
+				List<SystemUserGroupGetResult> ret = new List<SystemUserGroupGetResult>();
 				using (SqlConnection conn = new SqlConnection(connectionString))
 				{
-				conn.Open();
-					string qry = "EXEC spAppointmentToXMLByDateTime @FromDateTime = @FromDateTime, @ToDateTime = @ToDateTime";
+					conn.Open();
+					string qry = "EXEC spSystemUserGroupGet @SystemUserGroupGUID = @SystemUserGroupGUID, @SystemUserGUID = @SystemUserGUID";
 
 					using (SqlCommand cmd = new SqlCommand(qry, conn))
 					{
-						cmd.Parameters.Add(new SqlParameter("@FromDateTime", parameters.FromDateTime == null ? (object)DBNull.Value :  parameters.FromDateTime));
-						cmd.Parameters.Add(new SqlParameter("@ToDateTime", parameters.ToDateTime == null ? (object)DBNull.Value :  parameters.ToDateTime));
+						cmd.Parameters.Add(new SqlParameter("@SystemUserGroupGUID", parameters.SystemUserGroupGUID == null ? (object)DBNull.Value :  parameters.SystemUserGroupGUID));
+						cmd.Parameters.Add(new SqlParameter("@SystemUserGUID", parameters.SystemUserGUID == null ? (object)DBNull.Value :  parameters.SystemUserGUID));
 				        using (SqlDataReader reader = cmd.ExecuteReader())
 				        {
 				            while (reader.Read())
 				            { 
-					            AppointmentToXMLByDateTimeResult res = new AppointmentToXMLByDateTimeResult();
-								res.XML = reader["XML"].ToString();
+					            SystemUserGroupGetResult res = new SystemUserGroupGetResult();
+								res.GUID = new Guid(reader["GUID"].ToString());
+								if (!String.IsNullOrWhiteSpace(reader["ID"].ToString()))
+								{
+								    res.ID = int.Parse(reader["ID"].ToString());
+								}
+								if (!String.IsNullOrWhiteSpace(reader["DateTimeCreated"].ToString()))
+								{
+								    res.DateTimeCreated = DateTime.Parse(reader["DateTimeCreated"].ToString());
+								}
+								res.IsDeleted = (bool)reader["IsDeleted"];
+								if (!String.IsNullOrWhiteSpace(reader["ActiveDateTime"].ToString()))
+								{
+								    res.ActiveDateTime = DateTime.Parse(reader["ActiveDateTime"].ToString());
+								}
+								if (!String.IsNullOrWhiteSpace(reader["TerminationDateTime"].ToString()))
+								{
+								    res.TerminationDateTime = DateTime.Parse(reader["TerminationDateTime"].ToString());
+								}
+								res.IsActiveForNow = (bool)reader["IsActiveForNow"];
+								res.Description = reader["Description"].ToString();
+								res.SystemUserGUID = new Guid(reader["SystemUserGUID"].ToString());
 								ret.Add(res);
 				            }
 				        }
@@ -1334,30 +2225,65 @@ namespace AppointmentLibrary.Calls
 				}
 				return ret;
 			}
-			public static List<ServiceProviderToXMLResult> spServiceProviderToXMLCall(string GUIDS, string connectionString)
+			public static List<SystemUserGroupPermissionUpsertResult> spSystemUserGroupPermissionUpsertCall(Guid? gUID, bool? isDeleted, DateTime? activeDateTime, DateTime? terminationDateTime, Guid? permissionGUID, Guid? systemUserGroupGUID, Guid? systemUserGUID, bool? returnResults, string connectionString)
 			{
-				spServiceProviderToXMLParameters parameters = new spServiceProviderToXMLParameters();
-				parameters.GUIDS = GUIDS;
+				SystemUserGroupPermissionUpsertParameters parameters = new SystemUserGroupPermissionUpsertParameters();
+				parameters.GUID = gUID;
+				parameters.IsDeleted = isDeleted;
+				parameters.ActiveDateTime = activeDateTime;
+				parameters.TerminationDateTime = terminationDateTime;
+				parameters.PermissionGUID = permissionGUID;
+				parameters.SystemUserGroupGUID = systemUserGroupGUID;
+				parameters.SystemUserGUID = systemUserGUID;
+				parameters.ReturnResults = returnResults;
 
-				return spServiceProviderToXMLCall (parameters, connectionString);
+				return spSystemUserGroupPermissionUpsertCall (parameters, connectionString);
 			}
-			public static List<ServiceProviderToXMLResult> spServiceProviderToXMLCall (spServiceProviderToXMLParameters parameters, string connectionString)
+			public static List<SystemUserGroupPermissionUpsertResult> spSystemUserGroupPermissionUpsertCall (SystemUserGroupPermissionUpsertParameters parameters, string connectionString)
 			{
-				List<ServiceProviderToXMLResult> ret = new List<ServiceProviderToXMLResult>();
+				List<SystemUserGroupPermissionUpsertResult> ret = new List<SystemUserGroupPermissionUpsertResult>();
 				using (SqlConnection conn = new SqlConnection(connectionString))
 				{
-				conn.Open();
-					string qry = "EXEC spServiceProviderToXML @GUIDS = @GUIDS";
+					conn.Open();
+					string qry = "EXEC spSystemUserGroupPermissionUpsert @GUID = @GUID, @IsDeleted = @IsDeleted, @ActiveDateTime = @ActiveDateTime, @TerminationDateTime = @TerminationDateTime, @PermissionGUID = @PermissionGUID, @SystemUserGroupGUID = @SystemUserGroupGUID, @SystemUserGUID = @SystemUserGUID, @ReturnResults = @ReturnResults";
 
 					using (SqlCommand cmd = new SqlCommand(qry, conn))
 					{
-						cmd.Parameters.Add(new SqlParameter("@GUIDS", parameters.GUIDS == null ? (object)DBNull.Value :  parameters.GUIDS));
+						cmd.Parameters.Add(new SqlParameter("@GUID", parameters.GUID == null ? (object)DBNull.Value :  parameters.GUID));
+						cmd.Parameters.Add(new SqlParameter("@IsDeleted", parameters.IsDeleted == null ? (object)DBNull.Value :  parameters.IsDeleted));
+						cmd.Parameters.Add(new SqlParameter("@ActiveDateTime", parameters.ActiveDateTime == null ? (object)DBNull.Value :  parameters.ActiveDateTime));
+						cmd.Parameters.Add(new SqlParameter("@TerminationDateTime", parameters.TerminationDateTime == null ? (object)DBNull.Value :  parameters.TerminationDateTime));
+						cmd.Parameters.Add(new SqlParameter("@PermissionGUID", parameters.PermissionGUID == null ? (object)DBNull.Value :  parameters.PermissionGUID));
+						cmd.Parameters.Add(new SqlParameter("@SystemUserGroupGUID", parameters.SystemUserGroupGUID == null ? (object)DBNull.Value :  parameters.SystemUserGroupGUID));
+						cmd.Parameters.Add(new SqlParameter("@SystemUserGUID", parameters.SystemUserGUID == null ? (object)DBNull.Value :  parameters.SystemUserGUID));
+						cmd.Parameters.Add(new SqlParameter("@ReturnResults", parameters.ReturnResults == null ? (object)DBNull.Value :  parameters.ReturnResults));
 				        using (SqlDataReader reader = cmd.ExecuteReader())
 				        {
 				            while (reader.Read())
 				            { 
-					            ServiceProviderToXMLResult res = new ServiceProviderToXMLResult();
-								res.XML = reader["XML"].ToString();
+					            SystemUserGroupPermissionUpsertResult res = new SystemUserGroupPermissionUpsertResult();
+								res.GUID = new Guid(reader["GUID"].ToString());
+								if (!String.IsNullOrWhiteSpace(reader["ID"].ToString()))
+								{
+								    res.ID = int.Parse(reader["ID"].ToString());
+								}
+								if (!String.IsNullOrWhiteSpace(reader["DateTimeCreated"].ToString()))
+								{
+								    res.DateTimeCreated = DateTime.Parse(reader["DateTimeCreated"].ToString());
+								}
+								res.IsDeleted = (bool)reader["IsDeleted"];
+								if (!String.IsNullOrWhiteSpace(reader["ActiveDateTime"].ToString()))
+								{
+								    res.ActiveDateTime = DateTime.Parse(reader["ActiveDateTime"].ToString());
+								}
+								if (!String.IsNullOrWhiteSpace(reader["TerminationDateTime"].ToString()))
+								{
+								    res.TerminationDateTime = DateTime.Parse(reader["TerminationDateTime"].ToString());
+								}
+								res.IsActiveForNow = (bool)reader["IsActiveForNow"];
+								res.PermissionGUID = new Guid(reader["PermissionGUID"].ToString());
+								res.SystemUserGroupGUID = new Guid(reader["SystemUserGroupGUID"].ToString());
+								res.SystemUserGUID = new Guid(reader["SystemUserGUID"].ToString());
 								ret.Add(res);
 				            }
 				        }
@@ -1365,251 +2291,26 @@ namespace AppointmentLibrary.Calls
 				}
 				return ret;
 			}
-			public static List<ServiceProviderToXMLByDateTimeResult> spServiceProviderToXMLByDateTimeCall(DateTime? FromDateTime, DateTime? ToDateTime, string connectionString)
+			public static List<AuditLogUpsertResult> spAuditLogUpsertCall(Guid? gUID, string source, string tableName, string beforeSnapshot, string afterSnapshot, Guid? tableGUID, Guid? systemUserGUID, bool? returnResults, string connectionString)
 			{
-				spServiceProviderToXMLByDateTimeParameters parameters = new spServiceProviderToXMLByDateTimeParameters();
-				parameters.FromDateTime = FromDateTime;
-				parameters.ToDateTime = ToDateTime;
-
-				return spServiceProviderToXMLByDateTimeCall (parameters, connectionString);
-			}
-			public static List<ServiceProviderToXMLByDateTimeResult> spServiceProviderToXMLByDateTimeCall (spServiceProviderToXMLByDateTimeParameters parameters, string connectionString)
-			{
-				List<ServiceProviderToXMLByDateTimeResult> ret = new List<ServiceProviderToXMLByDateTimeResult>();
-				using (SqlConnection conn = new SqlConnection(connectionString))
-				{
-				conn.Open();
-					string qry = "EXEC spServiceProviderToXMLByDateTime @FromDateTime = @FromDateTime, @ToDateTime = @ToDateTime";
-
-					using (SqlCommand cmd = new SqlCommand(qry, conn))
-					{
-						cmd.Parameters.Add(new SqlParameter("@FromDateTime", parameters.FromDateTime == null ? (object)DBNull.Value :  parameters.FromDateTime));
-						cmd.Parameters.Add(new SqlParameter("@ToDateTime", parameters.ToDateTime == null ? (object)DBNull.Value :  parameters.ToDateTime));
-				        using (SqlDataReader reader = cmd.ExecuteReader())
-				        {
-				            while (reader.Read())
-				            { 
-					            ServiceProviderToXMLByDateTimeResult res = new ServiceProviderToXMLByDateTimeResult();
-								res.XML = reader["XML"].ToString();
-								ret.Add(res);
-				            }
-				        }
-				    }
-				}
-				return ret;
-			}
-			public static List<CustomerToXMLResult> spCustomerToXMLCall(string GUIDS, string connectionString)
-			{
-				spCustomerToXMLParameters parameters = new spCustomerToXMLParameters();
-				parameters.GUIDS = GUIDS;
-
-				return spCustomerToXMLCall (parameters, connectionString);
-			}
-			public static List<CustomerToXMLResult> spCustomerToXMLCall (spCustomerToXMLParameters parameters, string connectionString)
-			{
-				List<CustomerToXMLResult> ret = new List<CustomerToXMLResult>();
-				using (SqlConnection conn = new SqlConnection(connectionString))
-				{
-				conn.Open();
-					string qry = "EXEC spCustomerToXML @GUIDS = @GUIDS";
-
-					using (SqlCommand cmd = new SqlCommand(qry, conn))
-					{
-						cmd.Parameters.Add(new SqlParameter("@GUIDS", parameters.GUIDS == null ? (object)DBNull.Value :  parameters.GUIDS));
-				        using (SqlDataReader reader = cmd.ExecuteReader())
-				        {
-				            while (reader.Read())
-				            { 
-					            CustomerToXMLResult res = new CustomerToXMLResult();
-								res.XML = reader["XML"].ToString();
-								ret.Add(res);
-				            }
-				        }
-				    }
-				}
-				return ret;
-			}
-			public static List<CustomerToXMLByDateTimeResult> spCustomerToXMLByDateTimeCall(DateTime? FromDateTime, DateTime? ToDateTime, string connectionString)
-			{
-				spCustomerToXMLByDateTimeParameters parameters = new spCustomerToXMLByDateTimeParameters();
-				parameters.FromDateTime = FromDateTime;
-				parameters.ToDateTime = ToDateTime;
-
-				return spCustomerToXMLByDateTimeCall (parameters, connectionString);
-			}
-			public static List<CustomerToXMLByDateTimeResult> spCustomerToXMLByDateTimeCall (spCustomerToXMLByDateTimeParameters parameters, string connectionString)
-			{
-				List<CustomerToXMLByDateTimeResult> ret = new List<CustomerToXMLByDateTimeResult>();
-				using (SqlConnection conn = new SqlConnection(connectionString))
-				{
-				conn.Open();
-					string qry = "EXEC spCustomerToXMLByDateTime @FromDateTime = @FromDateTime, @ToDateTime = @ToDateTime";
-
-					using (SqlCommand cmd = new SqlCommand(qry, conn))
-					{
-						cmd.Parameters.Add(new SqlParameter("@FromDateTime", parameters.FromDateTime == null ? (object)DBNull.Value :  parameters.FromDateTime));
-						cmd.Parameters.Add(new SqlParameter("@ToDateTime", parameters.ToDateTime == null ? (object)DBNull.Value :  parameters.ToDateTime));
-				        using (SqlDataReader reader = cmd.ExecuteReader())
-				        {
-				            while (reader.Read())
-				            { 
-					            CustomerToXMLByDateTimeResult res = new CustomerToXMLByDateTimeResult();
-								res.XML = reader["XML"].ToString();
-								ret.Add(res);
-				            }
-				        }
-				    }
-				}
-				return ret;
-			}
-			public static List<ActivityScheduleToXMLResult> spActivityScheduleToXMLCall(string GUIDS, string connectionString)
-			{
-				spActivityScheduleToXMLParameters parameters = new spActivityScheduleToXMLParameters();
-				parameters.GUIDS = GUIDS;
-
-				return spActivityScheduleToXMLCall (parameters, connectionString);
-			}
-			public static List<ActivityScheduleToXMLResult> spActivityScheduleToXMLCall (spActivityScheduleToXMLParameters parameters, string connectionString)
-			{
-				List<ActivityScheduleToXMLResult> ret = new List<ActivityScheduleToXMLResult>();
-				using (SqlConnection conn = new SqlConnection(connectionString))
-				{
-				conn.Open();
-					string qry = "EXEC spActivityScheduleToXML @GUIDS = @GUIDS";
-
-					using (SqlCommand cmd = new SqlCommand(qry, conn))
-					{
-						cmd.Parameters.Add(new SqlParameter("@GUIDS", parameters.GUIDS == null ? (object)DBNull.Value :  parameters.GUIDS));
-				        using (SqlDataReader reader = cmd.ExecuteReader())
-				        {
-				            while (reader.Read())
-				            { 
-					            ActivityScheduleToXMLResult res = new ActivityScheduleToXMLResult();
-								res.XML = reader["XML"].ToString();
-								ret.Add(res);
-				            }
-				        }
-				    }
-				}
-				return ret;
-			}
-			public static List<ActivityScheduleToXMLByDateTimeResult> spActivityScheduleToXMLByDateTimeCall(DateTime? FromDateTime, DateTime? ToDateTime, string connectionString)
-			{
-				spActivityScheduleToXMLByDateTimeParameters parameters = new spActivityScheduleToXMLByDateTimeParameters();
-				parameters.FromDateTime = FromDateTime;
-				parameters.ToDateTime = ToDateTime;
-
-				return spActivityScheduleToXMLByDateTimeCall (parameters, connectionString);
-			}
-			public static List<ActivityScheduleToXMLByDateTimeResult> spActivityScheduleToXMLByDateTimeCall (spActivityScheduleToXMLByDateTimeParameters parameters, string connectionString)
-			{
-				List<ActivityScheduleToXMLByDateTimeResult> ret = new List<ActivityScheduleToXMLByDateTimeResult>();
-				using (SqlConnection conn = new SqlConnection(connectionString))
-				{
-				conn.Open();
-					string qry = "EXEC spActivityScheduleToXMLByDateTime @FromDateTime = @FromDateTime, @ToDateTime = @ToDateTime";
-
-					using (SqlCommand cmd = new SqlCommand(qry, conn))
-					{
-						cmd.Parameters.Add(new SqlParameter("@FromDateTime", parameters.FromDateTime == null ? (object)DBNull.Value :  parameters.FromDateTime));
-						cmd.Parameters.Add(new SqlParameter("@ToDateTime", parameters.ToDateTime == null ? (object)DBNull.Value :  parameters.ToDateTime));
-				        using (SqlDataReader reader = cmd.ExecuteReader())
-				        {
-				            while (reader.Read())
-				            { 
-					            ActivityScheduleToXMLByDateTimeResult res = new ActivityScheduleToXMLByDateTimeResult();
-								res.XML = reader["XML"].ToString();
-								ret.Add(res);
-				            }
-				        }
-				    }
-				}
-				return ret;
-			}
-			public static List<StoreToXMLResult> spStoreToXMLCall(string GUIDS, string connectionString)
-			{
-				spStoreToXMLParameters parameters = new spStoreToXMLParameters();
-				parameters.GUIDS = GUIDS;
-
-				return spStoreToXMLCall (parameters, connectionString);
-			}
-			public static List<StoreToXMLResult> spStoreToXMLCall (spStoreToXMLParameters parameters, string connectionString)
-			{
-				List<StoreToXMLResult> ret = new List<StoreToXMLResult>();
-				using (SqlConnection conn = new SqlConnection(connectionString))
-				{
-				conn.Open();
-					string qry = "EXEC spStoreToXML @GUIDS = @GUIDS";
-
-					using (SqlCommand cmd = new SqlCommand(qry, conn))
-					{
-						cmd.Parameters.Add(new SqlParameter("@GUIDS", parameters.GUIDS == null ? (object)DBNull.Value :  parameters.GUIDS));
-				        using (SqlDataReader reader = cmd.ExecuteReader())
-				        {
-				            while (reader.Read())
-				            { 
-					            StoreToXMLResult res = new StoreToXMLResult();
-								res.XML = reader["XML"].ToString();
-								ret.Add(res);
-				            }
-				        }
-				    }
-				}
-				return ret;
-			}
-			public static List<StoreToXMLByDateTimeResult> spStoreToXMLByDateTimeCall(DateTime? FromDateTime, DateTime? ToDateTime, string connectionString)
-			{
-				spStoreToXMLByDateTimeParameters parameters = new spStoreToXMLByDateTimeParameters();
-				parameters.FromDateTime = FromDateTime;
-				parameters.ToDateTime = ToDateTime;
-
-				return spStoreToXMLByDateTimeCall (parameters, connectionString);
-			}
-			public static List<StoreToXMLByDateTimeResult> spStoreToXMLByDateTimeCall (spStoreToXMLByDateTimeParameters parameters, string connectionString)
-			{
-				List<StoreToXMLByDateTimeResult> ret = new List<StoreToXMLByDateTimeResult>();
-				using (SqlConnection conn = new SqlConnection(connectionString))
-				{
-				conn.Open();
-					string qry = "EXEC spStoreToXMLByDateTime @FromDateTime = @FromDateTime, @ToDateTime = @ToDateTime";
-
-					using (SqlCommand cmd = new SqlCommand(qry, conn))
-					{
-						cmd.Parameters.Add(new SqlParameter("@FromDateTime", parameters.FromDateTime == null ? (object)DBNull.Value :  parameters.FromDateTime));
-						cmd.Parameters.Add(new SqlParameter("@ToDateTime", parameters.ToDateTime == null ? (object)DBNull.Value :  parameters.ToDateTime));
-				        using (SqlDataReader reader = cmd.ExecuteReader())
-				        {
-				            while (reader.Read())
-				            { 
-					            StoreToXMLByDateTimeResult res = new StoreToXMLByDateTimeResult();
-								res.XML = reader["XML"].ToString();
-								ret.Add(res);
-				            }
-				        }
-				    }
-				}
-				return ret;
-			}
-			public static List<AuditLogUpsertResult> spAuditLogUpsertCall(Guid? GUID, string Source, string TableName, string BeforeSnapshot, string AfterSnapshot, Guid? TableGUID, Guid? SystemUserGUID, bool? ReturnResults, string connectionString)
-			{
-				spAuditLogUpsertParameters parameters = new spAuditLogUpsertParameters();
-				parameters.GUID = GUID;
-				parameters.Source = Source;
-				parameters.TableName = TableName;
-				parameters.BeforeSnapshot = BeforeSnapshot;
-				parameters.AfterSnapshot = AfterSnapshot;
-				parameters.TableGUID = TableGUID;
-				parameters.SystemUserGUID = SystemUserGUID;
-				parameters.ReturnResults = ReturnResults;
+				AuditLogUpsertParameters parameters = new AuditLogUpsertParameters();
+				parameters.GUID = gUID;
+				parameters.Source = source;
+				parameters.TableName = tableName;
+				parameters.BeforeSnapshot = beforeSnapshot;
+				parameters.AfterSnapshot = afterSnapshot;
+				parameters.TableGUID = tableGUID;
+				parameters.SystemUserGUID = systemUserGUID;
+				parameters.ReturnResults = returnResults;
 
 				return spAuditLogUpsertCall (parameters, connectionString);
 			}
-			public static List<AuditLogUpsertResult> spAuditLogUpsertCall (spAuditLogUpsertParameters parameters, string connectionString)
+			public static List<AuditLogUpsertResult> spAuditLogUpsertCall (AuditLogUpsertParameters parameters, string connectionString)
 			{
 				List<AuditLogUpsertResult> ret = new List<AuditLogUpsertResult>();
 				using (SqlConnection conn = new SqlConnection(connectionString))
 				{
-				conn.Open();
+					conn.Open();
 					string qry = "EXEC spAuditLogUpsert @GUID = @GUID, @Source = @Source, @TableName = @TableName, @BeforeSnapshot = @BeforeSnapshot, @AfterSnapshot = @AfterSnapshot, @TableGUID = @TableGUID, @SystemUserGUID = @SystemUserGUID, @ReturnResults = @ReturnResults";
 
 					using (SqlCommand cmd = new SqlCommand(qry, conn))
@@ -1642,6 +2343,124 @@ namespace AppointmentLibrary.Calls
 								res.BeforeSnapshot = reader["BeforeSnapshot"].ToString();
 								res.AfterSnapshot = reader["AfterSnapshot"].ToString();
 								res.SystemUserGUID = new Guid(reader["SystemUserGUID"].ToString());
+								ret.Add(res);
+				            }
+				        }
+				    }
+				}
+				return ret;
+			}
+			public static List<SystemUserGroupPermissionGetResult> spSystemUserGroupPermissionGetCall(Guid? systemUserGroupPermissionGUID, Guid? systemUserGUID, string connectionString)
+			{
+				SystemUserGroupPermissionGetParameters parameters = new SystemUserGroupPermissionGetParameters();
+				parameters.SystemUserGroupPermissionGUID = systemUserGroupPermissionGUID;
+				parameters.SystemUserGUID = systemUserGUID;
+
+				return spSystemUserGroupPermissionGetCall (parameters, connectionString);
+			}
+			public static List<SystemUserGroupPermissionGetResult> spSystemUserGroupPermissionGetCall (SystemUserGroupPermissionGetParameters parameters, string connectionString)
+			{
+				List<SystemUserGroupPermissionGetResult> ret = new List<SystemUserGroupPermissionGetResult>();
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
+					string qry = "EXEC spSystemUserGroupPermissionGet @SystemUserGroupPermissionGUID = @SystemUserGroupPermissionGUID, @SystemUserGUID = @SystemUserGUID";
+
+					using (SqlCommand cmd = new SqlCommand(qry, conn))
+					{
+						cmd.Parameters.Add(new SqlParameter("@SystemUserGroupPermissionGUID", parameters.SystemUserGroupPermissionGUID == null ? (object)DBNull.Value :  parameters.SystemUserGroupPermissionGUID));
+						cmd.Parameters.Add(new SqlParameter("@SystemUserGUID", parameters.SystemUserGUID == null ? (object)DBNull.Value :  parameters.SystemUserGUID));
+				        using (SqlDataReader reader = cmd.ExecuteReader())
+				        {
+				            while (reader.Read())
+				            { 
+					            SystemUserGroupPermissionGetResult res = new SystemUserGroupPermissionGetResult();
+								res.GUID = new Guid(reader["GUID"].ToString());
+								if (!String.IsNullOrWhiteSpace(reader["ID"].ToString()))
+								{
+								    res.ID = int.Parse(reader["ID"].ToString());
+								}
+								if (!String.IsNullOrWhiteSpace(reader["DateTimeCreated"].ToString()))
+								{
+								    res.DateTimeCreated = DateTime.Parse(reader["DateTimeCreated"].ToString());
+								}
+								res.IsDeleted = (bool)reader["IsDeleted"];
+								if (!String.IsNullOrWhiteSpace(reader["ActiveDateTime"].ToString()))
+								{
+								    res.ActiveDateTime = DateTime.Parse(reader["ActiveDateTime"].ToString());
+								}
+								if (!String.IsNullOrWhiteSpace(reader["TerminationDateTime"].ToString()))
+								{
+								    res.TerminationDateTime = DateTime.Parse(reader["TerminationDateTime"].ToString());
+								}
+								res.IsActiveForNow = (bool)reader["IsActiveForNow"];
+								res.PermissionGUID = new Guid(reader["PermissionGUID"].ToString());
+								res.SystemUserGroupGUID = new Guid(reader["SystemUserGroupGUID"].ToString());
+								res.SystemUserGUID = new Guid(reader["SystemUserGUID"].ToString());
+								ret.Add(res);
+				            }
+				        }
+				    }
+				}
+				return ret;
+			}
+			public static List<TesterResult> spTesterCall(string first, string second, string connectionString)
+			{
+				TesterParameters parameters = new TesterParameters();
+				parameters.First = first;
+				parameters.Second = second;
+
+				return spTesterCall (parameters, connectionString);
+			}
+			public static List<TesterResult> spTesterCall (TesterParameters parameters, string connectionString)
+			{
+				List<TesterResult> ret = new List<TesterResult>();
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
+					string qry = "EXEC spTester @First = @First, @Second = @Second";
+
+					using (SqlCommand cmd = new SqlCommand(qry, conn))
+					{
+						cmd.Parameters.Add(new SqlParameter("@First", parameters.First == null ? (object)DBNull.Value :  parameters.First));
+						cmd.Parameters.Add(new SqlParameter("@Second", parameters.Second == null ? (object)DBNull.Value :  parameters.Second));
+				        using (SqlDataReader reader = cmd.ExecuteReader())
+				        {
+				            while (reader.Read())
+				            { 
+					            TesterResult res = new TesterResult();
+								res.First = reader["First"].ToString();
+								ret.Add(res);
+				            }
+				        }
+				    }
+				}
+				return ret;
+			}
+			public static List<AccountToXMLResult> spAccountToXMLCall(string gUIDS, string connectionString)
+			{
+				AccountToXMLParameters parameters = new AccountToXMLParameters();
+				parameters.GUIDS = gUIDS;
+
+				return spAccountToXMLCall (parameters, connectionString);
+			}
+			public static List<AccountToXMLResult> spAccountToXMLCall (AccountToXMLParameters parameters, string connectionString)
+			{
+				List<AccountToXMLResult> ret = new List<AccountToXMLResult>();
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
+					string qry = "EXEC spAccountToXML @GUIDS = @GUIDS";
+
+					using (SqlCommand cmd = new SqlCommand(qry, conn))
+					{
+						cmd.Parameters.Add(new SqlParameter("@GUIDS", parameters.GUIDS == null ? (object)DBNull.Value :  parameters.GUIDS));
+				        using (SqlDataReader reader = cmd.ExecuteReader())
+				        {
+				            while (reader.Read())
+				            { 
+					            AccountToXMLResult res = new AccountToXMLResult();
+								res.XML = reader["XML"].ToString();
 								ret.Add(res);
 				            }
 				        }

@@ -107,11 +107,59 @@
       <xsd:import schemaLocation="http://localhost:24599/AppointmentService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IAppointmentService_AccountToXMLByDateTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:AccountToXMLByDateTime" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_AccountToXMLByDateTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AccountToXMLByDateTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_ActivityTypeToXML_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActivityTypeToXML" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_ActivityTypeToXML_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActivityTypeToXMLResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_ActivityTypeToXMLByDateTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActivityTypeToXMLByDateTime" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_ActivityTypeToXMLByDateTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActivityTypeToXMLByDateTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_AppointmentToXML_InputMessage">
+    <wsdl:part name="parameters" element="tns:AppointmentToXML" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_AppointmentToXML_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AppointmentToXMLResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_AppointmentToXMLByDateTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:AppointmentToXMLByDateTime" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_AppointmentToXMLByDateTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AppointmentToXMLByDateTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_ServiceProviderToXML_InputMessage">
+    <wsdl:part name="parameters" element="tns:ServiceProviderToXML" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_ServiceProviderToXML_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ServiceProviderToXMLResponse" />
+  </wsdl:message>
   <wsdl:message name="IAppointmentService_CreateUpsert_InputMessage">
     <wsdl:part name="parameters" element="tns:CreateUpsert" />
   </wsdl:message>
   <wsdl:message name="IAppointmentService_CreateUpsert_OutputMessage">
     <wsdl:part name="parameters" element="tns:CreateUpsertResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_ServiceProviderToXMLByDateTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:ServiceProviderToXMLByDateTime" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_ServiceProviderToXMLByDateTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ServiceProviderToXMLByDateTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_CustomerToXML_InputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerToXML" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_CustomerToXML_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerToXMLResponse" />
   </wsdl:message>
   <wsdl:message name="IAppointmentService_SystemUserUpsert_InputMessage">
     <wsdl:part name="parameters" element="tns:SystemUserUpsert" />
@@ -119,11 +167,119 @@
   <wsdl:message name="IAppointmentService_SystemUserUpsert_OutputMessage">
     <wsdl:part name="parameters" element="tns:SystemUserUpsertResponse" />
   </wsdl:message>
+  <wsdl:message name="IAppointmentService_CustomerToXMLByDateTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerToXMLByDateTime" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_CustomerToXMLByDateTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerToXMLByDateTimeResponse" />
+  </wsdl:message>
   <wsdl:message name="IAppointmentService_SystemUserGet_InputMessage">
     <wsdl:part name="parameters" element="tns:SystemUserGet" />
   </wsdl:message>
   <wsdl:message name="IAppointmentService_SystemUserGet_OutputMessage">
     <wsdl:part name="parameters" element="tns:SystemUserGetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_ActivityScheduleToXML_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActivityScheduleToXML" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_ActivityScheduleToXML_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActivityScheduleToXMLResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_ActivityScheduleToXMLByDateTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActivityScheduleToXMLByDateTime" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_ActivityScheduleToXMLByDateTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActivityScheduleToXMLByDateTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_StoreToXML_InputMessage">
+    <wsdl:part name="parameters" element="tns:StoreToXML" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_StoreToXML_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StoreToXMLResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_StoreToXMLByDateTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:StoreToXMLByDateTime" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_StoreToXMLByDateTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StoreToXMLByDateTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_PermissionToXML_InputMessage">
+    <wsdl:part name="parameters" element="tns:PermissionToXML" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_PermissionToXML_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PermissionToXMLResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_PermissionToXMLByDateTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:PermissionToXMLByDateTime" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_PermissionToXMLByDateTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PermissionToXMLByDateTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_SystemUserPermissionToXML_InputMessage">
+    <wsdl:part name="parameters" element="tns:SystemUserPermissionToXML" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_SystemUserPermissionToXML_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SystemUserPermissionToXMLResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_SystemUserPermissionToXMLByDateTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:SystemUserPermissionToXMLByDateTime" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_SystemUserPermissionToXMLByDateTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SystemUserPermissionToXMLByDateTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_SystemUserGroupToXML_InputMessage">
+    <wsdl:part name="parameters" element="tns:SystemUserGroupToXML" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_SystemUserGroupToXML_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SystemUserGroupToXMLResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_SystemUserGroupToXMLByDateTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:SystemUserGroupToXMLByDateTime" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_SystemUserGroupToXMLByDateTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SystemUserGroupToXMLByDateTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_SystemUserGroupLineToXML_InputMessage">
+    <wsdl:part name="parameters" element="tns:SystemUserGroupLineToXML" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_SystemUserGroupLineToXML_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SystemUserGroupLineToXMLResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_SystemUserGroupLineToXMLByDateTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:SystemUserGroupLineToXMLByDateTime" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_SystemUserGroupLineToXMLByDateTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SystemUserGroupLineToXMLByDateTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_SystemUserGroupPermissionToXML_InputMessage">
+    <wsdl:part name="parameters" element="tns:SystemUserGroupPermissionToXML" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_SystemUserGroupPermissionToXML_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SystemUserGroupPermissionToXMLResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_SystemUserGroupPermissionToXMLByDateTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:SystemUserGroupPermissionToXMLByDateTime" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_SystemUserGroupPermissionToXMLByDateTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SystemUserGroupPermissionToXMLByDateTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_GetChildren_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetChildren" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_GetChildren_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetChildrenResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_CreateToXml_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateToXml" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_CreateToXml_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateToXmlResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
   </wsdl:message>
   <wsdl:message name="IAppointmentService_AccountUpsert_InputMessage">
     <wsdl:part name="parameters" element="tns:AccountUpsert" />
@@ -209,23 +365,47 @@
   <wsdl:message name="IAppointmentService_StoreGet_OutputMessage">
     <wsdl:part name="parameters" element="tns:StoreGetResponse" />
   </wsdl:message>
-  <wsdl:message name="IAppointmentService_MyTestTableUpsert_InputMessage">
-    <wsdl:part name="parameters" element="tns:MyTestTableUpsert" />
+  <wsdl:message name="IAppointmentService_PermissionUpsert_InputMessage">
+    <wsdl:part name="parameters" element="tns:PermissionUpsert" />
   </wsdl:message>
-  <wsdl:message name="IAppointmentService_MyTestTableUpsert_OutputMessage">
-    <wsdl:part name="parameters" element="tns:MyTestTableUpsertResponse" />
+  <wsdl:message name="IAppointmentService_PermissionUpsert_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PermissionUpsertResponse" />
   </wsdl:message>
-  <wsdl:message name="IAppointmentService_MyTestTableGet_InputMessage">
-    <wsdl:part name="parameters" element="tns:MyTestTableGet" />
+  <wsdl:message name="IAppointmentService_PermissionGet_InputMessage">
+    <wsdl:part name="parameters" element="tns:PermissionGet" />
   </wsdl:message>
-  <wsdl:message name="IAppointmentService_MyTestTableGet_OutputMessage">
-    <wsdl:part name="parameters" element="tns:MyTestTableGetResponse" />
+  <wsdl:message name="IAppointmentService_PermissionGet_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PermissionGetResponse" />
   </wsdl:message>
-  <wsdl:message name="IAppointmentService_Login_InputMessage">
-    <wsdl:part name="parameters" element="tns:Login" />
+  <wsdl:message name="IAppointmentService_SystemUserPermissionUpsert_InputMessage">
+    <wsdl:part name="parameters" element="tns:SystemUserPermissionUpsert" />
   </wsdl:message>
-  <wsdl:message name="IAppointmentService_Login_OutputMessage">
-    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  <wsdl:message name="IAppointmentService_SystemUserPermissionUpsert_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SystemUserPermissionUpsertResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_SystemUserPermissionGet_InputMessage">
+    <wsdl:part name="parameters" element="tns:SystemUserPermissionGet" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_SystemUserPermissionGet_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SystemUserPermissionGetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_SystemUserGroupUpsert_InputMessage">
+    <wsdl:part name="parameters" element="tns:SystemUserGroupUpsert" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_SystemUserGroupUpsert_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SystemUserGroupUpsertResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_SystemUserGroupGet_InputMessage">
+    <wsdl:part name="parameters" element="tns:SystemUserGroupGet" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_SystemUserGroupGet_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SystemUserGroupGetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_SystemUserGroupPermissionUpsert_InputMessage">
+    <wsdl:part name="parameters" element="tns:SystemUserGroupPermissionUpsert" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_SystemUserGroupPermissionUpsert_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SystemUserGroupPermissionUpsertResponse" />
   </wsdl:message>
   <wsdl:message name="IAppointmentService_AuditLogUpsert_InputMessage">
     <wsdl:part name="parameters" element="tns:AuditLogUpsert" />
@@ -233,18 +413,140 @@
   <wsdl:message name="IAppointmentService_AuditLogUpsert_OutputMessage">
     <wsdl:part name="parameters" element="tns:AuditLogUpsertResponse" />
   </wsdl:message>
+  <wsdl:message name="IAppointmentService_SystemUserGroupPermissionGet_InputMessage">
+    <wsdl:part name="parameters" element="tns:SystemUserGroupPermissionGet" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_SystemUserGroupPermissionGet_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SystemUserGroupPermissionGetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_Tester_InputMessage">
+    <wsdl:part name="parameters" element="tns:Tester" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_Tester_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TesterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_AccountToXML_InputMessage">
+    <wsdl:part name="parameters" element="tns:AccountToXML" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentService_AccountToXML_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AccountToXMLResponse" />
+  </wsdl:message>
   <wsdl:portType name="IAppointmentService">
+    <wsdl:operation name="AccountToXMLByDateTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/AccountToXMLByDateTime" message="tns:IAppointmentService_AccountToXMLByDateTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/AccountToXMLByDateTimeResponse" message="tns:IAppointmentService_AccountToXMLByDateTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActivityTypeToXML">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/ActivityTypeToXML" message="tns:IAppointmentService_ActivityTypeToXML_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/ActivityTypeToXMLResponse" message="tns:IAppointmentService_ActivityTypeToXML_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActivityTypeToXMLByDateTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/ActivityTypeToXMLByDateTime" message="tns:IAppointmentService_ActivityTypeToXMLByDateTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/ActivityTypeToXMLByDateTimeResponse" message="tns:IAppointmentService_ActivityTypeToXMLByDateTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AppointmentToXML">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/AppointmentToXML" message="tns:IAppointmentService_AppointmentToXML_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/AppointmentToXMLResponse" message="tns:IAppointmentService_AppointmentToXML_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AppointmentToXMLByDateTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/AppointmentToXMLByDateTime" message="tns:IAppointmentService_AppointmentToXMLByDateTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/AppointmentToXMLByDateTimeResponse" message="tns:IAppointmentService_AppointmentToXMLByDateTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ServiceProviderToXML">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/ServiceProviderToXML" message="tns:IAppointmentService_ServiceProviderToXML_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/ServiceProviderToXMLResponse" message="tns:IAppointmentService_ServiceProviderToXML_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="CreateUpsert">
       <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/CreateUpsert" message="tns:IAppointmentService_CreateUpsert_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/CreateUpsertResponse" message="tns:IAppointmentService_CreateUpsert_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ServiceProviderToXMLByDateTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/ServiceProviderToXMLByDateTime" message="tns:IAppointmentService_ServiceProviderToXMLByDateTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/ServiceProviderToXMLByDateTimeResponse" message="tns:IAppointmentService_ServiceProviderToXMLByDateTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CustomerToXML">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/CustomerToXML" message="tns:IAppointmentService_CustomerToXML_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/CustomerToXMLResponse" message="tns:IAppointmentService_CustomerToXML_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SystemUserUpsert">
       <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/SystemUserUpsert" message="tns:IAppointmentService_SystemUserUpsert_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/SystemUserUpsertResponse" message="tns:IAppointmentService_SystemUserUpsert_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="CustomerToXMLByDateTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/CustomerToXMLByDateTime" message="tns:IAppointmentService_CustomerToXMLByDateTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/CustomerToXMLByDateTimeResponse" message="tns:IAppointmentService_CustomerToXMLByDateTime_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="SystemUserGet">
       <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/SystemUserGet" message="tns:IAppointmentService_SystemUserGet_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/SystemUserGetResponse" message="tns:IAppointmentService_SystemUserGet_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActivityScheduleToXML">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/ActivityScheduleToXML" message="tns:IAppointmentService_ActivityScheduleToXML_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/ActivityScheduleToXMLResponse" message="tns:IAppointmentService_ActivityScheduleToXML_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActivityScheduleToXMLByDateTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/ActivityScheduleToXMLByDateTime" message="tns:IAppointmentService_ActivityScheduleToXMLByDateTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/ActivityScheduleToXMLByDateTimeResponse" message="tns:IAppointmentService_ActivityScheduleToXMLByDateTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreToXML">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/StoreToXML" message="tns:IAppointmentService_StoreToXML_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/StoreToXMLResponse" message="tns:IAppointmentService_StoreToXML_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreToXMLByDateTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/StoreToXMLByDateTime" message="tns:IAppointmentService_StoreToXMLByDateTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/StoreToXMLByDateTimeResponse" message="tns:IAppointmentService_StoreToXMLByDateTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PermissionToXML">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/PermissionToXML" message="tns:IAppointmentService_PermissionToXML_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/PermissionToXMLResponse" message="tns:IAppointmentService_PermissionToXML_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PermissionToXMLByDateTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/PermissionToXMLByDateTime" message="tns:IAppointmentService_PermissionToXMLByDateTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/PermissionToXMLByDateTimeResponse" message="tns:IAppointmentService_PermissionToXMLByDateTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SystemUserPermissionToXML">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/SystemUserPermissionToXML" message="tns:IAppointmentService_SystemUserPermissionToXML_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/SystemUserPermissionToXMLResponse" message="tns:IAppointmentService_SystemUserPermissionToXML_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SystemUserPermissionToXMLByDateTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/SystemUserPermissionToXMLByDateTime" message="tns:IAppointmentService_SystemUserPermissionToXMLByDateTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/SystemUserPermissionToXMLByDateTimeResponse" message="tns:IAppointmentService_SystemUserPermissionToXMLByDateTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SystemUserGroupToXML">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/SystemUserGroupToXML" message="tns:IAppointmentService_SystemUserGroupToXML_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/SystemUserGroupToXMLResponse" message="tns:IAppointmentService_SystemUserGroupToXML_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SystemUserGroupToXMLByDateTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/SystemUserGroupToXMLByDateTime" message="tns:IAppointmentService_SystemUserGroupToXMLByDateTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/SystemUserGroupToXMLByDateTimeResponse" message="tns:IAppointmentService_SystemUserGroupToXMLByDateTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SystemUserGroupLineToXML">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/SystemUserGroupLineToXML" message="tns:IAppointmentService_SystemUserGroupLineToXML_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/SystemUserGroupLineToXMLResponse" message="tns:IAppointmentService_SystemUserGroupLineToXML_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SystemUserGroupLineToXMLByDateTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/SystemUserGroupLineToXMLByDateTime" message="tns:IAppointmentService_SystemUserGroupLineToXMLByDateTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/SystemUserGroupLineToXMLByDateTimeResponse" message="tns:IAppointmentService_SystemUserGroupLineToXMLByDateTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SystemUserGroupPermissionToXML">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/SystemUserGroupPermissionToXML" message="tns:IAppointmentService_SystemUserGroupPermissionToXML_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/SystemUserGroupPermissionToXMLResponse" message="tns:IAppointmentService_SystemUserGroupPermissionToXML_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SystemUserGroupPermissionToXMLByDateTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/SystemUserGroupPermissionToXMLByDateTime" message="tns:IAppointmentService_SystemUserGroupPermissionToXMLByDateTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/SystemUserGroupPermissionToXMLByDateTimeResponse" message="tns:IAppointmentService_SystemUserGroupPermissionToXMLByDateTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetChildren">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/GetChildren" message="tns:IAppointmentService_GetChildren_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/GetChildrenResponse" message="tns:IAppointmentService_GetChildren_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateToXml">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/CreateToXml" message="tns:IAppointmentService_CreateToXml_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/CreateToXmlResponse" message="tns:IAppointmentService_CreateToXml_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/Login" message="tns:IAppointmentService_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/LoginResponse" message="tns:IAppointmentService_Login_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AccountUpsert">
       <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/AccountUpsert" message="tns:IAppointmentService_AccountUpsert_InputMessage" />
@@ -302,28 +604,128 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/StoreGet" message="tns:IAppointmentService_StoreGet_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/StoreGetResponse" message="tns:IAppointmentService_StoreGet_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="MyTestTableUpsert">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/MyTestTableUpsert" message="tns:IAppointmentService_MyTestTableUpsert_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/MyTestTableUpsertResponse" message="tns:IAppointmentService_MyTestTableUpsert_OutputMessage" />
+    <wsdl:operation name="PermissionUpsert">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/PermissionUpsert" message="tns:IAppointmentService_PermissionUpsert_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/PermissionUpsertResponse" message="tns:IAppointmentService_PermissionUpsert_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="MyTestTableGet">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/MyTestTableGet" message="tns:IAppointmentService_MyTestTableGet_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/MyTestTableGetResponse" message="tns:IAppointmentService_MyTestTableGet_OutputMessage" />
+    <wsdl:operation name="PermissionGet">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/PermissionGet" message="tns:IAppointmentService_PermissionGet_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/PermissionGetResponse" message="tns:IAppointmentService_PermissionGet_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="Login">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/Login" message="tns:IAppointmentService_Login_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/LoginResponse" message="tns:IAppointmentService_Login_OutputMessage" />
+    <wsdl:operation name="SystemUserPermissionUpsert">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/SystemUserPermissionUpsert" message="tns:IAppointmentService_SystemUserPermissionUpsert_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/SystemUserPermissionUpsertResponse" message="tns:IAppointmentService_SystemUserPermissionUpsert_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SystemUserPermissionGet">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/SystemUserPermissionGet" message="tns:IAppointmentService_SystemUserPermissionGet_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/SystemUserPermissionGetResponse" message="tns:IAppointmentService_SystemUserPermissionGet_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SystemUserGroupUpsert">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/SystemUserGroupUpsert" message="tns:IAppointmentService_SystemUserGroupUpsert_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/SystemUserGroupUpsertResponse" message="tns:IAppointmentService_SystemUserGroupUpsert_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SystemUserGroupGet">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/SystemUserGroupGet" message="tns:IAppointmentService_SystemUserGroupGet_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/SystemUserGroupGetResponse" message="tns:IAppointmentService_SystemUserGroupGet_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SystemUserGroupPermissionUpsert">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/SystemUserGroupPermissionUpsert" message="tns:IAppointmentService_SystemUserGroupPermissionUpsert_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/SystemUserGroupPermissionUpsertResponse" message="tns:IAppointmentService_SystemUserGroupPermissionUpsert_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AuditLogUpsert">
       <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/AuditLogUpsert" message="tns:IAppointmentService_AuditLogUpsert_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/AuditLogUpsertResponse" message="tns:IAppointmentService_AuditLogUpsert_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="SystemUserGroupPermissionGet">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/SystemUserGroupPermissionGet" message="tns:IAppointmentService_SystemUserGroupPermissionGet_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/SystemUserGroupPermissionGetResponse" message="tns:IAppointmentService_SystemUserGroupPermissionGet_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Tester">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/Tester" message="tns:IAppointmentService_Tester_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/TesterResponse" message="tns:IAppointmentService_Tester_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AccountToXML">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentService/AccountToXML" message="tns:IAppointmentService_AccountToXML_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentService/AccountToXMLResponse" message="tns:IAppointmentService_AccountToXML_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="wsSecureService" type="tns:IAppointmentService">
     <wsp:PolicyReference URI="#wsSecureService_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AccountToXMLByDateTime">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/AccountToXMLByDateTime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActivityTypeToXML">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/ActivityTypeToXML" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActivityTypeToXMLByDateTime">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/ActivityTypeToXMLByDateTime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AppointmentToXML">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/AppointmentToXML" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AppointmentToXMLByDateTime">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/AppointmentToXMLByDateTime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ServiceProviderToXML">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/ServiceProviderToXML" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="CreateUpsert">
       <soap12:operation soapAction="http://tempuri.org/IAppointmentService/CreateUpsert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ServiceProviderToXMLByDateTime">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/ServiceProviderToXMLByDateTime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomerToXML">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/CustomerToXML" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -340,8 +742,170 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="CustomerToXMLByDateTime">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/CustomerToXMLByDateTime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="SystemUserGet">
       <soap12:operation soapAction="http://tempuri.org/IAppointmentService/SystemUserGet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActivityScheduleToXML">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/ActivityScheduleToXML" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActivityScheduleToXMLByDateTime">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/ActivityScheduleToXMLByDateTime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreToXML">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/StoreToXML" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreToXMLByDateTime">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/StoreToXMLByDateTime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PermissionToXML">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/PermissionToXML" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PermissionToXMLByDateTime">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/PermissionToXMLByDateTime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SystemUserPermissionToXML">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/SystemUserPermissionToXML" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SystemUserPermissionToXMLByDateTime">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/SystemUserPermissionToXMLByDateTime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SystemUserGroupToXML">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/SystemUserGroupToXML" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SystemUserGroupToXMLByDateTime">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/SystemUserGroupToXMLByDateTime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SystemUserGroupLineToXML">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/SystemUserGroupLineToXML" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SystemUserGroupLineToXMLByDateTime">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/SystemUserGroupLineToXMLByDateTime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SystemUserGroupPermissionToXML">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/SystemUserGroupPermissionToXML" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SystemUserGroupPermissionToXMLByDateTime">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/SystemUserGroupPermissionToXMLByDateTime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChildren">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/GetChildren" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateToXml">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/CreateToXml" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/Login" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -475,8 +1039,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="MyTestTableUpsert">
-      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/MyTestTableUpsert" style="document" />
+    <wsdl:operation name="PermissionUpsert">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/PermissionUpsert" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -484,8 +1048,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="MyTestTableGet">
-      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/MyTestTableGet" style="document" />
+    <wsdl:operation name="PermissionGet">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/PermissionGet" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -493,8 +1057,44 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Login">
-      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/Login" style="document" />
+    <wsdl:operation name="SystemUserPermissionUpsert">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/SystemUserPermissionUpsert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SystemUserPermissionGet">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/SystemUserPermissionGet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SystemUserGroupUpsert">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/SystemUserGroupUpsert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SystemUserGroupGet">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/SystemUserGroupGet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SystemUserGroupPermissionUpsert">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/SystemUserGroupPermissionUpsert" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -504,6 +1104,33 @@
     </wsdl:operation>
     <wsdl:operation name="AuditLogUpsert">
       <soap12:operation soapAction="http://tempuri.org/IAppointmentService/AuditLogUpsert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SystemUserGroupPermissionGet">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/SystemUserGroupPermissionGet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Tester">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/Tester" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AccountToXML">
+      <soap12:operation soapAction="http://tempuri.org/IAppointmentService/AccountToXML" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

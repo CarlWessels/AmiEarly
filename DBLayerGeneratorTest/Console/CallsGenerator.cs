@@ -47,7 +47,7 @@ namespace Console
             string callName = String.Format("{0}Call", procname);
             string parameterName = procname + "Parameters";
             string returnName = procname.Substring(2, procname.Length-2) + "Result";
-
+            string procnameCleaned = procname.Substring(2, procname.Length - 2);
             string indentTwo = GeneratorHelper.Indent(baseIndent + 2);
             string indentThree = GeneratorHelper.Indent(baseIndent + 3);
             sb.Append(String.Format(indentTwo + $"public static List<{returnName}> {callName}") + "(");
@@ -62,6 +62,7 @@ namespace Console
                 }
                 string name = param.ParameterName;
                 string nameStripped = name.Replace("@", "");
+                string nameStrippedLower = nameStripped[0].ToString().ToLower() + nameStripped.Substring(1,nameStripped.Length -1);
                 if (first)
                 {
                 }
@@ -69,8 +70,8 @@ namespace Console
                 {
                     sb.Append(", ");
                 }
-                sb.Append(String.Format("{0} {1}", type, nameStripped));
-                parametersSb.AppendLine(indentThree + String.Format("parameters.{0} = {0};", nameStripped));
+                sb.Append(String.Format("{0} {1}", type, nameStrippedLower));
+                parametersSb.AppendLine(indentThree + $"parameters.{nameStripped} = {nameStrippedLower};");
 
                 first = false;
             }
@@ -80,7 +81,7 @@ namespace Console
             }
             sb.AppendLine("string connectionString)");
             sb.AppendLine(indentTwo + "{");
-            sb.AppendLine(indentThree + String.Format("{0} parameters = new {0}();", parameterName));
+            sb.AppendLine(indentThree + $"{procnameCleaned}Parameters parameters = new {procnameCleaned}Parameters();");
             sb.AppendLine(parametersSb.ToString());
             sb.AppendLine(indentThree + String.Format("return {0} (parameters, connectionString);", callName));
             sb.AppendLine(indentTwo + "}");
@@ -93,7 +94,7 @@ namespace Console
             string indentFive = GeneratorHelper.Indent(baseIndent + 5);
             string indentSix = GeneratorHelper.Indent(baseIndent + 6);
             string indentSeven = GeneratorHelper.Indent(baseIndent + 7);
-
+            string procnameCleaned = procname.Substring(2, procname.Length - 2);
             string returnName = procname.Substring(2, procname.Length - 2) + "Result";
             StringBuilder callLine = new StringBuilder(String.Format(String.Format(@"string qry = ""EXEC {0} ", procname)));
             bool first = true;
@@ -114,7 +115,7 @@ namespace Console
 
 
             sb.Append(String.Format(indentTwo + "public static List<{0}> {1}Call ", returnName, procname) + "(");
-            sb.Append(String.Format("{0}Parameters parameters", procname));
+            sb.Append($"{procnameCleaned}Parameters parameters");
 
             sb.Append(String.Format(", string connectionString"));
 
@@ -123,7 +124,7 @@ namespace Console
             sb.AppendLine(indentThree + String.Format("List<{0}> ret = new List<{0}>();", returnName));
             sb.AppendLine(indentThree + @"using (SqlConnection conn = new SqlConnection(connectionString))");
             sb.AppendLine(indentThree + @"{");
-            sb.AppendLine(indentThree + @"conn.Open();");
+            sb.AppendLine(indentFour + @"conn.Open();");
 
             sb.AppendLine(indentFour + callLine.ToString());
 
@@ -159,6 +160,10 @@ namespace Console
                 string type = split[1];
                 bool nullable = split[2] == "True" ? true : false;*/
                 string name = result.ParameterName;
+                if (String.IsNullOrWhiteSpace(name))
+                {
+                    throw new Exception("Result field name not specified");
+                }
                 string type = GeneratorHelper.ParamType(result.SqlDbType);
                 bool nullable = result.IsNullable;
                 string size = "";

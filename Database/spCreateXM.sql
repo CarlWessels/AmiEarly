@@ -18,11 +18,18 @@ BEGIN
 
 	SET @Result = @Result + 'CREATE PROCEDURE sp' + @TableName + 'ToXML' + @EOL
 	SET @Result = @Result + '(' + @EOL
-	SET @Result = @Result + '	@GUIDS VARCHAR(MAX)' + @EOL
+	SET @Result = @Result + '	@GUIDS VARCHAR(MAX),' + @EOL
+	SET @Result = @Result + '	@SystemUserGUID UNIQUEIDENTIFIER,' + @EOL
+	SET @Result = @Result + '	@Token VARBINARY(MAX)' + @EOL
 	SET @Result = @Result + ')' + @EOL
 	SET @Result = @Result + 'AS' + @EOL
 	SET @Result = @Result + 'BEGIN' + @EOL
 	SET @Result = @Result + '' + @EOL
+	SET @Result = @Result + '	IF (SELECT COUNT(*) FROM SystemUser WHERE GUID = @SystemUserGUID AND Token = @Token) = 0' + @EOL
+	SET @Result = @Result + '	BEGIN' + @EOL
+	SET @Result = @Result + '		UPDATE SystemUser SET Token = NULL, TokenExpires = NULL WHERE GUID = @SystemUserGUID;' + @EOL
+	SET @Result = @Result + '		THROW 51000, ''Invalid token'', 1;  '+ @EOL
+	SET @Result = @Result + '	END' + @EOL
 	SET @Result = @Result + '	DECLARE @GuidsSplit TABLE' + @EOL
 	SET @Result = @Result + '	(' + @EOL
 	SET @Result = @Result + '		GUID UNIQUEIDENTIFIER' + @EOL
@@ -43,22 +50,6 @@ BEGIN
 	SET @Result = @Result + 'END' + @EOL
 	SET @Result = @Result + 'GO' + @EOL
 	
-
-	DECLARE @FromDateTime DATETIME = '2017-10-25 12:23:33.150'
-
-	SELECT * FROM dbo.Appointment
-	DECLARE @ToDateTime DATETIME = '2017-10-27 12:23:33.150'
-
-	
-	SELECT DISTINCT	GUIDS = SUBSTRING(
-        (
-            SELECT '|'+CONVERT(VARCHAR(MAX),GUID) 
-            FROM dbo.Appointment 
-			WHERE DateTimeCreated BETWEEN @FromDateTime AND @ToDateTime
-            For XML PATH ('')
-        ), 2, 1000) 
-	FROM dbo.Appointment 
-	EXEC dbo.AppointmentToXml
 
 	PRINT @Result
 END

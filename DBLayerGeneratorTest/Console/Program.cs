@@ -56,6 +56,11 @@ namespace Console
 
             List<string> sps = GeneratorHelper.GetSPs(connectionString);
 
+            //List<SqlParameter> testParameters = GeneratorHelper.GetParameters("spTester", connectionString);
+            //List<SqlParameter> testvalues = ResultsGenerator.GetResults(connectionString, "spTester", testParameters);
+            //CallsGenerator.BuildCalls("spTester", testParameters, testvalues, ref callsSb, 1);
+            //ResultsGenerator.BuildResultClass("spTester", testvalues, ref resultsSb);
+
             foreach (string sp in sps)
             {
 

@@ -163,6 +163,7 @@ namespace Console
                             string type = reader["Type"].ToString();
                             string length = reader["Length"].ToString();
                             bool nullable = reader["Nullable"].ToString() == "True" ? true : false;
+                            bool isOutput = reader["IsOutput"].ToString() == "True" ? true : false;
                             int size = int.Parse(length);
 
                             System.Data.SqlDbType sqlDbType = new System.Data.SqlDbType();
@@ -197,6 +198,7 @@ namespace Console
                             SqlParameter param = new SqlParameter(paramName, sqlDbType);
                             param.Size = size;
                             param.IsNullable = nullable;
+                            param.Direction = isOutput ? ParameterDirection.InputOutput : ParameterDirection.Input;
                             ret.Add(param);
                         }
                     }

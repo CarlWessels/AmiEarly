@@ -81,6 +81,55 @@ namespace AppointmentLibrary.Views
 		public string IsActiveForNow {get;set;}
 		public string Username {get;set;}
 	}
+	public partial class vwPermission
+	{
+		public string GUID {get;set;}
+		public string ID {get;set;}
+		public string DateTimeCreated {get;set;}
+		public string IsDeleted {get;set;}
+		public string Permission {get;set;}
+		public string SystemUserGUID {get;set;}
+	}
+	public partial class vwSystemUserPermission
+	{
+		public string GUID {get;set;}
+		public string ID {get;set;}
+		public string DateTimeCreated {get;set;}
+		public string IsDeleted {get;set;}
+		public string ActiveDateTime {get;set;}
+		public string TerminationDateTime {get;set;}
+		public string IsActiveForNow {get;set;}
+		public string ForSystemUserGUID {get;set;}
+		public string PermissionGUID {get;set;}
+		public string SystemUserGUID {get;set;}
+		public string Username {get;set;}
+		public string Permission {get;set;}
+	}
+	public partial class vwSystemUserGroup
+	{
+		public string GUID {get;set;}
+		public string ID {get;set;}
+		public string DateTimeCreated {get;set;}
+		public string IsDeleted {get;set;}
+		public string ActiveDateTime {get;set;}
+		public string TerminationDateTime {get;set;}
+		public string IsActiveForNow {get;set;}
+		public string Description {get;set;}
+		public string SystemUserGUID {get;set;}
+	}
+	public partial class vwSystemUserGroupPermission
+	{
+		public string GUID {get;set;}
+		public string ID {get;set;}
+		public string DateTimeCreated {get;set;}
+		public string IsDeleted {get;set;}
+		public string ActiveDateTime {get;set;}
+		public string TerminationDateTime {get;set;}
+		public string IsActiveForNow {get;set;}
+		public string PermissionGUID {get;set;}
+		public string SystemUserGroupGUID {get;set;}
+		public string SystemUserGUID {get;set;}
+	}
 	public partial class vwAppointment
 	{
 		public string GUID {get;set;}

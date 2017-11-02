@@ -162,11 +162,6 @@ FROM sys.dm_exec_describe_first_result_set_for_object
                         {
                             for (int i = 0; i < reader.FieldCount; i++)
                             {
-                                /*string name = reader.GetName(i);
-                                string type = reader.GetDataTypeName(i).ToString();
-                                //string nullable = reader["is_nullable"].ToString();
-                                string nullable = "True";
-                                string combined = $"{name}|{type}|{nullable}";*/
 
                                 SqlParameter param = new SqlParameter()
                                 {

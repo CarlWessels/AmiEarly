@@ -20,7 +20,8 @@ namespace Console
 
         public static void BuildParametersClass(string procName, List<SqlParameter> parameters, ref StringBuilder sb)
         {
-            sb.AppendLine(string.Format("\tpublic partial class {0}Parameters : IParameter", procName));
+            string procNameCleaned = procName.Substring(2, procName.Length - 2);
+            sb.AppendLine($"\tpublic partial class {procNameCleaned}Parameters : IParameter");
             sb.AppendLine("\t{");
             foreach (SqlParameter param in parameters)
             {
