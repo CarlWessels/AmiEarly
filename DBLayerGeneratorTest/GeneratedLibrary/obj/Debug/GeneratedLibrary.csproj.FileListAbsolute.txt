@@ -8,4 +8,3 @@ C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\Genera
 C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\GeneratedLibrary\obj\Debug\GeneratedLibrary.csproj.CoreCompileInputs.cache
 C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\GeneratedLibrary\obj\Debug\GeneratedLibrary.dll
 C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\GeneratedLibrary\obj\Debug\GeneratedLibrary.pdb
-C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\GeneratedLibrary\obj\Debug\GeneratedLibrary.csprojResolveAssemblyReference.cache

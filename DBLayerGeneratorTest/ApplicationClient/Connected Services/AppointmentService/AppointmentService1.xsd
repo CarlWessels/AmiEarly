@@ -1,114 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="AccountToXMLByDateTime">
+  <xs:element name="CustomerGet">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="AccountToXMLByDateTimeResponse">
+  <xs:element name="CustomerGetResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="AccountToXMLByDateTimeResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ActivityTypeToXML">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ActivityTypeToXMLResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="ActivityTypeToXMLResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ActivityTypeToXMLByDateTime">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ActivityTypeToXMLByDateTimeResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="ActivityTypeToXMLByDateTimeResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="AppointmentToXML">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="AppointmentToXMLResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="AppointmentToXMLResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="AppointmentToXMLByDateTime">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="AppointmentToXMLByDateTimeResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="AppointmentToXMLByDateTimeResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ServiceProviderToXML">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ServiceProviderToXMLResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="ServiceProviderToXMLResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CreateUpsert">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CreateUpsertResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="CreateUpsertResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ServiceProviderToXMLByDateTime">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ServiceProviderToXMLByDateTimeResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="ServiceProviderToXMLByDateTimeResult" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="CustomerGetResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -126,20 +28,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="SystemUserUpsert">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SystemUserUpsertResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="SystemUserUpsertResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="CustomerToXMLByDateTime">
     <xs:complexType>
       <xs:sequence>
@@ -154,45 +42,31 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="SystemUserGet">
+  <xs:element name="StoreUpsert">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="SystemUserGetResponse">
+  <xs:element name="StoreUpsertResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="SystemUserGetResult" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="StoreUpsertResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ActivityScheduleToXML">
+  <xs:element name="StoreGet">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ActivityScheduleToXMLResponse">
+  <xs:element name="StoreGetResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="ActivityScheduleToXMLResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ActivityScheduleToXMLByDateTime">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ActivityScheduleToXMLByDateTimeResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="ActivityScheduleToXMLByDateTimeResult" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="StoreGetResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -210,6 +84,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="RefreshTokenNoReturn">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RefreshTokenNoReturnResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RefreshTokenNoReturnResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="StoreToXMLByDateTime">
     <xs:complexType>
       <xs:sequence>
@@ -221,6 +109,34 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="StoreToXMLByDateTimeResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PermissionUpsert">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PermissionUpsertResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PermissionUpsertResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PermissionGet">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PermissionGetResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PermissionGetResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -238,6 +154,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="CreateUpsert">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateUpsertResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CreateUpsertResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="PermissionToXMLByDateTime">
     <xs:complexType>
       <xs:sequence>
@@ -252,31 +182,73 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="SystemUserPermissionToXML">
+  <xs:element name="SystemUserGroupUpsert">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="SystemUserPermissionToXMLResponse">
+  <xs:element name="SystemUserGroupUpsertResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="SystemUserPermissionToXMLResult" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="SystemUserGroupUpsertResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="SystemUserPermissionToXMLByDateTime">
+  <xs:element name="GenerateToken">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="SystemUserPermissionToXMLByDateTimeResponse">
+  <xs:element name="GenerateTokenResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="SystemUserPermissionToXMLByDateTimeResult" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="GenerateTokenResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SystemUserUpsert">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SystemUserUpsertResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SystemUserUpsertResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SystemUserGroupGet">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SystemUserGroupGetResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SystemUserGroupGetResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SystemUserGet">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SystemUserGetResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SystemUserGetResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -308,31 +280,45 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="SystemUserGroupLineToXML">
+  <xs:element name="RefreshToken">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="SystemUserGroupLineToXMLResponse">
+  <xs:element name="RefreshTokenResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="SystemUserGroupLineToXMLResult" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="RefreshTokenResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="SystemUserGroupLineToXMLByDateTime">
+  <xs:element name="SystemUserGroupPermissionUpsert">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="SystemUserGroupLineToXMLByDateTimeResponse">
+  <xs:element name="SystemUserGroupPermissionUpsertResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="SystemUserGroupLineToXMLByDateTimeResult" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="SystemUserGroupPermissionUpsertResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SystemUserGroupPermissionGet">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SystemUserGroupPermissionGetResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SystemUserGroupPermissionGetResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -364,6 +350,62 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="SystemUserPermissionToXML">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SystemUserPermissionToXMLResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SystemUserPermissionToXMLResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SystemUserPermissionToXMLByDateTime">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SystemUserPermissionToXMLByDateTimeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SystemUserPermissionToXMLByDateTimeResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SystemUserGroupLineToXML">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SystemUserGroupLineToXMLResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SystemUserGroupLineToXMLResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SystemUserGroupLineToXMLByDateTime">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SystemUserGroupLineToXMLByDateTimeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SystemUserGroupLineToXMLByDateTimeResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetChildren">
     <xs:complexType>
       <xs:sequence>
@@ -389,6 +431,34 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="CreateToXmlResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SystemUserPermissionUpsert">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SystemUserPermissionUpsertResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SystemUserPermissionUpsertResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SystemUserPermissionGet">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SystemUserPermissionGetResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SystemUserPermissionGetResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -434,115 +504,45 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ActivityTypeUpsert">
+  <xs:element name="AccountToXML">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ActivityTypeUpsertResponse">
+  <xs:element name="AccountToXMLResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="ActivityTypeUpsertResult" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="AccountToXMLResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ActivityTypeGet">
+  <xs:element name="AccountToXMLByDateTime">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ActivityTypeGetResponse">
+  <xs:element name="AccountToXMLByDateTimeResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="ActivityTypeGetResult" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="AccountToXMLByDateTimeResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="AppointmentUpsert">
+  <xs:element name="AuditLogUpsert">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="AppointmentUpsertResponse">
+  <xs:element name="AuditLogUpsertResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="AppointmentUpsertResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="AppointmentGet">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="AppointmentGetResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="AppointmentGetResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ServiceProviderUpsert">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ServiceProviderUpsertResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="ServiceProviderUpsertResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ServiceProviderGet">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ServiceProviderGetResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="ServiceProviderGetResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CustomerUpsert">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CustomerUpsertResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="CustomerUpsertResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CustomerGet">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CustomerGetResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="CustomerGetResult" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="AuditLogUpsertResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -574,160 +574,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="StoreUpsert">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="StoreUpsertResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="StoreUpsertResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="StoreGet">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="StoreGetResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="StoreGetResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="PermissionUpsert">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="PermissionUpsertResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="PermissionUpsertResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="PermissionGet">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="PermissionGetResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="PermissionGetResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SystemUserPermissionUpsert">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SystemUserPermissionUpsertResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="SystemUserPermissionUpsertResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SystemUserPermissionGet">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SystemUserPermissionGetResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="SystemUserPermissionGetResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SystemUserGroupUpsert">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SystemUserGroupUpsertResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="SystemUserGroupUpsertResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SystemUserGroupGet">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SystemUserGroupGetResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="SystemUserGroupGetResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SystemUserGroupPermissionUpsert">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SystemUserGroupPermissionUpsertResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="SystemUserGroupPermissionUpsertResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="AuditLogUpsert">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="AuditLogUpsertResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="AuditLogUpsertResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SystemUserGroupPermissionGet">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SystemUserGroupPermissionGetResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="SystemUserGroupPermissionGetResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="Tester">
     <xs:complexType>
       <xs:sequence>
@@ -742,17 +588,213 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="AccountToXML">
+  <xs:element name="ActivityScheduleToXML">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="AccountToXMLResponse">
+  <xs:element name="ActivityScheduleToXMLResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="AccountToXMLResult" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ActivityScheduleToXMLResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ActivityScheduleToXMLByDateTime">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ActivityScheduleToXMLByDateTimeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ActivityScheduleToXMLByDateTimeResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ActivityTypeUpsert">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ActivityTypeUpsertResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ActivityTypeUpsertResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ActivityTypeGet">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ActivityTypeGetResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ActivityTypeGetResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ActivityTypeToXML">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ActivityTypeToXMLResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ActivityTypeToXMLResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ActivityTypeToXMLByDateTime">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ActivityTypeToXMLByDateTimeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ActivityTypeToXMLByDateTimeResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AppointmentUpsert">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AppointmentUpsertResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AppointmentUpsertResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AppointmentGet">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AppointmentGetResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AppointmentGetResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AppointmentToXML">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AppointmentToXMLResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AppointmentToXMLResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AppointmentToXMLByDateTime">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AppointmentToXMLByDateTimeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AppointmentToXMLByDateTimeResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ServiceProviderUpsert">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ServiceProviderUpsertResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ServiceProviderUpsertResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ServiceProviderGet">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ServiceProviderGetResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ServiceProviderGetResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ServiceProviderToXML">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ServiceProviderToXMLResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ServiceProviderToXMLResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ServiceProviderToXMLByDateTime">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ServiceProviderToXMLByDateTimeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ServiceProviderToXMLByDateTimeResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CustomerUpsert">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CustomerUpsertResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CustomerUpsertResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

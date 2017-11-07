@@ -27,7 +27,7 @@ namespace Console
             {
                 string paramType = GeneratorHelper.ParamType(param.SqlDbType);
 
-                string nullable = param.IsNullable && param.SqlDbType != SqlDbType.VarChar ? "?" : "";
+                string nullable = param.IsNullable && param.SqlDbType != SqlDbType.VarChar && param.SqlDbType != SqlDbType.VarBinary ? "?" : "";
                 string name = param.ParameterName.Replace("@", "");
                 string line = String.Format($"\t\tpublic {paramType}{nullable} {name}");
                 sb.AppendLine(line + " { get; set;}");

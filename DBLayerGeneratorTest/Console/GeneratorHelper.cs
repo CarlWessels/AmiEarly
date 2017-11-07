@@ -113,6 +113,7 @@ namespace Console
             switch (name.ToUpper())
             {
                 case "VARCHAR":
+                case "NTEXT":
                 case "XML":
                 case "NVARCHAR":
                     ret = SqlDbType.NVarChar;
@@ -136,6 +137,7 @@ namespace Console
                     ret = SqlDbType.Time;
                     break;
                 case "BINARY":
+                case "VARBINARY":
                     ret = SqlDbType.Binary;
                     break;
                 default:
@@ -191,6 +193,10 @@ namespace Console
                                 case "TIME":
                                     sqlDbType = SqlDbType.Time;
                                     break;
+                                case "VARBINARY":
+                                    sqlDbType = SqlDbType.VarBinary;
+                                    break;
+
                                 default:
                                     throw new Exception("No type found");
                             }
@@ -235,6 +241,7 @@ namespace Console
                     paramType = "TimeSpan";
                     break;
                 case System.Data.SqlDbType.Binary:
+                case System.Data.SqlDbType.VarBinary:
                     paramType = "Byte[]";
                     break;
                 default:

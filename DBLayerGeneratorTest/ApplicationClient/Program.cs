@@ -17,19 +17,20 @@ namespace ApplicationClient
             {
                 AppointmentServiceClient appointmentService = new AppointmentServiceClient("SYSTEM", "PASSWORD");
 
-                
 
-                List<SystemUserGetResult> users = AppointmentServiceClient.SystemUserGet(null);
 
-                SystemUserGetResult systemUser = users.Where(u => u.Username == "SYSTEM").FirstOrDefault();
-                Guid systemGUID = users.Where(u => u.Username == "SYSTEM").FirstOrDefault().GUID;
+                List<LoginResult> loginResults = AppointmentServiceClient.Login("SYSTEM", "PASSWORD");
+                LoginResult login = loginResults.FirstOrDefault();
+                byte[] token = login.Token;
+
+                List<SystemUserGetResult> users = AppointmentServiceClient.SystemUserGet(null, token);
 
 
                 Guid? testerGUID = null;
                 SystemUserGetResult tester = users.Where(u => u.Username == "TESTER").FirstOrDefault();
                 if (tester == null)
                 {
-                    List<SystemUserUpsertResult> user = AppointmentServiceClient.SystemUserUpsert(null, false, DateTime.Now,null,"TESTER", "PASSWORD", systemGUID, true);
+                    List<SystemUserUpsertResult> user = AppointmentServiceClient.SystemUserUpsert(null, false, DateTime.Now,null,"TESTER", "PASSWORD", token, true);
                     testerGUID = user.FirstOrDefault().GUID;
                 }
                 else
@@ -37,7 +38,7 @@ namespace ApplicationClient
                     testerGUID = tester.GUID;
                 }
 
-                List<PermissionGetResult> permissions = AppointmentServiceClient.PermissionGet(null, systemGUID);
+/*                List<PermissionGetResult> permissions = AppointmentServiceClient.PermissionGet(null, systemGUID);
                 Guid accountInsertPermissionGUID = permissions.Where(p => p.Permission == "AccountInsert").FirstOrDefault().GUID;
                 Guid accountUpdatePermissionGUID = permissions.Where(p => p.Permission == "AccountUpdate").FirstOrDefault().GUID;
 
@@ -69,6 +70,7 @@ namespace ApplicationClient
                 {
                     Console.WriteLine($"{res.StartDateTime.ToString()}\t{res.EndDateTime}\t{res.ExpectedDelay}");
                 }
+                */
             }
             catch (Exception ex)
             {

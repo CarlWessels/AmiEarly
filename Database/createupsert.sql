@@ -63,7 +63,7 @@ BEGIN
 		FROM @Fields 
 		WHERE ID = @I
 	
-		IF (@Computed = 0 AND @Name != 'ID' AND @Name != 'DateTimeCreated')
+		IF (@Computed = 0 AND @Name != 'ID' AND @Name != 'DateTimeCreated' and @Name != 'SystemUserGUID')
 		BEGIN
 			IF UPPER(@Type) = 'VARCHAR'
 			BEGIN
@@ -80,12 +80,13 @@ BEGIN
 	SET @Result = @Result + ')' + @EOL
 	SET @Result = @Result + 'AS' + @EOL
 	SET @Result = @Result + 'BEGIN' + @EOL
-	SET @Result = @Result + '	IF (SELECT COUNT(*) FROM SystemUser WHERE GUID = @SystemUserGUID AND Token = @Token) = 0' + @EOL
+	SET @Result = @Result + '	DECLARE @SystemUserGUID UNIQUEIDENTIFIER' + @EOL
+	SET @Result = @Result + '	SELECT @SystemUserGUID = GUID FROM SystemUser WHERE Token = @Token AND TokenIsValid = 1' + @EOL
+	SET @Result = @Result + '	IF @SystemUserGUID IS NULL' + @EOL
 	SET @Result = @Result + '	BEGIN' + @EOL
-	SET @Result = @Result + '		UPDATE SystemUser SET Token = NULL, TokenExpires = NULL WHERE GUID = @SystemUserGUID;' + @EOL
 	SET @Result = @Result + '		THROW 51000, ''Invalid token'', 1;  '+ @EOL
 	SET @Result = @Result + '	END' + @EOL
-	SET @Result = @Result + '	EXEC spRefreshToken @SystemUserGUID, 0' + @EOL
+	SET @Result = @Result + '	EXEC [spRefreshTokenNoReturn] @SystemUserGUID' + @EOL
 	SET @Result = @Result + '	DECLARE @UpdatePermissionGUID UNIQUEIDENTIFIER = (SELECT GUID FROM Permission WHERE Permission = ''' + @TableName + 'Update'')' + @EOL
 	SET @Result = @Result + '	DECLARE @InsertPermissionGUID UNIQUEIDENTIFIER = (SELECT GUID FROM Permission WHERE Permission = ''' + @TableName + 'Insert'')' + @EOL
 	SET @Result = @Result + '	DECLARE @BeforeXML NVARCHAR(MAX)' + @EOL
@@ -225,17 +226,17 @@ BEGIN
 	SET @Result = @Result + 'CREATE PROCEDURE ' + @GETProcName + @EOL
 	SET @Result = @Result + '(' + @EOL
 	SET @Result = @Result + '	' + @GUIDParameter + ' UNIQUEIDENTIFIER,' + @EOL
-	SET @Result = @Result + '	@Token VARBINARY(MAX),' + @EOL
-	SET @Result = @Result + '	@SystemUserGUID UNIQUEIDENTIFIER' + @EOL
+	SET @Result = @Result + '	@Token VARBINARY(MAX)' + @EOL
 	SET @Result = @Result + ')' + @EOL
 	SET @Result = @Result + 'AS' + @EOL
 	SET @Result = @Result + 'BEGIN' + @EOL
-	SET @Result = @Result + '	IF (SELECT COUNT(*) FROM SystemUser WHERE GUID = @SystemUserGUID AND Token = @Token) = 0' + @EOL
+	SET @Result = @Result + '	DECLARE @SystemUserGUID UNIQUEIDENTIFIER' + @EOL
+	SET @Result = @Result + '	SELECT @SystemUserGUID = GUID FROM SystemUser WHERE Token = @Token AND TokenIsValid = 1' + @EOL
+	SET @Result = @Result + '	IF @SystemUserGUID IS NULL' + @EOL
 	SET @Result = @Result + '	BEGIN' + @EOL
-	SET @Result = @Result + '		UPDATE SystemUser SET Token = NULL, TokenExpires = NULL WHERE GUID = @SystemUserGUID;' + @EOL
 	SET @Result = @Result + '		THROW 51000, ''Invalid token'', 1;  '+ @EOL
 	SET @Result = @Result + '	END' + @EOL
-	SET @Result = @Result + '	EXEC spRefreshToken @SystemUserGUID, 0' + @EOL
+	SET @Result = @Result + '	EXEC [spRefreshTokenNoReturn] @SystemUserGUID' + @EOL
 	SET @Result = @Result + '	DECLARE @GetPermissionGUID UNIQUEIDENTIFIER = (SELECT GUID FROM Permission WHERE Permission = ''' + @TableName + 'Get'')' + @EOL
 	SET @Result = @Result + '	DECLARE @GetAllPermissionGUID UNIQUEIDENTIFIER = (SELECT GUID FROM Permission WHERE Permission = ''' + @TableName + 'GetAll'')' + @EOL
 	SET @Result = @Result + '	IF (' + @GUIDParameter + ' IS NULL)' + @EOL

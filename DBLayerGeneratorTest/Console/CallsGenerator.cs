@@ -56,7 +56,7 @@ namespace Console
             foreach (SqlParameter param in parameters)
             {
                 string type = GeneratorHelper.ParamType(param.SqlDbType);
-                if (param.IsNullable && type != "string")
+                if (param.IsNullable && type != "string" && type != "Byte[]")
                 {
                     type = type + "?";
                 }

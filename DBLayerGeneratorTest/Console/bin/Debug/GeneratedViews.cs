@@ -79,6 +79,9 @@ namespace AppointmentLibrary.Views
 		public string ActiveDateTime {get;set;}
 		public string TerminationDateTime {get;set;}
 		public string IsActiveForNow {get;set;}
+		public string Token {get;set;}
+		public string TokenExpires {get;set;}
+		public string TokenIsValid {get;set;}
 		public string Username {get;set;}
 	}
 	public partial class vwPermission

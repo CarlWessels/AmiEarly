@@ -69,7 +69,7 @@ namespace Console
                 parameterNameLowered = parameterNameLowered[0].ToString().ToLower() + parameterNameLowered.Substring(1, parameterNameLowered.Length - 1);
 
                 string parameterType = GeneratorHelper.ParamType(param.SqlDbType);
-                if (param.SqlDbType != System.Data.SqlDbType.VarChar && param.IsNullable)
+                if (param.SqlDbType != System.Data.SqlDbType.VarChar && param.SqlDbType != System.Data.SqlDbType.VarBinary && param.IsNullable)
                 {
                     parameterType += "?";
                 }

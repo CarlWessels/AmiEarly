@@ -20,61 +20,71 @@ namespace HostedService
     public partial interface IAppointmentService
     {
 		[OperationContract]
-		string AccountToXMLByDateTime (string parameters);
-		[OperationContract]
-		string ActivityTypeToXML (string parameters);
-		[OperationContract]
-		string ActivityTypeToXMLByDateTime (string parameters);
-		[OperationContract]
-		string AppointmentToXML (string parameters);
-		[OperationContract]
-		string AppointmentToXMLByDateTime (string parameters);
-		[OperationContract]
-		string ServiceProviderToXML (string parameters);
-		[OperationContract]
-		string CreateUpsert (string parameters);
-		[OperationContract]
-		string ServiceProviderToXMLByDateTime (string parameters);
+		string CustomerGet (string parameters);
 		[OperationContract]
 		string CustomerToXML (string parameters);
 		[OperationContract]
-		string SystemUserUpsert (string parameters);
-		[OperationContract]
 		string CustomerToXMLByDateTime (string parameters);
 		[OperationContract]
-		string SystemUserGet (string parameters);
+		string StoreUpsert (string parameters);
 		[OperationContract]
-		string ActivityScheduleToXML (string parameters);
-		[OperationContract]
-		string ActivityScheduleToXMLByDateTime (string parameters);
+		string StoreGet (string parameters);
 		[OperationContract]
 		string StoreToXML (string parameters);
 		[OperationContract]
+		string RefreshTokenNoReturn (string parameters);
+		[OperationContract]
 		string StoreToXMLByDateTime (string parameters);
+		[OperationContract]
+		string PermissionUpsert (string parameters);
+		[OperationContract]
+		string PermissionGet (string parameters);
 		[OperationContract]
 		string PermissionToXML (string parameters);
 		[OperationContract]
+		string CreateUpsert (string parameters);
+		[OperationContract]
 		string PermissionToXMLByDateTime (string parameters);
 		[OperationContract]
-		string SystemUserPermissionToXML (string parameters);
+		string SystemUserGroupUpsert (string parameters);
 		[OperationContract]
-		string SystemUserPermissionToXMLByDateTime (string parameters);
+		string GenerateToken (string parameters);
+		[OperationContract]
+		string SystemUserUpsert (string parameters);
+		[OperationContract]
+		string SystemUserGroupGet (string parameters);
+		[OperationContract]
+		string SystemUserGet (string parameters);
 		[OperationContract]
 		string SystemUserGroupToXML (string parameters);
 		[OperationContract]
 		string SystemUserGroupToXMLByDateTime (string parameters);
 		[OperationContract]
-		string SystemUserGroupLineToXML (string parameters);
+		string RefreshToken (string parameters);
 		[OperationContract]
-		string SystemUserGroupLineToXMLByDateTime (string parameters);
+		string SystemUserGroupPermissionUpsert (string parameters);
+		[OperationContract]
+		string SystemUserGroupPermissionGet (string parameters);
 		[OperationContract]
 		string SystemUserGroupPermissionToXML (string parameters);
 		[OperationContract]
 		string SystemUserGroupPermissionToXMLByDateTime (string parameters);
 		[OperationContract]
+		string SystemUserPermissionToXML (string parameters);
+		[OperationContract]
+		string SystemUserPermissionToXMLByDateTime (string parameters);
+		[OperationContract]
+		string SystemUserGroupLineToXML (string parameters);
+		[OperationContract]
+		string SystemUserGroupLineToXMLByDateTime (string parameters);
+		[OperationContract]
 		string GetChildren (string parameters);
 		[OperationContract]
 		string CreateToXml (string parameters);
+		[OperationContract]
+		string SystemUserPermissionUpsert (string parameters);
+		[OperationContract]
+		string SystemUserPermissionGet (string parameters);
 		[OperationContract]
 		string Login (string parameters);
 		[OperationContract]
@@ -82,50 +92,46 @@ namespace HostedService
 		[OperationContract]
 		string AccountGet (string parameters);
 		[OperationContract]
-		string ActivityTypeUpsert (string parameters);
+		string AccountToXML (string parameters);
 		[OperationContract]
-		string ActivityTypeGet (string parameters);
+		string AccountToXMLByDateTime (string parameters);
 		[OperationContract]
-		string AppointmentUpsert (string parameters);
-		[OperationContract]
-		string AppointmentGet (string parameters);
-		[OperationContract]
-		string ServiceProviderUpsert (string parameters);
-		[OperationContract]
-		string ServiceProviderGet (string parameters);
-		[OperationContract]
-		string CustomerUpsert (string parameters);
-		[OperationContract]
-		string CustomerGet (string parameters);
+		string AuditLogUpsert (string parameters);
 		[OperationContract]
 		string ActivityScheduleUpsert (string parameters);
 		[OperationContract]
 		string ActivityScheduleGet (string parameters);
 		[OperationContract]
-		string StoreUpsert (string parameters);
-		[OperationContract]
-		string StoreGet (string parameters);
-		[OperationContract]
-		string PermissionUpsert (string parameters);
-		[OperationContract]
-		string PermissionGet (string parameters);
-		[OperationContract]
-		string SystemUserPermissionUpsert (string parameters);
-		[OperationContract]
-		string SystemUserPermissionGet (string parameters);
-		[OperationContract]
-		string SystemUserGroupUpsert (string parameters);
-		[OperationContract]
-		string SystemUserGroupGet (string parameters);
-		[OperationContract]
-		string SystemUserGroupPermissionUpsert (string parameters);
-		[OperationContract]
-		string AuditLogUpsert (string parameters);
-		[OperationContract]
-		string SystemUserGroupPermissionGet (string parameters);
-		[OperationContract]
 		string Tester (string parameters);
 		[OperationContract]
-		string AccountToXML (string parameters);
+		string ActivityScheduleToXML (string parameters);
+		[OperationContract]
+		string ActivityScheduleToXMLByDateTime (string parameters);
+		[OperationContract]
+		string ActivityTypeUpsert (string parameters);
+		[OperationContract]
+		string ActivityTypeGet (string parameters);
+		[OperationContract]
+		string ActivityTypeToXML (string parameters);
+		[OperationContract]
+		string ActivityTypeToXMLByDateTime (string parameters);
+		[OperationContract]
+		string AppointmentUpsert (string parameters);
+		[OperationContract]
+		string AppointmentGet (string parameters);
+		[OperationContract]
+		string AppointmentToXML (string parameters);
+		[OperationContract]
+		string AppointmentToXMLByDateTime (string parameters);
+		[OperationContract]
+		string ServiceProviderUpsert (string parameters);
+		[OperationContract]
+		string ServiceProviderGet (string parameters);
+		[OperationContract]
+		string ServiceProviderToXML (string parameters);
+		[OperationContract]
+		string ServiceProviderToXMLByDateTime (string parameters);
+		[OperationContract]
+		string CustomerUpsert (string parameters);
     }
 }
