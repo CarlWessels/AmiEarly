@@ -140,6 +140,9 @@ namespace Console
                 case "VARBINARY":
                     ret = SqlDbType.Binary;
                     break;
+                case "DATE":
+                    ret = SqlDbType.Date;
+                    break;
                 default:
                     throw new Exception("No type found");
 
@@ -196,7 +199,9 @@ namespace Console
                                 case "VARBINARY":
                                     sqlDbType = SqlDbType.VarBinary;
                                     break;
-
+                                case "DATE":
+                                    sqlDbType = SqlDbType.Date;
+                                    break;
                                 default:
                                     throw new Exception("No type found");
                             }
@@ -235,6 +240,7 @@ namespace Console
                     paramType = "Guid";
                     break;
                 case System.Data.SqlDbType.DateTime:
+                case SqlDbType.Date:
                     paramType = "DateTime";
                     break;
                 case System.Data.SqlDbType.Time:

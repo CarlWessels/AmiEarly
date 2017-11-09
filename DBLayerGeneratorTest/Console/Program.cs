@@ -39,6 +39,8 @@ namespace Console
             GeneratorHelper.AddHeader(interfaceSb);
             StringBuilder serviceSb = new StringBuilder();
             GeneratorHelper.AddHeader(serviceSb);
+            StringBuilder enumSb = new StringBuilder();
+            GeneratorHelper.AddHeader(enumSb);
 
             string nameSpace = "AppointmentLibrary";
             GeneratorHelper.BuildNamespacePre($"{nameSpace}.ProcResults", ref resultsSb);
@@ -104,6 +106,11 @@ namespace Console
             GeneratorHelper.BuildNamespacePost(ref viewSb);
             GeneratorHelper.BuildNamespacePost(ref tableSb);
 
+
+            EnumGenerator.EnumsPre(ref enumSb);
+            EnumGenerator.BuildEnums(connectionString, ref enumSb);
+            EnumGenerator.EnumsPost(ref enumSb);
+
             File.WriteAllText("GeneratedResults.cs", resultsSb.ToString());
             File.WriteAllText("GeneratedParameters.cs", parametersSb.ToString());
             File.WriteAllText("GeneratedCalls.cs", callsSb.ToString());
@@ -112,6 +119,7 @@ namespace Console
             File.WriteAllText("GeneratedServiceCalls.cs", serviceCalls.ToString());
             File.WriteAllText("GeneratedInterface.cs", interfaceSb.ToString());
             File.WriteAllText("GeneratedService.cs", serviceSb.ToString());
+            File.WriteAllText("GeneratedEnums.cs", enumSb.ToString());
         }
 
 

@@ -1,5 +1,14 @@
 namespace AppointmentLibrary.Views
 {
+	public partial class vwLUPermission
+	{
+		public string GUID {get;set;}
+		public string ID {get;set;}
+		public string DateTimeCreated {get;set;}
+		public string IsDeleted {get;set;}
+		public string Permission {get;set;}
+		public string SystemUserGUID {get;set;}
+	}
 	public partial class vwAccount
 	{
 		public string GUID {get;set;}
@@ -10,15 +19,6 @@ namespace AppointmentLibrary.Views
 		public string TerminationDateTime {get;set;}
 		public string IsActiveForNow {get;set;}
 		public string AccountName {get;set;}
-	}
-	public partial class vwActivityType
-	{
-		public string GUID {get;set;}
-		public string ID {get;set;}
-		public string DateTimeCreated {get;set;}
-		public string IsDeleted {get;set;}
-		public string ActivityType {get;set;}
-		public string AccountGUID {get;set;}
 	}
 	public partial class vwServiceProvider
 	{
@@ -84,14 +84,43 @@ namespace AppointmentLibrary.Views
 		public string TokenIsValid {get;set;}
 		public string Username {get;set;}
 	}
-	public partial class vwPermission
+	public partial class vwLUActivityType
 	{
 		public string GUID {get;set;}
 		public string ID {get;set;}
 		public string DateTimeCreated {get;set;}
 		public string IsDeleted {get;set;}
-		public string Permission {get;set;}
+		public string ActivityType {get;set;}
+		public string AccountGUID {get;set;}
 		public string SystemUserGUID {get;set;}
+	}
+	public partial class vwLUAddressType
+	{
+		public string GUID {get;set;}
+		public string ID {get;set;}
+		public string DateTimeCreated {get;set;}
+		public string IsDeleted {get;set;}
+		public string ActiveDateTime {get;set;}
+		public string TerminationDateTime {get;set;}
+		public string IsActiveForNow {get;set;}
+		public string AddressType {get;set;}
+	}
+	public partial class vwCustomerAddress
+	{
+		public string GUID {get;set;}
+		public string ID {get;set;}
+		public string DateTimeCreated {get;set;}
+		public string IsDeleted {get;set;}
+		public string ActiveDateTime {get;set;}
+		public string TerminationDateTime {get;set;}
+		public string IsActiveForNow {get;set;}
+		public string Address1 {get;set;}
+		public string Address2 {get;set;}
+		public string Address3 {get;set;}
+		public string Code {get;set;}
+		public string Province {get;set;}
+		public string CustomerGUID {get;set;}
+		public string AddressTypeGUID {get;set;}
 	}
 	public partial class vwSystemUserPermission
 	{

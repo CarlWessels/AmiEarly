@@ -12,17 +12,12 @@ namespace AppointmentLibrary.Parameters
 	public interface IParameter
 	{
 	}
-	public partial class CustomerGetParameters : IParameter
-	{
-		public Guid? CustomerGUID { get; set;}
-		public Byte[] Token { get; set;}
-	}
-	public partial class CustomerToXMLParameters : IParameter
+	public partial class CustomerAddressToXMLParameters : IParameter
 	{
 		public string GUIDS { get; set;}
 		public Byte[] Token { get; set;}
 	}
-	public partial class CustomerToXMLByDateTimeParameters : IParameter
+	public partial class CustomerAddressToXMLByDateTimeParameters : IParameter
 	{
 		public DateTime? FromDateTime { get; set;}
 		public DateTime? ToDateTime { get; set;}
@@ -49,17 +44,17 @@ namespace AppointmentLibrary.Parameters
 		public string GUIDS { get; set;}
 		public Byte[] Token { get; set;}
 	}
-	public partial class RefreshTokenNoReturnParameters : IParameter
-	{
-		public Guid? SystemUserGUID { get; set;}
-	}
 	public partial class StoreToXMLByDateTimeParameters : IParameter
 	{
 		public DateTime? FromDateTime { get; set;}
 		public DateTime? ToDateTime { get; set;}
 		public Byte[] Token { get; set;}
 	}
-	public partial class PermissionUpsertParameters : IParameter
+	public partial class RefreshTokenNoReturnParameters : IParameter
+	{
+		public Guid? SystemUserGUID { get; set;}
+	}
+	public partial class LUPermissionUpsertParameters : IParameter
 	{
 		public Guid? GUID { get; set;}
 		public bool? IsDeleted { get; set;}
@@ -67,25 +62,25 @@ namespace AppointmentLibrary.Parameters
 		public Byte[] Token { get; set;}
 		public bool? ReturnResults { get; set;}
 	}
-	public partial class PermissionGetParameters : IParameter
+	public partial class LUPermissionGetParameters : IParameter
 	{
-		public Guid? PermissionGUID { get; set;}
+		public Guid? LUPermissionGUID { get; set;}
 		public Byte[] Token { get; set;}
 	}
-	public partial class PermissionToXMLParameters : IParameter
+	public partial class LUPermissionToXMLParameters : IParameter
 	{
 		public string GUIDS { get; set;}
+		public Byte[] Token { get; set;}
+	}
+	public partial class LUPermissionToXMLByDateTimeParameters : IParameter
+	{
+		public DateTime? FromDateTime { get; set;}
+		public DateTime? ToDateTime { get; set;}
 		public Byte[] Token { get; set;}
 	}
 	public partial class CreateUpsertParameters : IParameter
 	{
 		public string TableName { get; set;}
-	}
-	public partial class PermissionToXMLByDateTimeParameters : IParameter
-	{
-		public DateTime? FromDateTime { get; set;}
-		public DateTime? ToDateTime { get; set;}
-		public Byte[] Token { get; set;}
 	}
 	public partial class SystemUserGroupUpsertParameters : IParameter
 	{
@@ -96,6 +91,11 @@ namespace AppointmentLibrary.Parameters
 		public string Description { get; set;}
 		public Byte[] Token { get; set;}
 		public bool? ReturnResults { get; set;}
+	}
+	public partial class SystemUserGroupGetParameters : IParameter
+	{
+		public Guid? SystemUserGroupGUID { get; set;}
+		public Byte[] Token { get; set;}
 	}
 	public partial class GenerateTokenParameters : IParameter
 	{
@@ -113,9 +113,9 @@ namespace AppointmentLibrary.Parameters
 		public Byte[] Token { get; set;}
 		public bool? ReturnResults { get; set;}
 	}
-	public partial class SystemUserGroupGetParameters : IParameter
+	public partial class SystemUserGroupToXMLParameters : IParameter
 	{
-		public Guid? SystemUserGroupGUID { get; set;}
+		public string GUIDS { get; set;}
 		public Byte[] Token { get; set;}
 	}
 	public partial class SystemUserGetParameters : IParameter
@@ -123,21 +123,11 @@ namespace AppointmentLibrary.Parameters
 		public Guid? ForSystemUserGUID { get; set;}
 		public Byte[] Token { get; set;}
 	}
-	public partial class SystemUserGroupToXMLParameters : IParameter
-	{
-		public string GUIDS { get; set;}
-		public Byte[] Token { get; set;}
-	}
 	public partial class SystemUserGroupToXMLByDateTimeParameters : IParameter
 	{
 		public DateTime? FromDateTime { get; set;}
 		public DateTime? ToDateTime { get; set;}
 		public Byte[] Token { get; set;}
-	}
-	public partial class RefreshTokenParameters : IParameter
-	{
-		public Guid? SystemUserGUID { get; set;}
-		public bool? ReturnResults { get; set;}
 	}
 	public partial class SystemUserGroupPermissionUpsertParameters : IParameter
 	{
@@ -148,6 +138,11 @@ namespace AppointmentLibrary.Parameters
 		public Guid? PermissionGUID { get; set;}
 		public Guid? SystemUserGroupGUID { get; set;}
 		public Byte[] Token { get; set;}
+		public bool? ReturnResults { get; set;}
+	}
+	public partial class RefreshTokenParameters : IParameter
+	{
+		public Guid? SystemUserGUID { get; set;}
 		public bool? ReturnResults { get; set;}
 	}
 	public partial class SystemUserGroupPermissionGetParameters : IParameter
@@ -188,6 +183,11 @@ namespace AppointmentLibrary.Parameters
 	{
 		public string TableName { get; set;}
 	}
+	public partial class HasPermissionParameters : IParameter
+	{
+		public Guid? SystemUserGUID { get; set;}
+		public Guid? PermissionGUID { get; set;}
+	}
 	public partial class CreateToXmlParameters : IParameter
 	{
 		public string TableName { get; set;}
@@ -207,12 +207,15 @@ namespace AppointmentLibrary.Parameters
 	{
 		public Guid? SystemUserPermissionGUID { get; set;}
 		public Byte[] Token { get; set;}
-		public Guid? SystemUserGUID { get; set;}
 	}
 	public partial class LoginParameters : IParameter
 	{
 		public string UserName { get; set;}
 		public string Password { get; set;}
+	}
+	public partial class GenerateTokenNoReturnParameters : IParameter
+	{
+		public Guid? SystemUserGUID { get; set;}
 	}
 	public partial class AccountUpsertParameters : IParameter
 	{
@@ -240,17 +243,6 @@ namespace AppointmentLibrary.Parameters
 		public DateTime? ToDateTime { get; set;}
 		public Byte[] Token { get; set;}
 	}
-	public partial class AuditLogUpsertParameters : IParameter
-	{
-		public Guid? GUID { get; set;}
-		public string Source { get; set;}
-		public string TableName { get; set;}
-		public string BeforeSnapshot { get; set;}
-		public string AfterSnapshot { get; set;}
-		public Guid? TableGUID { get; set;}
-		public Guid? SystemUserGUID { get; set;}
-		public bool? ReturnResults { get; set;}
-	}
 	public partial class ActivityScheduleUpsertParameters : IParameter
 	{
 		public Guid? GUID { get; set;}
@@ -268,11 +260,6 @@ namespace AppointmentLibrary.Parameters
 		public Guid? ActivityScheduleGUID { get; set;}
 		public Byte[] Token { get; set;}
 	}
-	public partial class TesterParameters : IParameter
-	{
-		public string First { get; set;}
-		public string Second { get; set;}
-	}
 	public partial class ActivityScheduleToXMLParameters : IParameter
 	{
 		public string GUIDS { get; set;}
@@ -284,7 +271,7 @@ namespace AppointmentLibrary.Parameters
 		public DateTime? ToDateTime { get; set;}
 		public Byte[] Token { get; set;}
 	}
-	public partial class ActivityTypeUpsertParameters : IParameter
+	public partial class LUActivityTypeUpsertParameters : IParameter
 	{
 		public Guid? GUID { get; set;}
 		public bool? IsDeleted { get; set;}
@@ -293,17 +280,54 @@ namespace AppointmentLibrary.Parameters
 		public Byte[] Token { get; set;}
 		public bool? ReturnResults { get; set;}
 	}
-	public partial class ActivityTypeGetParameters : IParameter
+	public partial class LUActivityTypeGetParameters : IParameter
 	{
-		public Guid? ActivityTypeGUID { get; set;}
+		public Guid? LUActivityTypeGUID { get; set;}
 		public Byte[] Token { get; set;}
 	}
-	public partial class ActivityTypeToXMLParameters : IParameter
+	public partial class LUActivityTypeToXMLParameters : IParameter
 	{
 		public string GUIDS { get; set;}
 		public Byte[] Token { get; set;}
 	}
-	public partial class ActivityTypeToXMLByDateTimeParameters : IParameter
+	public partial class LUActivityTypeToXMLByDateTimeParameters : IParameter
+	{
+		public DateTime? FromDateTime { get; set;}
+		public DateTime? ToDateTime { get; set;}
+		public Byte[] Token { get; set;}
+	}
+	public partial class LUAddressTypeUpsertParameters : IParameter
+	{
+		public Guid? GUID { get; set;}
+		public bool? IsDeleted { get; set;}
+		public DateTime? ActiveDateTime { get; set;}
+		public DateTime? TerminationDateTime { get; set;}
+		public string AddressType { get; set;}
+		public Byte[] Token { get; set;}
+		public bool? ReturnResults { get; set;}
+	}
+	public partial class AuditLogUpsertParameters : IParameter
+	{
+		public Guid? GUID { get; set;}
+		public string Source { get; set;}
+		public string TableName { get; set;}
+		public string BeforeSnapshot { get; set;}
+		public string AfterSnapshot { get; set;}
+		public Guid? TableGUID { get; set;}
+		public Guid? SystemUserGUID { get; set;}
+		public bool? ReturnResults { get; set;}
+	}
+	public partial class LUAddressTypeGetParameters : IParameter
+	{
+		public Guid? LUAddressTypeGUID { get; set;}
+		public Byte[] Token { get; set;}
+	}
+	public partial class LUAddressTypeToXMLParameters : IParameter
+	{
+		public string GUIDS { get; set;}
+		public Byte[] Token { get; set;}
+	}
+	public partial class LUAddressTypeToXMLByDateTimeParameters : IParameter
 	{
 		public DateTime? FromDateTime { get; set;}
 		public DateTime? ToDateTime { get; set;}
@@ -375,8 +399,49 @@ namespace AppointmentLibrary.Parameters
 		public DateTime? TerminationDateTime { get; set;}
 		public string Firstname { get; set;}
 		public string Surname { get; set;}
+		public string EmailAddress { get; set;}
+		public string IDNumber { get; set;}
+		public DateTime? BirthDate { get; set;}
+		public string CellphoneNumber { get; set;}
 		public Guid? AccountGUID { get; set;}
 		public Byte[] Token { get; set;}
 		public bool? ReturnResults { get; set;}
+	}
+	public partial class CustomerGetParameters : IParameter
+	{
+		public Guid? CustomerGUID { get; set;}
+		public Byte[] Token { get; set;}
+	}
+	public partial class CustomerToXMLParameters : IParameter
+	{
+		public string GUIDS { get; set;}
+		public Byte[] Token { get; set;}
+	}
+	public partial class CustomerToXMLByDateTimeParameters : IParameter
+	{
+		public DateTime? FromDateTime { get; set;}
+		public DateTime? ToDateTime { get; set;}
+		public Byte[] Token { get; set;}
+	}
+	public partial class CustomerAddressUpsertParameters : IParameter
+	{
+		public Guid? GUID { get; set;}
+		public bool? IsDeleted { get; set;}
+		public DateTime? ActiveDateTime { get; set;}
+		public DateTime? TerminationDateTime { get; set;}
+		public string Address1 { get; set;}
+		public string Address2 { get; set;}
+		public string Address3 { get; set;}
+		public string Code { get; set;}
+		public string Province { get; set;}
+		public Guid? CustomerGUID { get; set;}
+		public Guid? AddressTypeGUID { get; set;}
+		public Byte[] Token { get; set;}
+		public bool? ReturnResults { get; set;}
+	}
+	public partial class CustomerAddressGetParameters : IParameter
+	{
+		public Guid? CustomerAddressGUID { get; set;}
+		public Byte[] Token { get; set;}
 	}
 }

@@ -49,6 +49,34 @@
 	IF OBJECT_ID('dbo.SystemUser', 'U') IS NOT NULL 
 		DROP TABLE dbo.SystemUser; 
 
+	IF OBJECT_ID('dbo.Setting', 'U') IS NOT NULL 
+		DROP TABLE dbo.Setting; 
+
+	create table Setting
+	(
+		GUID UNIQUEIDENTIFIER NOT NULL DEFAULT  NEWSEQUENTIALID() PRIMARY KEY,
+		ID INT IDENTITY(1,1) NOT  NULL,
+		DateTimeCreated DATETIME NOT NULL DEFAULT GETDATE(),
+		IsDeleted BIT NOT NULL DEFAULT 0,
+
+		ActiveDateTime DATETIME NOT NULL DEFAULT GETDATE(),
+		TerminationDateTime DATETIME NULL,
+		IsActiveForNow  AS		CASE 
+									WHEN IsDeleted = CONVERT(BIT,0) THEN CONVERT(BIT,1 )
+									ELSE	CASE	
+													WHEN GETDATE() BETWEEN ActiveDateTime AND ISNULL(TerminationDateTime, '2099-01-01') THEN CONVERT(BIT,1)
+													ELSE CONVERT(BIT,0)
+											END
+								END,
+		Setting VARCHAR(max),
+		TestValue VARCHAR(max),
+		ProductionValue VARCHAR(max),
+		IsProduction bit not null default 1,
+		Value as case when IsProduction = 1 then ProductionValue else TestValue end
+	)
+	go
+    insert into Setting (Setting, TestValue, ProductionValue) select 'TokenExpiryMinutes', 10, 10
+	Go
 
 		
 
@@ -60,7 +88,7 @@
 		IsDeleted BIT NOT NULL DEFAULT 0,
 
 		ActiveDateTime DATETIME NOT NULL DEFAULT GETDATE(),
-		TerminationDateTime DATETIME,
+		TerminationDateTime DATETIME NULL,
 		IsActiveForNow  AS		CASE 
 									WHEN IsDeleted = CONVERT(BIT,0) THEN CONVERT(BIT,1 )
 									ELSE	CASE	
@@ -70,6 +98,7 @@
 								END,
 		Token VARBINARY(MAX) NULL,
 		TokenExpires DATETIME NULL,
+		TokenIsValid as case when getDate() > TokenExpires then 0 else 1 end,
 		Username VARCHAR(MAX) NOT NULL,
 		PasswordHash BINARY(64) NOT NULL,
 		PasswordSalt UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID()
@@ -90,7 +119,7 @@
 		IsDeleted BIT NOT NULL DEFAULT 0,
 
 		ActiveDateTime DATETIME NOT NULL DEFAULT GETDATE(),
-		TerminationDateTime DATETIME,
+		TerminationDateTime DATETIME NULL,
 		IsActiveForNow  AS		CASE 
 									WHEN IsDeleted = CONVERT(BIT,0) THEN CONVERT(BIT,1 )
 									ELSE	CASE	
@@ -113,7 +142,7 @@
 		IsDeleted BIT NOT NULL DEFAULT 0,
 
 		ActiveDateTime DATETIME NOT NULL DEFAULT GETDATE(),
-		TerminationDateTime DATETIME,
+		TerminationDateTime DATETIME NULL,
 		IsActiveForNow  AS		CASE 
 									WHEN IsDeleted = CONVERT(BIT,0) THEN CONVERT(BIT,1 )
 									ELSE	CASE	
@@ -137,7 +166,7 @@
 		IsDeleted BIT NOT NULL DEFAULT 0,
 
 		ActiveDateTime DATETIME NOT NULL DEFAULT GETDATE(),
-		TerminationDateTime DATETIME,
+		TerminationDateTime DATETIME NULL,
 		IsActiveForNow  AS		CASE 
 									WHEN IsDeleted = CONVERT(BIT,0) THEN CONVERT(BIT,1 )
 									ELSE	CASE	
@@ -162,7 +191,7 @@
 		IsDeleted BIT NOT NULL DEFAULT 0,
 
 		ActiveDateTime DATETIME NOT NULL DEFAULT GETDATE(),
-		TerminationDateTime DATETIME,
+		TerminationDateTime DATETIME NULL,
 		IsActiveForNow  AS		CASE 
 									WHEN IsDeleted = CONVERT(BIT,0) THEN CONVERT(BIT,1 )
 									ELSE	CASE	
@@ -266,7 +295,7 @@
 		DateTimeCreated DATETIME NOT NULL DEFAULT GETDATE(),
 		IsDeleted BIT NOT NULL DEFAULT 0,
 		ActiveDateTime DATETIME NOT NULL DEFAULT GETDATE(),
-		TerminationDateTime DATETIME,
+		TerminationDateTime DATETIME NULL,
 		IsActiveForNow  AS		CASE 
 									WHEN IsDeleted = CONVERT(BIT,0) THEN CONVERT(BIT,1 )
 									ELSE	CASE	
@@ -288,7 +317,7 @@
 		DateTimeCreated DATETIME NOT NULL DEFAULT GETDATE(),
 		IsDeleted BIT NOT NULL DEFAULT 0,
 		ActiveDateTime DATETIME NOT NULL DEFAULT GETDATE(),
-		TerminationDateTime DATETIME,
+		TerminationDateTime DATETIME NULL,
 		IsActiveForNow  AS		CASE 
 									WHEN IsDeleted = CONVERT(BIT,0) THEN CONVERT(BIT,1 )
 									ELSE	CASE	
@@ -309,7 +338,7 @@
 		DateTimeCreated DATETIME NOT NULL DEFAULT GETDATE(),
 		IsDeleted BIT NOT NULL DEFAULT 0,
 		ActiveDateTime DATETIME NOT NULL DEFAULT GETDATE(),
-		TerminationDateTime DATETIME,
+		TerminationDateTime DATETIME NULL,
 		IsActiveForNow  AS		CASE 
 									WHEN IsDeleted = CONVERT(BIT,0) THEN CONVERT(BIT,1 )
 									ELSE	CASE	
@@ -332,7 +361,7 @@
 		DateTimeCreated DATETIME NOT NULL DEFAULT GETDATE(),
 		IsDeleted BIT NOT NULL DEFAULT 0,
 		ActiveDateTime DATETIME NOT NULL DEFAULT GETDATE(),
-		TerminationDateTime DATETIME,
+		TerminationDateTime DATETIME NULL,
 		IsActiveForNow  AS		CASE 
 									WHEN IsDeleted = CONVERT(BIT,0) THEN CONVERT(BIT,1 )
 									ELSE	CASE	

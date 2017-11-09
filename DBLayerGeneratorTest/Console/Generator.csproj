@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CallsGenerator.cs" />
+    <Compile Include="EnumGenerator.cs" />
     <Compile Include="GeneratorHelper.cs" />
     <Compile Include="ParametersGenerator.cs" />
     <Compile Include="Program.cs" />

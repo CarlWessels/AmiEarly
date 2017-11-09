@@ -16,6 +16,7 @@ namespace Console
         {
             //sb.AppendLine("\tusing System.Collections.Generic;");
             sb.AppendLine("\tusing System;");
+            sb.AppendLine("\tusing System.Text ;");
             sb.AppendLine("\tusing System.Data.SqlClient;");
             sb.AppendLine($"\tusing {namespce}.ProcResults;");
             sb.AppendLine($"\tusing {namespce}.Parameters;");
@@ -231,7 +232,10 @@ namespace Console
                         resultLine += indentSeven + @"}";
                         break;
                     case "BYTE[]":
-                        resultLine = (String.Format(@"res.{0} = (byte[])(reader[""{0}""]);", name));
+                        resultLine = $@"if (!String.IsNullOrWhiteSpace(reader[""{name}""].ToString()))" + Environment.NewLine;
+                        resultLine += indentSeven + @"{" + Environment.NewLine;
+                        resultLine += indentSeven + $@"    res.{name} =  Encoding.ASCII.GetBytes(reader[""{name}""].ToString());" + Environment.NewLine;
+                        resultLine += indentSeven + @"}";
                         break;
                     default:
                         throw new Exception("No type found");

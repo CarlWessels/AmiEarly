@@ -1,6 +1,0 @@
-C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\TokenLibrary\bin\Debug\netstandard2.0\TokenLibrary.deps.json
-C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\TokenLibrary\bin\Debug\netstandard2.0\TokenLibrary.dll
-C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\TokenLibrary\obj\Debug\netstandard2.0\TokenLibrary.csprojResolveAssemblyReference.cache
-C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\TokenLibrary\obj\Debug\netstandard2.0\TokenLibrary.csproj.CoreCompileInputs.cache
-C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\TokenLibrary\obj\Debug\netstandard2.0\TokenLibrary.AssemblyInfoInputs.cache
-C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\TokenLibrary\obj\Debug\netstandard2.0\TokenLibrary.AssemblyInfo.cs

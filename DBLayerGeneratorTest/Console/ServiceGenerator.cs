@@ -50,45 +50,56 @@ namespace Console
                 callName = procName.Replace("sp", "");
             }
 
-            sb.Append(indentTwo + $"public static List<{resultName}> {callName} (");
+            sb.Append(indentTwo + $"public List<{resultName}> {callName} (");
 
             StringBuilder parameterList = new StringBuilder();
             string procNameCleaned = procName.Substring(2, procName.Length - 2);
             bool first = true;
+            bool hasToken = false;
             foreach(SqlParameter param in parameters)
             {
-
-                parameterList.Append(indentFour);
-                if (!first)
+                if (param.ParameterName == "@Token")
                 {
-                    sb.Append(", ");
-                    parameterList.Append(", ");
+                    hasToken = true;
                 }
-                string paramNameClean = param.ParameterName.Replace("@", "");
-                string parameterNameLowered = param.ParameterName.Replace("@", "");
-                parameterNameLowered = parameterNameLowered[0].ToString().ToLower() + parameterNameLowered.Substring(1, parameterNameLowered.Length - 1);
-
-                string parameterType = GeneratorHelper.ParamType(param.SqlDbType);
-                if (param.SqlDbType != System.Data.SqlDbType.VarChar && param.SqlDbType != System.Data.SqlDbType.VarBinary && param.IsNullable)
+                else
                 {
-                    parameterType += "?";
-                }
+                    parameterList.Append(indentFour);
+                    if (!first)
+                    {
+                        sb.Append(", ");
+                        parameterList.Append(", ");
+                    }
+                    string paramNameClean = param.ParameterName.Replace("@", "");
+                    string parameterNameLowered = param.ParameterName.Replace("@", "");
+                    parameterNameLowered = parameterNameLowered[0].ToString().ToLower() + parameterNameLowered.Substring(1, parameterNameLowered.Length - 1);
 
-                if (param.Direction == System.Data.ParameterDirection.InputOutput)
-                {
-                    sb.Append(" ref ");
-                }
-                sb.Append($"{parameterType} {parameterNameLowered}");
-                
-                parameterList.AppendLine($"{paramNameClean} = {parameterNameLowered}");
+                    string parameterType = GeneratorHelper.ParamType(param.SqlDbType);
+                    if (param.SqlDbType != System.Data.SqlDbType.VarChar && param.SqlDbType != System.Data.SqlDbType.VarBinary && param.IsNullable)
+                    {
+                        parameterType += "?";
+                    }
 
-                first = false;
+                    if (param.Direction == System.Data.ParameterDirection.InputOutput)
+                    {
+                        sb.Append(" ref ");
+                    }
+                    sb.Append($"{parameterType} {parameterNameLowered}");
+
+                    parameterList.AppendLine($"{paramNameClean} = {parameterNameLowered}");
+
+                    first = false;
+                }
             }
             string parametersName = $"{procNameCleaned}Parameters";
             sb.AppendLine(")");
             sb.AppendLine(indentTwo + @"{");
             sb.AppendLine(indentThree + $"{parametersName} p = new {parametersName}()");
             sb.AppendLine(indentThree + "{");
+            if (hasToken)
+            {
+                sb.AppendLine(indentFour + @"Token = Token,");
+            }
             sb.AppendLine($"{parameterList.ToString()}");
             sb.AppendLine(indentThree + "};");
             sb.AppendLine(indentThree);
@@ -121,9 +132,14 @@ namespace Console
             sb.AppendLine("            service = new AppointmentService.AppointmentServiceClient();");
             sb.AppendLine("            service.ClientCredentials.UserName.UserName = username;");
             sb.AppendLine("            service.ClientCredentials.UserName.Password = password;");
+            sb.AppendLine("            List<LoginResult> loginResults = Login(username, password);");
+            sb.AppendLine("            LoginResult login = loginResults.FirstOrDefault();");
+            sb.AppendLine("            byte[] token = login.Token;");
+            sb.AppendLine("            Token = token;");
             sb.AppendLine("        }");
             sb.AppendLine("        private static AppointmentService.AppointmentServiceClient service;");
             sb.AppendLine("");
+            sb.AppendLine("        public byte[] Token;");
             sb.AppendLine("        public static AppointmentService.AppointmentServiceClient Service");
             sb.AppendLine("        {");
             sb.AppendLine("            get");
@@ -132,6 +148,8 @@ namespace Console
             sb.AppendLine("            }");
             sb.AppendLine("        }");
         }
+
+
 
         public static void GenerateServiceCallsPost(StringBuilder sb)
         {

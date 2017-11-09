@@ -22,6 +22,9 @@ SET NOCOUNT ON
 	SELECT 'PermissionGet', @SystemGUID
 	UNION ALL
 	SELECT 'PermissionGetAll', @SystemGUID
+	UNION ALL
+	SELECT 'SystemUserUpsert', @SystemGUID
+
 
 	INSERT INTO dbo.Permission
 	(
@@ -35,6 +38,10 @@ SET NOCOUNT ON
 	SELECT 'SystemUserPermissionGet', @SystemGUID
 	UNION ALL
 	SELECT 'SystemUserPermissionGetAll', @SystemGUID
+	UNION ALL
+	SELECT 'SystemUserGetAll', @SystemGUID
+	UNION ALL
+	SELECT 'SystemUserGet', @SystemGUID
 
 
 	INSERT INTO dbo.SystemUserPermission
@@ -64,6 +71,10 @@ SET NOCOUNT ON
 	SELECT @SystemGUID, (SELECT GUID FROM dbo.Permission WHERE Permission = 'SystemUserPermissionGet') , @SystemGUID
 	UNION ALL
 	SELECT @SystemGUID, (SELECT GUID FROM dbo.Permission WHERE Permission = 'SystemUserPermissionGetAll') , @SystemGUID
+	UNION ALL
+	SELECT @SystemGUID, (SELECT GUID FROM dbo.Permission WHERE Permission = 'SystemUserGetAll') , @SystemGUID
+	UNION ALL
+	SELECT @SystemGUID, (SELECT GUID FROM dbo.Permission WHERE Permission = 'SystemUserGet') , @SystemGUID
 
 
 
@@ -94,12 +105,11 @@ SET NOCOUNT ON
 	SELECT @I = MIN(ID) FROM @Tables WHERE Done = 0
 
 	WHILE @I IS NOT NULL
-	BEGIN
+	begin
 		DECLARE @TableName VARCHAR(MAX)
 				,@CreateUpsert BIT 
 				,@CreateToXML BIT 
 				,@CreatePermission BIT 
-
 
 		SET @CreateUpsert = NULL
 		SET @TableName = NULL
@@ -115,12 +125,12 @@ SET NOCOUNT ON
 		BEGIN 
 			EXEC dbo.spCreateUpsert @TableName
 		END
-
+		
 		IF (@CreateToXML= 1 )
 		BEGIN
 			EXEC spCreateToXml @TableName
 		END
-
+		
 		IF (@CreatePermission = 1 )
 		BEGIN
 			DECLARE @InsertPermission VARCHAR(MAX) = (SELECT @TableName + 'Insert')
@@ -128,10 +138,10 @@ SET NOCOUNT ON
 			DECLARE @GetPermission VARCHAR(MAX) = (SELECT @TableName + 'Get')
 			DECLARE @GetAllPermission VARCHAR(MAX) = (SELECT @TableName + 'GetAll')
 
-			EXEC spPermissionUpsert NULL, 0, @InsertPermission, @SystemGUID, @Token, 0
-			EXEC spPermissionUpsert NULL, 0, @UpdatePermission, @SystemGUID, @Token, 0
-			EXEC spPermissionUpsert NULL, 0, @GetPermission, @SystemGUID, @Token, 0
-			EXEC spPermissionUpsert NULL, 0, @GetAllPermission, @SystemGUID, @Token, 0
+			EXEC spPermissionUpsert NULL, 0, @InsertPermission, @Token, 0
+			EXEC spPermissionUpsert NULL, 0, @UpdatePermission, @Token, 0
+			EXEC spPermissionUpsert NULL, 0, @GetPermission, @Token, 0
+			EXEC spPermissionUpsert NULL, 0, @GetAllPermission, @Token, 0
 
 			DECLARE @InsertPGUID UNIQUEIDENTIFIER
 			DECLARE @UpdatePGUID UNIQUEIDENTIFIER
@@ -143,10 +153,10 @@ SET NOCOUNT ON
 			SELECT @GetPGUID = (SELECT GUID FROM Permission WHERE Permission = @GetPermission)
 			SELECT @GetAllPGUID = (SELECT GUID FROM Permission WHERE Permission = @GetAllPermission)
 
-			EXEC spSystemUserPermissionUpsert NULL, 0, @CurDate, NULL, @SystemGUID, @InsertPGUID, @SystemGUID, @Token, 0
-			EXEC spSystemUserPermissionUpsert NULL, 0, @CurDate, NULL, @SystemGUID, @UpdatePGUID, @SystemGUID, @Token,0
-			EXEC spSystemUserPermissionUpsert NULL, 0, @CurDate, NULL, @SystemGUID, @GetPGUID, @SystemGUID, @Token,0
-			EXEC spSystemUserPermissionUpsert NULL, 0, @CurDate, NULL, @SystemGUID, @GetAllPGUID, @SystemGUID, @Token,0
+			EXEC spSystemUserPermissionUpsert NULL, 0, @CurDate, NULL, @SystemGUID, @InsertPGUID, @Token, 0
+			EXEC spSystemUserPermissionUpsert NULL, 0, @CurDate, NULL, @SystemGUID, @UpdatePGUID, @Token,0
+			EXEC spSystemUserPermissionUpsert NULL, 0, @CurDate, NULL, @SystemGUID, @GetPGUID, @Token,0
+			EXEC spSystemUserPermissionUpsert NULL, 0, @CurDate, NULL, @SystemGUID, @GetAllPGUID, @Token,0
 		END
 
 		
