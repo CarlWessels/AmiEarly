@@ -35,6 +35,21 @@ namespace Console
             tableName = tableName.Replace("Get", "");
             tableName = tableName.Replace("Upsert", "");
 
+            string callNameAsList = "";
+            if (upsert)
+            {
+                callNameAsList = $"{tableName}UpsertAsList";
+            }
+            else if (getter)
+            {
+                callNameAsList = $"{tableName}GetAsList";
+            }
+            else
+            {
+                //throw new NotImplementedException();
+                callNameAsList = procName.Replace("sp", "") + "AsList";
+            }
+
             string callName = "";
             if (upsert)
             {
@@ -50,7 +65,7 @@ namespace Console
                 callName = procName.Replace("sp", "");
             }
 
-            sb.Append(indentTwo + $"public List<{resultName}> {callName} (");
+            sb.Append(indentTwo + $"public List<{resultName}> {callNameAsList}  (");
 
             StringBuilder parameterList = new StringBuilder();
             string procNameCleaned = procName.Substring(2, procName.Length - 2);
@@ -104,8 +119,70 @@ namespace Console
             sb.AppendLine(indentThree + "};");
             sb.AppendLine(indentThree);
             sb.AppendLine(indentThree + "string parameters = JsonConvert.SerializeObject(p);");
-            sb.AppendLine(indentThree + $"string resultStr = Service.{callName}(parameters);");
+            sb.AppendLine(indentThree + $"string resultStr = Service.{callName}AsList(parameters);");
             sb.AppendLine(indentThree + $"List<{resultName}> result = JsonConvert.DeserializeObject<List<{resultName}>>(resultStr);");
+            sb.AppendLine(indentThree + "return result;");
+
+
+            sb.AppendLine(indentTwo + @"}");
+
+            /////////////////////////////////
+
+            sb.Append(indentTwo + $"public {resultName} {callName} (");
+
+            parameterList = new StringBuilder();
+            first = true;
+            hasToken = false;
+            foreach (SqlParameter param in parameters)
+            {
+                if (param.ParameterName == "@Token")
+                {
+                    hasToken = true;
+                }
+                else
+                {
+                    parameterList.Append(indentFour);
+                    if (!first)
+                    {
+                        sb.Append(", ");
+                        parameterList.Append(", ");
+                    }
+                    string paramNameClean = param.ParameterName.Replace("@", "");
+                    string parameterNameLowered = param.ParameterName.Replace("@", "");
+                    parameterNameLowered = parameterNameLowered[0].ToString().ToLower() + parameterNameLowered.Substring(1, parameterNameLowered.Length - 1);
+
+                    string parameterType = GeneratorHelper.ParamType(param.SqlDbType);
+                    if (param.SqlDbType != System.Data.SqlDbType.VarChar && param.SqlDbType != System.Data.SqlDbType.VarBinary && param.IsNullable)
+                    {
+                        parameterType += "?";
+                    }
+
+                    if (param.Direction == System.Data.ParameterDirection.InputOutput)
+                    {
+                        sb.Append(" ref ");
+                    }
+                    sb.Append($"{parameterType} {parameterNameLowered}");
+
+                    parameterList.AppendLine($"{paramNameClean} = {parameterNameLowered}");
+
+                    first = false;
+                }
+            }
+            //string parametersName = $"{procNameCleaned}Parameters";
+            sb.AppendLine(")");
+            sb.AppendLine(indentTwo + @"{");
+            sb.AppendLine(indentThree + $"{parametersName} p = new {parametersName}()");
+            sb.AppendLine(indentThree + "{");
+            if (hasToken)
+            {
+                sb.AppendLine(indentFour + @"Token = Token,");
+            }
+            sb.AppendLine($"{parameterList.ToString()}");
+            sb.AppendLine(indentThree + "};");
+            sb.AppendLine(indentThree);
+            sb.AppendLine(indentThree + "string parameters = JsonConvert.SerializeObject(p);");
+            sb.AppendLine(indentThree + $"string resultStr = Service.{callName}(parameters);");
+            sb.AppendLine(indentThree + $"{resultName} result = JsonConvert.DeserializeObject<{resultName}>(resultStr);");
             sb.AppendLine(indentThree + "return result;");
 
 
@@ -132,14 +209,13 @@ namespace Console
             sb.AppendLine("            service = new AppointmentService.AppointmentServiceClient();");
             sb.AppendLine("            service.ClientCredentials.UserName.UserName = username;");
             sb.AppendLine("            service.ClientCredentials.UserName.Password = password;");
-            sb.AppendLine("            List<LoginResult> loginResults = Login(username, password);");
-            sb.AppendLine("            LoginResult login = loginResults.FirstOrDefault();");
-            sb.AppendLine("            byte[] token = login.Token;");
+            sb.AppendLine("            LoginResult login = Login(username, password);");
+            sb.AppendLine("            Guid token = login.Token;");
             sb.AppendLine("            Token = token;");
             sb.AppendLine("        }");
             sb.AppendLine("        private static AppointmentService.AppointmentServiceClient service;");
             sb.AppendLine("");
-            sb.AppendLine("        public byte[] Token;");
+            sb.AppendLine("        public Guid Token;");
             sb.AppendLine("        public static AppointmentService.AppointmentServiceClient Service");
             sb.AppendLine("        {");
             sb.AppendLine("            get");
@@ -198,7 +274,7 @@ namespace Console
             sb.AppendLine("");
             sb.AppendLine("namespace HostedService");
             sb.AppendLine("    {");
-            sb.AppendLine("        public partial class AppointmentService : IAppointmentService");
+            sb.AppendLine("        public partial class AppointmentService");
             sb.AppendLine("        {");
             sb.AppendLine("            public string ConnectionString { get; set; }");
             sb.AppendLine("");
@@ -270,14 +346,18 @@ namespace Console
                 //throw new NotImplementedException();
                 callName = procName.Replace("sp", "");
             }
+            sb.AppendLine(indentThree + $"public string {callName}AsList(string parameters)");
+            sb.AppendLine(indentThree + "{");
+            sb.AppendLine(indentFour +  $"return {callName}AsList(parameters, ConnectionString, ReturnExceptionMessage);");
+            sb.AppendLine(indentThree + "}");
 
-            sb.AppendLine(indentThree + $"public string {callName}(string parameters)");
+            sb.AppendLine(indentThree + $"public static string {callName}AsList(string parameters, string connectionString, bool returnExceptionMessage)");
             sb.AppendLine(indentThree + "{");
 
             sb.AppendLine(indentFour + "try");
             sb.AppendLine(indentFour + "{");
             sb.AppendLine(indentFour + $"    {paramName} casted = JsonConvert.DeserializeObject<{paramName }> (parameters);");
-            sb.AppendLine(indentFour + $"    List<{resultName }> result = Calls.{procName}Call(casted, ConnectionString);");
+            sb.AppendLine(indentFour + $"    List<{resultName }> result = Calls.{procName}Call(casted, connectionString);");
             sb.AppendLine(indentFour + "");
             sb.AppendLine(indentFour + "    string json = JsonConvert.SerializeObject(result);");
             sb.AppendLine(indentFour + "    return json;");
@@ -286,7 +366,43 @@ namespace Console
             sb.AppendLine(indentFour + "{");
             sb.AppendLine(indentFour + "    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;");
             sb.AppendLine(indentFour + "    response.StatusCode = HttpStatusCode.BadRequest;");
-            sb.AppendLine(indentFour + "    if (ReturnExceptionMessage)");
+            sb.AppendLine(indentFour + "    if (returnExceptionMessage)");
+            sb.AppendLine(indentFour + "    {");
+            sb.AppendLine(indentFour + "        response.StatusDescription = ex.Message;");
+            sb.AppendLine(indentFour + "        HttpContext.Current.Response.Write(ex.Message);");
+            sb.AppendLine(indentFour + "    }");
+            sb.AppendLine(indentFour + "    else");
+            sb.AppendLine(indentFour + "    {");
+            sb.AppendLine(indentFour + @"        response.StatusDescription = ""Failed with transaction"";");
+            sb.AppendLine(indentFour + @"        HttpContext.Current.Response.Write(""Failed with transaction"");");
+            sb.AppendLine(indentFour + "    }");
+            sb.AppendLine(indentFour + "    return null;");
+            sb.AppendLine(indentFour + "}");
+            sb.AppendLine(indentThree + "}");
+            sb.AppendLine(indentThree + "");
+
+
+            sb.AppendLine(indentThree + $"public string {callName} (string parameters)");
+            sb.AppendLine(indentThree + "{");
+            sb.AppendLine(indentFour + $"return {callName} (parameters, ConnectionString, ReturnExceptionMessage);");
+            sb.AppendLine(indentThree + "}");
+
+            sb.AppendLine(indentThree + $"public static string {callName} (string parameters, string connectionString, bool returnExceptionMessage)");
+            sb.AppendLine(indentThree + "{");
+
+            sb.AppendLine(indentFour + "try");
+            sb.AppendLine(indentFour + "{");
+            sb.AppendLine(indentFour + $"    {paramName} casted = JsonConvert.DeserializeObject<{paramName }> (parameters);");
+            sb.AppendLine(indentFour + $"    {resultName} result = Calls.{procName}Call(casted, connectionString).FirstOrDefault();");
+            sb.AppendLine(indentFour + "");
+            sb.AppendLine(indentFour + "    string json = JsonConvert.SerializeObject(result);");
+            sb.AppendLine(indentFour + "    return json;");
+            sb.AppendLine(indentFour + "}");
+            sb.AppendLine(indentFour + "catch (Exception ex)");
+            sb.AppendLine(indentFour + "{");
+            sb.AppendLine(indentFour + "    OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;");
+            sb.AppendLine(indentFour + "    response.StatusCode = HttpStatusCode.BadRequest;");
+            sb.AppendLine(indentFour + "    if (returnExceptionMessage)");
             sb.AppendLine(indentFour + "    {");
             sb.AppendLine(indentFour + "        response.StatusDescription = ex.Message;");
             sb.AppendLine(indentFour + "        HttpContext.Current.Response.Write(ex.Message);");
@@ -329,6 +445,7 @@ namespace Console
             tableName = tableName.Replace("Get", "");
             tableName = tableName.Replace("Upsert", "");
 
+
             string callName = "";
             if (upsert)
             {
@@ -342,6 +459,26 @@ namespace Console
             {
                 //throw new NotImplementedException();
                 callName = procName.Replace("sp", "");
+            }
+
+            sb.AppendLine(indentTwo + "[OperationContract]");
+            sb.AppendLine(indentTwo + $"string {callName} (string parameters);");
+
+
+
+            callName = "";
+            if (upsert)
+            {
+                callName = $"{tableName}UpsertAsList";
+            }
+            else if (getter)
+            {
+                callName = $"{tableName}GetAsList";
+            }
+            else
+            {
+                //throw new NotImplementedException();
+                callName = procName.Replace("sp", "") + "AsList";
             }
 
             sb.AppendLine(indentTwo +  "[OperationContract]");

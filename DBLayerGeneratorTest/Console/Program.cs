@@ -35,8 +35,8 @@ namespace Console
             GeneratorHelper.AddHeader(callsSb);
             StringBuilder serviceCalls = new StringBuilder();
             GeneratorHelper.AddHeader(serviceCalls);
-            StringBuilder interfaceSb = new StringBuilder();
-            GeneratorHelper.AddHeader(interfaceSb);
+            //StringBuilder interfaceSb = new StringBuilder();
+            //GeneratorHelper.AddHeader(interfaceSb);
             StringBuilder serviceSb = new StringBuilder();
             GeneratorHelper.AddHeader(serviceSb);
             StringBuilder enumSb = new StringBuilder();
@@ -51,7 +51,7 @@ namespace Console
             ResultsGenerator.BuildResultsUsing(ref parametersSb);
             CallsGenerator.BuildCallsUsing(ref callsSb, nameSpace);
             ServiceGenerator.GenerateServiceCallsPre(serviceCalls);
-            ServiceGenerator.GenerateInterfacePre(interfaceSb);
+            //ServiceGenerator.GenerateInterfacePre(interfaceSb);
             ServiceGenerator.GenerateSerivcePre(serviceSb);
             GeneratorHelper.BuildParametersPre(ref parametersSb);
             CallsGenerator.BuildCallClassPre(ref callsSb);
@@ -74,12 +74,12 @@ namespace Console
                 CallsGenerator.BuildCalls(sp, parameters, values, ref callsSb, 1);
                 
                 ServiceGenerator.GenerateServiceCalls(sp, parameters, serviceCalls, 0);
-                ServiceGenerator.GenerateInterface(sp, parameters, interfaceSb, 0);
+                //ServiceGenerator.GenerateInterface(sp, parameters, interfaceSb, 0);
                 ServiceGenerator.GenerateService(sp, parameters, serviceSb, 0);
             }
             CallsGenerator.BuildCallClassPost(ref callsSb);
             ServiceGenerator.GenerateServiceCallsPost(serviceCalls);
-            ServiceGenerator.GenerateInterfacePost(interfaceSb);
+            //ServiceGenerator.GenerateInterfacePost(interfaceSb);
             ServiceGenerator.GenerateSerivcePost(serviceSb);
             GeneratorHelper.BuildNamespacePost(ref resultsSb);
             GeneratorHelper.BuildNamespacePost(ref parametersSb);
@@ -117,7 +117,7 @@ namespace Console
             File.WriteAllText("GeneratedViews.cs", viewSb.ToString());
             File.WriteAllText("GeneratedTables.cs", tableSb.ToString());
             File.WriteAllText("GeneratedServiceCalls.cs", serviceCalls.ToString());
-            File.WriteAllText("GeneratedInterface.cs", interfaceSb.ToString());
+            //File.WriteAllText("GeneratedInterface.cs", interfaceSb.ToString());
             File.WriteAllText("GeneratedService.cs", serviceSb.ToString());
             File.WriteAllText("GeneratedEnums.cs", enumSb.ToString());
         }

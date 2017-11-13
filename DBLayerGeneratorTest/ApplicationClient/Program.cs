@@ -15,12 +15,12 @@ namespace ApplicationClient
         {
             //try
             {
-                AppointmentServiceClient appointmentService = new AppointmentServiceClient("Tester", "Tester");
+                AppointmentServiceClient merchanttService = new AppointmentServiceClient("TESTMERCHANT", "TESTMERCHANT");
 
 
 
 
-                List<SystemUserGetResult> users = appointmentService.SystemUserGet(null);
+                /*List<SystemUserGetResult> users = appointmentService.SystemUserGet(null);
 
 
                 Guid? testerGUID = null;
@@ -48,7 +48,7 @@ namespace ApplicationClient
                 foreach (AppointmentGetResult res in appGet)
                 {
                     Console.WriteLine($"{res.StartDateTime.ToString()}\t{res.EndDateTime}\t{res.ExpectedDelay}");
-                }
+                }*/
 
             }
             /*catch (Exception ex)

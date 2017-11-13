@@ -83,7 +83,7 @@ BEGIN
 		UPDATE @Fields SET Done = 1 WHERE ID = @I
 		SELECT @I = (SELECT MIN(ID) FROM @Fields WHERE Done = 0)
 	END
-	SET @Result = @Result + '	@Token VARBINARY(MAX),' + @EOL
+	SET @Result = @Result + '	@Token uniqueidentifier,' + @EOL
 	SET @Result = @Result + '	@ReturnResults BIT = 0' + @EOL
 	SET @Result = @Result + ')' + @EOL
 	SET @Result = @Result + 'AS' + @EOL
@@ -243,7 +243,7 @@ BEGIN
 	SET @Result = @Result + 'CREATE PROCEDURE ' + @GETProcName + @EOL
 	SET @Result = @Result + '(' + @EOL
 	SET @Result = @Result + '	' + @GUIDParameter + ' UNIQUEIDENTIFIER,' + @EOL
-	SET @Result = @Result + '	@Token VARBINARY(MAX)' + @EOL
+	SET @Result = @Result + '	@Token uniqueidentifier' + @EOL
 	SET @Result = @Result + ')' + @EOL
 	SET @Result = @Result + 'AS' + @EOL
 	SET @Result = @Result + 'BEGIN' + @EOL

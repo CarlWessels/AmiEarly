@@ -1,10 +1,11 @@
 	SET NOCOUNT ON
-
+	use TestDb
+	GO
 	IF OBJECT_ID('dbo.ActivitySchedule', 'U') IS NOT NULL 
 		DROP TABLE dbo.ActivitySchedule; 
 
-	IF OBJECT_ID('dbo.ActivityType', 'U') IS NOT NULL 
-		DROP TABLE dbo.ActivityType; 
+	IF OBJECT_ID('dbo.LUActivityType', 'U') IS NOT NULL 
+		DROP TABLE dbo.LUActivityType; 
 
 	IF OBJECT_ID('dbo.ActivitySchedule', 'U') IS NOT NULL 
 		DROP TABLE dbo.ActivitySchedule; 
@@ -14,6 +15,9 @@
 
 	IF OBJECT_ID('dbo.ServiceProvider', 'U') IS NOT NULL 
 		DROP TABLE dbo.ServiceProvider; 
+
+	IF OBJECT_ID('dbo.CustomerAddress', 'U') IS NOT NULL 
+		DROP TABLE dbo.CustomerAddress; 
 
 	IF OBJECT_ID('dbo.Customer', 'U') IS NOT NULL 
 		DROP TABLE dbo.Customer; 
@@ -36,8 +40,8 @@
 	IF OBJECT_ID('dbo.SystemUserGroupPermission', 'U') IS NOT NULL 
 		DROP TABLE dbo.SystemUserGroupPermission; 
 
-	IF OBJECT_ID('dbo.Permission', 'U') IS NOT NULL 
-		DROP TABLE dbo.Permission; 
+	IF OBJECT_ID('dbo.LUPermission', 'U') IS NOT NULL 
+		DROP TABLE dbo.LUPermission; 
 
 	IF OBJECT_ID('dbo.SystemUserGroupLine', 'U') IS NOT NULL 
 		DROP TABLE dbo.SystemUserGroupLine; 
@@ -51,6 +55,9 @@
 
 	IF OBJECT_ID('dbo.Setting', 'U') IS NOT NULL 
 		DROP TABLE dbo.Setting; 
+
+	IF OBJECT_ID('dbo.LUAddressType', 'U') IS NOT NULL 
+		DROP TABLE dbo.LUAddressType; 
 
 	create table Setting
 	(
@@ -96,7 +103,7 @@
 													ELSE CONVERT(BIT,0)
 											END
 								END,
-		Token VARBINARY(MAX) NULL,
+		Token GUID null,
 		TokenExpires DATETIME NULL,
 		TokenIsValid as case when getDate() > TokenExpires then 0 else 1 end,
 		Username VARCHAR(MAX) NOT NULL,
@@ -177,11 +184,67 @@
 
 		Firstname VARCHAR(MAX),
 		Surname VARCHAR(MAX),
+		EmailAddress varchar(max),
+		IDNumber varchar(max),
+		BirthDate date,
+		CellphoneNumber varchar(max),
+		
 
 		AccountGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.Account(GUID),
 		SystemUserGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.SystemUser(GUID)
 	)
-	GO
+	go
+    
+
+	create table LUAddressType
+	(
+		GUID UNIQUEIDENTIFIER NOT NULL DEFAULT  NEWSEQUENTIALID() PRIMARY KEY,
+		ID INT IDENTITY(1,1) NOT  NULL,
+		DateTimeCreated DATETIME NOT NULL DEFAULT GETDATE(),
+		IsDeleted BIT NOT NULL DEFAULT 0,
+
+		ActiveDateTime DATETIME NOT NULL DEFAULT GETDATE(),
+		TerminationDateTime DATETIME NULL,
+		IsActiveForNow  AS		CASE 
+									WHEN IsDeleted = CONVERT(BIT,0) THEN CONVERT(BIT,1 )
+									ELSE	CASE	
+													WHEN GETDATE() BETWEEN ActiveDateTime AND ISNULL(TerminationDateTime, '2099-01-01') THEN CONVERT(BIT,1)
+													ELSE CONVERT(BIT,0)
+											END
+								END,
+		AddressType varchar(max)
+		
+	)
+
+	create table CustomerAddress
+	(
+		GUID UNIQUEIDENTIFIER NOT NULL DEFAULT  NEWSEQUENTIALID() PRIMARY KEY,
+		ID INT IDENTITY(1,1) NOT  NULL,
+		DateTimeCreated DATETIME NOT NULL DEFAULT GETDATE(),
+		IsDeleted BIT NOT NULL DEFAULT 0,
+
+		ActiveDateTime DATETIME NOT NULL DEFAULT GETDATE(),
+		TerminationDateTime DATETIME NULL,
+		IsActiveForNow  AS		CASE 
+									WHEN IsDeleted = CONVERT(BIT,0) THEN CONVERT(BIT,1 )
+									ELSE	CASE	
+													WHEN GETDATE() BETWEEN ActiveDateTime AND ISNULL(TerminationDateTime, '2099-01-01') THEN CONVERT(BIT,1)
+													ELSE CONVERT(BIT,0)
+											END
+								END,
+		Address1 varchar(max),
+		Address2 varchar(max),
+		Address3 varchar(max),
+		Code varchar(max),
+		Province nVarchar(max),
+		
+
+		CustomerGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.Customer(GUID),
+		AddressTypeGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.LUAddressType(GUID)
+	)
+	go 
+
+
 
 	CREATE TABLE ServiceProvider
 	(
@@ -225,7 +288,7 @@
 	)
 	GO
 
-	CREATE TABLE ActivityType
+	CREATE TABLE LUActivityType
 	(
 		GUID UNIQUEIDENTIFIER NOT NULL DEFAULT  NEWSEQUENTIALID() PRIMARY KEY,
 		ID INT IDENTITY(1,1) NOT  NULL,
@@ -249,7 +312,7 @@
 		StartTime TIME NOT NULL,
 		EndTime TIME NOT NULL,
 
-		ActivityTypeGUID UNIQUEIDENTIFIER NOT NULL REFERENCES ActivityType(GUID),
+		ActivityTypeGUID UNIQUEIDENTIFIER NOT NULL REFERENCES LUActivityType(GUID),
 		ServiceProviderGUID UNIQUEIDENTIFIER NOT NULL REFERENCES ServiceProvider(GUID),
 		SystemUserGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.SystemUser(GUID)
 
@@ -275,7 +338,7 @@
 	)
 
 	GO
-	CREATE TABLE Permission
+	CREATE TABLE LUPermission
 	(
 		GUID UNIQUEIDENTIFIER NOT NULL DEFAULT  NEWSEQUENTIALID() PRIMARY KEY,
 		ID INT IDENTITY(1,1) NOT  NULL,
@@ -304,7 +367,7 @@
 											END
 								END,
 		ForSystemUserGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.SystemUser(GUID),
-		PermissionGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.Permission(GUID),
+		PermissionGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.LUPermission(GUID),
 		SystemUserGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.SystemUser(GUID)
 
 	)
@@ -346,7 +409,7 @@
 													ELSE CONVERT(BIT,0)
 											END
 								END,
-		PermissionGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.Permission(GUID),
+		PermissionGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.LUPermission(GUID),
 		SystemUserGroupGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.SystemUserGroup(GUID),
 		SystemUserGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.SystemUser(GUID)
 

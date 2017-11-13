@@ -1,5 +1,21 @@
 namespace AppointmentLibrary.Tables
 {
+	public partial class tblSystemUser
+	{
+		public string GUID {get;set;}
+		public string ID {get;set;}
+		public string DateTimeCreated {get;set;}
+		public string IsDeleted {get;set;}
+		public string ActiveDateTime {get;set;}
+		public string TerminationDateTime {get;set;}
+		public string IsActiveForNow {get;set;}
+		public string Token {get;set;}
+		public string TokenExpires {get;set;}
+		public string TokenIsValid {get;set;}
+		public string Username {get;set;}
+		public string PasswordHash {get;set;}
+		public string PasswordSalt {get;set;}
+	}
 	public partial class tblAccount
 	{
 		public string GUID {get;set;}
@@ -213,6 +229,13 @@ namespace AppointmentLibrary.Tables
 		public string CutOffHourAdd {get;set;}
 		public string CutOffDayAdd {get;set;}
 	}
+	public partial class tblMyTestTable
+	{
+		public string GUID {get;set;}
+		public string ID {get;set;}
+		public string DateTimeCreated {get;set;}
+		public string MyTestField {get;set;}
+	}
 	public partial class tblSetting
 	{
 		public string GUID {get;set;}
@@ -227,28 +250,5 @@ namespace AppointmentLibrary.Tables
 		public string ProductionValue {get;set;}
 		public string IsProduction {get;set;}
 		public string Value {get;set;}
-	}
-	public partial class tblMyTestTable
-	{
-		public string GUID {get;set;}
-		public string ID {get;set;}
-		public string DateTimeCreated {get;set;}
-		public string MyTestField {get;set;}
-	}
-	public partial class tblSystemUser
-	{
-		public string GUID {get;set;}
-		public string ID {get;set;}
-		public string DateTimeCreated {get;set;}
-		public string IsDeleted {get;set;}
-		public string ActiveDateTime {get;set;}
-		public string TerminationDateTime {get;set;}
-		public string IsActiveForNow {get;set;}
-		public string Token {get;set;}
-		public string TokenExpires {get;set;}
-		public string TokenIsValid {get;set;}
-		public string Username {get;set;}
-		public string PasswordHash {get;set;}
-		public string PasswordSalt {get;set;}
 	}
 }

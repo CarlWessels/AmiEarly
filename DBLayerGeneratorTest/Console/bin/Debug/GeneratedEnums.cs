@@ -47,123 +47,125 @@ namespace ApplicationClient.Enums
      }
     public enum LUActivityType
     {
-        [EnumGUID("75026ffe-4ec5-e711-80c2-0003ff433ae0")]
+        [EnumGUID("4eb0d81b-47c8-e711-80c2-0003ff433ae0")]
         Consultations = 1,
-        [EnumGUID("77026ffe-4ec5-e711-80c2-0003ff433ae0")]
+        [EnumGUID("50b0d81b-47c8-e711-80c2-0003ff433ae0")]
         Rounds = 2,
      }
     public enum LUAddressType
     {
-        [EnumGUID("53026ffe-4ec5-e711-80c2-0003ff433ae0")]
+        [EnumGUID("2cb0d81b-47c8-e711-80c2-0003ff433ae0")]
         HOME = 1,
-        [EnumGUID("54026ffe-4ec5-e711-80c2-0003ff433ae0")]
+        [EnumGUID("2db0d81b-47c8-e711-80c2-0003ff433ae0")]
         WORK = 2,
      }
     public enum LUPermission
     {
-        [EnumGUID("9c016ffe-4ec5-e711-80c2-0003ff433ae0")]
+        [EnumGUID("74afd81b-47c8-e711-80c2-0003ff433ae0")]
         LUPermissionInsert = 1,
-        [EnumGUID("9d016ffe-4ec5-e711-80c2-0003ff433ae0")]
+        [EnumGUID("75afd81b-47c8-e711-80c2-0003ff433ae0")]
         LUPermissionUpdate = 2,
-        [EnumGUID("9e016ffe-4ec5-e711-80c2-0003ff433ae0")]
+        [EnumGUID("76afd81b-47c8-e711-80c2-0003ff433ae0")]
         LUPermissionGet = 3,
-        [EnumGUID("9f016ffe-4ec5-e711-80c2-0003ff433ae0")]
+        [EnumGUID("77afd81b-47c8-e711-80c2-0003ff433ae0")]
         LUPermissionGetAll = 4,
-        [EnumGUID("a0016ffe-4ec5-e711-80c2-0003ff433ae0")]
+        [EnumGUID("78afd81b-47c8-e711-80c2-0003ff433ae0")]
         SystemUserUpsert = 5,
-        [EnumGUID("a1016ffe-4ec5-e711-80c2-0003ff433ae0")]
-        ServiceAccess = 6,
-        [EnumGUID("a2016ffe-4ec5-e711-80c2-0003ff433ae0")]
-        SystemUserPermissionInsert = 7,
-        [EnumGUID("a3016ffe-4ec5-e711-80c2-0003ff433ae0")]
-        SystemUserPermissionUpdate = 8,
-        [EnumGUID("a4016ffe-4ec5-e711-80c2-0003ff433ae0")]
-        SystemUserPermissionGet = 9,
-        [EnumGUID("a5016ffe-4ec5-e711-80c2-0003ff433ae0")]
-        SystemUserPermissionGetAll = 10,
-        [EnumGUID("a6016ffe-4ec5-e711-80c2-0003ff433ae0")]
-        SystemUserGetAll = 11,
-        [EnumGUID("a7016ffe-4ec5-e711-80c2-0003ff433ae0")]
-        SystemUserGet = 12,
-        [EnumGUID("b3016ffe-4ec5-e711-80c2-0003ff433ae0")]
-        AccountInsert = 13,
-        [EnumGUID("b5016ffe-4ec5-e711-80c2-0003ff433ae0")]
-        AccountUpdate = 14,
-        [EnumGUID("b7016ffe-4ec5-e711-80c2-0003ff433ae0")]
-        AccountGet = 15,
-        [EnumGUID("b9016ffe-4ec5-e711-80c2-0003ff433ae0")]
-        AccountGetAll = 16,
-        [EnumGUID("c3016ffe-4ec5-e711-80c2-0003ff433ae0")]
-        ActivityScheduleInsert = 17,
-        [EnumGUID("c5016ffe-4ec5-e711-80c2-0003ff433ae0")]
-        ActivityScheduleUpdate = 18,
-        [EnumGUID("c7016ffe-4ec5-e711-80c2-0003ff433ae0")]
-        ActivityScheduleGet = 19,
-        [EnumGUID("c9016ffe-4ec5-e711-80c2-0003ff433ae0")]
-        ActivityScheduleGetAll = 20,
-        [EnumGUID("d3016ffe-4ec5-e711-80c2-0003ff433ae0")]
-        LUActivityTypeInsert = 21,
-        [EnumGUID("d5016ffe-4ec5-e711-80c2-0003ff433ae0")]
-        LUActivityTypeUpdate = 22,
-        [EnumGUID("d7016ffe-4ec5-e711-80c2-0003ff433ae0")]
-        LUActivityTypeGet = 23,
-        [EnumGUID("d9016ffe-4ec5-e711-80c2-0003ff433ae0")]
-        LUActivityTypeGetAll = 24,
-        [EnumGUID("e3016ffe-4ec5-e711-80c2-0003ff433ae0")]
-        LUAddressTypeInsert = 25,
-        [EnumGUID("e5016ffe-4ec5-e711-80c2-0003ff433ae0")]
-        LUAddressTypeUpdate = 26,
-        [EnumGUID("e7016ffe-4ec5-e711-80c2-0003ff433ae0")]
-        LUAddressTypeGet = 27,
-        [EnumGUID("e9016ffe-4ec5-e711-80c2-0003ff433ae0")]
-        LUAddressTypeGetAll = 28,
-        [EnumGUID("f3016ffe-4ec5-e711-80c2-0003ff433ae0")]
-        AppointmentInsert = 29,
-        [EnumGUID("f5016ffe-4ec5-e711-80c2-0003ff433ae0")]
-        AppointmentUpdate = 30,
-        [EnumGUID("f7016ffe-4ec5-e711-80c2-0003ff433ae0")]
-        AppointmentGet = 31,
-        [EnumGUID("f9016ffe-4ec5-e711-80c2-0003ff433ae0")]
-        AppointmentGetAll = 32,
-        [EnumGUID("03026ffe-4ec5-e711-80c2-0003ff433ae0")]
-        ServiceProviderInsert = 33,
-        [EnumGUID("05026ffe-4ec5-e711-80c2-0003ff433ae0")]
-        ServiceProviderUpdate = 34,
-        [EnumGUID("07026ffe-4ec5-e711-80c2-0003ff433ae0")]
-        ServiceProviderGet = 35,
-        [EnumGUID("09026ffe-4ec5-e711-80c2-0003ff433ae0")]
-        ServiceProviderGetAll = 36,
-        [EnumGUID("13026ffe-4ec5-e711-80c2-0003ff433ae0")]
-        CustomerInsert = 37,
-        [EnumGUID("15026ffe-4ec5-e711-80c2-0003ff433ae0")]
-        CustomerUpdate = 38,
-        [EnumGUID("17026ffe-4ec5-e711-80c2-0003ff433ae0")]
-        CustomerGet = 39,
-        [EnumGUID("19026ffe-4ec5-e711-80c2-0003ff433ae0")]
-        CustomerGetAll = 40,
-        [EnumGUID("23026ffe-4ec5-e711-80c2-0003ff433ae0")]
-        CustomerAddressInsert = 41,
-        [EnumGUID("25026ffe-4ec5-e711-80c2-0003ff433ae0")]
-        CustomerAddressUpdate = 42,
-        [EnumGUID("27026ffe-4ec5-e711-80c2-0003ff433ae0")]
-        CustomerAddressGet = 43,
-        [EnumGUID("29026ffe-4ec5-e711-80c2-0003ff433ae0")]
-        CustomerAddressGetAll = 44,
-        [EnumGUID("33026ffe-4ec5-e711-80c2-0003ff433ae0")]
-        StoreInsert = 45,
-        [EnumGUID("35026ffe-4ec5-e711-80c2-0003ff433ae0")]
-        StoreUpdate = 46,
-        [EnumGUID("37026ffe-4ec5-e711-80c2-0003ff433ae0")]
-        StoreGet = 47,
-        [EnumGUID("39026ffe-4ec5-e711-80c2-0003ff433ae0")]
-        StoreGetAll = 48,
-        [EnumGUID("43026ffe-4ec5-e711-80c2-0003ff433ae0")]
-        SystemUserGroupInsert = 49,
-        [EnumGUID("45026ffe-4ec5-e711-80c2-0003ff433ae0")]
-        SystemUserGroupUpdate = 50,
-        [EnumGUID("47026ffe-4ec5-e711-80c2-0003ff433ae0")]
-        SystemUserGroupGet = 51,
-        [EnumGUID("49026ffe-4ec5-e711-80c2-0003ff433ae0")]
-        SystemUserGroupGetAll = 52,
+        [EnumGUID("79afd81b-47c8-e711-80c2-0003ff433ae0")]
+        MerchantServiceAccess = 6,
+        [EnumGUID("7aafd81b-47c8-e711-80c2-0003ff433ae0")]
+        CustomerServiceAccess = 7,
+        [EnumGUID("7bafd81b-47c8-e711-80c2-0003ff433ae0")]
+        SystemUserPermissionInsert = 8,
+        [EnumGUID("7cafd81b-47c8-e711-80c2-0003ff433ae0")]
+        SystemUserPermissionUpdate = 9,
+        [EnumGUID("7dafd81b-47c8-e711-80c2-0003ff433ae0")]
+        SystemUserPermissionGet = 10,
+        [EnumGUID("7eafd81b-47c8-e711-80c2-0003ff433ae0")]
+        SystemUserPermissionGetAll = 11,
+        [EnumGUID("7fafd81b-47c8-e711-80c2-0003ff433ae0")]
+        SystemUserGetAll = 12,
+        [EnumGUID("80afd81b-47c8-e711-80c2-0003ff433ae0")]
+        SystemUserGet = 13,
+        [EnumGUID("8cafd81b-47c8-e711-80c2-0003ff433ae0")]
+        AccountInsert = 14,
+        [EnumGUID("8eafd81b-47c8-e711-80c2-0003ff433ae0")]
+        AccountUpdate = 15,
+        [EnumGUID("90afd81b-47c8-e711-80c2-0003ff433ae0")]
+        AccountGet = 16,
+        [EnumGUID("92afd81b-47c8-e711-80c2-0003ff433ae0")]
+        AccountGetAll = 17,
+        [EnumGUID("9cafd81b-47c8-e711-80c2-0003ff433ae0")]
+        ActivityScheduleInsert = 18,
+        [EnumGUID("9eafd81b-47c8-e711-80c2-0003ff433ae0")]
+        ActivityScheduleUpdate = 19,
+        [EnumGUID("a0afd81b-47c8-e711-80c2-0003ff433ae0")]
+        ActivityScheduleGet = 20,
+        [EnumGUID("a2afd81b-47c8-e711-80c2-0003ff433ae0")]
+        ActivityScheduleGetAll = 21,
+        [EnumGUID("acafd81b-47c8-e711-80c2-0003ff433ae0")]
+        LUActivityTypeInsert = 22,
+        [EnumGUID("aeafd81b-47c8-e711-80c2-0003ff433ae0")]
+        LUActivityTypeUpdate = 23,
+        [EnumGUID("b0afd81b-47c8-e711-80c2-0003ff433ae0")]
+        LUActivityTypeGet = 24,
+        [EnumGUID("b2afd81b-47c8-e711-80c2-0003ff433ae0")]
+        LUActivityTypeGetAll = 25,
+        [EnumGUID("bcafd81b-47c8-e711-80c2-0003ff433ae0")]
+        LUAddressTypeInsert = 26,
+        [EnumGUID("beafd81b-47c8-e711-80c2-0003ff433ae0")]
+        LUAddressTypeUpdate = 27,
+        [EnumGUID("c0afd81b-47c8-e711-80c2-0003ff433ae0")]
+        LUAddressTypeGet = 28,
+        [EnumGUID("c2afd81b-47c8-e711-80c2-0003ff433ae0")]
+        LUAddressTypeGetAll = 29,
+        [EnumGUID("ccafd81b-47c8-e711-80c2-0003ff433ae0")]
+        AppointmentInsert = 30,
+        [EnumGUID("ceafd81b-47c8-e711-80c2-0003ff433ae0")]
+        AppointmentUpdate = 31,
+        [EnumGUID("d0afd81b-47c8-e711-80c2-0003ff433ae0")]
+        AppointmentGet = 32,
+        [EnumGUID("d2afd81b-47c8-e711-80c2-0003ff433ae0")]
+        AppointmentGetAll = 33,
+        [EnumGUID("dcafd81b-47c8-e711-80c2-0003ff433ae0")]
+        ServiceProviderInsert = 34,
+        [EnumGUID("deafd81b-47c8-e711-80c2-0003ff433ae0")]
+        ServiceProviderUpdate = 35,
+        [EnumGUID("e0afd81b-47c8-e711-80c2-0003ff433ae0")]
+        ServiceProviderGet = 36,
+        [EnumGUID("e2afd81b-47c8-e711-80c2-0003ff433ae0")]
+        ServiceProviderGetAll = 37,
+        [EnumGUID("ecafd81b-47c8-e711-80c2-0003ff433ae0")]
+        CustomerInsert = 38,
+        [EnumGUID("eeafd81b-47c8-e711-80c2-0003ff433ae0")]
+        CustomerUpdate = 39,
+        [EnumGUID("f0afd81b-47c8-e711-80c2-0003ff433ae0")]
+        CustomerGet = 40,
+        [EnumGUID("f2afd81b-47c8-e711-80c2-0003ff433ae0")]
+        CustomerGetAll = 41,
+        [EnumGUID("fcafd81b-47c8-e711-80c2-0003ff433ae0")]
+        CustomerAddressInsert = 42,
+        [EnumGUID("feafd81b-47c8-e711-80c2-0003ff433ae0")]
+        CustomerAddressUpdate = 43,
+        [EnumGUID("00b0d81b-47c8-e711-80c2-0003ff433ae0")]
+        CustomerAddressGet = 44,
+        [EnumGUID("02b0d81b-47c8-e711-80c2-0003ff433ae0")]
+        CustomerAddressGetAll = 45,
+        [EnumGUID("0cb0d81b-47c8-e711-80c2-0003ff433ae0")]
+        StoreInsert = 46,
+        [EnumGUID("0eb0d81b-47c8-e711-80c2-0003ff433ae0")]
+        StoreUpdate = 47,
+        [EnumGUID("10b0d81b-47c8-e711-80c2-0003ff433ae0")]
+        StoreGet = 48,
+        [EnumGUID("12b0d81b-47c8-e711-80c2-0003ff433ae0")]
+        StoreGetAll = 49,
+        [EnumGUID("1cb0d81b-47c8-e711-80c2-0003ff433ae0")]
+        SystemUserGroupInsert = 50,
+        [EnumGUID("1eb0d81b-47c8-e711-80c2-0003ff433ae0")]
+        SystemUserGroupUpdate = 51,
+        [EnumGUID("20b0d81b-47c8-e711-80c2-0003ff433ae0")]
+        SystemUserGroupGet = 52,
+        [EnumGUID("22b0d81b-47c8-e711-80c2-0003ff433ae0")]
+        SystemUserGroupGetAll = 53,
      }
 }

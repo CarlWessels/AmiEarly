@@ -34,7 +34,7 @@ namespace HostedService
             }
             LoginResult loginResult = result.FirstOrDefault();
 
-            Guid permissionGUID = LUPermission.ServiceAccess.GUID();
+            Guid permissionGUID = LUPermission.MerchantServiceAccess.GUID();
             
             List<HasPermissionResult> hasPermission = Calls.spHasPermissionCall(loginResult.GUID, permissionGUID, ConnectionString);
             if (result.Count == 0 || !(bool)hasPermission.FirstOrDefault().HasPermission)
