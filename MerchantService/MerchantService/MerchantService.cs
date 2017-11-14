@@ -1,43 +1,62 @@
-﻿using ApplicationClient.Enums;
-using AppointmentLibrary.Calls;
-using AppointmentLibrary.ProcResults;
+﻿using HostedService;
+using ServiceLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 using System.Web.Configuration;
 
 namespace MerchantService
 {
-    public class MerchantService : BaseServiceClass, IMerchantService
+    public partial class MerchantService : BaseService, IMerchantService
     {
-
-        public MerchantService()
+        /*public string SystemUserUpsert(string parameters)
         {
-            this.ConnectionString = WebConfigurationManager.AppSettings["ConnectionString"];
-            //ReturnExceptionMessage = false;
+            return AppointmentService.SystemUserUpsert(parameters, ConnectionString, ReturnExceptionMessage);
+        }*/
+
+        public string ServiceProviderUpsert(string parameters)
+        {
+            return AppointmentService.ServiceProviderUpsert(parameters, ConnectionString, ReturnExceptionMessage);
         }
 
-        public MerchantService(string connectionString)
+        public string AppointmentUpsert(string parameters)
         {
-            this.ConnectionString = connectionString;
+            return AppointmentService.AppointmentUpsert(parameters, ConnectionString, ReturnExceptionMessage);
+        }
+
+        public string AppointmentGet(string parameters)
+        {
+            return AppointmentService.AppointmentGet(parameters, ConnectionString, ReturnExceptionMessage);
+        }
+
+        public string CustomerUpsert(string parameters)
+        {
+            return AppointmentService.CustomerUpsert(parameters, ConnectionString, ReturnExceptionMessage);
         }
     }
+
+
     [ServiceContract]
-    public interface IMerchantService : IBaseLoginInterface
+    public interface IMerchantService : IBaseService
     {
+
+        /*[OperationContract]
+        string SystemUserUpsert(string parameters);*/
+        [OperationContract]
+        string CustomerUpsert(string parameters);
+
+        [OperationContract]
+        string ServiceProviderUpsert(string parameters);
+
+        [OperationContract]
+        string AppointmentUpsert(string parameters);
+
+        [OperationContract]
+        string AppointmentGet(string parameters);
     }
 
-    public class MerchantAuthenticator : ServiceAuthenticator
-    {
-        public override HasPermissionResult HasPermission(LoginResult loginResult)
-        {
-            Guid permissionGUID = LUPermission.CustomerServiceAccess.GUID();
-            List<HasPermissionResult> hasPermission = Calls.spHasPermissionCall(loginResult.GUID, permissionGUID, ConnectionString);
-            return hasPermission.FirstOrDefault();
-        }
-    }
-
+   
 }

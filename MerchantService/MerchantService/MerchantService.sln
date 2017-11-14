@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MerchantService", "MerchantService\MerchantService.csproj", "{820FA832-97A9-450A-AA9F-E0EB04D2BE1D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MerchantService", "MerchantService.csproj", "{820FA832-97A9-450A-AA9F-E0EB04D2BE1D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,6 +20,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {FDC444EC-14D2-4B75-84E4-D282A31FA902}
+		SolutionGuid = {A9C095ED-BF03-4934-9912-EB625F0E5003}
 	EndGlobalSection
 EndGlobal

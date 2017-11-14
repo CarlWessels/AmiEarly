@@ -35,17 +35,21 @@ DECLARE @Store TABLE
 
 DECLARE @Customer TABLE
 (
-	GUID	UNIQUEIDENTIFIER
+	GUID	uniqueidentifier
 	,ID	int
 	,DateTimeCreated	datetime
 	,IsDeleted	bit
 	,ActiveDateTime	datetime
 	,TerminationDateTime	datetime
 	,IsActiveForNow	bit
-	,Firstname	VARCHAR(MAX)
-	,Surname	VARCHAR(MAX)
-	,AccountGUID	UNIQUEIDENTIFIER
-	,SystemUserGUID UNIQUEIDENTIFIER
+	,Firstname	varchar(max)
+	,Surname	varchar(max)
+	,EmailAddress	varchar(max)
+	,IDNumber	varchar(max)
+	,BirthDate	date
+	,CellphoneNumber	varchar(max)
+	,AccountGUID	uniqueidentifier
+	,SystemUserGUID	uniqueidentifier
 )
 
 DECLARE @ServiceProvider TABLE
@@ -108,7 +112,7 @@ DECLARE @Token  VARBINARY(MAX)
 SELECT @Token = Token FROM @TokenTable
 
 
-INSERT INTO @Account EXEC spAccountUpsert  NULL, 0, @CreationDATE, NULL, 'Account1', @SystemUserGUID, @Token, 1
+INSERT INTO @Account EXEC spAccountUpsert  NULL, 0, @CreationDATE, NULL, 'Account1', @Token, 1
 
 
 
@@ -116,20 +120,20 @@ DECLARE @AccountGUID UNIQUEIDENTIFIER
 SELECT @AccountGUID = GUID FROM Account WHERE AccountName = 'Account1'
 
 
-INSERT INTO @Store EXEC spStoreUpsert NULL, 0, @CreationDATE, NULL, 'Store1', @AccountGUID, @SystemUserGUID, @Token, 1
+INSERT INTO @Store EXEC spStoreUpsert NULL, 0, @CreationDATE, NULL, 'Store1', @AccountGUID, @Token, 1
 
 DECLARE @StoreGUID UNIQUEIDENTIFIER
 SELECT @StoreGUID = GUID FROM Store WHERE StoreName = 'Store1'
 
 
-INSERT INTO @Customer EXEC spCustomerUpsert NULL, 0, @CreationDATE, NULL, 'John', 'Smith', @AccountGUID, @SystemUserGUID, @Token,1
+INSERT INTO @Customer EXEC spCustomerUpsert NULL, 0, @CreationDATE, NULL, 'John', 'Smith', 'test@email.com', '123', '2011-01-01', '08245784564', @AccountGUID, @Token,1
 
 DECLARE @CustomerGUID UNIQUEIDENTIFIER
 SELECT @CustomerGUID = GUID FROM dbo.Customer WHERE Firstname = 'John'
 
 
-INSERT INTO @ServiceProvider EXEC spServiceProviderUpsert NULL, 0, @CreationDATE, NULL, 'Marius', 'Roos', @AccountGUID, @SystemUserGUID, @Token,1
-INSERT INTO @ServiceProvider EXEC spServiceProviderUpsert NULL, 0, @CreationDATE, NULL, 'Koos', 'Van der Merwe', @AccountGUID,@SystemUserGUID, @Token,1
+INSERT INTO @ServiceProvider EXEC spServiceProviderUpsert NULL, 0, @CreationDATE, NULL, 'Marius', 'Roos', @AccountGUID, @Token,1
+INSERT INTO @ServiceProvider EXEC spServiceProviderUpsert NULL, 0, @CreationDATE, NULL, 'Koos', 'Van der Merwe', @AccountGUID,@Token,1
 
 DECLARE @ServiceProviderA UNIQUEIDENTIFIER
 DECLARE @ServiceProviderB UNIQUEIDENTIFIER
@@ -138,22 +142,22 @@ SELECT @ServiceProviderA = GUID FROM dbo.ServiceProvider WHERE Firstname = 'Mari
 SELECT @ServiceProviderB = GUID FROM dbo.ServiceProvider WHERE Firstname = 'Koos'
 
 
-INSERT INTO @Appointment EXEC spAppointmentUpsert NULL, 0, '2017-01-01 9:00:00', '00:30:00', NULL, NULL, @CustomerGUID, @StoreGUID, @ServiceProviderA, @SystemUserGUID,@Token,1
-INSERT INTO @Appointment EXEC spAppointmentUpsert NULL, 0, '2017-01-01 10:00:00', '00:30:00', NULL, NULL, @CustomerGUID, @StoreGUID, @ServiceProviderA, @SystemUserGUID,@Token,1
-INSERT INTO @Appointment EXEC spAppointmentUpsert NULL, 0, '2017-01-01 12:00:00', '00:30:00', NULL, NULL, @CustomerGUID, @StoreGUID, @ServiceProviderA, @SystemUserGUID,@Token,1
-INSERT INTO @Appointment EXEC spAppointmentUpsert NULL, 0, '2017-01-01 12:00:00', '00:30:00', NULL, NULL, @CustomerGUID, @StoreGUID, @ServiceProviderA, @SystemUserGUID,@Token,1
-INSERT INTO @Appointment EXEC spAppointmentUpsert NULL, 0, '2017-01-01 13:00:00', '00:30:00', NULL, NULL, @CustomerGUID, @StoreGUID, @ServiceProviderA, @SystemUserGUID,@Token,1
-INSERT INTO @Appointment EXEC spAppointmentUpsert NULL, 0, '2017-01-01 13:30:00', '00:30:00', NULL, NULL, @CustomerGUID, @StoreGUID, @ServiceProviderA, @SystemUserGUID,@Token,1
-INSERT INTO @Appointment EXEC spAppointmentUpsert NULL, 0, '2017-01-01 14:00:00', '00:30:00', NULL, NULL, @CustomerGUID, @StoreGUID, @ServiceProviderA, @SystemUserGUID,@Token,1
-INSERT INTO @Appointment EXEC spAppointmentUpsert NULL, 0, '2017-01-01 14:30:00', '00:30:00', NULL, NULL, @CustomerGUID, @StoreGUID, @ServiceProviderA, @SystemUserGUID,@Token,1
-INSERT INTO @Appointment EXEC spAppointmentUpsert NULL, 0, '2017-01-01 15:00:00', '00:30:00', NULL, NULL, @CustomerGUID, @StoreGUID, @ServiceProviderA, @SystemUserGUID,@Token,1
+INSERT INTO @Appointment EXEC spAppointmentUpsert NULL, 0, '2017-01-01 9:00:00', '00:30:00', NULL, NULL, @CustomerGUID, @StoreGUID, @ServiceProviderA, @Token,1
+INSERT INTO @Appointment EXEC spAppointmentUpsert NULL, 0, '2017-01-01 10:00:00', '00:30:00', NULL, NULL, @CustomerGUID, @StoreGUID, @ServiceProviderA, @Token,1
+INSERT INTO @Appointment EXEC spAppointmentUpsert NULL, 0, '2017-01-01 12:00:00', '00:30:00', NULL, NULL, @CustomerGUID, @StoreGUID, @ServiceProviderA, @Token,1
+INSERT INTO @Appointment EXEC spAppointmentUpsert NULL, 0, '2017-01-01 12:00:00', '00:30:00', NULL, NULL, @CustomerGUID, @StoreGUID, @ServiceProviderA, @Token,1
+INSERT INTO @Appointment EXEC spAppointmentUpsert NULL, 0, '2017-01-01 13:00:00', '00:30:00', NULL, NULL, @CustomerGUID, @StoreGUID, @ServiceProviderA, @Token,1
+INSERT INTO @Appointment EXEC spAppointmentUpsert NULL, 0, '2017-01-01 13:30:00', '00:30:00', NULL, NULL, @CustomerGUID, @StoreGUID, @ServiceProviderA, @Token,1
+INSERT INTO @Appointment EXEC spAppointmentUpsert NULL, 0, '2017-01-01 14:00:00', '00:30:00', NULL, NULL, @CustomerGUID, @StoreGUID, @ServiceProviderA, @Token,1
+INSERT INTO @Appointment EXEC spAppointmentUpsert NULL, 0, '2017-01-01 14:30:00', '00:30:00', NULL, NULL, @CustomerGUID, @StoreGUID, @ServiceProviderA, @Token,1
+INSERT INTO @Appointment EXEC spAppointmentUpsert NULL, 0, '2017-01-01 15:00:00', '00:30:00', NULL, NULL, @CustomerGUID, @StoreGUID, @ServiceProviderA, @Token,1
 
-INSERT INTO @Appointment EXEC spAppointmentUpsert NULL, 0, '2017-01-02 8:00:00', '00:30:00', NULL, NULL, @CustomerGUID, @StoreGUID, @ServiceProviderA, @SystemUserGUID,@Token,1
-INSERT INTO @Appointment EXEC spAppointmentUpsert NULL, 0, '2017-01-01 12:00:00', '01:30:00', NULL, NULL, @CustomerGUID, @StoreGUID, @ServiceProviderB, @SystemUserGUID,@Token,1
+INSERT INTO @Appointment EXEC spAppointmentUpsert NULL, 0, '2017-01-02 8:00:00', '00:30:00', NULL, NULL, @CustomerGUID, @StoreGUID, @ServiceProviderA, @Token,1
+INSERT INTO @Appointment EXEC spAppointmentUpsert NULL, 0, '2017-01-01 12:00:00', '01:30:00', NULL, NULL, @CustomerGUID, @StoreGUID, @ServiceProviderB, @Token,1
 
 
-INSERT INTO @ActivityType EXEC spActivityTypeUpsert NULL, 0, 'Consultations', @AccountGUID, @SystemUserGUID, @Token,0
-INSERT INTO @ActivityType EXEC spActivityTypeUpsert NULL, 0, 'Rounds', @AccountGUID, @SystemUserGUID,@Token, 0
+INSERT INTO @ActivityType EXEC spLUActivityTypeUpsert NULL, 0, 'Consultations', @AccountGUID, @Token,0
+INSERT INTO @ActivityType EXEC spLUActivityTypeUpsert NULL, 0, 'Rounds', @AccountGUID, @Token, 0
 
 
 
@@ -183,7 +187,6 @@ EXEC dbo.spAppointmentUpsert	@AppointmentGUID,
 								@CustomerGUID,
 								@StoreGUID,
 								@ServiceProviderA,
-								@SystemUserGUID,
 								@Token,
 								0
 SELECT @AppointmentGUID = GUID, @Duration = Duration, @StartDateTime = StartDateTime FROM @Appointment WHERE GenID = 2
@@ -196,7 +199,6 @@ EXEC dbo.spAppointmentUpsert	@AppointmentGUID,
 								@CustomerGUID,
 								@StoreGUID,
 								@ServiceProviderA,
-								@SystemUserGUID,
 								@Token,
 								0
 
@@ -212,7 +214,6 @@ EXEC dbo.spAppointmentUpsert	@AppointmentGUID,
 								@CustomerGUID,
 								@StoreGUID,
 								@ServiceProviderA,
-								@SystemUserGUID,
 								@Token,
 								0
 
@@ -226,7 +227,6 @@ EXEC dbo.spAppointmentUpsert	@AppointmentGUID,
 								@CustomerGUID,
 								@StoreGUID,
 								@ServiceProviderA,
-								@SystemUserGUID,
 								@Token,
 								0
 
@@ -244,9 +244,9 @@ EXEC dbo.spAppointmentUpsert	@AppointmentGUID,
 								0*/
 
 
-SELECT *
-FROM	 dbo.vwAppointment
 
 
-SELECT * 
-FROM auditlog
+
+
+
+

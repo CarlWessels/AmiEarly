@@ -5,28 +5,33 @@ SET NOCOUNT ON
 
 	EXEC spGenerateToken @SystemGUID
 
-	DECLARE @Token VARBINARY(MAX)
+	DECLARE @Token uniqueIdentifier
 	SELECT @Token = Token FROM dbo.SystemUser WHERE GUID = @SystemGUID
 	
 	SELECT @CurDate = GETDATE()
 
-	INSERT INTO dbo.Permission
+	INSERT INTO dbo.LUPermission
 	(
 	    Permission,
 	    SystemUserGUID
 	)
-	SELECT 'PermissionInsert', @SystemGUID
+	SELECT 'LUPermissionInsert', @SystemGUID
 	UNION ALL
-	SELECT 'PermissionUpdate', @SystemGUID
+	SELECT 'LUPermissionUpdate', @SystemGUID
 	UNION ALL
-	SELECT 'PermissionGet', @SystemGUID
+	SELECT 'LUPermissionGet', @SystemGUID
 	UNION ALL
-	SELECT 'PermissionGetAll', @SystemGUID
+	SELECT 'LUPermissionGetAll', @SystemGUID
 	UNION ALL
 	SELECT 'SystemUserUpsert', @SystemGUID
+	UNION ALL
+	SELECT 'MerchantServiceAccess', @SystemGUID
+	UNION ALL
+	SELECT 'CustomerServiceAccess', @SystemGUID
 
 
-	INSERT INTO dbo.Permission
+	
+	insert INTO dbo.LUPermission
 	(
 	    Permission,
 	    SystemUserGUID
@@ -50,31 +55,34 @@ SET NOCOUNT ON
 	    PermissionGUID,
 	    SystemUserGUID
 	)
-	SELECT @SystemGUID, (SELECT GUID FROM dbo.Permission WHERE Permission = 'PermissionInsert') , @SystemGUID
+	SELECT @SystemGUID, (SELECT GUID FROM dbo.LUPermission WHERE Permission = 'LUPermissionInsert') , @SystemGUID
 	UNION ALL
-	SELECT @SystemGUID, (SELECT GUID FROM dbo.Permission WHERE Permission = 'PermissionUpdate') , @SystemGUID
+	SELECT @SystemGUID, (SELECT GUID FROM dbo.LUPermission WHERE Permission = 'LUPermissionUpdate') , @SystemGUID
 	UNION ALL
-	SELECT @SystemGUID, (SELECT GUID FROM dbo.Permission WHERE Permission = 'PermissionGet') , @SystemGUID
+	SELECT @SystemGUID, (SELECT GUID FROM dbo.LUPermission WHERE Permission = 'LUPermissionGet') , @SystemGUID
 	UNION ALL
-	SELECT @SystemGUID, (SELECT GUID FROM dbo.Permission WHERE Permission = 'PermissionGetAll') , @SystemGUID
-
-	INSERT INTO dbo.SystemUserPermission
+	SELECT @SystemGUID, (SELECT GUID FROM dbo.LUPermission WHERE Permission = 'LUPermissionGetAll') , @SystemGUID
+	
+	
+	insert INTO dbo.SystemUserPermission
 	(
 	    ForSystemUserGUID,
 	    PermissionGUID,
 	    SystemUserGUID
 	)
-	SELECT @SystemGUID, (SELECT GUID FROM dbo.Permission WHERE Permission = 'SystemUserPermissionInsert') , @SystemGUID
+	SELECT @SystemGUID, (SELECT GUID FROM dbo.LUPermission WHERE Permission = 'SystemUserPermissionInsert') , @SystemGUID
 	UNION ALL
-	SELECT @SystemGUID, (SELECT GUID FROM dbo.Permission WHERE Permission = 'SystemUserPermissionUpdate') , @SystemGUID
+	SELECT @SystemGUID, (SELECT GUID FROM dbo.LUPermission WHERE Permission = 'SystemUserPermissionUpdate') , @SystemGUID
 	UNION ALL
-	SELECT @SystemGUID, (SELECT GUID FROM dbo.Permission WHERE Permission = 'SystemUserPermissionGet') , @SystemGUID
+	SELECT @SystemGUID, (SELECT GUID FROM dbo.LUPermission WHERE Permission = 'SystemUserPermissionGet') , @SystemGUID
 	UNION ALL
-	SELECT @SystemGUID, (SELECT GUID FROM dbo.Permission WHERE Permission = 'SystemUserPermissionGetAll') , @SystemGUID
+	SELECT @SystemGUID, (SELECT GUID FROM dbo.LUPermission WHERE Permission = 'SystemUserPermissionGetAll') , @SystemGUID
 	UNION ALL
-	SELECT @SystemGUID, (SELECT GUID FROM dbo.Permission WHERE Permission = 'SystemUserGetAll') , @SystemGUID
+	SELECT @SystemGUID, (SELECT GUID FROM dbo.LUPermission WHERE Permission = 'SystemUserGetAll') , @SystemGUID
 	UNION ALL
-	SELECT @SystemGUID, (SELECT GUID FROM dbo.Permission WHERE Permission = 'SystemUserGet') , @SystemGUID
+	SELECT @SystemGUID, (SELECT GUID FROM dbo.LUPermission WHERE Permission = 'SystemUserGet') , @SystemGUID
+	UNION ALL
+	SELECT @SystemGUID, (SELECT GUID FROM dbo.LUPermission WHERE Permission = 'MerchantServiceAccess') , @SystemGUID
 
 
 
@@ -92,12 +100,14 @@ SET NOCOUNT ON
 
 	INSERT INTO @Tables	(TableName,CreateUpsert, CreateToXML, CreatePermission) SELECT 'Account',1,1,1
 	INSERT INTO @Tables	(TableName,CreateUpsert, CreateToXML, CreatePermission) SELECT 'ActivitySchedule',1,1,1
-	INSERT INTO @Tables	(TableName,CreateUpsert, CreateToXML, CreatePermission) SELECT 'ActivityType',1,1,1
+	INSERT INTO @Tables	(TableName,CreateUpsert, CreateToXML, CreatePermission) SELECT 'LUActivityType',1,1,1
+	INSERT INTO @Tables	(TableName,CreateUpsert, CreateToXML, CreatePermission) SELECT 'LUAddressType',1,1,1
 	INSERT INTO @Tables	(TableName,CreateUpsert, CreateToXML, CreatePermission) SELECT 'Appointment',1,1,1
 	INSERT INTO @Tables	(TableName,CreateUpsert, CreateToXML, CreatePermission) SELECT 'ServiceProvider',1,1,1
 	INSERT INTO @Tables	(TableName,CreateUpsert, CreateToXML, CreatePermission) SELECT 'Customer',1,1,1
+	INSERT INTO @Tables	(TableName,CreateUpsert, CreateToXML, CreatePermission) SELECT 'CustomerAddress',1,1,1
 	INSERT INTO @Tables	(TableName,CreateUpsert, CreateToXML, CreatePermission) SELECT 'Store',1,1,1
-	INSERT INTO @Tables	(TableName,CreateUpsert, CreateToXML, CreatePermission) SELECT 'Permission',1,1,0
+	INSERT INTO @Tables	(TableName,CreateUpsert, CreateToXML, CreatePermission) SELECT 'LUPermission',1,1,0
 	INSERT INTO @Tables	(TableName,CreateUpsert, CreateToXML, CreatePermission) SELECT 'SystemUserGroup',1,1,1
 	INSERT INTO @Tables	(TableName,CreateUpsert, CreateToXML, CreatePermission) SELECT 'SystemUserGroupPermission',1,1,0
 
@@ -111,6 +121,8 @@ SET NOCOUNT ON
 				,@CreateToXML BIT 
 				,@CreatePermission BIT 
 
+
+		--select @TableName
 		SET @CreateUpsert = NULL
 		SET @TableName = NULL
 
@@ -138,20 +150,20 @@ SET NOCOUNT ON
 			DECLARE @GetPermission VARCHAR(MAX) = (SELECT @TableName + 'Get')
 			DECLARE @GetAllPermission VARCHAR(MAX) = (SELECT @TableName + 'GetAll')
 
-			EXEC spPermissionUpsert NULL, 0, @InsertPermission, @Token, 0
-			EXEC spPermissionUpsert NULL, 0, @UpdatePermission, @Token, 0
-			EXEC spPermissionUpsert NULL, 0, @GetPermission, @Token, 0
-			EXEC spPermissionUpsert NULL, 0, @GetAllPermission, @Token, 0
+			EXEC spLUPermissionUpsert NULL, 0, @InsertPermission, @Token, 0
+			EXEC spLUPermissionUpsert NULL, 0, @UpdatePermission, @Token, 0
+			EXEC spLUPermissionUpsert NULL, 0, @GetPermission, @Token, 0
+			EXEC spLUPermissionUpsert NULL, 0, @GetAllPermission, @Token, 0
 
 			DECLARE @InsertPGUID UNIQUEIDENTIFIER
 			DECLARE @UpdatePGUID UNIQUEIDENTIFIER
 			DECLARE @GetPGUID UNIQUEIDENTIFIER
 			DECLARE @GetAllPGUID UNIQUEIDENTIFIER
 
-			SELECT @InsertPGUID = (SELECT GUID FROM Permission WHERE Permission = @InsertPermission)
-			SELECT @UpdatePGUID = (SELECT GUID FROM Permission WHERE Permission = @UpdatePermission)
-			SELECT @GetPGUID = (SELECT GUID FROM Permission WHERE Permission = @GetPermission)
-			SELECT @GetAllPGUID = (SELECT GUID FROM Permission WHERE Permission = @GetAllPermission)
+			SELECT @InsertPGUID = (SELECT GUID FROM LUPermission WHERE Permission = @InsertPermission)
+			SELECT @UpdatePGUID = (SELECT GUID FROM LUPermission WHERE Permission = @UpdatePermission)
+			SELECT @GetPGUID = (SELECT GUID FROM LUPermission  WHERE Permission = @GetPermission)
+			SELECT @GetAllPGUID = (SELECT GUID FROM LUPermission  WHERE Permission = @GetAllPermission)
 
 			EXEC spSystemUserPermissionUpsert NULL, 0, @CurDate, NULL, @SystemGUID, @InsertPGUID, @Token, 0
 			EXEC spSystemUserPermissionUpsert NULL, 0, @CurDate, NULL, @SystemGUID, @UpdatePGUID, @Token,0
@@ -166,13 +178,7 @@ SET NOCOUNT ON
 		SELECT @I = MIN(ID) FROM @Tables WHERE Done = 0
 	END	
 
-	DECLARE @PermissionTypes TABLE
-	(
-		PermissionType VARCHAR(MAX)
-	)
-
-	
+	insert into LUAddressType (DateTimeCreated,IsDeleted,ActiveDateTime,TerminationDateTime,AddressType) select	@CurDate, 0, @CurDate, null, 'HOME'
+	insert into LUAddressType (DateTimeCreated,IsDeleted,ActiveDateTime,TerminationDateTime,AddressType) select	@CurDate, 0, @CurDate, null, 'WORK'
 
 
-
-	

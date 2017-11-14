@@ -103,7 +103,7 @@
 													ELSE CONVERT(BIT,0)
 											END
 								END,
-		Token GUID null,
+		Token uniqueIdentifier null,
 		TokenExpires DATETIME NULL,
 		TokenIsValid as case when getDate() > TokenExpires then 0 else 1 end,
 		Username VARCHAR(MAX) NOT NULL,

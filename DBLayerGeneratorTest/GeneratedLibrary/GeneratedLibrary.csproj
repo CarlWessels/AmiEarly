@@ -40,22 +40,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Console\bin\Debug\GeneratedCalls.cs">
+    <Compile Include="..\Generator\bin\Debug\GeneratedCalls.cs">
       <Link>GeneratedCalls.cs</Link>
     </Compile>
-    <Compile Include="..\Console\bin\Debug\GeneratedEnums.cs">
+    <Compile Include="..\Generator\bin\Debug\GeneratedEnums.cs">
       <Link>GeneratedEnums.cs</Link>
     </Compile>
-    <Compile Include="..\Console\bin\Debug\GeneratedParameters.cs">
+    <Compile Include="..\Generator\bin\Debug\GeneratedParameters.cs">
       <Link>GeneratedParameters.cs</Link>
     </Compile>
-    <Compile Include="..\Console\bin\Debug\GeneratedResults.cs">
+    <Compile Include="..\Generator\bin\Debug\GeneratedResults.cs">
       <Link>GeneratedResults.cs</Link>
     </Compile>
-    <Compile Include="..\Console\bin\Debug\GeneratedTables.cs">
+    <Compile Include="..\Generator\bin\Debug\GeneratedTables.cs">
       <Link>GeneratedTables.cs</Link>
     </Compile>
-    <Compile Include="..\Console\bin\Debug\GeneratedViews.cs">
+    <Compile Include="..\Generator\bin\Debug\GeneratedViews.cs">
       <Link>GeneratedViews.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

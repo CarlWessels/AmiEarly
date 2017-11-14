@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MerchantService", "MerchantService\MerchantService.csproj", "{820FA832-97A9-450A-AA9F-E0EB04D2BE1D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceLibrary", "ServiceLibrary\ServiceLibrary.csproj", "{675757F0-94A5-4161-BA76-07911F49F981}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{820FA832-97A9-450A-AA9F-E0EB04D2BE1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{820FA832-97A9-450A-AA9F-E0EB04D2BE1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{820FA832-97A9-450A-AA9F-E0EB04D2BE1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{820FA832-97A9-450A-AA9F-E0EB04D2BE1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{675757F0-94A5-4161-BA76-07911F49F981}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{675757F0-94A5-4161-BA76-07911F49F981}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{675757F0-94A5-4161-BA76-07911F49F981}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{675757F0-94A5-4161-BA76-07911F49F981}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {FDC444EC-14D2-4B75-84E4-D282A31FA902}
+		SolutionGuid = {34465E0D-C691-4848-A228-49886FB5D4E1}
 	EndGlobalSection
 EndGlobal
