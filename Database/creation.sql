@@ -25,11 +25,6 @@
 	IF OBJECT_ID('dbo.ActivitySchedule', 'U') IS NOT NULL 
 		DROP TABLE dbo.ActivitySchedule; 
 
-	IF OBJECT_ID('dbo.Store', 'U') IS NOT NULL 
-		DROP TABLE dbo.Store; 
-
-	IF OBJECT_ID('dbo.Account', 'U') IS NOT NULL 
-		DROP TABLE dbo.Account; 
 
 	IF OBJECT_ID('dbo.AuditLog', 'U') IS NOT NULL 
 		DROP TABLE dbo.AuditLog; 
@@ -59,6 +54,18 @@
 	IF OBJECT_ID('dbo.LUAddressType', 'U') IS NOT NULL 
 		DROP TABLE dbo.LUAddressType; 
 
+	IF OBJECT_ID('dbo.Store', 'U') IS NOT NULL 
+		DROP TABLE dbo.Store; 
+
+	IF OBJECT_ID('dbo.Account', 'U') IS NOT NULL 
+		DROP TABLE dbo.Account; 
+
+	IF EXISTS ( (SELECT * FROM sysfulltextcatalogs ftc WHERE ftc.name = N'CustomerCatalog') ) 
+		drop fulltext catalog CustomerCatalog;
+
+	IF EXISTS ( (SELECT * FROM sysfulltextcatalogs ftc WHERE ftc.name = N'AccountCatalog') ) 
+		drop fulltext catalog AccountCatalog;
+
 	create table Setting
 	(
 		GUID UNIQUEIDENTIFIER NOT NULL DEFAULT  NEWSEQUENTIALID() PRIMARY KEY,
@@ -85,7 +92,80 @@
     insert into Setting (Setting, TestValue, ProductionValue) select 'TokenExpiryMinutes', 10, 10
 	Go
 
-		
+	CREATE TABLE Account
+	(
+		GUID UNIQUEIDENTIFIER NOT NULL DEFAULT  NEWSEQUENTIALID(),
+		ID INT IDENTITY(1,1) NOT  NULL,
+		DateTimeCreated DATETIME NOT NULL DEFAULT GETDATE(),
+		IsDeleted BIT NOT NULL DEFAULT 0,
+
+		ActiveDateTime DATETIME NOT NULL DEFAULT GETDATE(),
+		TerminationDateTime DATETIME NULL,
+		IsActiveForNow  AS		CASE 
+									WHEN IsDeleted = CONVERT(BIT,0) THEN CONVERT(BIT,1 )
+									ELSE	CASE	
+													WHEN GETDATE() BETWEEN ActiveDateTime AND ISNULL(TerminationDateTime, '2099-01-01') THEN CONVERT(BIT,1)
+													ELSE CONVERT(BIT,0)
+											END
+								END,
+
+		AccountName VARCHAR(MAX) NOT NULL
+		--SystemUserGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.SystemUser(GUID)
+
+		CONSTRAINT PK_Account_GUID PRIMARY KEY (GUID)
+
+	)
+	go
+	create fulltext catalog AccountCatalog as default
+	go
+	create fulltext index on Account(AccountName)
+	key index PK_Account_GUID
+	go
+    
+	declare @AccountGUID uniqueIdentifier
+	declare @Guids table
+	(guid uniqueIdentifier)
+	delete from @Guids
+	
+	insert into dbo.Account	(IsDeleted,ActiveDateTime,TerminationDateTime,AccountName) 
+	output Inserted.GUID into @Guids(guid)
+	select 0, getDate(), null, 'SYSTEM ACCOUNT'
+
+	select @AccountGUID = guid from @Guids
+
+
+	CREATE TABLE Store 
+	(
+		GUID UNIQUEIDENTIFIER NOT NULL DEFAULT  NEWSEQUENTIALID() PRIMARY KEY,
+		ID INT IDENTITY(1,1) NOT  NULL,
+		DateTimeCreated DATETIME NOT NULL DEFAULT GETDATE(),
+		IsDeleted BIT NOT NULL DEFAULT 0,
+
+		ActiveDateTime DATETIME NOT NULL DEFAULT GETDATE(),
+		TerminationDateTime DATETIME NULL,
+		IsActiveForNow  AS		CASE 
+									WHEN IsDeleted = CONVERT(BIT,0) THEN CONVERT(BIT,1 )
+									ELSE	CASE	
+													WHEN GETDATE() BETWEEN ActiveDateTime AND ISNULL(TerminationDateTime, '2099-01-01') THEN CONVERT(BIT,1)
+													ELSE CONVERT(BIT,0)
+											END
+								END,
+
+		StoreName VARCHAR(MAX) NOT NULL,
+	
+		AccountGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.Account(GUID)
+		--SystemUserGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.SystemUser(GUID)
+	)
+
+	declare @StoreGUID uniqueIdentifier
+	delete from @Guids
+	insert into dbo.Store	(IsDeleted,ActiveDateTime,TerminationDateTime,StoreName,AccountGUID) output Inserted.guid into @Guids(guid) select 0, getDate(), null, 'SYSTEM STORE', @AccountGUID
+	select @StoreGUID = guid from @Guids
+
+	
+	
+
+
 
 	CREATE TABLE SystemUser
 	(
@@ -108,66 +188,26 @@
 		TokenIsValid as case when getDate() > TokenExpires then 0 else 1 end,
 		Username VARCHAR(MAX) NOT NULL,
 		PasswordHash BINARY(64) NOT NULL,
-		PasswordSalt UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID()
+		PasswordSalt UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID(),
+
+		AccountGUID UNIQUEIDENTIFIER NULL REFERENCES dbo.Account(GUID),
+		StoreGUID UNIQUEIDENTIFIER NULL REFERENCES dbo.Store(GUID)
 	)
 	DECLARE @Password VARCHAR(MAX) = 'PASSWORD'
 	DECLARE @PasswordSalt UNIQUEIDENTIFIER = NEWID()
 
-	INSERT INTO SystemUser(ActiveDateTime, Username, PasswordHash, PasswordSalt) SELECT		GETDATE(), 
+	INSERT INTO SystemUser(ActiveDateTime, Username, PasswordHash, PasswordSalt, AccountGUID, StoreGUID) SELECT		GETDATE(), 
 																							'SYSTEM',
 																							HASHBYTES('SHA2_512', @Password+CAST(@PasswordSalt AS NVARCHAR(36)))
 																							, @PasswordSalt
-
-	CREATE TABLE Account
-	(
-		GUID UNIQUEIDENTIFIER NOT NULL DEFAULT  NEWSEQUENTIALID() PRIMARY KEY,
-		ID INT IDENTITY(1,1) NOT  NULL,
-		DateTimeCreated DATETIME NOT NULL DEFAULT GETDATE(),
-		IsDeleted BIT NOT NULL DEFAULT 0,
-
-		ActiveDateTime DATETIME NOT NULL DEFAULT GETDATE(),
-		TerminationDateTime DATETIME NULL,
-		IsActiveForNow  AS		CASE 
-									WHEN IsDeleted = CONVERT(BIT,0) THEN CONVERT(BIT,1 )
-									ELSE	CASE	
-													WHEN GETDATE() BETWEEN ActiveDateTime AND ISNULL(TerminationDateTime, '2099-01-01') THEN CONVERT(BIT,1)
-													ELSE CONVERT(BIT,0)
-											END
-								END,
-
-		AccountName VARCHAR(MAX) NOT NULL,
-		SystemUserGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.SystemUser(GUID)
-
-	)
-	GO
-
-	CREATE TABLE Store 
-	(
-		GUID UNIQUEIDENTIFIER NOT NULL DEFAULT  NEWSEQUENTIALID() PRIMARY KEY,
-		ID INT IDENTITY(1,1) NOT  NULL,
-		DateTimeCreated DATETIME NOT NULL DEFAULT GETDATE(),
-		IsDeleted BIT NOT NULL DEFAULT 0,
-
-		ActiveDateTime DATETIME NOT NULL DEFAULT GETDATE(),
-		TerminationDateTime DATETIME NULL,
-		IsActiveForNow  AS		CASE 
-									WHEN IsDeleted = CONVERT(BIT,0) THEN CONVERT(BIT,1 )
-									ELSE	CASE	
-													WHEN GETDATE() BETWEEN ActiveDateTime AND ISNULL(TerminationDateTime, '2099-01-01') THEN CONVERT(BIT,1)
-													ELSE CONVERT(BIT,0)
-											END
-								END,
-
-		StoreName VARCHAR(MAX) NOT NULL,
+																							, @AccountGUID
+																							, @StoreGUID
 	
-		AccountGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.Account(GUID),
-		SystemUserGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.SystemUser(GUID)
-	)
 	GO
 
-	CREATE TABLE Customer 
+	create TABLE Customer 
 	(
-		GUID UNIQUEIDENTIFIER NOT NULL DEFAULT  NEWSEQUENTIALID() PRIMARY KEY,
+		GUID UNIQUEIDENTIFIER NOT NULL DEFAULT  NEWSEQUENTIALID(),
 		ID INT IDENTITY(1,1) NOT  NULL,
 		DateTimeCreated DATETIME NOT NULL DEFAULT GETDATE(),
 		IsDeleted BIT NOT NULL DEFAULT 0,
@@ -188,13 +228,21 @@
 		IDNumber varchar(max),
 		BirthDate date,
 		CellphoneNumber varchar(max),
+		Combined as Surname + ', ' + Firstname,
 		
-
+		LinkedSystemUserGUID uniqueIdentifier not null references dbo.SystemUser(GUID),
 		AccountGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.Account(GUID),
 		SystemUserGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.SystemUser(GUID)
+
+		CONSTRAINT PK_Customer_GUID PRIMARY KEY (GUID)
 	)
 	go
-    
+	create fulltext catalog CustomerCatalog as default
+	go
+	create fulltext index on Customer(Firstname, surname, EmailAddress, IDNumber)
+	key index PK_Customer_GUID
+	go
+	
 
 	create table LUAddressType
 	(
@@ -265,6 +313,7 @@
 		Firstname VARCHAR(MAX),
 		Surname VARCHAr(MAX),
 		AccountGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.Account(GUID),
+		StoreGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.Store(GUID),
 		SystemUserGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.SystemUser(GUID)
 	)
 	GO

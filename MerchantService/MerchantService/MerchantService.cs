@@ -12,10 +12,10 @@ namespace MerchantService
 {
     public partial class MerchantService : BaseService, IMerchantService
     {
-        /*public string SystemUserUpsert(string parameters)
+        public string SystemUserUpsert(string parameters)
         {
             return AppointmentService.SystemUserUpsert(parameters, ConnectionString, ReturnExceptionMessage);
-        }*/
+        }
 
         public string ServiceProviderUpsert(string parameters)
         {
@@ -36,6 +36,26 @@ namespace MerchantService
         {
             return AppointmentService.CustomerUpsert(parameters, ConnectionString, ReturnExceptionMessage);
         }
+
+        public string CustomerGet(string parameters)
+        {
+            return AppointmentService.CustomerGet(parameters, ConnectionString, ReturnExceptionMessage);
+        }
+
+        public string CustomerGetAsList(string parameters)
+        {
+            return AppointmentService.CustomerGetAsList(parameters, ConnectionString, ReturnExceptionMessage);
+        }
+
+        public string SystemUserGet(string parameters)
+        {
+            return AppointmentService.SystemUserGet(parameters, ConnectionString, ReturnExceptionMessage);
+        }
+
+        public string SystemUserGetAsList(string parameters)
+        {
+            return AppointmentService.SystemUserGetAsList(parameters, ConnectionString, ReturnExceptionMessage);
+        }
     }
 
 
@@ -43,8 +63,9 @@ namespace MerchantService
     public interface IMerchantService : IBaseService
     {
 
-        /*[OperationContract]
-        string SystemUserUpsert(string parameters);*/
+        [OperationContract]
+        string SystemUserUpsert(string parameters);
+
         [OperationContract]
         string CustomerUpsert(string parameters);
 
@@ -56,7 +77,20 @@ namespace MerchantService
 
         [OperationContract]
         string AppointmentGet(string parameters);
+
+        [OperationContract]
+        string CustomerGet(string parameters);
+
+        [OperationContract]
+        string CustomerGetAsList(string parameters);
+
+        [OperationContract]
+        string SystemUserGet(string parameters);
+
+        [OperationContract]
+        string SystemUserGetAsList(string parameters);
+
     }
 
-   
+
 }

@@ -27,6 +27,12 @@ namespace ApplicationClient.MerchantService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBaseService/RefreshTokenNoReturn", ReplyAction="http://tempuri.org/IBaseService/RefreshTokenNoReturnResponse")]
         System.Threading.Tasks.Task<string> RefreshTokenNoReturnAsync(string parameters);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMerchantService/SystemUserUpsert", ReplyAction="http://tempuri.org/IMerchantService/SystemUserUpsertResponse")]
+        string SystemUserUpsert(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMerchantService/SystemUserUpsert", ReplyAction="http://tempuri.org/IMerchantService/SystemUserUpsertResponse")]
+        System.Threading.Tasks.Task<string> SystemUserUpsertAsync(string parameters);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMerchantService/CustomerUpsert", ReplyAction="http://tempuri.org/IMerchantService/CustomerUpsertResponse")]
         string CustomerUpsert(string parameters);
         
@@ -50,6 +56,30 @@ namespace ApplicationClient.MerchantService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMerchantService/AppointmentGet", ReplyAction="http://tempuri.org/IMerchantService/AppointmentGetResponse")]
         System.Threading.Tasks.Task<string> AppointmentGetAsync(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMerchantService/CustomerGet", ReplyAction="http://tempuri.org/IMerchantService/CustomerGetResponse")]
+        string CustomerGet(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMerchantService/CustomerGet", ReplyAction="http://tempuri.org/IMerchantService/CustomerGetResponse")]
+        System.Threading.Tasks.Task<string> CustomerGetAsync(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMerchantService/CustomerGetAsList", ReplyAction="http://tempuri.org/IMerchantService/CustomerGetAsListResponse")]
+        string CustomerGetAsList(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMerchantService/CustomerGetAsList", ReplyAction="http://tempuri.org/IMerchantService/CustomerGetAsListResponse")]
+        System.Threading.Tasks.Task<string> CustomerGetAsListAsync(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMerchantService/SystemUserGet", ReplyAction="http://tempuri.org/IMerchantService/SystemUserGetResponse")]
+        string SystemUserGet(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMerchantService/SystemUserGet", ReplyAction="http://tempuri.org/IMerchantService/SystemUserGetResponse")]
+        System.Threading.Tasks.Task<string> SystemUserGetAsync(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMerchantService/SystemUserGetAsList", ReplyAction="http://tempuri.org/IMerchantService/SystemUserGetAsListResponse")]
+        string SystemUserGetAsList(string parameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMerchantService/SystemUserGetAsList", ReplyAction="http://tempuri.org/IMerchantService/SystemUserGetAsListResponse")]
+        System.Threading.Tasks.Task<string> SystemUserGetAsListAsync(string parameters);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -95,6 +125,14 @@ namespace ApplicationClient.MerchantService {
             return base.Channel.RefreshTokenNoReturnAsync(parameters);
         }
         
+        public string SystemUserUpsert(string parameters) {
+            return base.Channel.SystemUserUpsert(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> SystemUserUpsertAsync(string parameters) {
+            return base.Channel.SystemUserUpsertAsync(parameters);
+        }
+        
         public string CustomerUpsert(string parameters) {
             return base.Channel.CustomerUpsert(parameters);
         }
@@ -125,6 +163,38 @@ namespace ApplicationClient.MerchantService {
         
         public System.Threading.Tasks.Task<string> AppointmentGetAsync(string parameters) {
             return base.Channel.AppointmentGetAsync(parameters);
+        }
+        
+        public string CustomerGet(string parameters) {
+            return base.Channel.CustomerGet(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> CustomerGetAsync(string parameters) {
+            return base.Channel.CustomerGetAsync(parameters);
+        }
+        
+        public string CustomerGetAsList(string parameters) {
+            return base.Channel.CustomerGetAsList(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> CustomerGetAsListAsync(string parameters) {
+            return base.Channel.CustomerGetAsListAsync(parameters);
+        }
+        
+        public string SystemUserGet(string parameters) {
+            return base.Channel.SystemUserGet(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> SystemUserGetAsync(string parameters) {
+            return base.Channel.SystemUserGetAsync(parameters);
+        }
+        
+        public string SystemUserGetAsList(string parameters) {
+            return base.Channel.SystemUserGetAsList(parameters);
+        }
+        
+        public System.Threading.Tasks.Task<string> SystemUserGetAsListAsync(string parameters) {
+            return base.Channel.SystemUserGetAsListAsync(parameters);
         }
     }
 }

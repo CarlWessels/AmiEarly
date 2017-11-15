@@ -4,8 +4,7 @@ C:\Users\carl.wessels\source\repos\DBLayerGeneratorTest\GeneratedLibrary\obj\Deb
 C:\Users\carl.wessels\source\repos\DBLayerGeneratorTest\GeneratedLibrary\obj\Debug\GeneratedLibrary.dll
 C:\Users\carl.wessels\source\repos\DBLayerGeneratorTest\GeneratedLibrary\obj\Debug\GeneratedLibrary.pdb
 C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\GeneratedLibrary\bin\Debug\GeneratedLibrary.dll
-C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\GeneratedLibrary\bin\Debug\GeneratedLibrary.pdb
 C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\GeneratedLibrary\obj\Debug\GeneratedLibrary.csproj.CoreCompileInputs.cache
 C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\GeneratedLibrary\obj\Debug\GeneratedLibrary.dll
 C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\GeneratedLibrary\obj\Debug\GeneratedLibrary.pdb
-C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\GeneratedLibrary\obj\Debug\GeneratedLibrary.csprojResolveAssemblyReference.cache
+C:\Users\carl.wessels\source\repos\AmIEarly\AmiEarly\DBLayerGeneratorTest\GeneratedLibrary\bin\Debug\GeneratedLibrary.pdb

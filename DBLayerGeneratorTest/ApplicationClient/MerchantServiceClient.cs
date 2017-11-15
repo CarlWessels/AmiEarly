@@ -68,7 +68,7 @@ namespace ApplicationClient
             return result;
         }
 
-        /*public SystemUserUpsertResult SystemUserUpsert(Guid? gUID, bool? isDeleted, DateTime? activeDateTime, DateTime? terminationDateTime, string username, string password, bool? returnResults)
+        public SystemUserUpsertResult SystemUserUpsert(Guid? gUID, bool? isDeleted, DateTime? activeDateTime, DateTime? terminationDateTime, string username, string password, Guid accountGUID, Guid storeGUID, bool? returnResults)
         {
             SystemUserUpsertParameters p = new SystemUserUpsertParameters()
             {
@@ -79,6 +79,8 @@ namespace ApplicationClient
                 ,TerminationDateTime = terminationDateTime
                 ,Username = username
                 ,Password = password
+                ,AccountGUID = accountGUID
+                ,StoreGUID = storeGUID
                 ,ReturnResults = returnResults
             };
 
@@ -86,8 +88,8 @@ namespace ApplicationClient
             string resultStr = Service.SystemUserUpsert(parameters);
             SystemUserUpsertResult result = JsonConvert.DeserializeObject<SystemUserUpsertResult>(resultStr);
             return result;
-        }*/
-        public CustomerUpsertResult CustomerUpsert (Guid? gUID, bool? isDeleted, DateTime? activeDateTime, DateTime? terminationDateTime, string firstname, string surname, string emailAddress, string iDNumber, DateTime? birthDate, string cellphoneNumber, Guid? accountGUID, bool? returnResults)
+        }
+        public CustomerUpsertResult CustomerUpsert (Guid? gUID, bool? isDeleted, DateTime? activeDateTime, DateTime? terminationDateTime, string firstname, string surname, string emailAddress, string iDNumber, DateTime? birthDate, string cellphoneNumber, Guid? accountGUID, Guid linkedSystemUserGUID, bool? returnResults)
 		{
 			CustomerUpsertParameters p = new CustomerUpsertParameters()
 			{
@@ -103,6 +105,7 @@ namespace ApplicationClient
 				, BirthDate = birthDate
 				, CellphoneNumber = cellphoneNumber
 				, AccountGUID = accountGUID
+                , LinkedSystemUserGUID = linkedSystemUserGUID
 				, ReturnResults = returnResults
 
 			};
@@ -113,7 +116,7 @@ namespace ApplicationClient
 			return result;
 		}
 
-        public ServiceProviderUpsertResult ServiceProviderUpsert (Guid? gUID, bool? isDeleted, DateTime? activeDateTime, DateTime? terminationDateTime, string firstname, string surname, Guid? accountGUID, bool? returnResults)
+        public ServiceProviderUpsertResult ServiceProviderUpsert (Guid? gUID, bool? isDeleted, DateTime? activeDateTime, DateTime? terminationDateTime, string firstname, string surname, Guid? accountGUID, Guid storeGUID, bool? returnResults)
 		{
 			ServiceProviderUpsertParameters p = new ServiceProviderUpsertParameters()
 			{
@@ -125,6 +128,7 @@ namespace ApplicationClient
 				, Firstname = firstname
 				, Surname = surname
 				, AccountGUID = accountGUID
+                , StoreGUID = storeGUID
 				, ReturnResults = returnResults
 
 			};
@@ -188,5 +192,71 @@ namespace ApplicationClient
             AppointmentGetResult result = JsonConvert.DeserializeObject<AppointmentGetResult>(resultStr);
             return result;
         }
+
+        public List<CustomerGetResult> CustomerGetAsList(Guid? customerGUID, Guid? accountGUID)
+        {
+            CustomerGetParameters p = new CustomerGetParameters()
+            {
+                Token = Token,
+                CustomerGUID = customerGUID
+                ,AccountGUID = accountGUID
+
+            };
+
+            string parameters = JsonConvert.SerializeObject(p);
+            string resultStr = Service.CustomerGetAsList(parameters);
+            List<CustomerGetResult> result = JsonConvert.DeserializeObject<List<CustomerGetResult>>(resultStr);
+            return result;
+        }
+
+        public CustomerGetResult CustomerGet(Guid? customerGUID, Guid? accountGUID)
+        {
+            CustomerGetParameters p = new CustomerGetParameters()
+            {
+                Token = Token,
+                CustomerGUID = customerGUID
+                ,
+                AccountGUID = accountGUID
+
+            };
+
+            string parameters = JsonConvert.SerializeObject(p);
+            string resultStr = Service.CustomerGet(parameters);
+            CustomerGetResult result = JsonConvert.DeserializeObject<CustomerGetResult>(resultStr);
+            return result;
+        }
+
+        public List<SystemUserGetResult> SystemUserGetAsList  (Guid? forSystemUserGUID, Guid? accountGUID, Guid? storeGUID)
+		{
+			SystemUserGetParameters p = new SystemUserGetParameters()
+			{
+				Token = Token,
+				ForSystemUserGUID = forSystemUserGUID
+				, AccountGUID = accountGUID
+				, StoreGUID = storeGUID
+
+			};
+			
+			string parameters = JsonConvert.SerializeObject(p);
+			string resultStr = Service.SystemUserGetAsList(parameters);
+			List<SystemUserGetResult> result = JsonConvert.DeserializeObject<List<SystemUserGetResult>>(resultStr);
+			return result;
+		}
+		public SystemUserGetResult SystemUserGet (Guid? forSystemUserGUID, Guid? accountGUID, Guid? storeGUID)
+		{
+			SystemUserGetParameters p = new SystemUserGetParameters()
+			{
+				Token = Token,
+				ForSystemUserGUID = forSystemUserGUID
+				, AccountGUID = accountGUID
+				, StoreGUID = storeGUID
+
+			};
+			
+			string parameters = JsonConvert.SerializeObject(p);
+			string resultStr = Service.SystemUserGet(parameters);
+			SystemUserGetResult result = JsonConvert.DeserializeObject<SystemUserGetResult>(resultStr);
+			return result;
+		}
     }
 }

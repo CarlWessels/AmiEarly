@@ -119,6 +119,12 @@
   <wsdl:message name="IMerchantService_RefreshTokenNoReturn_OutputMessage">
     <wsdl:part name="parameters" element="tns:RefreshTokenNoReturnResponse" />
   </wsdl:message>
+  <wsdl:message name="IMerchantService_SystemUserUpsert_InputMessage">
+    <wsdl:part name="parameters" element="tns:SystemUserUpsert" />
+  </wsdl:message>
+  <wsdl:message name="IMerchantService_SystemUserUpsert_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SystemUserUpsertResponse" />
+  </wsdl:message>
   <wsdl:message name="IMerchantService_CustomerUpsert_InputMessage">
     <wsdl:part name="parameters" element="tns:CustomerUpsert" />
   </wsdl:message>
@@ -143,6 +149,30 @@
   <wsdl:message name="IMerchantService_AppointmentGet_OutputMessage">
     <wsdl:part name="parameters" element="tns:AppointmentGetResponse" />
   </wsdl:message>
+  <wsdl:message name="IMerchantService_CustomerGet_InputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerGet" />
+  </wsdl:message>
+  <wsdl:message name="IMerchantService_CustomerGet_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerGetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMerchantService_CustomerGetAsList_InputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerGetAsList" />
+  </wsdl:message>
+  <wsdl:message name="IMerchantService_CustomerGetAsList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerGetAsListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMerchantService_SystemUserGet_InputMessage">
+    <wsdl:part name="parameters" element="tns:SystemUserGet" />
+  </wsdl:message>
+  <wsdl:message name="IMerchantService_SystemUserGet_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SystemUserGetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMerchantService_SystemUserGetAsList_InputMessage">
+    <wsdl:part name="parameters" element="tns:SystemUserGetAsList" />
+  </wsdl:message>
+  <wsdl:message name="IMerchantService_SystemUserGetAsList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SystemUserGetAsListResponse" />
+  </wsdl:message>
   <wsdl:portType name="IMerchantService">
     <wsdl:operation name="Login">
       <wsdl:input wsaw:Action="http://tempuri.org/IBaseService/Login" message="tns:IMerchantService_Login_InputMessage" />
@@ -151,6 +181,10 @@
     <wsdl:operation name="RefreshTokenNoReturn">
       <wsdl:input wsaw:Action="http://tempuri.org/IBaseService/RefreshTokenNoReturn" message="tns:IMerchantService_RefreshTokenNoReturn_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBaseService/RefreshTokenNoReturnResponse" message="tns:IMerchantService_RefreshTokenNoReturn_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SystemUserUpsert">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMerchantService/SystemUserUpsert" message="tns:IMerchantService_SystemUserUpsert_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMerchantService/SystemUserUpsertResponse" message="tns:IMerchantService_SystemUserUpsert_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="CustomerUpsert">
       <wsdl:input wsaw:Action="http://tempuri.org/IMerchantService/CustomerUpsert" message="tns:IMerchantService_CustomerUpsert_InputMessage" />
@@ -168,6 +202,22 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMerchantService/AppointmentGet" message="tns:IMerchantService_AppointmentGet_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMerchantService/AppointmentGetResponse" message="tns:IMerchantService_AppointmentGet_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="CustomerGet">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMerchantService/CustomerGet" message="tns:IMerchantService_CustomerGet_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMerchantService/CustomerGetResponse" message="tns:IMerchantService_CustomerGet_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CustomerGetAsList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMerchantService/CustomerGetAsList" message="tns:IMerchantService_CustomerGetAsList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMerchantService/CustomerGetAsListResponse" message="tns:IMerchantService_CustomerGetAsList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SystemUserGet">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMerchantService/SystemUserGet" message="tns:IMerchantService_SystemUserGet_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMerchantService/SystemUserGetResponse" message="tns:IMerchantService_SystemUserGet_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SystemUserGetAsList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMerchantService/SystemUserGetAsList" message="tns:IMerchantService_SystemUserGetAsList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMerchantService/SystemUserGetAsListResponse" message="tns:IMerchantService_SystemUserGetAsList_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="wsSecureService" type="tns:IMerchantService">
     <wsp:PolicyReference URI="#wsSecureService_policy" />
@@ -183,6 +233,15 @@
     </wsdl:operation>
     <wsdl:operation name="RefreshTokenNoReturn">
       <soap12:operation soapAction="http://tempuri.org/IBaseService/RefreshTokenNoReturn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SystemUserUpsert">
+      <soap12:operation soapAction="http://tempuri.org/IMerchantService/SystemUserUpsert" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -219,6 +278,42 @@
     </wsdl:operation>
     <wsdl:operation name="AppointmentGet">
       <soap12:operation soapAction="http://tempuri.org/IMerchantService/AppointmentGet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomerGet">
+      <soap12:operation soapAction="http://tempuri.org/IMerchantService/CustomerGet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomerGetAsList">
+      <soap12:operation soapAction="http://tempuri.org/IMerchantService/CustomerGetAsList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SystemUserGet">
+      <soap12:operation soapAction="http://tempuri.org/IMerchantService/SystemUserGet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SystemUserGetAsList">
+      <soap12:operation soapAction="http://tempuri.org/IMerchantService/SystemUserGetAsList" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

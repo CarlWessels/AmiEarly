@@ -28,6 +28,14 @@ SET NOCOUNT ON
 	SELECT 'MerchantServiceAccess', @SystemGUID
 	UNION ALL
 	SELECT 'CustomerServiceAccess', @SystemGUID
+	union all 
+	select 'CrossAccountUpsert', @SystemGUID
+	union all 
+	select 'CrossStoreUpsert', @SystemGUID
+	union all 
+	select 'CrossAccountGet', @SystemGUID
+	union all 
+	select 'CrossStoreGet', @SystemGUID
 
 
 	
@@ -103,8 +111,8 @@ SET NOCOUNT ON
 	INSERT INTO @Tables	(TableName,CreateUpsert, CreateToXML, CreatePermission) SELECT 'LUActivityType',1,1,1
 	INSERT INTO @Tables	(TableName,CreateUpsert, CreateToXML, CreatePermission) SELECT 'LUAddressType',1,1,1
 	INSERT INTO @Tables	(TableName,CreateUpsert, CreateToXML, CreatePermission) SELECT 'Appointment',1,1,1
-	INSERT INTO @Tables	(TableName,CreateUpsert, CreateToXML, CreatePermission) SELECT 'ServiceProvider',1,1,1
-	INSERT INTO @Tables	(TableName,CreateUpsert, CreateToXML, CreatePermission) SELECT 'Customer',1,1,1
+	INSERT INTO @Tables	(TableName,CreateUpsert, CreateToXML, CreatePermission) SELECT 'ServiceProvider',0,1,1
+	INSERT INTO @Tables	(TableName,CreateUpsert, CreateToXML, CreatePermission) SELECT 'Customer',0,1,1
 	INSERT INTO @Tables	(TableName,CreateUpsert, CreateToXML, CreatePermission) SELECT 'CustomerAddress',1,1,1
 	INSERT INTO @Tables	(TableName,CreateUpsert, CreateToXML, CreatePermission) SELECT 'Store',1,1,1
 	INSERT INTO @Tables	(TableName,CreateUpsert, CreateToXML, CreatePermission) SELECT 'LUPermission',1,1,0
