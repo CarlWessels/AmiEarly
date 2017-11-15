@@ -44,7 +44,6 @@
 	IF OBJECT_ID('dbo.SystemUserGroup', 'U') IS NOT NULL 
 		DROP TABLE dbo.SystemUserGroup; 
 
-
 	IF OBJECT_ID('dbo.SystemUser', 'U') IS NOT NULL 
 		DROP TABLE dbo.SystemUser; 
 
@@ -65,6 +64,19 @@
 
 	IF EXISTS ( (SELECT * FROM sysfulltextcatalogs ftc WHERE ftc.name = N'AccountCatalog') ) 
 		drop fulltext catalog AccountCatalog;
+
+	IF EXISTS ( (SELECT * FROM sysfulltextcatalogs ftc WHERE ftc.name = N'StoreCatalog') ) 
+		drop fulltext catalog StoreCatalog;
+
+	IF EXISTS ( (SELECT * FROM sysfulltextcatalogs ftc WHERE ftc.name = N'CustomerAddressCatalog') ) 
+		drop fulltext catalog CustomerAddressCatalog;
+
+	if EXISTS ( (SELECT * FROM sysfulltextcatalogs ftc WHERE ftc.name = N'SystemUserCatalog') ) 
+		drop fulltext catalog SystemUserCatalog;
+
+	if EXISTS ( (SELECT * FROM sysfulltextcatalogs ftc WHERE ftc.name = N'ServiceProviderCatalog') ) 
+		drop fulltext catalog ServiceProviderCatalog;
+
 
 	create table Setting
 	(
@@ -136,7 +148,7 @@
 
 	CREATE TABLE Store 
 	(
-		GUID UNIQUEIDENTIFIER NOT NULL DEFAULT  NEWSEQUENTIALID() PRIMARY KEY,
+		GUID UNIQUEIDENTIFIER NOT NULL DEFAULT  NEWSEQUENTIALID(),
 		ID INT IDENTITY(1,1) NOT  NULL,
 		DateTimeCreated DATETIME NOT NULL DEFAULT GETDATE(),
 		IsDeleted BIT NOT NULL DEFAULT 0,
@@ -155,21 +167,22 @@
 	
 		AccountGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.Account(GUID)
 		--SystemUserGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.SystemUser(GUID)
+
+		CONSTRAINT PK_Store_GUID PRIMARY KEY (GUID)
 	)
+	create fulltext catalog StoreCatalog as default
+	create fulltext index on Store(StoreName)
+	key index PK_Store_GUID
+
 
 	declare @StoreGUID uniqueIdentifier
 	delete from @Guids
 	insert into dbo.Store	(IsDeleted,ActiveDateTime,TerminationDateTime,StoreName,AccountGUID) output Inserted.guid into @Guids(guid) select 0, getDate(), null, 'SYSTEM STORE', @AccountGUID
 	select @StoreGUID = guid from @Guids
 
-	
-	
-
-
-
 	CREATE TABLE SystemUser
 	(
-		GUID UNIQUEIDENTIFIER NOT NULL DEFAULT  NEWSEQUENTIALID() PRIMARY KEY,
+		GUID UNIQUEIDENTIFIER NOT NULL DEFAULT  NEWSEQUENTIALID(),
 		ID INT IDENTITY(1,1) NOT  NULL,
 		DateTimeCreated DATETIME NOT NULL DEFAULT GETDATE(),
 		IsDeleted BIT NOT NULL DEFAULT 0,
@@ -192,7 +205,13 @@
 
 		AccountGUID UNIQUEIDENTIFIER NULL REFERENCES dbo.Account(GUID),
 		StoreGUID UNIQUEIDENTIFIER NULL REFERENCES dbo.Store(GUID)
+
+		CONSTRAINT PK_SystemUser_GUID PRIMARY KEY (GUID)
 	)
+	create fulltext catalog SystemUserCatalog as default
+	create fulltext index on SystemUser(Username)
+	key index PK_SystemUser_GUID
+
 	DECLARE @Password VARCHAR(MAX) = 'PASSWORD'
 	DECLARE @PasswordSalt UNIQUEIDENTIFIER = NEWID()
 
@@ -239,7 +258,7 @@
 	go
 	create fulltext catalog CustomerCatalog as default
 	go
-	create fulltext index on Customer(Firstname, surname, EmailAddress, IDNumber)
+	create fulltext index on Customer(Firstname, surname, EmailAddress, IDNumber, CellphoneNumber)
 	key index PK_Customer_GUID
 	go
 	
@@ -266,7 +285,7 @@
 
 	create table CustomerAddress
 	(
-		GUID UNIQUEIDENTIFIER NOT NULL DEFAULT  NEWSEQUENTIALID() PRIMARY KEY,
+		GUID UNIQUEIDENTIFIER NOT NULL DEFAULT  NEWSEQUENTIALID(),
 		ID INT IDENTITY(1,1) NOT  NULL,
 		DateTimeCreated DATETIME NOT NULL DEFAULT GETDATE(),
 		IsDeleted BIT NOT NULL DEFAULT 0,
@@ -289,14 +308,21 @@
 
 		CustomerGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.Customer(GUID),
 		AddressTypeGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.LUAddressType(GUID)
+
+		CONSTRAINT PK_CustomerAddress_GUID PRIMARY KEY (GUID)
 	)
-	go 
+	go
+	create fulltext catalog CustomerAddressCatalog as default
+	go
+	create fulltext index on CustomerAddress(Address1, Address2, Address3)
+	key index PK_CustomerAddress_GUID
+	go
 
 
 
 	CREATE TABLE ServiceProvider
 	(
-		GUID UNIQUEIDENTIFIER NOT NULL DEFAULT  NEWSEQUENTIALID() PRIMARY KEY,
+		GUID UNIQUEIDENTIFIER NOT NULL DEFAULT  NEWSEQUENTIALID(),
 		ID INT IDENTITY(1,1) NOT  NULL,
 		DateTimeCreated DATETIME NOT NULL DEFAULT GETDATE(),
 		IsDeleted BIT NOT NULL DEFAULT 0,
@@ -315,8 +341,16 @@
 		AccountGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.Account(GUID),
 		StoreGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.Store(GUID),
 		SystemUserGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.SystemUser(GUID)
+
+		CONSTRAINT PK_ServiceProvider_GUID PRIMARY KEY (GUID)
 	)
-	GO
+		go
+	create fulltext catalog ServiceProviderCatalog as default
+	go
+	create fulltext index on ServiceProvider(Firstname, Surname)
+	key index PK_ServiceProvider_GUID
+	go
+
 
 	CREATE TABLE Appointment
 	(

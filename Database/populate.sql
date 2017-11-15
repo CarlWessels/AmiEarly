@@ -15,29 +15,36 @@ SET NOCOUNT ON
 	    Permission,
 	    SystemUserGUID
 	)
-	SELECT 'LUPermissionInsert', @SystemGUID
-	UNION ALL
-	SELECT 'LUPermissionUpdate', @SystemGUID
-	UNION ALL
-	SELECT 'LUPermissionGet', @SystemGUID
-	UNION ALL
-	SELECT 'LUPermissionGetAll', @SystemGUID
-	UNION ALL
-	SELECT 'SystemUserUpsert', @SystemGUID
-	UNION ALL
-	SELECT 'MerchantServiceAccess', @SystemGUID
-	UNION ALL
-	SELECT 'CustomerServiceAccess', @SystemGUID
-	union all 
-	select 'CrossAccountUpsert', @SystemGUID
-	union all 
-	select 'CrossStoreUpsert', @SystemGUID
-	union all 
-	select 'CrossAccountGet', @SystemGUID
-	union all 
-	select 'CrossStoreGet', @SystemGUID
+	select n.*
+	from
+	(
 
-
+		SELECT Permission = 'LUPermissionInsert', UserGUID = @SystemGUID
+		UNION ALL
+		SELECT 'LUPermissionUpdate', @SystemGUID
+		UNION ALL
+		SELECT 'LUPermissionGet', @SystemGUID
+		UNION ALL
+		SELECT 'LUPermissionGetAll', @SystemGUID
+		UNION ALL
+		SELECT 'SystemUserUpsert', @SystemGUID
+		UNION ALL
+		SELECT 'MerchantServiceAccess', @SystemGUID
+		UNION ALL
+		SELECT 'CustomerServiceAccess', @SystemGUID
+		union all 
+		select 'CrossAccountUpsert', @SystemGUID
+		union all 
+		select 'CrossStoreUpsert', @SystemGUID
+		union all 
+		select 'CrossAccountGet', @SystemGUID
+		union all 
+		select 'CrossStoreGet', @SystemGUID
+		union all
+		select 'CustomerSearch', @SystemGUID
+	) n
+	left join dbo.LUPermission o on n.Permission = o.Permission 
+	where o.GUID is null
 	
 	insert INTO dbo.LUPermission
 	(
