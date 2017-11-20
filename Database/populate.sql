@@ -10,94 +10,202 @@ SET NOCOUNT ON
 	
 	SELECT @CurDate = GETDATE()
 
-	INSERT INTO dbo.LUPermission
-	(
-	    Permission,
-	    SystemUserGUID
-	)
-	select n.*
-	from
-	(
-
-		SELECT Permission = 'LUPermissionInsert', UserGUID = @SystemGUID
-		UNION ALL
-		SELECT 'LUPermissionUpdate', @SystemGUID
-		UNION ALL
-		SELECT 'LUPermissionGet', @SystemGUID
-		UNION ALL
-		SELECT 'LUPermissionGetAll', @SystemGUID
-		UNION ALL
-		SELECT 'SystemUserUpsert', @SystemGUID
-		UNION ALL
-		SELECT 'MerchantServiceAccess', @SystemGUID
-		UNION ALL
-		SELECT 'CustomerServiceAccess', @SystemGUID
-		union all 
-		select 'CrossAccountUpsert', @SystemGUID
-		union all 
-		select 'CrossStoreUpsert', @SystemGUID
-		union all 
-		select 'CrossAccountGet', @SystemGUID
-		union all 
-		select 'CrossStoreGet', @SystemGUID
-		union all
-		select 'CustomerSearch', @SystemGUID
-	) n
-	left join dbo.LUPermission o on n.Permission = o.Permission 
-	where o.GUID is null
 	
-	insert INTO dbo.LUPermission
+	declare @permissions table
 	(
-	    Permission,
-	    SystemUserGUID
+		Permission varchar(max),
+		Parent varchar(max),
+		Done bit not null default 0,
+		ID int identity(1,1),
+		guid uniqueidentifier
 	)
-	SELECT 'SystemUserPermissionInsert', @SystemGUID
-	UNION ALL
-	SELECT 'SystemUserPermissionUpdate', @SystemGUID
-	UNION ALL
-	SELECT 'SystemUserPermissionGet', @SystemGUID
-	UNION ALL
-	SELECT 'SystemUserPermissionGetAll', @SystemGUID
-	UNION ALL
-	SELECT 'SystemUserGetAll', @SystemGUID
-	UNION ALL
-	SELECT 'SystemUserGet', @SystemGUID
 
 
-	INSERT INTO dbo.SystemUserPermission
+	insert into @permissions
 	(
-	    ForSystemUserGUID,
-	    PermissionGUID,
-	    SystemUserGUID
+		Permission,
+		Parent
 	)
-	SELECT @SystemGUID, (SELECT GUID FROM dbo.LUPermission WHERE Permission = 'LUPermissionInsert') , @SystemGUID
-	UNION ALL
-	SELECT @SystemGUID, (SELECT GUID FROM dbo.LUPermission WHERE Permission = 'LUPermissionUpdate') , @SystemGUID
-	UNION ALL
-	SELECT @SystemGUID, (SELECT GUID FROM dbo.LUPermission WHERE Permission = 'LUPermissionGet') , @SystemGUID
-	UNION ALL
-	SELECT @SystemGUID, (SELECT GUID FROM dbo.LUPermission WHERE Permission = 'LUPermissionGetAll') , @SystemGUID
+	SELECT 'RootPermission', null
+	union all
+	select 'SystemPermissions', 'RootPermission'
+	union all
+	select 'CustomerPermissions', 'RootPermission'
+	union all
+	select 'MerchantPermissions', 'CustomerPermissions'
 	
+	union all
+	select 'LUPermissionInsert', 'SystemPermissions'
+	union all
+	SELECT 'LUPermissionUpdate', 'SystemPermissions'
+	UNION ALL
+	SELECT 'LUPermissionGetAll', 'SystemPermissions'
+	union all 
+	select 'CrossAccountUpsert', 'SystemPermissions'
+	union all 
+	select 'CrossAccountGet', 'SystemPermissions'
+	union all
+	SELECT 'SystemUserPermissionInsert', 'SystemPermissions'
+	UNION ALL
+	SELECT 'SystemUserPermissionUpdate', 'SystemPermissions'
+	UNION ALL
+	select 'AccountInsert','SystemPermissions'
+	UNION ALL
+	select 'AccountUpdate','SystemPermissions'
+	UNION ALL
+	select 'AccountGetAll','SystemPermissions'
+	UNION ALL
+	select 'LUActivityTypeInsert','SystemPermissions'
+	UNION ALL
+	select 'LUActivityTypeUpdate','SystemPermissions'
+	UNION ALL
+	select 'LUActivityTypeGet','SystemPermissions'
+	UNION ALL
+	select 'LUActivityTypeGetAll','SystemPermissions'
+	UNION ALL
+	select 'LUAddressTypeInsert','SystemPermissions'
+	UNION ALL
+	select 'LUAddressTypeUpdate','SystemPermissions'
+	UNION ALL
+	select 'LUAddressTypeGet','SystemPermissions'
+	UNION ALL
+	select 'LUAddressTypeGetAll','SystemPermissions'
+	UNION ALL
+	select 'SystemUserGroupInsert','SystemPermissions'
+	UNION ALL
+	select 'SystemUserGroupUpdate','SystemPermissions'
+	UNION ALL
+	select 'SystemUserGroupGet','SystemPermissions'
+	UNION ALL
+	select 'SystemUserGroupGetAll','SystemPermissions'
+
+
+	UNION ALL
+	SELECT 'SystemUserUpsert', 'MerchantPermissions'
+	UNION ALL
+	SELECT 'MerchantServiceAccess', 'MerchantPermissions'
+	union all 
+	select 'CrossStoreUpsert', 'MerchantPermissions'
+	union all 
+	select 'CrossStoreGet', 'MerchantPermissions'
+	union all
+	select 'CustomerSearch', 'MerchantPermissions'
+	UNION ALL
+	SELECT 'SystemUserGetAll', 'MerchantPermissions'
+	UNION ALL
+	select 'AccountGet','MerchantPermissions'
+	UNION ALL
+	select 'ActivityScheduleInsert','MerchantPermissions'
+	UNION ALL
+	select 'ActivityScheduleUpdate','MerchantPermissions'
+	UNION ALL
+	select 'ActivityScheduleGet','MerchantPermissions'
+	UNION ALL
+	select 'ActivityScheduleGetAll','MerchantPermissions'
+	UNION ALL
+	select 'AppointmentInsert','MerchantPermissions'
+	UNION ALL
+	select 'AppointmentUpdate','MerchantPermissions'
+	UNION ALL
+	select 'AppointmentGetAll','MerchantPermissions'
+	UNION ALL
+	select 'ServiceProviderInsert','MerchantPermissions'
+	UNION ALL
+	select 'ServiceProviderUpdate','MerchantPermissions'
+	UNION ALL
+	select 'ServiceProviderGet','MerchantPermissions'
+	UNION ALL
+	select 'ServiceProviderGetAll','MerchantPermissions'
+	UNION ALL
+	select 'CustomerInsert','MerchantPermissions'
+	UNION ALL
+	select 'CustomerUpdate','MerchantPermissions'
+	UNION ALL
+	select 'CustomerGet','MerchantPermissions'
+	UNION ALL
+	select 'CustomerGetAll','MerchantPermissions'
+	UNION ALL
+	select 'CustomerAddressInsert','MerchantPermissions'
+	UNION ALL
+	select 'CustomerAddressUpdate','MerchantPermissions'
+	UNION ALL
+	select 'CustomerAddressGet','MerchantPermissions'
+	UNION ALL
+	select 'CustomerAddressGetAll','MerchantPermissions'
+	UNION ALL
+	select 'StoreInsert','MerchantPermissions'
+	UNION ALL
+	select 'StoreUpdate','MerchantPermissions'
+	UNION ALL
+	select 'StoreGet','MerchantPermissions'
+	UNION ALL
+	select 'StoreGetAll','MerchantPermissions'
+
+
+	UNION all
+	SELECT 'CustomerServiceAccess', 'CustomerPermissions'
+	UNION all
+	SELECT 'LUPermissionGet', 'CustomerPermissions'
+	UNION all
+	SELECT 'SystemUserPermissionGet', 'CustomerPermissions'
+	UNION ALL
+	SELECT 'SystemUserPermissionGetAll', 'MerchantPermissions'
+	UNION ALL
+	SELECT 'SystemUserGet', 'CustomerPermissions'
+	UNION ALL
+	select 'AppointmentGet','CustomerPermissions'
+
+
+
+	declare @pi int 
+	select @pi = min(id) from @permissions where done = 0
+
+	while @pi is not null
+	begin
 	
-	insert INTO dbo.SystemUserPermission
-	(
-	    ForSystemUserGUID,
-	    PermissionGUID,
-	    SystemUserGUID
-	)
-	SELECT @SystemGUID, (SELECT GUID FROM dbo.LUPermission WHERE Permission = 'SystemUserPermissionInsert') , @SystemGUID
-	UNION ALL
-	SELECT @SystemGUID, (SELECT GUID FROM dbo.LUPermission WHERE Permission = 'SystemUserPermissionUpdate') , @SystemGUID
-	UNION ALL
-	SELECT @SystemGUID, (SELECT GUID FROM dbo.LUPermission WHERE Permission = 'SystemUserPermissionGet') , @SystemGUID
-	UNION ALL
-	SELECT @SystemGUID, (SELECT GUID FROM dbo.LUPermission WHERE Permission = 'SystemUserPermissionGetAll') , @SystemGUID
-	UNION ALL
-	SELECT @SystemGUID, (SELECT GUID FROM dbo.LUPermission WHERE Permission = 'SystemUserGetAll') , @SystemGUID
-	UNION ALL
-	SELECT @SystemGUID, (SELECT GUID FROM dbo.LUPermission WHERE Permission = 'SystemUserGet') , @SystemGUID
-	UNION ALL
-	SELECT @SystemGUID, (SELECT GUID FROM dbo.LUPermission WHERE Permission = 'MerchantServiceAccess') , @SystemGUID
+		declare @permission varchar(max), 
+				@parent varchar(max)
+
+
+		select @permission = Permission,
+				@parent = parent
+		from @permissions 
+		where id = @pI
+	
+		declare @parentGUId uniqueIdentifier 
+		select @parentGUID = GUID from dbo.LUPermission where Permission = @parent 
+
+		declare @Guids table 
+		(
+			Guid uniqueIdentifier
+		)
+		delete from @Guids
+
+		insert into dbo.LUPermission (IsDeleted,Permission,ParentGUID,SystemUserGUID)
+		output	 inserted.guid into @GUIDS (guid)
+		select 0, @permission,@parentGUId, @SystemGUID
+	
+		declare @Guid uniqueIdentifier 
+		select @Guid = guid from @Guids
+
+		update @permissions 
+		set done = 1 
+			,guid = @Guid
+		where id = @Pi
+
+		select @pi = min(id) from @permissions where done = 0
+
+	end
+
+
+
+	declare @permSystemguid uniqueIdentifier 
+	select @permSystemguid = guid from dbo.LUPermission where Permission = 'RootPermission'
+
+
+	insert into dbo.SystemUserPermission(IsDeleted,ActiveDateTime,ForSystemUserGUID,PermissionGUID,SystemUserGUID)
+	select 0, getDate(), @SystemGUID, @permSystemguid, @SystemGUID
+
 
 
 
@@ -165,10 +273,10 @@ SET NOCOUNT ON
 			DECLARE @GetPermission VARCHAR(MAX) = (SELECT @TableName + 'Get')
 			DECLARE @GetAllPermission VARCHAR(MAX) = (SELECT @TableName + 'GetAll')
 
-			EXEC spLUPermissionUpsert NULL, 0, @InsertPermission, @Token, 0
+			/*EXEC spLUPermissionUpsert NULL, 0, @InsertPermission, @Token, 0
 			EXEC spLUPermissionUpsert NULL, 0, @UpdatePermission, @Token, 0
 			EXEC spLUPermissionUpsert NULL, 0, @GetPermission, @Token, 0
-			EXEC spLUPermissionUpsert NULL, 0, @GetAllPermission, @Token, 0
+			EXEC spLUPermissionUpsert NULL, 0, @GetAllPermission, @Token, 0*/
 
 			DECLARE @InsertPGUID UNIQUEIDENTIFIER
 			DECLARE @UpdatePGUID UNIQUEIDENTIFIER
@@ -180,10 +288,6 @@ SET NOCOUNT ON
 			SELECT @GetPGUID = (SELECT GUID FROM LUPermission  WHERE Permission = @GetPermission)
 			SELECT @GetAllPGUID = (SELECT GUID FROM LUPermission  WHERE Permission = @GetAllPermission)
 
-			EXEC spSystemUserPermissionUpsert NULL, 0, @CurDate, NULL, @SystemGUID, @InsertPGUID, @Token, 0
-			EXEC spSystemUserPermissionUpsert NULL, 0, @CurDate, NULL, @SystemGUID, @UpdatePGUID, @Token,0
-			EXEC spSystemUserPermissionUpsert NULL, 0, @CurDate, NULL, @SystemGUID, @GetPGUID, @Token,0
-			EXEC spSystemUserPermissionUpsert NULL, 0, @CurDate, NULL, @SystemGUID, @GetAllPGUID, @Token,0
 		END
 
 		

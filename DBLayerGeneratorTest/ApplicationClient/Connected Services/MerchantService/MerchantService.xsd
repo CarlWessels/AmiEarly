@@ -28,6 +28,34 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="CustomerGet">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CustomerGetResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CustomerGetResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CustomerGetAsList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CustomerGetAsListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CustomerGetAsListResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="SystemUserUpsert">
     <xs:complexType>
       <xs:sequence>
@@ -39,20 +67,6 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="SystemUserUpsertResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CustomerUpsert">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CustomerUpsertResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="CustomerUpsertResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -98,31 +112,31 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="CustomerGet">
+  <xs:element name="CustomerUpsert">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="CustomerGetResponse">
+  <xs:element name="CustomerUpsertResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="CustomerGetResult" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="CustomerUpsertResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="CustomerGetAsList">
+  <xs:element name="CustomerAddressGet">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="parameters" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="CustomerGetAsListResponse">
+  <xs:element name="CustomerAddressGetResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="CustomerGetAsListResult" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="CustomerAddressGetResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

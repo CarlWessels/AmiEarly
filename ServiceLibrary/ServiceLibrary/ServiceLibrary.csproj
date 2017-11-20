@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{675757F0-94A5-4161-BA76-07911F49F981}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ServiceLibrary</RootNamespace>
     <AssemblyName>ServiceLibrary</AssemblyName>
@@ -29,6 +29,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>ServiceLibrary.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="GeneratedLibrary">
       <HintPath>..\..\DBLayerGeneratorTest\GeneratedLibrary\bin\Debug\GeneratedLibrary.dll</HintPath>
@@ -51,8 +54,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\DBLayerGeneratorTest\Generator\bin\Debug\GeneratedService.cs">
+      <Link>GeneratedService.cs</Link>
+    </Compile>
     <Compile Include="BaseClass.cs" />
-    <Compile Include="GeneratedService.cs" />
+    <None Include="bin\Debug\MerchantService.cs" />
+    <None Include="bin\Debug\CustomerService.cs" />
+    <Compile Include="FlaggedService.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

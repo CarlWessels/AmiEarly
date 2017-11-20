@@ -30,7 +30,7 @@ namespace ApplicationClient
                 //to open the service. the merchant service, like the customer service, has limited functionality. for this demo, we only expose a couple of necesarry
                 //functions. more will be added as needed
                 MerchantServiceClient merchanttService = new MerchantServiceClient("SYSTEM", "PASSWORD");
-
+                CustomerServiceClient customerServiceClient = new CustomerServiceClient("STEWART.RIDGWAY", "PASSWORD");
 
                 //each merchant will have his account guid as well as the store's guid stored in his appconfig
                 //todo : do checks if the accountguid and storeguid matches the systemuser specified to the service

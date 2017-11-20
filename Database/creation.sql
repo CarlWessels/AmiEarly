@@ -429,6 +429,8 @@
 		IsDeleted BIT NOT NULL DEFAULT 0,
 		Permission VARCHAR(MAX),
 
+		ParentGUID uniqueIdentifier references dbo.LUPermission (GUID) default null,
+
 		SystemUserGUID UNIQUEIDENTIFIER NOT NULL REFERENCES dbo.SystemUser(GUID)
 
 	)

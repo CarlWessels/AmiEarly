@@ -346,7 +346,7 @@ namespace Console
                 //throw new NotImplementedException();
                 callName = procName.Replace("sp", "");
             }
-            sb.AppendLine(indentThree + $"public string {callName}AsList(string parameters)");
+            sb.AppendLine(indentThree + $"public virtual string {callName}AsList(string parameters)");
             sb.AppendLine(indentThree + "{");
             sb.AppendLine(indentFour +  $"return {callName}AsList(parameters, ConnectionString, ReturnExceptionMessage);");
             sb.AppendLine(indentThree + "}");
@@ -382,7 +382,7 @@ namespace Console
             sb.AppendLine(indentThree + "");
 
 
-            sb.AppendLine(indentThree + $"public string {callName} (string parameters)");
+            sb.AppendLine(indentThree + $"public virtual string {callName} (string parameters)");
             sb.AppendLine(indentThree + "{");
             sb.AppendLine(indentFour + $"return {callName} (parameters, ConnectionString, ReturnExceptionMessage);");
             sb.AppendLine(indentThree + "}");
